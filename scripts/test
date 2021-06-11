@@ -1,0 +1,33 @@
+#!/bin/bash
+
+set -e
+
+if [[ -n "${CI}" ]]; then
+    set -x
+fi
+
+function usage() {
+    echo -n \
+        "Usage: $(basename "$0")
+Execute project linters and test suites.
+"
+}
+
+if [ "${BASH_SOURCE[0]}" = "${0}" ]; then
+    if [ "${1:-}" = "--help" ]; then
+        usage
+    else
+        ./scripts/lint
+        ./scripts/format
+
+        codespell -I .codespellignore -f \
+            scripts/* \
+            *.py ./**/*.py \
+            *.md \
+            docs/*.rst docs/**/*.rst \
+            docs/*.ipynb docs/**/*.ipynb
+
+        coverage run --source=${COVERAGE_DIRS} -m unittest discover tests/
+        coverage xml
+    fi
+fi

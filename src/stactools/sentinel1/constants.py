@@ -55,5 +55,5 @@ SENTINEL_RTC_SAR = {
     'looks_equivalent_number': 4.3,
     'looks_range': 5,
     'looks_azimuth': 1,
-    'gsd': 20 #final MGRS pixel posting
+    'gsd': 20  # final MGRS pixel posting
 }

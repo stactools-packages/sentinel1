@@ -9,3 +9,6 @@ def register_plugin(registry):
     from stactools.sentinel1 import commands
 
     registry.register_subcommand(commands.create_sentinel1_command)
+
+
+__version__ = '0.1.5'

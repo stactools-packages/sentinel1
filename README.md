@@ -1,15 +1,34 @@
 # stactools-sentinel1
+[![CI](https://github.com/stactools-packages/sentinel1/actions/workflows/continuous-integration.yml/badge.svg)](https://github.com/stactools-packages/sentinel1/actions/workflows/continuous-integration.yml)
 
-Template repostitory for [stactools](https://github.com/stac-utils/stactools) packages.
+Sentinel-1 subpackage for [stactools](https://github.com/stac-utils/stactools)
+
+**NOTE** Currently only configured for AWS Radiometric Terrain Corrected (RTC) Public Dataset: https://registry.opendata.aws/sentinel-1-rtc-indigo. Future versions may support other public datasets such as [GRD and SLC](https://registry.opendata.aws/sentinel-1/).
 
 ## How to use
 
-1. Clone this repository and name it `stactools-{NAME}`, where `NAME` is your package name.
-   This name should be short, memorable, and a valid Python package name (i.e. it shouldn't start with a number, etc).
-2. Update `setup.cfg` with your package name, description, and such.
-3. Rename `src/stactools.sentinel1` to `src/stactools/{NAME}`.
-4. Rewrite this README to provide information about how to use your package.
-5. Update the LICENSE with your company's information (or whomever holds the copyright).
-6. Update the environment name in `environment.yml`.
-7. Update the environment variables in `.github/workflows/release.yml` to the appropriate values to publish for your organization.
-8. Update all scripts in the `docker` directory to refer to `stactools-{NAME}` and `stactools-{NAME}-dev`.
+Install package
+```
+pip install stactools-sentinel1
+```
+
+Create a STAC Item
+```
+stac sentinel1 create-item s3://sentinel-s1-rtc-indigo/tiles/RTC/1/IW/12/S/YJ/2016/S1B_20161121_12SYJ_ASC S1B_20161121_12SYJ_ASC
+```
+
+## Development instructions
+
+Set up development conda environment
+```
+git clone https://github.com/YOUR_FORK/sentinel1
+cd sentinel1
+conda env create
+```
+
+Make changes on a new branch, test, open a pull request
+```
+git checkout -b newfeature
+git commit -a -m "fixed some metadata issue"
+python -m unittest discover tests
+```

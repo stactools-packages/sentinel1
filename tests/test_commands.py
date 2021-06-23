@@ -5,8 +5,8 @@ import pystac
 from pystac.utils import is_absolute_href
 
 from stactools.sentinel1.commands import create_sentinel1_command
-
-from tests.utils import (TestData, CliTestCase)
+from stactools.testing import CliTestCase
+from tests import test_data
 
 
 class CreateItemTest(CliTestCase):
@@ -15,7 +15,7 @@ class CreateItemTest(CliTestCase):
 
     def test_create_item(self):
         granule_hrefs = [
-            TestData.get_path(f'data-files/sentinel1/{x}') for x in [
+            test_data.get_path(f'data-files/{x}') for x in [
                 'S1B_20161121_12SYJ_ASC',
             ]
         ]

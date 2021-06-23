@@ -4,7 +4,10 @@ import os
 from typing import List, Optional
 
 import pystac
-from pystac.extensions.sat import OrbitState
+from pystac.extensions.eo import EOExtension
+from pystac.extensions.projection import ProjectionExtension
+from pystac.extensions.sat import OrbitState, SatExtension
+from pystac.extensions.sar import SarExtension
 
 from stactools.sentinel1.rtc_metadata import RTCMetadata
 from stactools.sentinel1 import constants as c
@@ -91,48 +94,44 @@ def create_item(
 
     # --Extensions--
     # SAR https://github.com/stac-extensions/sar
-    item.ext.enable('sar')
-    item.ext.sar.frequency_band = c.SENTINEL_FREQUENCY_BAND
-    item.ext.sar.center_frequency = c.SENTINEL_CENTER_FREQUENCY
-    item.ext.sar.observation_direction = c.SENTINEL_OBSERVATION_DIRECTION
-    item.ext.sar.instrument_mode = c.SENTINEL_RTC_SAR['instrument_mode']
-    item.ext.sar.product_type = c.SENTINEL_RTC_SAR['product_type']
-    item.ext.sar.polarizations = c.SENTINEL_RTC_SAR['polarizations']
-    item.ext.sar.resolution_range = c.SENTINEL_RTC_SAR['resolution_range']
-    item.ext.sar.resolution_azimuth = c.SENTINEL_RTC_SAR['resolution_azimuth']
-    item.ext.sar.pixel_spacing_range = c.SENTINEL_RTC_SAR[
+    sar = SarExtension.ext(item, add_if_missing=True)
+    sar.frequency_band = c.SENTINEL_FREQUENCY_BAND
+    sar.center_frequency = c.SENTINEL_CENTER_FREQUENCY
+    sar.observation_direction = c.SENTINEL_OBSERVATION_DIRECTION
+    sar.instrument_mode = c.SENTINEL_RTC_SAR['instrument_mode']
+    sar.product_type = c.SENTINEL_RTC_SAR['product_type']
+    sar.polarizations = c.SENTINEL_RTC_SAR['polarizations']
+    sar.resolution_range = c.SENTINEL_RTC_SAR['resolution_range']
+    sar.resolution_azimuth = c.SENTINEL_RTC_SAR['resolution_azimuth']
+    sar.pixel_spacing_range = c.SENTINEL_RTC_SAR[
         'pixel_spacing_range']
-    item.ext.sar.pixel_spacing_azimuth = c.SENTINEL_RTC_SAR[
+    sar.pixel_spacing_azimuth = c.SENTINEL_RTC_SAR[
         'pixel_spacing_azimuth']
-    item.ext.sar.looks_equivalent_number = c.SENTINEL_RTC_SAR[
+    sar.looks_equivalent_number = c.SENTINEL_RTC_SAR[
         'looks_equivalent_number']
-    item.ext.sar.looks_range = c.SENTINEL_RTC_SAR['looks_range']
-    item.ext.sar.looks_azimuth = c.SENTINEL_RTC_SAR['looks_azimuth']
+    sar.looks_range = c.SENTINEL_RTC_SAR['looks_range']
+    sar.looks_azimuth = c.SENTINEL_RTC_SAR['looks_azimuth']
 
     # SAT https://github.com/stac-extensions/sat
-    item.ext.enable('sat')
-    item.ext.sat.orbit_state = OrbitState(product_metadata.orbit_state.lower())
-    item.ext.sat.relative_orbit = product_metadata.relative_orbit
-    item.ext.sat.absolute_orbit = product_metadata.absolute_orbit
+    sat = SatExtension.ext(item, add_if_missing=True)
+    sat.orbit_state = OrbitState(product_metadata.orbit_state.lower())
+    sat.relative_orbit = product_metadata.relative_orbit
+    sat.absolute_orbit = product_metadata.absolute_orbit
 
     # PROJECTION https://github.com/stac-extensions/projection
-    item.ext.enable('projection')
-    item.ext.projection.epsg = product_metadata.epsg
-    item.ext.projection.shape = product_metadata.shape
-    item.ext.projection.bbox = product_metadata.proj_bbox
-    item.ext.projection.transform = product_metadata.metadata['transform']
+    projection = ProjectionExtension.ext(item, add_if_missing=True)
+    projection.epsg = product_metadata.epsg
+    projection.transform = product_metadata.metadata['transform']
 
     # Additional extensions could be useful, but not yet implemented in pystac:
 
-    # MGRS https://github.com/stac-extensions/mgrs
-    # item.ext.enable('mgrs')
-    # item.ext.projection.utm_zone = product_metadata.metadata['TILE_ID'][:2]
-    # item.ext.projection.latitude_band = product_metadata.metadata['TILE_ID'][2]
-    # item.ext.projection.grid_square = product_metadata.metadata['TILE_ID'][3:]
+    # Military Grid Reference System https://github.com/stac-extensions/mgrs
+    #mgrs = MgrsExtension.ext(item, add_if_missing=True)
+    #mgrs.utm_zone = product_metadata.metadata['TILE_ID'][:2]
+    #mgrs.latitude_band = product_metadata.metadata['TILE_ID'][2]
+    #mgrs.grid_square = product_metadata.metadata['TILE_ID'][3:]
 
-    # RASTER https://github.com/stac-extensions/raster
-    # To capture nodata value and incidence angle units and scaling
-    # https://github.com/stac-extensions/raster#value-object
+    # Raster https://github.com/stac-extensions/raster
 
     # --Assets--
 

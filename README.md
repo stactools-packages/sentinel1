@@ -24,11 +24,16 @@ Set up development conda environment
 git clone https://github.com/YOUR_FORK/sentinel1
 cd sentinel1
 conda env create
+conda activate stactools-sentinel1
+pip install -e ./
+pip install -r requirements-dev.txt
 ```
 
 Make changes on a new branch, test, open a pull request
 ```
 git checkout -b newfeature
-git commit -a -m "fixed some metadata issue"
-python -m unittest discover tests
+# make changes
+./scripts/lint
+./scripts/format
+./scripts/test
 ```

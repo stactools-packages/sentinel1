@@ -4,10 +4,10 @@ import os
 from typing import List, Optional
 
 import pystac
-from pystac.extensions.eo import EOExtension
 from pystac.extensions.projection import ProjectionExtension
 from pystac.extensions.sat import OrbitState, SatExtension
 from pystac.extensions.sar import SarExtension
+from pystac.extensions.raster import RasterExtension, RasterBand
 
 from stactools.sentinel1.rtc_metadata import RTCMetadata
 from stactools.sentinel1 import constants as c
@@ -103,12 +103,9 @@ def create_item(
     sar.polarizations = c.SENTINEL_RTC_SAR['polarizations']
     sar.resolution_range = c.SENTINEL_RTC_SAR['resolution_range']
     sar.resolution_azimuth = c.SENTINEL_RTC_SAR['resolution_azimuth']
-    sar.pixel_spacing_range = c.SENTINEL_RTC_SAR[
-        'pixel_spacing_range']
-    sar.pixel_spacing_azimuth = c.SENTINEL_RTC_SAR[
-        'pixel_spacing_azimuth']
-    sar.looks_equivalent_number = c.SENTINEL_RTC_SAR[
-        'looks_equivalent_number']
+    sar.pixel_spacing_range = c.SENTINEL_RTC_SAR['pixel_spacing_range']
+    sar.pixel_spacing_azimuth = c.SENTINEL_RTC_SAR['pixel_spacing_azimuth']
+    sar.looks_equivalent_number = c.SENTINEL_RTC_SAR['looks_equivalent_number']
     sar.looks_range = c.SENTINEL_RTC_SAR['looks_range']
     sar.looks_azimuth = c.SENTINEL_RTC_SAR['looks_azimuth']
 
@@ -122,16 +119,15 @@ def create_item(
     projection = ProjectionExtension.ext(item, add_if_missing=True)
     projection.epsg = product_metadata.epsg
     projection.transform = product_metadata.metadata['transform']
+    projection.shape = product_metadata.shape
 
     # Additional extensions could be useful, but not yet implemented in pystac:
 
     # Military Grid Reference System https://github.com/stac-extensions/mgrs
-    #mgrs = MgrsExtension.ext(item, add_if_missing=True)
-    #mgrs.utm_zone = product_metadata.metadata['TILE_ID'][:2]
-    #mgrs.latitude_band = product_metadata.metadata['TILE_ID'][2]
-    #mgrs.grid_square = product_metadata.metadata['TILE_ID'][3:]
-
-    # Raster https://github.com/stac-extensions/raster
+    # mgrs = MgrsExtension.ext(item, add_if_missing=True)
+    # mgrs.utm_zone = product_metadata.metadata['TILE_ID'][:2]
+    # mgrs.latitude_band = product_metadata.metadata['TILE_ID'][2]
+    # mgrs.grid_square = product_metadata.metadata['TILE_ID'][3:]
 
     # --Assets--
 
@@ -140,11 +136,15 @@ def create_item(
         asset_href = os.path.join(product_metadata.href, image)
         logger.debug(f'Creating asset for image {asset_href}')
 
-        # https://github.com/stac-extensions/sar#best-practices
         asset = pystac.Asset(href=asset_href,
                              media_type=product_metadata.image_media_type,
                              title=product_metadata.asset_dict[image]['title'],
                              roles=product_metadata.asset_dict[image]['roles'])
+
+        # Raster https://github.com/stac-extensions/raster#raster-band-object
+        RasterInfo = product_metadata.asset_dict[image]['raster']
+        RasterExtension.ext(asset).bands = [RasterBand.create(**RasterInfo)]
+
         item.add_asset(product_metadata.asset_dict[image]['key'], asset)
 
     # Metadata

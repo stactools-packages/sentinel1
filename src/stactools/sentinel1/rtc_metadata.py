@@ -2,6 +2,7 @@ from typing import List, Optional
 
 import pystac
 from pystac.utils import str_to_datetime
+from pystac.extensions.raster import Sampling, DataType
 
 import rasterio
 import rasterio.features
@@ -29,7 +30,7 @@ class RTCMetadata:
                     metadata = src.profile
                     metadata.update(src.tags())
                     # other useful things that aren't already keys in src.profile
-                    metadata['PROJ_BBOX'] = list(src.bounds)
+                    # metadata['PROJ_BBOX'] = list(src.bounds)
                     metadata['SHAPE'] = src.shape
 
                     bbox, footprint = _get_geometries(src, scale, precision)
@@ -135,9 +136,10 @@ class RTCMetadata:
         platformMap = dict(S1A='sentinel-1a', S1B='sentinel-1b')
         return platformMap[self.metadata['MISSION_ID']]
 
-    @property
-    def proj_bbox(self) -> Optional[str]:
-        return self.metadata['PROJ_BBOX']
+    # NOTE: redundent with projection.transform
+    # @property
+    # def proj_bbox(self) -> Optional[str]:
+    #    return self.metadata['PROJ_BBOX']
 
     @property
     def epsg(self) -> Optional[str]:
@@ -147,10 +149,10 @@ class RTCMetadata:
     def metadata_dict(self):
         ''' match s2 l2a cogs from https://earth-search.aws.element84.com/v0 '''
         sentinel_metadata = {
-            'sentinel:mgrs': self.metadata['TILE_ID'],
-            'sentinel:utm_zone': self.metadata['TILE_ID'][:2],
-            'sentinel:latitude_band': self.metadata['TILE_ID'][2],
-            'sentinel:grid_square': self.metadata['TILE_ID'][3:],
+            # NOTE: once PySTAC adds MGRS extension can move this to stac.py
+            'mgrs:utm_zone': self.metadata['TILE_ID'][:2],
+            'mgrs:latitude_band': self.metadata['TILE_ID'][2],
+            'mgrs:grid_square': self.metadata['TILE_ID'][3:],
             'sentinel:product_ids': self.grd_ids,
             'sentinel:data_coverage': self.metadata['VALID_PIXEL_PERCENT'],
         }
@@ -163,15 +165,26 @@ class RTCMetadata:
             'Gamma0_VV.tif':
             dict(key='gamma0_vv',
                  title='Gamma0 VV backscatter',
-                 roles=['data', 'gamma0']),
+                 roles=['data', 'gamma0'],
+                 raster=dict(nodata=0,
+                             sampling=Sampling.AREA,
+                             data_type=DataType.FLOAT32)),
             'Gamma0_VH.tif':
             dict(key='gamma0_vh',
                  title='Gamma0 VH backscatter',
-                 roles=['data', 'gamma0']),
+                 roles=['data', 'gamma0'],
+                 raster=dict(nodata=0,
+                             sampling=Sampling.AREA,
+                             data_type=DataType.FLOAT32)),
             'local_incident_angle.tif':
             dict(key='incidence',
                  title='Local incidence angle',
-                 roles=['data', 'local-incidence-angle'])
+                 roles=['data', 'local-incidence-angle'],
+                 raster=dict(nodata=0,
+                             sampling=Sampling.AREA,
+                             data_type=DataType.UINT16,
+                             unit="degrees",
+                             scale=0.01))
         }
 
         return asset_dict

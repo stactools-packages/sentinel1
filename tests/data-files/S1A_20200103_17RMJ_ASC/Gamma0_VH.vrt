@@ -1,0 +1,32 @@
+<VRTDataset rasterXSize="5490" rasterYSize="5490">
+  <SRS dataAxisToSRSAxisMapping="1,2">PROJCS["WGS 84 / UTM zone 17N",GEOGCS["WGS 84",DATUM["WGS_1984",SPHEROID["WGS 84",6378137,298.257223563,AUTHORITY["EPSG","7030"]],AUTHORITY["EPSG","6326"]],PRIMEM["Greenwich",0,AUTHORITY["EPSG","8901"]],UNIT["degree",0.0174532925199433,AUTHORITY["EPSG","9122"]],AUTHORITY["EPSG","4326"]],PROJECTION["Transverse_Mercator"],PARAMETER["latitude_of_origin",0],PARAMETER["central_meridian",-81],PARAMETER["scale_factor",0.9996],PARAMETER["false_easting",500000],PARAMETER["false_northing",0],UNIT["metre",1,AUTHORITY["EPSG","9001"]],AXIS["Easting",EAST],AXIS["Northing",NORTH],AUTHORITY["EPSG","32617"]]</SRS>
+  <GeoTransform>  3.9996000000000000e+05,  2.0000000000000000e+01,  0.0000000000000000e+00,  2.9000400000000000e+06,  0.0000000000000000e+00, -2.0000000000000000e+01</GeoTransform>
+  <Metadata>
+    <MDI key="ABSOLUTE_ORBIT_NUMBER">30643</MDI>
+    <MDI key="AREA_OR_POINT">Area</MDI>
+    <MDI key="DATE">2020-01-03</MDI>
+    <MDI key="MISSION_ID">S1A</MDI>
+    <MDI key="NUMBER_SCENES">2</MDI>
+    <MDI key="ORBIT_DIRECTION">ascending</MDI>
+    <MDI key="OVR_RESAMPLING_ALG">AVERAGE</MDI>
+    <MDI key="SCENES">S1A_IW_GRDH_1SDV_20200103T233556_20200103T233621_030643_0382F7_C795,S1A_IW_GRDH_1SDV_20200103T233621_20200103T233646_030643_0382F7_2CFD</MDI>
+    <MDI key="SCENE_1_METADATA">{"title": "S1A_IW_GRDH_1SDV_20200103T233556_20200103T233621_030643_0382F7_C795", "mission_id": "S1A", "sensor_operational_mode": "IW", "product_type": "RTC", "resolution_class": "H", "processing_level": "1", "polarization_mode": "DV", "start_time": "2020-01-03T23:35:56", "end_time": "2020-01-03T23:36:21", "absolute_orbit_number": "30643", "mission_data_take_id": "0382F7", "product_unique_identifier": "C795", "footprint": "{\"type\": \"Polygon\", \"coordinates\": [[[-83.974327, 25.084072], [-81.443886, 25.508579], [-81.15139, 24.002651], [-83.651161, 23.575037], [-83.974327, 25.084072]]]}", "orbit_direction": "ASC", "ingested_at": "2020-01-04T05:58:55.793000", "size": "795079278"}</MDI>
+    <MDI key="SCENE_1_PRODUCT_INFO">{"id": "S1A_IW_GRDH_1SDV_20200103T233556_20200103T233621_030643_0382F7_C795", "path": "scenes/RTC/1/2020/1/3/IW/DV/S1A_IW_GRDH_1SDV_20200103T233556_20200103T233621_030643_0382F7_C795/", "missionId": "S1A", "productType": "RTC", "mode": "IW", "polarization": "DV", "startTime": "2020-01-03T23:35:56", "stopTime": "2020-01-03T23:36:21", "absoluteOrbitNumber": 30643, "missionDataTakeId": "0382F7", "productUniqueIdentifier": "C795", "sciHubIngestion": "2020-01-04T05:58:55.793000Z", "s3Ingestion": "2020-09-24T18:58:44.826965Z", "sciHubId": "5fd00b40-0fbe-4d11-b62f-d460703f3df2", "footprint": {"type": "Polygon", "coordinates": [[[-83.974327, 25.084072], [-81.443886, 25.508579], [-81.15139, 24.002651], [-83.651161, 23.575037], [-83.974327, 25.084072]]]}}</MDI>
+    <MDI key="SCENE_2_METADATA">{"title": "S1A_IW_GRDH_1SDV_20200103T233621_20200103T233646_030643_0382F7_2CFD", "mission_id": "S1A", "sensor_operational_mode": "IW", "product_type": "RTC", "resolution_class": "H", "processing_level": "1", "polarization_mode": "DV", "start_time": "2020-01-03T23:36:21", "end_time": "2020-01-03T23:36:46", "absolute_orbit_number": "30643", "mission_data_take_id": "0382F7", "product_unique_identifier": "2CFD", "footprint": "{\"type\": \"Polygon\", \"coordinates\": [[[-84.300667, 26.592758], [-81.736465, 27.014376], [-81.443321, 25.508762], [-83.974342, 25.084164], [-84.300667, 26.592758]]]}", "orbit_direction": "ASC", "ingested_at": "2020-01-04T05:58:56.930000", "size": "816858133"}</MDI>
+    <MDI key="SCENE_2_PRODUCT_INFO">{"id": "S1A_IW_GRDH_1SDV_20200103T233621_20200103T233646_030643_0382F7_2CFD", "path": "scenes/RTC/1/2020/1/3/IW/DV/S1A_IW_GRDH_1SDV_20200103T233621_20200103T233646_030643_0382F7_2CFD/", "missionId": "S1A", "productType": "RTC", "mode": "IW", "polarization": "DV", "startTime": "2020-01-03T23:36:21", "stopTime": "2020-01-03T23:36:46", "absoluteOrbitNumber": 30643, "missionDataTakeId": "0382F7", "productUniqueIdentifier": "2CFD", "sciHubIngestion": "2020-01-04T05:58:56.930000Z", "s3Ingestion": "2020-09-24T18:58:44.827429Z", "sciHubId": "0eb45f55-582c-4383-bd7a-a12a8a058828", "footprint": {"type": "Polygon", "coordinates": [[[-84.300667, 26.592758], [-81.736465, 27.014376], [-81.443321, 25.508762], [-83.974342, 25.084164], [-84.300667, 26.592758]]]}}</MDI>
+    <MDI key="TILE_ID">17RMJ</MDI>
+    <MDI key="VALID_PIXEL_PERCENT">40.627</MDI>
+  </Metadata>
+  <VRTRasterBand dataType="Float32" band="1">
+    <Description>Gamma0_VH</Description>
+    <NoDataValue>0</NoDataValue>
+    <ColorInterp>Gray</ColorInterp>
+    <SimpleSource>
+      <SourceFilename relativeToVRT="0">/vsis3/sentinel-s1-rtc-indigo/tiles/RTC/1/IW/17/R/MJ/2020/S1A_20200103_17RMJ_ASC/Gamma0_VH.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="5490" RasterYSize="5490" DataType="Float32" BlockXSize="512" BlockYSize="512" />
+      <SrcRect xOff="0" yOff="0" xSize="5490" ySize="5490" />
+      <DstRect xOff="0" yOff="0" xSize="5490" ySize="5490" />
+    </SimpleSource>
+  </VRTRasterBand>
+</VRTDataset>

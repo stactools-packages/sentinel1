@@ -153,7 +153,10 @@ class RTCMetadata:
             'mgrs:utm_zone': self.metadata['TILE_ID'][:2],
             'mgrs:latitude_band': self.metadata['TILE_ID'][2],
             'mgrs:grid_square': self.metadata['TILE_ID'][3:],
+            'sentinel:mgrs': self.metadata['TILE_ID'],
             'sentinel:product_ids': self.grd_ids,
+            # NOTE: change to 'valid_percent' in raster extension?
+            # https://github.com/stac-extensions/raster#statistics-object
             'sentinel:data_coverage': self.metadata['VALID_PIXEL_PERCENT'],
         }
         return sentinel_metadata

@@ -8,6 +8,8 @@ from pystac.extensions.projection import ProjectionExtension
 from pystac.extensions.sat import OrbitState, SatExtension
 from pystac.extensions.sar import SarExtension
 from pystac.extensions.raster import RasterExtension, RasterBand
+# from pystac import Link
+from pystac.collection import Summaries
 
 from stactools.sentinel1.rtc_metadata import RTCMetadata
 from stactools.sentinel1 import constants as c
@@ -23,7 +25,7 @@ def create_collection() -> pystac.Collection:
         'constellation': [c.SENTINEL_CONSTELLATION],
         'platform': c.SENTINEL_PLATFORMS,
         'gsd': [c.SENTINEL_RTC_SAR['gsd']],
-        'proj:epsg': c.SENTINEL_RTC_EPSGS,
+        'proj:epsg': c.SENTINEL_RTC_EPSGS
     }
 
     collection = pystac.Collection(
@@ -31,13 +33,27 @@ def create_collection() -> pystac.Collection:
         description=c.SENTINEL_RTC_DESCRIPTION,
         extent=c.SENTINEL_RTC_EXTENT,
         title='Sentinel-1 RTC CONUS',
-        stac_extensions=['sar', 'sat', 'proj'],
+        stac_extensions=[
+            SarExtension.get_schema_uri(),
+            SatExtension.get_schema_uri(),
+            ProjectionExtension.get_schema_uri(),
+            RasterExtension.get_schema_uri(),
+            # Can use pystac.extensions once implemented
+            # 'https://stac-extensions.github.io/processing/v1.0.0/schema.json',
+            'https://stac-extensions.github.io/mgrs/v1.0.0/schema.json',
+        ],
         keywords=[
             'backscatter', 'radiometry', 'sentinel', 'copernicus', 'esa', 'sar'
         ],
         providers=[c.SENTINEL_PROVIDER, c.SENTINEL_RTC_PROVIDER],
-        summaries=summary_dict,
+        summaries=Summaries(summary_dict),
     )
+
+    # Fails validation i think b/c 'about' is not a recognized reltype
+    # https://pystac.readthedocs.io/en/latest/api.html#pystac.RelType
+    # about_url = 'https://sentinel-s1-rtc-indigo-docs.s3-us-west-2.amazonaws.com/methodology.html' # noqa: E501
+    # aboutLink = pystac.Link(rel='about', target=about_url)
+    # collection.add_link(aboutLink)
 
     return collection
 
@@ -120,14 +136,6 @@ def create_item(
     projection.epsg = product_metadata.epsg
     projection.transform = product_metadata.metadata['transform']
     projection.shape = product_metadata.shape
-
-    # Additional extensions could be useful, but not yet implemented in pystac:
-
-    # Military Grid Reference System https://github.com/stac-extensions/mgrs
-    # mgrs = MgrsExtension.ext(item, add_if_missing=True)
-    # mgrs.utm_zone = product_metadata.metadata['TILE_ID'][:2]
-    # mgrs.latitude_band = product_metadata.metadata['TILE_ID'][2]
-    # mgrs.grid_square = product_metadata.metadata['TILE_ID'][3:]
 
     # --Assets--
 

@@ -1,0 +1,26 @@
+name: Sync Template
+
+on: workflow_dispatch
+
+jobs:
+  sync-template:
+    runs-on: ubuntu-20.04
+    steps:
+    - name: Checkout Package Repository
+      uses: actions/checkout@v2
+    
+    - name: Checkout Template Repository
+      uses: actions/checkout@v2
+      with:
+        repository: stactools-packages/template
+        path: /tmp/template
+    
+    - name: Update Specific Template Paths
+      run: |
+        cp /tmp/template/.flake8 .flake8
+        cp -r /tmp/template/scripts/ scripts/
+        cp -r /tmp/template/docker/ docker/
+        cp -r /tmp/template/.github/workflows/*yml .github/workflows/*yml
+
+    - name: Create Pull Request
+      uses: peter-evans/create-pull-request@v3

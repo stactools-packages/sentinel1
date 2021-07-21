@@ -1,0 +1,25 @@
+#!/bin/bash
+
+set -e
+
+if [[ -n "${CI}" ]]; then
+    set -x
+fi
+
+function usage() {
+    echo -n \
+        "Usage: $(basename "$0")
+Install requirements for all packages and development.
+"
+}
+
+if [ "${BASH_SOURCE[0]}" = "${0}" ]; then
+    if [ "${1:-}" = "--help" ]; then
+        usage
+    else
+        export PIP_NO_BINARY=rasterio
+        python -m pip install --upgrade pip
+        pip install .
+        pip install -r requirements-dev.txt
+    fi
+fi

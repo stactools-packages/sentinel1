@@ -1,7 +1,14 @@
-FROM stactools-sentinel1:latest
+ARG STACTOOLS_VERSION=latest
+FROM ghcr.io/stac-utils/stactools:${STACTOOLS_VERSION}-dev
 
-RUN conda install -c conda-forge pandoc
+WORKDIR /opt/stactools-package
 
-COPY . /src/stactools-sentinel1
-RUN pip install -r /src/stactools-sentinel1/requirements-dev.txt
-WORKDIR /src/stactools-sentinel1
+# For caching purposes, install dependencies but remove the actual package
+COPY pyproject.toml requirements-dev.txt setup.cfg ./
+COPY src/stactools/package/__init__.py src/stactools/package/
+RUN pip install -r requirements-dev.txt \
+    && pip install . \
+    && rm -r /opt/conda/lib/python3.8/site-packages/stactools/package
+
+COPY . ./
+RUN pip install -e .

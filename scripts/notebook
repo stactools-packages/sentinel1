@@ -9,17 +9,16 @@ fi
 function usage() {
     echo -n \
         "Usage: $(basename "$0")
-Format code with yapf
+Launches a Jupyter notebook.
 "
 }
-
-DIRS_TO_CHECK=("src" "tests" "scripts")
 
 if [ "${BASH_SOURCE[0]}" = "${0}" ]; then
     if [ "${1:-}" = "--help" ]; then
         usage
     else
-        # Code formatting
-        yapf -ipr ${DIRS_TO_CHECK[@]}
+        jupyter notebook \
+            --ip=0.0.0.0 \
+            --port=8888
     fi
 fi

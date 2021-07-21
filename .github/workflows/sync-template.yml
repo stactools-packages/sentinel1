@@ -22,9 +22,9 @@ jobs:
     
     - name: Update Select Template Changes
       run: |
-        cp -r ./template/scripts/ ./package/scripts/
-        cp -r ./template/docker/ ./package/docker/
-        cp -r ./template/.github/workflows/ ./package/.github/workflows/
+        cp -r ./template/scripts/* ./package/scripts/
+        cp -r ./template/docker/* ./package/docker/
+        cp -r ./template/.github/workflows/* ./package/.github/workflows/
         cp ./template/.flake8 ./package/.flake8
 
     - name: Create Pull Request
@@ -32,3 +32,5 @@ jobs:
       with:
         path: package
         token: ${{ secrets.TOKEN }}
+        title: Sync with stacktools-packages/template
+        body: Pulled upstream changes from https://github.com/stactools-packages/template

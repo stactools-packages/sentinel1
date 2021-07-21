@@ -1,0 +1,8 @@
+FROM python:3-buster
+
+WORKDIR /opt/stactools-package
+COPY requirements-dev.txt ./
+RUN pip install -r requirements-dev.txt
+
+COPY scripts/ scripts/
+COPY docker/ docker/

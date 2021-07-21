@@ -20,6 +20,8 @@ jobs:
       with:
         path: package
     
+    # NOTE: this is not very sophisticated, just copies files from specific subfolders
+    # will not reconcile deleted or renamed files
     - name: Update Select Template Changes
       run: |
         cp -r ./template/scripts/* ./package/scripts/

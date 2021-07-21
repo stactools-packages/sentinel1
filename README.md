@@ -1,6 +1,25 @@
 # stactools-sentinel1
 [![CI](https://github.com/stactools-packages/sentinel1/actions/workflows/continuous-integration.yml/badge.svg)](https://github.com/stactools-packages/sentinel1/actions/workflows/continuous-integration.yml)
 
+
+- Name: sentinel1
+- Package: `stactools.sentinel1`
+- PyPI: https://pypi.org/project/stactools-sentinel1/
+- Owner: @scottyhq
+- Dataset homepage: https://registry.opendata.aws/sentinel-1-rtc-indigo/
+- STAC extensions used:
+  - [projection](https://github.com/stac-extensions/projection/)
+  - [sar](https://github.com/stac-extensions/sar)
+  - [sat](https://github.com/stac-extensions/sat)
+  - [raster](https://github.com/stac-extensions/raster)
+  - [mgrs](https://github.com/stac-extensions/mgrs)
+  - [processing](https://github.com/stac-extensions/processing)
+- Extra fields:
+  - `package:custom`: A custom attribute
+
+A short description of the package and its usage.
+
+
 Sentinel-1 subpackage for [stactools](https://github.com/stac-utils/stactools)
 
 **NOTE** Currently only configured for AWS Radiometric Terrain Corrected (RTC) Public Dataset: https://registry.opendata.aws/sentinel-1-rtc-indigo. Future versions may support other public datasets such as [GRD and SLC](https://registry.opendata.aws/sentinel-1/).

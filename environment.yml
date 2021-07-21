@@ -2,5 +2,4 @@ name: stactools-sentinel1
 channels:
   - conda-forge
 dependencies:
-  - python
-  - rasterio>=1
+  - rasterio~=1.2

@@ -26,8 +26,8 @@ jobs:
       run: |
         cp -r ./template/scripts/ ./package/scripts/
         cp -r ./template/docker/ ./package/docker/
+        cp -r ./template/.github/workflows/ ./package/.github/workflows/
         cp ./template/.flake8 ./package/.flake8
-        cp ./template/.github/workflows/*yml ./package/.github/workflows/*yml
 
     - name: Create Pull Request
       uses: peter-evans/create-pull-request@v3

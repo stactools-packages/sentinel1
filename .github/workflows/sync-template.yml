@@ -1,5 +1,8 @@
 name: Sync Template
 
+# NOTE: requires a secrets.GITHUB_TOKEN with permissions to update .github/workflows/ 
+#https://github.com/peter-evans/create-pull-request/blob/main/docs/examples.md#keep-a-fork-up-to-date-with-its-upstream
+
 on: workflow_dispatch
 
 jobs:
@@ -16,11 +19,6 @@ jobs:
       uses: actions/checkout@v2
       with:
         path: package
-        
-    - name: List PWD Contents
-      run: |
-        pwd 
-        ls -la *
     
     - name: Update Select Template Changes
       run: |
@@ -33,3 +31,4 @@ jobs:
       uses: peter-evans/create-pull-request@v3
       with:
         path: package
+        token: ${{ secrets.GITHUB_TOKEN }}

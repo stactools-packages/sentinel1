@@ -31,4 +31,4 @@ jobs:
       uses: peter-evans/create-pull-request@v3
       with:
         path: package
-        token: ${{ secrets.GITHUB_TOKEN }}
+        token: ${{ secrets.TOKEN }}

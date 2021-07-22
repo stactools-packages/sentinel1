@@ -1,6 +1,6 @@
 FROM python:3-buster
 
-WORKDIR /opt/stactools-package
+WORKDIR /opt/stactools-sentinel1
 COPY requirements-dev.txt ./
 RUN pip install -r requirements-dev.txt
 

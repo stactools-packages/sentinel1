@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
     - name: Get Repository Name
-      run: echo ::set-env name=PACKAGE_NAME::${GITHUB_REPOSITORY#*/}
+      run: echo "PACKAGE_NAME=${GITHUB_REPOSITORY#*/}" >> $GITHUB_ENV
     
     - name: Checkout Template Repository
       uses: actions/checkout@v2

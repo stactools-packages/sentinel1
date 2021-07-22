@@ -15,9 +15,6 @@
   - [mgrs](https://github.com/stac-extensions/mgrs)
   - [processing](https://github.com/stac-extensions/processing)
 
-A short description of the package and its usage.
-
-
 Sentinel-1 subpackage for [stactools](https://github.com/stac-utils/stactools)
 
 **NOTE** Currently only configured for AWS Radiometric Terrain Corrected (RTC) Public Dataset: https://registry.opendata.aws/sentinel-1-rtc-indigo. Future versions may support other public datasets such as [GRD and SLC](https://registry.opendata.aws/sentinel-1/).
@@ -40,7 +37,7 @@ https://github.com/scottyhq/sentinel1-rtc-stac
 
 ## Development instructions
 
-Set up virtual environment
+#### Set up virtual environment
 ```
 git clone https://github.com/YOUR_FORK/sentinel1
 # Use a virtual environment
@@ -51,12 +48,12 @@ pip install -e ./
 pip install -r requirements-dev.txt
 ```
 
-Make changes on a new branch, test, open a pull request
+#### Make changes on a new branch, test, open a pull request
 ```
 git checkout -b newfeature
-# make changes and test
+# make changes
 
-# Run everything
+# Run CI tests locally
 ./scripts/cibuild
 
 # Or run individual scripts

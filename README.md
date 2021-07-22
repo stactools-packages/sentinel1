@@ -14,8 +14,6 @@
   - [raster](https://github.com/stac-extensions/raster)
   - [mgrs](https://github.com/stac-extensions/mgrs)
   - [processing](https://github.com/stac-extensions/processing)
-- Extra fields:
-  - `package:custom`: A custom attribute
 
 A short description of the package and its usage.
 
@@ -26,24 +24,29 @@ Sentinel-1 subpackage for [stactools](https://github.com/stac-utils/stactools)
 
 ## How to use
 
-Install package
+#### Install package
 ```
 pip install stactools-sentinel1
 ```
 
-Create a STAC Item
+#### Create a STAC Item
 ```
 stac sentinel1 create-item s3://sentinel-s1-rtc-indigo/tiles/RTC/1/IW/12/S/YJ/2016/S1B_20161121_12SYJ_ASC S1B_20161121_12SYJ_ASC
 ```
 
+#### Create a STAC Static Catalog
+https://github.com/scottyhq/sentinel1-rtc-stac
+
+
 ## Development instructions
 
-Set up development conda environment
+Set up virtual environment
 ```
 git clone https://github.com/YOUR_FORK/sentinel1
-cd sentinel1
+# Use a virtual environment
 conda env create
 conda activate stactools-sentinel1
+# Development install of dependencies
 pip install -e ./
 pip install -r requirements-dev.txt
 ```
@@ -51,8 +54,15 @@ pip install -r requirements-dev.txt
 Make changes on a new branch, test, open a pull request
 ```
 git checkout -b newfeature
-# make changes
+# make changes and test
+
+# Run everything
+./scripts/cibuild
+
+# Or run individual scripts
 ./scripts/lint
 ./scripts/format
 ./scripts/test
+
+# Once tests pass, commit changes and create a pull request
 ```

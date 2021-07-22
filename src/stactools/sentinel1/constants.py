@@ -27,11 +27,15 @@ SENTINEL_PROVIDER = pystac.Provider(
 SENTINEL_RTC_PROVIDER = pystac.Provider(
     name='Indigo Ag Inc.',
     roles=['processor', 'licensor'],
-    url='https://registry.opendata.aws/sentinel-1-rtc-indigo')
-# https://github.com/stac-utils/pystac/issues/479
-# 'processing:level': 'L3',
-# 'processing:lineage': 'https://sentinel-s1-rtc-indigo-docs.s3-us-west-2.amazonaws.com/methodology.html',  # noqa: E501
-# 'processing:software': {"S1TBX": "7.0.2"}
+    url='https://registry.opendata.aws/sentinel-1-rtc-indigo',
+    extra_fields={
+        'processing:level': 'L3',
+        'processing:lineage':
+        'https://sentinel-s1-rtc-indigo-docs.s3-us-west-2.amazonaws.com/methodology.html',  # noqa: E501
+        'processing:software': {
+            "S1TBX": "7.0.2"
+        }
+    })
 
 SENTINEL_RTC_LICENSE = Link(
     rel='license',

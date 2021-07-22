@@ -54,7 +54,7 @@ class CreateItemTest(CliTestCase):
             collection.save(catalog_type=pystac.CatalogType.RELATIVE_PUBLISHED)
             collection = pystac.read_file(
                 os.path.join(tmp_dir, 'collection.json'))
-            collection.validate()
+            collection.validate_all()
 
     def test_cli_create_item(self):
         granule_hrefs = [

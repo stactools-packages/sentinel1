@@ -2,7 +2,7 @@ from typing import List, Optional
 
 import pystac
 from pystac.utils import str_to_datetime
-from pystac.extensions.raster import Sampling, DataType
+from pystac.extensions.raster import Sampling, DataType, Statistics
 
 import rasterio
 import rasterio.features
@@ -29,8 +29,6 @@ class RTCMetadata:
                 with rasterio.open(os.path.join(href, self.asset)) as src:
                     metadata = src.profile
                     metadata.update(src.tags())
-                    # other useful things that aren't already keys in src.profile
-                    # metadata['PROJ_BBOX'] = list(src.bounds)
                     metadata['SHAPE'] = src.shape
 
                     bbox, footprint = _get_geometries(src, scale, precision)
@@ -136,14 +134,14 @@ class RTCMetadata:
         platformMap = dict(S1A='sentinel-1a', S1B='sentinel-1b')
         return platformMap[self.metadata['MISSION_ID']]
 
-    # NOTE: redundent with projection.transform
-    # @property
-    # def proj_bbox(self) -> Optional[str]:
-    #    return self.metadata['PROJ_BBOX']
-
     @property
     def epsg(self) -> Optional[str]:
         return self.metadata['crs'].to_epsg()
+
+    @property
+    def valid_percent(self) -> Optional[float]:
+        # Common to 3 assets of RTC item
+        return float(self.metadata['VALID_PIXEL_PERCENT'])
 
     @property
     def metadata_dict(self):
@@ -155,9 +153,6 @@ class RTCMetadata:
             'mgrs:grid_square': self.metadata['TILE_ID'][3:],
             'sentinel:mgrs': self.metadata['TILE_ID'],
             'sentinel:product_ids': self.grd_ids,
-            # NOTE: change to 'valid_percent' in raster extension?
-            # https://github.com/stac-extensions/raster#statistics-object
-            'sentinel:data_coverage': self.metadata['VALID_PIXEL_PERCENT'],
         }
         return sentinel_metadata
 
@@ -169,25 +164,37 @@ class RTCMetadata:
             dict(key='gamma0_vv',
                  title='Gamma0 VV backscatter',
                  roles=['data', 'gamma0'],
-                 raster=dict(nodata=0,
-                             sampling=Sampling.AREA,
-                             data_type=DataType.FLOAT32)),
+                 raster=dict(
+                     nodata=0,
+                     sampling=Sampling.AREA,
+                     data_type=DataType.FLOAT32,
+                     statistics=Statistics(
+                         {'valid_percent': self.valid_percent}),
+                 )),
             'Gamma0_VH.tif':
             dict(key='gamma0_vh',
                  title='Gamma0 VH backscatter',
                  roles=['data', 'gamma0'],
-                 raster=dict(nodata=0,
-                             sampling=Sampling.AREA,
-                             data_type=DataType.FLOAT32)),
+                 raster=dict(
+                     nodata=0,
+                     sampling=Sampling.AREA,
+                     data_type=DataType.FLOAT32,
+                     statistics=Statistics(
+                         {'valid_percent': self.valid_percent}),
+                 )),
             'local_incident_angle.tif':
             dict(key='incidence',
                  title='Local incidence angle',
                  roles=['data', 'local-incidence-angle'],
-                 raster=dict(nodata=0,
-                             sampling=Sampling.AREA,
-                             data_type=DataType.UINT16,
-                             unit="degrees",
-                             scale=0.01))
+                 raster=dict(
+                     nodata=0,
+                     sampling=Sampling.AREA,
+                     data_type=DataType.UINT16,
+                     unit="degrees",
+                     scale=0.01,
+                     statistics=Statistics(
+                         {'valid_percent': self.valid_percent}),
+                 ))
         }
 
         return asset_dict

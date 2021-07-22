@@ -39,7 +39,7 @@ def create_collection() -> pystac.Collection:
             ProjectionExtension.get_schema_uri(),
             RasterExtension.get_schema_uri(),
             # Can use pystac.extensions once implemented
-            # 'https://stac-extensions.github.io/processing/v1.0.0/schema.json',
+            'https://stac-extensions.github.io/processing/v1.0.0/schema.json',
             'https://stac-extensions.github.io/mgrs/v1.0.0/schema.json',
         ],
         keywords=[
@@ -48,12 +48,6 @@ def create_collection() -> pystac.Collection:
         providers=[c.SENTINEL_PROVIDER, c.SENTINEL_RTC_PROVIDER],
         summaries=Summaries(summary_dict),
     )
-
-    # Fails validation i think b/c 'about' is not a recognized reltype
-    # https://pystac.readthedocs.io/en/latest/api.html#pystac.RelType
-    # about_url = 'https://sentinel-s1-rtc-indigo-docs.s3-us-west-2.amazonaws.com/methodology.html' # noqa: E501
-    # aboutLink = pystac.Link(rel='about', target=about_url)
-    # collection.add_link(aboutLink)
 
     return collection
 

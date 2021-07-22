@@ -1,0 +1,38 @@
+name: Sync Template
+
+# NOTE: requires a secrets.GITHUB_TOKEN with permissions to update .github/workflows/ 
+#https://github.com/peter-evans/create-pull-request/blob/main/docs/examples.md#keep-a-fork-up-to-date-with-its-upstream
+
+on: workflow_dispatch
+
+jobs:
+  sync-template:
+    runs-on: ubuntu-20.04
+    steps:
+    - name: Checkout Template Repository
+      uses: actions/checkout@v2
+      with:
+        repository: stactools-packages/template
+        path: template
+    
+    - name: Checkout Package Repository
+      uses: actions/checkout@v2
+      with:
+        path: package
+    
+    # NOTE: this is not very sophisticated, just copies files from specific subfolders
+    # will not reconcile deleted or renamed files
+    - name: Update Select Template Changes
+      run: |
+        cp -r ./template/scripts/* ./package/scripts/
+        cp -r ./template/docker/* ./package/docker/
+        cp -r ./template/.github/workflows/* ./package/.github/workflows/
+        cp ./template/.flake8 ./package/.flake8
+
+    - name: Create Pull Request
+      uses: peter-evans/create-pull-request@v3
+      with:
+        path: package
+        token: ${{ secrets.TOKEN }}
+        title: Sync with stacktools-packages/template
+        body: Pulled upstream changes from https://github.com/stactools-packages/template

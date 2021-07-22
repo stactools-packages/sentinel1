@@ -6,6 +6,8 @@ if [[ -n "${STACTOOLS_DEBUG}" ]]; then
     set -x
 fi
 
+source $(dirname "$0")/env
+
 function usage() {
     echo -n \
         "Usage: $(basename "$0")
@@ -15,7 +17,7 @@ Run code formatters in a docker container with all prerequisites installed.
 
 if [ "${BASH_SOURCE[0]}" = "${0}" ]; then
     docker run --rm -it \
-        -v `pwd`:/opt/src \
-        --entrypoint /opt/src/scripts/format \
-        stactools-sentinel1-dev:latest
+        -v `pwd`:/opt/stactools-package \
+        --entrypoint scripts/format \
+        $DOCKER_REGISTRY/$DOCKER_ORG/$DOCKER_REPO:$DOCKER_TAG_DEV
 fi

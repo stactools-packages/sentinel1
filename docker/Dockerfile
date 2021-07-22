@@ -1,11 +1,13 @@
-FROM continuumio/miniconda3
+ARG STACTOOLS_VERSION=latest
+FROM ghcr.io/stac-utils/stactools:$STACTOOLS_VERSION
 
-RUN conda update conda && conda install pip
+WORKDIR /opt/stactools-package
 
-COPY environment.yml /tmp/environment.yml
-RUN conda env update -f /tmp/environment.yml -n base && rm /tmp/environment.yml
+# For caching purposes, install dependencies but remove the actual package
+COPY pyproject.toml setup.cfg ./
+COPY src/stactools/package/__init__.py src/stactools/package/
+RUN pip install . \
+    && rm -r /opt/conda/lib/python3.8/site-packages/stactools/package
 
-COPY . /tmp/stactools-sentinel1
-RUN cd /tmp/stactools-sentinel1 && pip install . && rm -rf /tmp/stactools-sentinel1
-
-ENTRYPOINT [ "python", "-m", "stactools.cli" ]
+COPY src ./src
+RUN pip install .

@@ -13,7 +13,7 @@ Execute project linters.
 "
 }
 
-DIRS_TO_CHECK=("src" "tests")
+DIRS_TO_CHECK=("src" "tests" "scripts")
 
 if [ "${BASH_SOURCE[0]}" = "${0}" ]; then
     if [ "${1:-}" = "--help" ]; then

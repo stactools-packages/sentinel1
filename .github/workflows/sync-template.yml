@@ -9,6 +9,9 @@ jobs:
   sync-template:
     runs-on: ubuntu-20.04
     steps:
+    - name: Get Repository Name
+      run: echo ::set-env name=PACKAGE_NAME::${GITHUB_REPOSITORY#*/}
+    
     - name: Checkout Template Repository
       uses: actions/checkout@v2
       with:
@@ -18,21 +21,24 @@ jobs:
     - name: Checkout Package Repository
       uses: actions/checkout@v2
       with:
-        path: package
+        path: ${{env.PACKAGE_NAME}}
     
     # NOTE: this is not very sophisticated, just copies files from specific subfolders
     # will not reconcile deleted or renamed files
     - name: Update Select Template Changes
       run: |
-        cp -r ./template/scripts/* ./package/scripts/
-        cp -r ./template/docker/* ./package/docker/
-        cp -r ./template/.github/workflows/* ./package/.github/workflows/
-        cp ./template/.flake8 ./package/.flake8
+        cp -r ./template/scripts/* ./${{env.PACKAGE_NAME}}/scripts/
+        cp -r ./template/docker/* ./${{env.PACKAGE_NAME}}/docker/
+        cp -r ./template/.github/workflows/* ./${{env.PACKAGE_NAME}}/.github/workflows/
+
+    - name: Run Rename Script
+      run: |
+        ./${{env.PACKAGE_NAME}}/scripts/rename
 
     - name: Create Pull Request
       uses: peter-evans/create-pull-request@v3
       with:
-        path: package
+        path: ${{env.PACKAGE_NAME}}
         token: ${{ secrets.TOKEN }}
         title: Sync with stacktools-packages/template
         body: Pulled upstream changes from https://github.com/stactools-packages/template

@@ -8,7 +8,6 @@ from pystac.extensions.projection import ProjectionExtension
 from pystac.extensions.sat import OrbitState, SatExtension
 from pystac.extensions.sar import SarExtension
 from pystac.extensions.raster import RasterExtension, RasterBand
-# from pystac import Link
 from pystac.collection import Summaries
 
 from stactools.sentinel1.rtc_metadata import RTCMetadata

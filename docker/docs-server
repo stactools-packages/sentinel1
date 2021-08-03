@@ -6,7 +6,7 @@ if [[ -n "${STACTOOLS_DEBUG}" ]]; then
     set -x
 fi
 
-source $(dirname "$0")/env
+source docker_env
 
 function usage() {
     echo -n \
@@ -18,8 +18,8 @@ Build and serve documentation from a docker container with all prerequisites ins
 if [ "${BASH_SOURCE[0]}" = "${0}" ]; then
     docker run --rm -it \
         -p 8000:8000 \
-        -v `pwd`:/opt/stactools-sentinel1 \
-        -w /opt/stactools-sentinel1/docs \
+        -v `pwd`:$DOCKER_WORKDIR \
+        -w $DOCKER_WORKDIR/docs \
         --entrypoint /bin/bash \
         $DOCKER_REGISTRY/$DOCKER_ORG/$DOCKER_REPO:$DOCKER_TAG_DEV \
         -c "make livehtml"

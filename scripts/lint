@@ -13,16 +13,21 @@ Execute project linters.
 "
 }
 
+EC_EXCLUDE="(__pycache__|.git|.coverage|coverage.xml|.*\.egg-info|.mypy_cache|.tif|.tiff|.npy)"
+
 DIRS_TO_CHECK=("src" "tests" "scripts")
 
 if [ "${BASH_SOURCE[0]}" = "${0}" ]; then
     if [ "${1:-}" = "--help" ]; then
         usage
     else
+        # Text formatting
+        editorconfig-checker --exclude "$EC_EXCLUDE"
         # Code formatting
         yapf -dpr ${DIRS_TO_CHECK[@]}
         # Lint
         flake8 ${DIRS_TO_CHECK[@]}
-
+        # Type checking
+        mypy src
     fi
 fi

@@ -27,9 +27,19 @@ jobs:
     # will not reconcile deleted or renamed files
     - name: Update Select Template Changes
       run: |
+        # Directories
         cp -r ./template/scripts/* ./${{env.PACKAGE_NAME}}/scripts/
         cp -r ./template/docker/* ./${{env.PACKAGE_NAME}}/docker/
-        cp -r ./template/.github/workflows/* ./${{env.PACKAGE_NAME}}/.github/workflows/
+        cp -r ./template/.github/* ./${{env.PACKAGE_NAME}}/.github/workflows/
+        
+        # Single files added after use of template
+        cp ./template/CHANGELOG.md ./${{env.PACKAGE_NAME}}/
+        cp ./template/CODE_OF_CONDUCT.md ./${{env.PACKAGE_NAME}}/
+        cp ./template/CONTRIBUTING.md ./${{env.PACKAGE_NAME}}/
+        cp ./template/.dockerignore ./${{env.PACKAGE_NAME}}/
+        cp ./template/.editorconfig ./${{env.PACKAGE_NAME}}/
+        cp ./template/mypy.ini ./${{env.PACKAGE_NAME}}/
+        cp ./template/requirements-dev.txt ./${{env.PACKAGE_NAME}}/
 
     - name: Run Rename Script
       run: |

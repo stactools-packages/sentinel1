@@ -32,11 +32,12 @@ jobs:
         cp -r ./template/docker/* ./${{env.PACKAGE_NAME}}/docker/
         cp -r ./template/.github/* ./${{env.PACKAGE_NAME}}/.github/
         
-        # Single files added after use of template
+        # Single files added after initial use of template
         cp ./template/CHANGELOG.md ./${{env.PACKAGE_NAME}}/
         cp ./template/CODE_OF_CONDUCT.md ./${{env.PACKAGE_NAME}}/
         cp ./template/CONTRIBUTING.md ./${{env.PACKAGE_NAME}}/
         cp ./template/.dockerignore ./${{env.PACKAGE_NAME}}/
+        cp ./template/docker_env ./${{env.PACKAGE_NAME}}/
         cp ./template/.editorconfig ./${{env.PACKAGE_NAME}}/
         cp ./template/mypy.ini ./${{env.PACKAGE_NAME}}/
         cp ./template/requirements-dev.txt ./${{env.PACKAGE_NAME}}/

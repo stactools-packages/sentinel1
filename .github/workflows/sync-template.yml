@@ -30,7 +30,7 @@ jobs:
         # Directories
         cp -r ./template/scripts/* ./${{env.PACKAGE_NAME}}/scripts/
         cp -r ./template/docker/* ./${{env.PACKAGE_NAME}}/docker/
-        cp -r ./template/.github/* ./${{env.PACKAGE_NAME}}/.github/workflows/
+        cp -r ./template/.github/* ./${{env.PACKAGE_NAME}}/.github/
         
         # Single files added after use of template
         cp ./template/CHANGELOG.md ./${{env.PACKAGE_NAME}}/

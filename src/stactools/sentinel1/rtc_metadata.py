@@ -1,4 +1,4 @@
-from typing import List, Optional
+from typing import List, Dict, Any
 
 import pystac
 from pystac.utils import str_to_datetime
@@ -113,38 +113,37 @@ class RTCMetadata:
         return ['Gamma0_VV.tif', 'Gamma0_VH.tif', 'local_incident_angle.tif']
 
     @property
-    def absolute_orbit(self) -> Optional[int]:
+    def absolute_orbit(self) -> int:
         return int(self.metadata['ABSOLUTE_ORBIT_NUMBER'])
 
     @property
-    def relative_orbit(self) -> Optional[int]:
+    def relative_orbit(self) -> int:
         '''https://forum.step.esa.int/t/sentinel-1-relative-orbit-from-filename/7042 '''
-        adjust = {'S1B': 27, 'S1A': 73}
-        rel_orbit = (
-            (self.absolute_orbit - adjust[self.metadata['MISSION_ID']]) %
-            175) + 1
+        satellite_lookup = {'S1B': 27, 'S1A': 73}
+        modifier = satellite_lookup[self.metadata['MISSION_ID']]
+        rel_orbit = ((self.absolute_orbit - modifier) % 175) + 1
         return rel_orbit
 
     @property
-    def orbit_state(self) -> Optional[str]:
+    def orbit_state(self) -> str:
         return self.metadata['ORBIT_DIRECTION']
 
     @property
-    def platform(self) -> Optional[str]:
+    def platform(self) -> str:
         platformMap = dict(S1A='sentinel-1a', S1B='sentinel-1b')
         return platformMap[self.metadata['MISSION_ID']]
 
     @property
-    def epsg(self) -> Optional[str]:
+    def epsg(self) -> int:
         return self.metadata['crs'].to_epsg()
 
     @property
-    def valid_percent(self) -> Optional[float]:
+    def valid_percent(self) -> float:
         # Common to 3 assets of RTC item
         return float(self.metadata['VALID_PIXEL_PERCENT'])
 
     @property
-    def metadata_dict(self):
+    def metadata_dict(self) -> Dict[str, Any]:
         ''' match s2 l2a cogs from https://earth-search.aws.element84.com/v0 '''
         sentinel_metadata = {
             # NOTE: once PySTAC adds MGRS extension can move this to stac.py
@@ -157,7 +156,7 @@ class RTCMetadata:
         return sentinel_metadata
 
     @property
-    def asset_dict(self):
+    def asset_dict(self) -> Dict[str, Any]:
         ''' map image_path (geotif) to pystac.Asset fields '''
         asset_dict = {
             'Gamma0_VV.tif':

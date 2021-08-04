@@ -16,7 +16,7 @@ class CreateItemTest(CliTestCase):
     def test_create_item(self):
         item = stac.create_item(
             test_data.get_path('data-files/S1A_20200103_17RMJ_ASC'),
-            asset='Gamma0_VV.vrt',
+            asset_name='Gamma0_VV.vrt',
             include_grd_metadata=True)
         assert isinstance(item, pystac.item.Item)
 
@@ -41,10 +41,10 @@ class CreateItemTest(CliTestCase):
         collection = stac.create_collection()
         item1 = stac.create_item(
             test_data.get_path('data-files/S1B_20161121_12SYJ_ASC'),
-            asset='local_incident_angle.vrt')
+            asset_name='local_incident_angle.vrt')
         item2 = stac.create_item(
             test_data.get_path('data-files/S1A_20200103_17RMJ_ASC'),
-            asset='local_incident_angle.vrt')
+            asset_name='local_incident_angle.vrt')
         collection.add_items([item1, item2])
 
         with TemporaryDirectory() as tmp_dir:

@@ -11,6 +11,15 @@ trim_trailing_whitespace = true
 indent_style = space
 indent_size = 4
 
+# Ignore paths
+[/tests/data-files/**]
+charset = unset
+end_of_line = unset
+insert_final_newline = unset
+trim_trailing_whitespace = unset
+indent_style = unset
+indent_size = unset
+
 [*.ipynb]
 # Content is json, but it seems to be minimally formatted
 indent_size = unset

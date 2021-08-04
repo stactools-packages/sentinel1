@@ -35,7 +35,7 @@
     "gsd": 20,
     "start_datetime": "2020-01-03T23:35:56Z",
     "end_datetime": "2020-01-03T23:36:46Z",
-    "created": "2021-07-22T00:57:12.820987Z",
+    "created": "2021-08-04T22:41:55.855449Z",
     "mgrs:utm_zone": "17",
     "mgrs:latitude_band": "R",
     "mgrs:grid_square": "MJ",
@@ -175,7 +175,7 @@
   ],
   "assets": {
     "gamma0_vv": {
-      "href": "../tests/data-files/S1A_20200103_17RMJ_ASC/Gamma0_VV.tif",
+      "href": "https://sentinel-s1-rtc-indigo.s3.us-west-2.amazonaws.com/tiles/RTC/1/IW/17/R/MJ/2020/S1A_20200103_17RMJ_ASC/Gamma0_VV.tif",
       "type": "image/tiff; application=geotiff; profile=cloud-optimized",
       "title": "Gamma0 VV backscatter",
       "raster:bands": [
@@ -194,7 +194,7 @@
       ]
     },
     "gamma0_vh": {
-      "href": "../tests/data-files/S1A_20200103_17RMJ_ASC/Gamma0_VH.tif",
+      "href": "https://sentinel-s1-rtc-indigo.s3.us-west-2.amazonaws.com/tiles/RTC/1/IW/17/R/MJ/2020/S1A_20200103_17RMJ_ASC/Gamma0_VH.tif",
       "type": "image/tiff; application=geotiff; profile=cloud-optimized",
       "title": "Gamma0 VH backscatter",
       "raster:bands": [
@@ -213,7 +213,7 @@
       ]
     },
     "incidence": {
-      "href": "../tests/data-files/S1A_20200103_17RMJ_ASC/local_incident_angle.tif",
+      "href": "https://sentinel-s1-rtc-indigo.s3.us-west-2.amazonaws.com/tiles/RTC/1/IW/17/R/MJ/2020/S1A_20200103_17RMJ_ASC/local_incident_angle.tif",
       "type": "image/tiff; application=geotiff; profile=cloud-optimized",
       "title": "Local incidence angle",
       "raster:bands": [

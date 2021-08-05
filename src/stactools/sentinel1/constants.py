@@ -2,7 +2,9 @@ import pystac
 from pystac.link import Link
 from pystac.extensions import sar
 from pystac.utils import str_to_datetime
-from pystac import Extent, SpatialExtent, TemporalExtent
+from pystac import Extent, SpatialExtent, TemporalExtent, ProviderRole
+
+from typing import Dict, Any
 
 # General Sentinel-1 Constants
 # -
@@ -19,14 +21,18 @@ SENTINEL_OBSERVATION_DIRECTION = sar.ObservationDirection.RIGHT
 
 SENTINEL_PROVIDER = pystac.Provider(
     name='ESA',
-    roles=['producer', 'processor', 'licensor'],
-    url='https://earth.esa.int/web/guest/home')
+    roles=[ProviderRole.LICENSOR, ProviderRole.PRODUCER],
+    url='https://sentinel.esa.int/web/sentinel/missions/sentinel-1')
+
+SENTINEL_LICENSE = Link(
+    rel='license',
+    target='https://spacedata.copernicus.eu/data-offer/legal-documents')
 
 # RTC-specific constants
 # -
 SENTINEL_RTC_PROVIDER = pystac.Provider(
     name='Indigo Ag Inc.',
-    roles=['processor', 'licensor'],
+    roles=[ProviderRole.LICENSOR, ProviderRole.PROCESSOR, ProviderRole.HOST],
     url='https://registry.opendata.aws/sentinel-1-rtc-indigo',
     extra_fields={
         'processing:level': 'L3',
@@ -64,4 +70,4 @@ SENTINEL_RTC_SAR = {
     'looks_range': 5,
     'looks_azimuth': 1,
     'gsd': 20  # final MGRS pixel posting
-}
+}  # type: Dict[str, Any]

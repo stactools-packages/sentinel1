@@ -1,6 +1,7 @@
 FROM python:3-buster
 
-WORKDIR /opt/stactools-sentinel1
+ARG DOCKER_WORKDIR
+WORKDIR $DOCKER_WORKDIR
 COPY requirements-dev.txt ./
 RUN pip install -r requirements-dev.txt
 

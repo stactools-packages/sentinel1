@@ -66,6 +66,10 @@ jobs:
       packages: write
     runs-on: ubuntu-latest
     steps:
+      - name: Set up Python 3.x
+        uses: actions/setup-python@v2
+        with:
+          python-version: "3.x"
       -
         name: Checkout
         uses: actions/checkout@v2
@@ -76,6 +80,18 @@ jobs:
           registry: ${{ env.DOCKER_REGISTRY }}
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Run rename script if in the template repo
+        run: |
+          if [[ "$GITHUB_REPOSITORY" == */template ]]; then
+            scripts/rename
+          fi
+      - name: Source build args
+        run: |
+          source ./docker_env
+          STACTOOLS_VERSION=$(python scripts/stactools-version.py)
+          echo "stactools_version=$STACTOOLS_VERSION" >> $GITHUB_ENV
+          echo "docker_workdir=$DOCKER_WORKDIR" >> $GITHUB_ENV
+          echo "docker_namespace_package_dir=$DOCKER_NAMESPACE_PACKAGE_DIR" >> $GITHUB_ENV
       -
         name: Docker meta main
         id: meta-main
@@ -91,8 +107,12 @@ jobs:
         with:
           context: .
           file: docker/Dockerfile
+          build-args: |
+            STACTOOLS_VERSION=${{ env.stactools_version }}
+            DOCKER_WORKDIR=${{ env.docker_workdir }}
+            DOCKER_NAMESPACE_PACKAGE_DIR=${{ env.docker_namespace_package_dir }}
           # Don't try to push if the event is a PR from a fork
-          push: ${{ github.event_name != 'pull_request' || github.head_ref.repo.full_name == github.repository }}
+          push: ${{ github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository }}
           tags: ${{ steps.meta-main.outputs.tags }}
           labels: ${{ steps.meta-main.outputs.labels }}
       -
@@ -112,7 +132,11 @@ jobs:
         with:
           context: .
           file: docker/Dockerfile-dev
+          build-args: |
+            STACTOOLS_VERSION=${{ env.stactools_version }}
+            DOCKER_WORKDIR=${{ env.docker_workdir }}
+            DOCKER_NAMESPACE_PACKAGE_DIR=${{ env.docker_namespace_package_dir }}
           # Don't try to push if the event is a PR from a fork
-          push: ${{ github.event_name != 'pull_request' || github.head_ref.repo.full_name == github.repository }}
+          push: ${{ github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository }}
           tags: ${{ steps.meta-dev.outputs.tags }}
           labels: ${{ steps.meta-dev.outputs.labels }}

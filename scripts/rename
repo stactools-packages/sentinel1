@@ -1,28 +1,37 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 
 set -e
 
+# name may contain hyphens
 name="$(basename $(cd "$(dirname $(dirname "$0"))"; pwd -P))"
 underscore_name=${name//-/_}
+spaceless_name=${name//-/}
 
-for file in $(find . -not \( -name .git -prune \) -a -type f); do
+if [[ "$OSTYPE" == "darwin"* ]]; then
+    sedflags=(-i "")
+else
+    sedflags=(-i)
+fi
+
+for file in $(find . -not \( -name .git -prune \) -not \( -name __pycache__ -prune \) -a -type f); do
     file_name=$(basename "$file")
     case $file_name in
-        CONTRIBUTING.MD|README.md|rename|setup.cfg|publish|installation_and_basic_usage.ipynb)
+        rename)
             echo "Skipping $file"
             continue;;
     esac
     set +e
-    sed -i '' -e "s/stactools-package/stactools-${name}/g" $file
-    sed -i '' -e "s/stactools\.package/stactools.${underscore_name}/g" $file
-    sed -i '' -e "s/stactools_package/stactools_${underscore_name}/g" $file
-    sed -i '' -e "s;stactools/package;stactools/${underscore_name};g" $file
-    sed -i '' -e "s/package-name/${name}/g" $file
+    sed "${sedflags[@]}" -e "s/stactools-ephemeral/stactools-${name}/g" $file
+    sed "${sedflags[@]}" -e "s/stactools\.ephemeral/stactools.${underscore_name}/g" $file
+    sed "${sedflags[@]}" -e "s/stactools_ephemeral/stactools_${underscore_name}/g" $file
+    sed "${sedflags[@]}" -e "s;stactools/ephemeral;stactools/${underscore_name};g" $file
+    sed "${sedflags[@]}" -e "s/ephemeralcmd/${spaceless_name}/g" $file
+    sed "${sedflags[@]}" -e "s/ephemeral/${name}/g" $file
     set -e
 done
 
-if [ -d src/stactools/package ]; then
-    git mv src/stactools/package "src/stactools/$underscore_name"
+if [ -d src/stactools/ephemeral ]; then
+    git mv src/stactools/ephemeral src/stactools/$underscore_name
 fi
 
-echo "Don't forget to manually update setup.cfg and README.md"
+echo "Rename complete"

@@ -6,7 +6,9 @@ if [[ -n "${STACTOOLS_DEBUG}" ]]; then
     set -x
 fi
 
-source $(dirname "$0")/env
+set -a # export all variables
+source docker_env
+set +a
 
 function usage() {
 
@@ -40,11 +42,24 @@ if [ "${BASH_SOURCE[0]}" = "${0}" ]; then
     if [ "${1:-}" = "--help" ]; then
         usage
     else
-        docker build $PULL -t stactools-sentinel1-script-runner -f docker/Dockerfile-script-runner .
+        docker build $PULL \
+            --build-arg DOCKER_WORKDIR \
+            -t stactools-${DOCKER_REPO}-script-runner \
+            -f docker/Dockerfile-script-runner .
         STACTOOLS_VERSION=$(docker/run-script python scripts/stactools-version.py)
         echo "Building with stactools version $STACTOOLS_VERSION"
-        docker build $PULL --build-arg STACTOOLS_VERSION=$STACTOOLS_VERSION -t $DOCKER_REGISTRY/$DOCKER_ORG/$DOCKER_REPO:$DOCKER_TAG -f docker/Dockerfile .
-        docker build $PULL --build-arg STACTOOLS_VERSION=$STACTOOLS_VERSION -t $DOCKER_REGISTRY/$DOCKER_ORG/$DOCKER_REPO:$DOCKER_TAG_DEV -f docker/Dockerfile-dev .
+        docker build $PULL \
+            --build-arg STACTOOLS_VERSION \
+            --build-arg DOCKER_WORKDIR \
+            --build-arg DOCKER_NAMESPACE_PACKAGE_DIR \
+            -t $DOCKER_REGISTRY/$DOCKER_ORG/$DOCKER_REPO:$DOCKER_TAG \
+            -f docker/Dockerfile .
+        docker build $PULL \
+            --build-arg STACTOOLS_VERSION \
+            --build-arg DOCKER_WORKDIR \
+            --build-arg DOCKER_NAMESPACE_PACKAGE_DIR \
+            -t $DOCKER_REGISTRY/$DOCKER_ORG/$DOCKER_REPO:$DOCKER_TAG_DEV \
+            -f docker/Dockerfile-dev .
     fi
     exit
 fi

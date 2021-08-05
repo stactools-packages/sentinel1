@@ -6,7 +6,7 @@ if [[ -n "${STACTOOLS_DEBUG}" ]]; then
     set -x
 fi
 
-source $(dirname "$0")/env
+source docker_env
 
 function usage() {
 

@@ -1,0 +1,7 @@
+DOCKER_REGISTRY=ghcr.io
+DOCKER_ORG=stactools-packages
+DOCKER_REPO=sentinel1
+DOCKER_TAG=local
+DOCKER_TAG_DEV=local-dev
+DOCKER_WORKDIR=/opt/stactools-sentinel1
+DOCKER_NAMESPACE_PACKAGE_DIR=stactools/sentinel1

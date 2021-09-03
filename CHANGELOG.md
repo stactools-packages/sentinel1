@@ -8,7 +8,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ### Added
 
-- Nothing.
+- Support for Microsoft Azure storage: similar format to SAFE, without `.SAFE` ending to the folders
+  and slightly different file names.
 
 ### Deprecated
 

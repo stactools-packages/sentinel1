@@ -5,7 +5,7 @@
 - Name: sentinel1
 - Package: `stactools.sentinel1`
 - PyPI: https://pypi.org/project/stactools-sentinel1/
-- Owner: @scottyhq
+- Owner: @scottyhq (RTC), @maximlamare (GRD)
 - Dataset homepage: https://registry.opendata.aws/sentinel-1-rtc-indigo/
 - STAC extensions used:
   - [projection](https://github.com/stac-extensions/projection/)
@@ -17,23 +17,50 @@
 
 Sentinel-1 subpackage for [stactools](https://github.com/stac-utils/stactools)
 
-**NOTE** Currently only configured for AWS Radiometric Terrain Corrected (RTC) Public Dataset: https://registry.opendata.aws/sentinel-1-rtc-indigo. Future versions may support other public datasets such as [GRD and SLC](https://registry.opendata.aws/sentinel-1/).
+This project contains multiple subpackages that work with different Sentinel 1 data products.
+
+## RTC
+
+The `stactools.sentinel1.rtc` subpackage and `stac sentinel1 rtc` commands deal with the Sentinel 1 Radiometric Terrain Corrected (RTC) data hosted on AWS and produced by Indigo Ag. This data was processed from original Ground Range Detected (GRD) scenes into a Radiometrically Terrain Corrected, tiled product suitable for analysis.
+
+See https://registry.opendata.aws/sentinel-1-rtc-indigo for more information about this dataset.
+
+## GRD
+
+The `stactools.sentinel1.grd` subpackage and `stac sentinel1 grd` commands deal with [Sentinel 1 Ground Range Detected (GRD) Level-1](https://sentinel.esa.int/web/sentinel/user-guides/sentinel-1-sar/resolutions/level-1-ground-range-detected) product. It is used to create STAC Items from the SAFE manifest format of the data hosted on Microsoft Azure.
+
+## Examples
+
+### STAC objects
+
+- [Item (RTC)](examples/sentinel1-rtc-aws/2016/S1B_20161121_12SYJ_ASC/S1B_20161121_12SYJ_ASC.json)
+- [Item (GRD)](examples/grd/item.json)
 
 ## How to use
 
-#### Install package
+### Install package
 ```
 pip install stactools-sentinel1
 ```
+### RTC
 
-#### Create a STAC Item
+#### Create a STAC Item (RTC)
 ```
-stac sentinel1 create-item s3://sentinel-s1-rtc-indigo/tiles/RTC/1/IW/12/S/YJ/2016/S1B_20161121_12SYJ_ASC S1B_20161121_12SYJ_ASC
+stac sentinel1 rtc create-item s3://sentinel-s1-rtc-indigo/tiles/RTC/1/IW/12/S/YJ/2016/S1B_20161121_12SYJ_ASC S1B_20161121_12SYJ_ASC
 ```
 
-#### Create a STAC Static Catalog
+#### Create a STAC Static Catalog (RTC)
 https://github.com/scottyhq/sentinel1-rtc-stac
 
+### GRD
+
+Description of the command line functions
+
+```bash
+$ stac sentinel1 grd create-item source destination
+```
+
+Use `stac sentinel1_grd --help` to see all subcommands and options.
 
 ## Development instructions
 

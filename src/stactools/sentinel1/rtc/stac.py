@@ -10,8 +10,8 @@ from pystac.extensions.sar import SarExtension
 from pystac.extensions.raster import RasterExtension, RasterBand
 from pystac.collection import Summaries
 
-from stactools.sentinel1.rtc_metadata import RTCMetadata
-from stactools.sentinel1 import constants as c
+from stactools.sentinel1.rtc.rtc_metadata import RTCMetadata
+from stactools.sentinel1.rtc import constants as c
 
 logger = logging.getLogger(__name__)
 

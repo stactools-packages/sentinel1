@@ -2,4 +2,5 @@ name: stactools-sentinel1
 channels:
   - conda-forge
 dependencies:
+  - gdal
   - rasterio~=1.2

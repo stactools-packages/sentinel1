@@ -22,7 +22,7 @@ if [ "${BASH_SOURCE[0]}" = "${0}" ]; then
         usage
     else
         # Text formatting
-        editorconfig-checker --exclude "$EC_EXCLUDE"
+        ec --exclude "$EC_EXCLUDE"
         # Code formatting
         yapf -dpr ${DIRS_TO_CHECK[@]}
         # Lint

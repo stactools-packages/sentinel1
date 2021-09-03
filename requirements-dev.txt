@@ -1,6 +1,6 @@
 codespell
 coverage
-editorconfig-checker
+editorconfig-checker==2.3.*
 flake8
 jupyter
 mypy

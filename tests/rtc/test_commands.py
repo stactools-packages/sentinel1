@@ -15,7 +15,7 @@ class CreateItemTest(CliTestCase):
 
     def test_create_item(self):
         item = stac.create_item(
-            test_data.get_path('data-files/S1A_20200103_17RMJ_ASC'),
+            test_data.get_path('data-files/rtc/S1A_20200103_17RMJ_ASC'),
             asset_name='Gamma0_VV.vrt',
             include_grd_metadata=True)
         assert isinstance(item, pystac.Item)
@@ -40,10 +40,10 @@ class CreateItemTest(CliTestCase):
         ''' create, save, open, and validate a STAC '''
         collection = stac.create_collection()
         item1 = stac.create_item(
-            test_data.get_path('data-files/S1B_20161121_12SYJ_ASC'),
+            test_data.get_path('data-files/rtc/S1B_20161121_12SYJ_ASC'),
             asset_name='local_incident_angle.vrt')
         item2 = stac.create_item(
-            test_data.get_path('data-files/S1A_20200103_17RMJ_ASC'),
+            test_data.get_path('data-files/rtc/S1A_20200103_17RMJ_ASC'),
             asset_name='local_incident_angle.vrt')
         collection.add_items([item1, item2])
 
@@ -58,7 +58,7 @@ class CreateItemTest(CliTestCase):
 
     def test_cli_create_item(self):
         granule_hrefs = [
-            test_data.get_path(f'data-files/{x}') for x in [
+            test_data.get_path(f'data-files/rtc/{x}') for x in [
                 'S1B_20161121_12SYJ_ASC',
             ]
         ]

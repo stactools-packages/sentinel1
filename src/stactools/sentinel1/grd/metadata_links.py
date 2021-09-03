@@ -2,7 +2,6 @@ import os
 from typing import List, Optional
 
 import pystac
-
 from stactools.core.io.xml import XmlElement
 
 from .constants import SAFE_MANIFEST_ASSET_KEY

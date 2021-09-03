@@ -3,9 +3,10 @@ from tempfile import TemporaryDirectory
 
 import pystac
 from pystac.utils import is_absolute_href
-from stactools.sentinel1.rtc import stac
-from stactools.sentinel1.commands import create_sentinel1_command
 from stactools.testing import CliTestCase
+
+from stactools.sentinel1.commands import create_sentinel1_command
+from stactools.sentinel1.rtc import stac
 from tests import test_data
 
 

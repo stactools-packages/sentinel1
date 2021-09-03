@@ -1,10 +1,10 @@
-import pystac
-from pystac.link import Link
-from pystac.extensions import sar
-from pystac.utils import str_to_datetime
-from pystac import Extent, SpatialExtent, TemporalExtent, ProviderRole
+from typing import Any, Dict
 
-from typing import Dict, Any
+import pystac
+from pystac import Extent, ProviderRole, SpatialExtent, TemporalExtent
+from pystac.extensions import sar
+from pystac.link import Link
+from pystac.utils import str_to_datetime
 
 # General Sentinel-1 Constants
 # -

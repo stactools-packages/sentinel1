@@ -1,6 +1,6 @@
-from stactools.core.io.xml import XmlElement
 from pystac.extensions.sar import FrequencyBand, Polarization
 from pystac.extensions.sat import OrbitState
+from stactools.core.io.xml import XmlElement
 
 
 def fill_sar_properties(sar_ext, href):

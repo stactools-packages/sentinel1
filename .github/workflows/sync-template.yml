@@ -1,6 +1,6 @@
 name: Sync Template
 
-# NOTE: requires a secrets.GITHUB_TOKEN with permissions to update .github/workflows/ 
+# NOTE: requires a secrets.GITHUB_TOKEN with permissions to update .github/workflows/
 #https://github.com/peter-evans/create-pull-request/blob/main/docs/examples.md#keep-a-fork-up-to-date-with-its-upstream
 
 on: workflow_dispatch
@@ -11,18 +11,18 @@ jobs:
     steps:
     - name: Get Repository Name
       run: echo "PACKAGE_NAME=${GITHUB_REPOSITORY#*/}" >> $GITHUB_ENV
-    
+
     - name: Checkout Template Repository
       uses: actions/checkout@v2
       with:
         repository: stactools-packages/template
         path: template
-    
+
     - name: Checkout Package Repository
       uses: actions/checkout@v2
       with:
         path: ${{env.PACKAGE_NAME}}
-    
+
     # NOTE: this is not very sophisticated, just copies files from specific subfolders
     # will not reconcile deleted or renamed files
     - name: Update Select Template Changes
@@ -31,7 +31,7 @@ jobs:
         cp -r ./template/scripts/* ./${{env.PACKAGE_NAME}}/scripts/
         cp -r ./template/docker/* ./${{env.PACKAGE_NAME}}/docker/
         cp -r ./template/.github/* ./${{env.PACKAGE_NAME}}/.github/
-        
+
         # Single files added after initial use of template
         cp ./template/CHANGELOG.md ./${{env.PACKAGE_NAME}}/
         cp ./template/CODE_OF_CONDUCT.md ./${{env.PACKAGE_NAME}}/

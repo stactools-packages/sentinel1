@@ -19,6 +19,8 @@ if [ "${BASH_SOURCE[0]}" = "${0}" ]; then
     if [ "${1:-}" = "--help" ]; then
         usage
     else
+        # Sort imports
+        isort --overwrite-in-place .
         # Code formatting
         yapf -ipr ${DIRS_TO_CHECK[@]}
     fi

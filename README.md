@@ -1,12 +1,14 @@
 # stactools-sentinel1
 [![CI](https://github.com/stactools-packages/sentinel1/actions/workflows/continuous-integration.yml/badge.svg)](https://github.com/stactools-packages/sentinel1/actions/workflows/continuous-integration.yml)
+![PyPI](https://img.shields.io/pypi/v/stactools-sentinel1)
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/stactools-packages/sentinel1/main?filepath=docs/installation_and_basic_usage.ipynb)
 
 
 - Name: sentinel1
 - Package: `stactools.sentinel1`
 - PyPI: https://pypi.org/project/stactools-sentinel1/
 - Owner: @scottyhq (RTC), @maximlamare (GRD)
-- Dataset homepage: https://registry.opendata.aws/sentinel-1-rtc-indigo/
+- Dataset homepage: [RTC](https://registry.opendata.aws/sentinel-1-rtc-indigo/), [GRD]()
 - STAC extensions used:
   - [projection](https://github.com/stac-extensions/projection/)
   - [sar](https://github.com/stac-extensions/sar)

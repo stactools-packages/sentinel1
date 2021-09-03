@@ -23,6 +23,8 @@ if [ "${BASH_SOURCE[0]}" = "${0}" ]; then
     else
         # Text formatting
         ec --exclude "$EC_EXCLUDE"
+        # Sort imports
+        isort --check .
         # Code formatting
         yapf -dpr ${DIRS_TO_CHECK[@]}
         # Lint

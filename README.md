@@ -7,8 +7,8 @@
 - Name: sentinel1
 - Package: `stactools.sentinel1`
 - PyPI: https://pypi.org/project/stactools-sentinel1/
-- Owner: @scottyhq (RTC), @maximlamare (GRD)
-- Dataset homepage: [RTC](https://registry.opendata.aws/sentinel-1-rtc-indigo/), [GRD]()
+- Owners: @scottyhq (RTC), @maximlamare (GRD)
+- Dataset homepages: [RTC](https://registry.opendata.aws/sentinel-1-rtc-indigo/), [GRD]()
 - STAC extensions used:
   - [projection](https://github.com/stac-extensions/projection/)
   - [sar](https://github.com/stac-extensions/sar)
@@ -62,7 +62,7 @@ Description of the command line functions
 $ stac sentinel1 grd create-item source destination
 ```
 
-Use `stac sentinel1_grd --help` to see all subcommands and options.
+Use `stac sentinel1 grd --help` to see all subcommands and options.
 
 ## Development instructions
 

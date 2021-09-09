@@ -1,17 +1,17 @@
-from datetime import datetime
 import logging
 import os
+from datetime import datetime
 from typing import List, Optional
 
 import pystac
-from pystac.extensions.projection import ProjectionExtension
-from pystac.extensions.sat import OrbitState, SatExtension
-from pystac.extensions.sar import SarExtension
-from pystac.extensions.raster import RasterExtension, RasterBand
 from pystac.collection import Summaries
+from pystac.extensions.projection import ProjectionExtension
+from pystac.extensions.raster import RasterBand, RasterExtension
+from pystac.extensions.sar import SarExtension
+from pystac.extensions.sat import OrbitState, SatExtension
 
-from stactools.sentinel1.rtc.rtc_metadata import RTCMetadata
 from stactools.sentinel1.rtc import constants as c
+from stactools.sentinel1.rtc.rtc_metadata import RTCMetadata
 
 logger = logging.getLogger(__name__)
 

@@ -1,18 +1,17 @@
-from typing import List, Dict, Any
+import json
+import logging
+import os
+from typing import Any, Dict, List
 
+import numpy as np
 import pystac
-from pystac.utils import str_to_datetime
-from pystac.extensions.raster import Sampling, DataType, Statistics
-
 import rasterio
 import rasterio.features
+from pystac.extensions.raster import DataType, Sampling, Statistics
+from pystac.utils import str_to_datetime
 from rasterio import Affine as A
 from rasterio.warp import transform_geom
 from shapely.geometry import mapping, shape
-import numpy as np
-import os
-import json
-import logging
 
 logger = logging.getLogger(__name__)
 

@@ -1,13 +1,14 @@
 import os
-import pystac
-from stactools.testing import CliTestCase
-from pystac.utils import is_absolute_href
-from tests import test_data
 from tempfile import TemporaryDirectory
-from pystac.extensions.eo import EOExtension
 
-from stactools.sentinel1.grd.constants import SENTINEL_POLARISATIONS
+import pystac
+from pystac.extensions.eo import EOExtension
+from pystac.utils import is_absolute_href
+from stactools.testing import CliTestCase
+
 from stactools.sentinel1.commands import create_sentinel1_command
+from stactools.sentinel1.grd.constants import SENTINEL_POLARISATIONS
+from tests import test_data
 
 
 class CreateItemTest(CliTestCase):

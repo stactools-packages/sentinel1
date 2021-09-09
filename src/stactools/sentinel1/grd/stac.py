@@ -3,26 +3,17 @@ import os
 
 import pystac
 from pystac.extensions.eo import EOExtension
+from pystac.extensions.projection import ProjectionExtension
 from pystac.extensions.sar import SarExtension
 from pystac.extensions.sat import SatExtension
-from pystac.extensions.projection import ProjectionExtension
-
-from .metadata_links import MetadataLinks
-from .product_metadata import ProductMetadata
-
-from .constants import (
-    SENTINEL_PROVIDER,
-    SENTINEL_CONSTELLATION,
-    SENTINEL_LICENSE,
-)
-
-from .properties import (
-    fill_sar_properties,
-    fill_sat_properties,
-    fill_proj_properties,
-)
 
 from .bands import image_asset_from_href
+from .constants import (SENTINEL_CONSTELLATION, SENTINEL_LICENSE,
+                        SENTINEL_PROVIDER)
+from .metadata_links import MetadataLinks
+from .product_metadata import ProductMetadata
+from .properties import (fill_proj_properties, fill_sar_properties,
+                         fill_sat_properties)
 
 logger = logging.getLogger(__name__)
 

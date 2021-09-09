@@ -2,8 +2,9 @@
 '''
 Generate example STAC from test data
 '''
-from stactools.sentinel1 import stac
 import pystac
+
+from stactools.sentinel1 import stac
 
 catalog = pystac.Catalog(id='sentinel1-rtc-example',
                   description='Example Catalog: Analysis Ready Sentinel-1 Backscatter Imagery AWS Public Dataset',

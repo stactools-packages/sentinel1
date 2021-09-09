@@ -1,7 +1,7 @@
 import pystac
 from pystac import ProviderRole
-from pystac.link import Link
 from pystac.extensions.eo import Band
+from pystac.link import Link
 
 INSPIRE_METADATA_ASSET_KEY = "inspire-metadata"
 SAFE_MANIFEST_ASSET_KEY = "safe-manifest"

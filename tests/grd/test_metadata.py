@@ -1,18 +1,15 @@
 import unittest
-import pystac
 
+import pystac
+from pystac.extensions.projection import ProjectionExtension
 from pystac.extensions.sar import SarExtension
 from pystac.extensions.sat import SatExtension
-from pystac.extensions.projection import ProjectionExtension
+
 from stactools.sentinel1.grd.metadata_links import MetadataLinks
 from stactools.sentinel1.grd.product_metadata import ProductMetadata
-
-from stactools.sentinel1.grd.properties import (
-    fill_sar_properties,
-    fill_sat_properties,
-    fill_proj_properties,
-)
-
+from stactools.sentinel1.grd.properties import (fill_proj_properties,
+                                                fill_sar_properties,
+                                                fill_sat_properties)
 from tests import test_data
 
 

@@ -1,7 +1,8 @@
-import logging
-import click
 import json
+import logging
 import os
+
+import click
 
 from stactools.sentinel1.rtc.stac import create_item
 

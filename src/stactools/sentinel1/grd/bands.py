@@ -1,7 +1,8 @@
-import os
 import logging
-import pystac
+import os
 from typing import Optional, Tuple
+
+import pystac
 from pystac.extensions.eo import EOExtension
 
 from stactools.sentinel1.grd.constants import SENTINEL_POLARISATIONS

@@ -1,10 +1,9 @@
-from datetime import datetime
 import os
-from typing import Any, Dict, Optional, List
+from datetime import datetime
+from typing import Any, Dict, List, Optional
 
-from shapely.geometry import mapping, Polygon  # type: ignore
 from pystac.utils import str_to_datetime
-
+from shapely.geometry import Polygon, mapping  # type: ignore
 from stactools.core.io.xml import XmlElement
 
 

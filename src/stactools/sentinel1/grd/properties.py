@@ -1,4 +1,6 @@
 from typing import Optional
+import os
+import rasterio
 
 from pystac.extensions.sar import FrequencyBand, Polarization
 from pystac.extensions.sat import OrbitState
@@ -75,10 +77,11 @@ def fill_sat_properties(sat_ext,
 
 
 def fill_proj_properties(
-        proj_ext,
-        meta_links,
-        product_meta,
-        read_href_modifier: Optional[ReadHrefModifier] = None):
+    proj_ext,
+    meta_links,
+    product_meta,
+    read_href_modifier: Optional[ReadHrefModifier] = None,
+):
     """Fills the properties for SAR.
 
     Based on the sar Extension.py
@@ -95,6 +98,15 @@ def fill_proj_properties(
     # Read meta file
     links = meta_links.create_product_asset()
     root = XmlElement.from_file(links[0][1].href, read_href_modifier)
+
+    # Compute transform
+    head, _ = os.path.split(meta_links.product_metadata_href)
+    src = rasterio.open(f'{head}/{meta_links.grouped_hrefs["measurement"][0]}')
+    gcps = src.get_gcps()
+    s1_transform = rasterio.transform.from_gcps(gcps[0])
+    src.close()
+
+    proj_ext.transform = s1_transform
 
     proj_ext.epsg = 4326
 

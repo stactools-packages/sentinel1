@@ -1,22 +1,28 @@
+from typing import Optional
+
 from pystac.extensions.sar import FrequencyBand, Polarization
 from pystac.extensions.sat import OrbitState
+from stactools.core.io import ReadHrefModifier
 from stactools.core.io.xml import XmlElement
 
 
-def fill_sar_properties(sar_ext, href):
+def fill_sar_properties(sar_ext, href, read_href_modifier: Optional[ReadHrefModifier] = None):
     """Fills the properties for SAR.
 
     Based on the sar Extension.py
 
     Args:
-        input_ext (pystac.extensions.sar.SarExtension): The extension to be populated.
+        sar_ext (pystac.extensions.sar.SarExtension): The extension to be populated.
         href (str): The HREF to the scene, this is expected to be an XML file.
+        read_href_modifier: A function that takes an HREF and returns a modified HREF.
+            This can be used to modify a HREF to make it readable, e.g. appending
+            an Azure SAS token or creating a signed URL.
 
     Returns:
         pystac.Asset: An asset with the SAR relevant properties.
     """
     # Read meta file
-    root = XmlElement.from_file(href)
+    root = XmlElement.from_file(href, read_href_modifier)
 
     # Fixed properties
     sar_ext.frequency_band = FrequencyBand("C")
@@ -34,20 +40,23 @@ def fill_sar_properties(sar_ext, href):
     sar_ext.product_type = root.findall(".//s1sarl1:productType")[0].text
 
 
-def fill_sat_properties(sat_ext, href):
+def fill_sat_properties(sat_ext, href, read_href_modifier: Optional[ReadHrefModifier] = None):
     """Fills the properties for SAR.
 
     Based on the sar Extension.py
 
     Args:
-        input_ext (pystac.extensions.sar.SarExtension): The extension to be populated.
+        sat_ext (pystac.extensions.sar.SarExtension): The extension to be populated.
         href (str): The HREF to the scene, this is expected to be an XML file.
+        read_href_modifier: A function that takes an HREF and returns a modified HREF.
+            This can be used to modify a HREF to make it readable, e.g. appending
+            an Azure SAS token or creating a signed URL.
 
     Returns:
         pystac.Asset: An asset with the SAR relevant properties.
     """
     # Read meta file
-    root = XmlElement.from_file(href)
+    root = XmlElement.from_file(href, read_href_modifier)
 
     sat_ext.platform_international_designator = root.findall(
         ".//safe:nssdcIdentifier")[0].text
@@ -61,21 +70,23 @@ def fill_sat_properties(sat_ext, href):
         root.findall(".//safe:relativeOrbitNumber")[0].text)
 
 
-def fill_proj_properties(proj_ext, meta_links, product_meta):
+def fill_proj_properties(proj_ext, meta_links, product_meta, read_href_modifier: Optional[ReadHrefModifier] = None):
     """Fills the properties for SAR.
 
     Based on the sar Extension.py
 
     Args:
-        input_ext (pystac.extensions.sar.SarExtension): The extension to be populated.
-        href (str): The HREF to the scene, this is expected to be an XML file.
+        proj_ext (pystac.extensions.sar.SarExtension): The extension to be populated.
+        read_href_modifier: A function that takes an HREF and returns a modified HREF.
+            This can be used to modify a HREF to make it readable, e.g. appending
+            an Azure SAS token or creating a signed URL.
 
     Returns:
         pystac.Asset: An asset with the SAR relevant properties.
     """
     # Read meta file
     links = meta_links.create_product_asset()
-    root = XmlElement.from_file(links[0][1].href)
+    root = XmlElement.from_file(links[0][1].href, read_href_modifier)
 
     proj_ext.epsg = 4326
 

@@ -1,9 +1,9 @@
-import os
 from datetime import datetime
-from typing import Any, Dict, List, Optional
+from typing import Any, Dict, List, Optional, Callable
 
 from pystac.utils import str_to_datetime
 from shapely.geometry import Polygon, mapping  # type: ignore
+from stactools.core.io import ReadHrefModifier
 from stactools.core.io.xml import XmlElement
 
 
@@ -13,11 +13,15 @@ class ProductMetadataError(Exception):
 
 class ProductMetadata:
     def __init__(
-        self,
-        href,
-    ) -> None:
+            self,
+            href,
+            file_hrefs: Dict[str, List[str]],
+            file_mapper: Callable[[str], str],
+            read_href_modifier: Optional[ReadHrefModifier] = None) -> None:
         self.href = href
-        self._root = XmlElement.from_file(href)
+        self._root = XmlElement.from_file(href, read_href_modifier)
+        self.file_hrefs = file_hrefs
+        self.file_mapper = file_mapper
 
         def _get_geometries():
             # Find the footprint descriptor
@@ -124,9 +128,7 @@ class ProductMetadata:
 
     @property
     def image_paths(self) -> List[str]:
-        head_folder = os.path.dirname(self.href)
-        measurements = os.path.join(head_folder, "measurement")
-        return [x for x in os.listdir(measurements) if x.endswith("tiff")]
+        return [self.file_mapper(x) for x in self.file_hrefs["measurement"]]
 
     @property
     def metadata_dict(self) -> Dict[str, Any]:

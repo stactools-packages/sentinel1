@@ -2,10 +2,11 @@ import itertools
 import json
 import os
 import re
-from typing import List, Optional, Dict, Tuple
+from typing import Dict, List, Optional, Tuple
 
 import pystac
 import stactools.core.io
+from lxml import etree  # type: ignore
 from stactools.core.io import ReadHrefModifier
 from stactools.core.io.xml import XmlElement
 
@@ -17,24 +18,21 @@ class ManifestError(Exception):
     pass
 
 
-dataset_naming_pattern = re.compile("^.*"
-                                    + "(?P<mission>s1a|s1b)"
-                                    + "-(?P<swath>s[1-6]|iw[1-3]?|ew[1-5]?|wv[1-2]|en|n[1-6]|is[1-7])"
-                                    + "-(?P<type>slc|grd)"
-                                    + "-(?P<polarisation>hh|hv|vv|vh)"
-                                    + "-([0-9]{8}t[0-9]{6})"
-                                    + "-([0-9]{8}t[0-9]{6})"
-                                    + "-([0-9]{6})"
-                                    + "-([0-9a-f]{6})"
-                                    + ".*$")
+dataset_naming_pattern = re.compile(
+    "^.*" + "(?P<mission>s1a|s1b)" +
+    "-(?P<swath>s[1-6]|iw[1-3]?|ew[1-5]?|wv[1-2]|en|n[1-6]|is[1-7])" +
+    "-(?P<type>slc|grd)" + "-(?P<polarisation>hh|hv|vv|vh)" +
+    "-([0-9]{8}t[0-9]{6})" + "-([0-9]{8}t[0-9]{6})" + "-([0-9]{6})" +
+    "-([0-9a-f]{6})" + ".*$")
 
 
 def extract_properties(href: str, properties: List[str]) -> List[str]:
     matches = dataset_naming_pattern.match(href)
-    if matches:
-        return list(map(lambda group: matches.group(group), properties))
+    if matches is not None:
+        return [matches.group(name) for name in properties]
     else:
-        raise RuntimeError(f"href doesn't match dataset naming pattern: {href}")
+        raise RuntimeError(
+            f"href doesn't match dataset naming pattern: {href}")
 
 
 def group_files(hrefs: List[str]) -> Dict[str, List[str]]:
@@ -62,11 +60,10 @@ def group_files(hrefs: List[str]) -> Dict[str, List[str]]:
 
 
 class MetadataLinks:
-    def __init__(
-            self,
-            granule_href: str,
-            read_href_modifier: Optional[ReadHrefModifier] = None,
-            archive_format: Format = Format.SAFE) -> None:
+    def __init__(self,
+                 granule_href: str,
+                 read_href_modifier: Optional[ReadHrefModifier] = None,
+                 archive_format: Format = Format.SAFE) -> None:
         self.granule_href = granule_href
         self.href = os.path.join(granule_href, "manifest.safe")
         self.archive_format = archive_format
@@ -82,12 +79,27 @@ class MetadataLinks:
                                                   "manifest.safe")
 
         if archive_format == Format.COG:
-            self.product_info_href = os.path.join(granule_href, "productInfo.json")
-            self.product_info = json.loads(stactools.core.io.read_text(self.product_info_href, read_href_modifier))
+            self.product_info_href = os.path.join(granule_href,
+                                                  "productInfo.json")
+            self.product_info = json.loads(
+                stactools.core.io.read_text(self.product_info_href,
+                                            read_href_modifier))
             self.filename_map = self.product_info["filenameMap"]
 
-        file_location_list = self._data_object_section.findall("dataObject/byteStream/fileLocation[@href]")
-        href_list = list(map(lambda element: element.find_attr('href', '.').strip("./"), file_location_list))
+        file_location_list = self._data_object_section.findall(
+            "dataObject/byteStream/fileLocation[@href]")
+
+        def href_finder(el: XmlElement) -> Optional[str]:
+            href = el.find_attr('href', '.')
+            if href is not None:
+                return href.strip("./")
+            else:
+                raise RuntimeError(
+                    f"No href found in XML element {etree.tostring(el.element)}"  # type: ignore
+                )
+
+        optional_href_list = [href_finder(href) for href in file_location_list]
+        href_list = [x for x in optional_href_list if x is not None]
 
         self.grouped_hrefs = group_files(href_list)
 
@@ -97,7 +109,8 @@ class MetadataLinks:
         elif self.archive_format == Format.COG:
             return self.filename_map[filename]
         else:
-            raise RuntimeError(f"Unknown format encountered: {self.archive_format}")
+            raise RuntimeError(
+                f"Unknown format encountered: {self.archive_format}")
 
     def _find_href(self, xpaths: List[str]) -> Optional[str]:
         file_path = None
@@ -120,27 +133,24 @@ class MetadataLinks:
 
     @property
     def annotation_hrefs(self) -> List[Tuple[str, str]]:
-        return [
-            ("schema-product-{}".format(*extract_properties(x, ["polarisation"])),
-             os.path.join(self.granule_href, self.map_filename(x)))
-            for x in self.grouped_hrefs["annotation"] if x.endswith("xml")
-        ]
+        return [("schema-product-{}".format(
+            *extract_properties(x, ["polarisation"])),
+                 os.path.join(self.granule_href, self.map_filename(x)))
+                for x in self.grouped_hrefs["annotation"] if x.endswith("xml")]
 
     @property
     def calibration_hrefs(self) -> List[Tuple[str, str]]:
-        return [
-            ("schema-calibration-{}".format(*extract_properties(x, ["polarisation"])),
-             os.path.join(self.granule_href, self.map_filename(x)))
-            for x in self.grouped_hrefs["calibration_calibration"]
-        ]
+        return [("schema-calibration-{}".format(
+            *extract_properties(x, ["polarisation"])),
+                 os.path.join(self.granule_href, self.map_filename(x)))
+                for x in self.grouped_hrefs["calibration_calibration"]]
 
     @property
     def noise_hrefs(self) -> List[Tuple[str, str]]:
-        return [
-            ("schema-noise-{}".format(*extract_properties(x, ["polarisation"])),
-             os.path.join(self.granule_href, self.map_filename(x)))
-            for x in self.grouped_hrefs["calibration_noise"]
-        ]
+        return [("schema-noise-{}".format(
+            *extract_properties(x, ["polarisation"])),
+                 os.path.join(self.granule_href, self.map_filename(x)))
+                for x in self.grouped_hrefs["calibration_noise"]]
 
     def create_manifest_asset(self):
         asset = pystac.Asset(href=self.href,

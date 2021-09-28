@@ -21,10 +21,9 @@ from .properties import (fill_proj_properties, fill_sar_properties,
 logger = logging.getLogger(__name__)
 
 
-def create_item(
-        granule_href: str,
-        read_href_modifier: Optional[ReadHrefModifier] = None,
-        archive_format: Format = Format.SAFE) -> pystac.Item:
+def create_item(granule_href: str,
+                read_href_modifier: Optional[ReadHrefModifier] = None,
+                archive_format: Format = Format.SAFE) -> pystac.Item:
     """Create a STC Item from a Sentinel-1 GRD scene.
 
     Args:
@@ -43,7 +42,9 @@ def create_item(
 
     metalinks = MetadataLinks(granule_href, read_href_modifier, archive_format)
 
-    product_metadata = ProductMetadata(metalinks.product_metadata_href, metalinks.grouped_hrefs, metalinks.map_filename,
+    product_metadata = ProductMetadata(metalinks.product_metadata_href,
+                                       metalinks.grouped_hrefs,
+                                       metalinks.map_filename,
                                        read_href_modifier)
 
     item = pystac.Item(
@@ -58,11 +59,13 @@ def create_item(
     # ---- Add Extensions ----
     # sar
     sar = SarExtension.ext(item, add_if_missing=True)
-    fill_sar_properties(sar, metalinks.product_metadata_href, read_href_modifier)
+    fill_sar_properties(sar, metalinks.product_metadata_href,
+                        read_href_modifier)
 
     # sat
     sat = SatExtension.ext(item, add_if_missing=True)
-    fill_sat_properties(sat, metalinks.product_metadata_href, read_href_modifier)
+    fill_sat_properties(sat, metalinks.product_metadata_href,
+                        read_href_modifier)
 
     # eo
     EOExtension.ext(item, add_if_missing=True)
@@ -70,7 +73,7 @@ def create_item(
     # proj
     proj = ProjectionExtension.ext(item, add_if_missing=True)
     fill_proj_properties(proj, metalinks, product_metadata, read_href_modifier)
-    proj.geometry = None    # Remove "proj:geometry", it's identical to "geometry"
+    proj.geometry = None  # Remove "proj:geometry", it's identical to "geometry"
 
     # --Common metadata--
     item.common_metadata.providers = [SENTINEL_PROVIDER]

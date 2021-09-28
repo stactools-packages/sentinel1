@@ -1,5 +1,5 @@
 from datetime import datetime
-from typing import Any, Dict, List, Optional, Callable
+from typing import Any, Callable, Dict, List, Optional
 
 from pystac.utils import str_to_datetime
 from shapely.geometry import Polygon, mapping  # type: ignore

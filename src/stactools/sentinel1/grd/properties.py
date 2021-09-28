@@ -6,7 +6,9 @@ from stactools.core.io import ReadHrefModifier
 from stactools.core.io.xml import XmlElement
 
 
-def fill_sar_properties(sar_ext, href, read_href_modifier: Optional[ReadHrefModifier] = None):
+def fill_sar_properties(sar_ext,
+                        href,
+                        read_href_modifier: Optional[ReadHrefModifier] = None):
     """Fills the properties for SAR.
 
     Based on the sar Extension.py
@@ -40,7 +42,9 @@ def fill_sar_properties(sar_ext, href, read_href_modifier: Optional[ReadHrefModi
     sar_ext.product_type = root.findall(".//s1sarl1:productType")[0].text
 
 
-def fill_sat_properties(sat_ext, href, read_href_modifier: Optional[ReadHrefModifier] = None):
+def fill_sat_properties(sat_ext,
+                        href,
+                        read_href_modifier: Optional[ReadHrefModifier] = None):
     """Fills the properties for SAR.
 
     Based on the sar Extension.py
@@ -70,7 +74,11 @@ def fill_sat_properties(sat_ext, href, read_href_modifier: Optional[ReadHrefModi
         root.findall(".//safe:relativeOrbitNumber")[0].text)
 
 
-def fill_proj_properties(proj_ext, meta_links, product_meta, read_href_modifier: Optional[ReadHrefModifier] = None):
+def fill_proj_properties(
+        proj_ext,
+        meta_links,
+        product_meta,
+        read_href_modifier: Optional[ReadHrefModifier] = None):
     """Fills the properties for SAR.
 
     Based on the sar Extension.py

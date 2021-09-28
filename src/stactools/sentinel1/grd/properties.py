@@ -1,7 +1,7 @@
-from typing import Optional
 import os
-import rasterio
+from typing import Optional
 
+import rasterio
 from pystac.extensions.sar import FrequencyBand, Polarization
 from pystac.extensions.sat import OrbitState
 from stactools.core.io import ReadHrefModifier

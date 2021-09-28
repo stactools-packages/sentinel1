@@ -14,3 +14,4 @@ sphinxcontrib-napoleon
 types-click
 types-pytz
 yapf
+rasterio

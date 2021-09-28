@@ -21,9 +21,11 @@ from .properties import (fill_proj_properties, fill_sar_properties,
 logger = logging.getLogger(__name__)
 
 
-def create_item(granule_href: str,
-                read_href_modifier: Optional[ReadHrefModifier] = None,
-                archive_format: Format = Format.SAFE) -> pystac.Item:
+def create_item(
+    granule_href: str,
+    read_href_modifier: Optional[ReadHrefModifier] = None,
+    archive_format: Format = Format.SAFE,
+) -> pystac.Item:
     """Create a STC Item from a Sentinel-1 GRD scene.
 
     Args:
@@ -42,10 +44,12 @@ def create_item(granule_href: str,
 
     metalinks = MetadataLinks(granule_href, read_href_modifier, archive_format)
 
-    product_metadata = ProductMetadata(metalinks.product_metadata_href,
-                                       metalinks.grouped_hrefs,
-                                       metalinks.map_filename,
-                                       read_href_modifier)
+    product_metadata = ProductMetadata(
+        metalinks.product_metadata_href,
+        metalinks.grouped_hrefs,
+        metalinks.map_filename,
+        read_href_modifier,
+    )
 
     item = pystac.Item(
         id=product_metadata.scene_id,

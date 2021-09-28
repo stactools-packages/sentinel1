@@ -101,13 +101,16 @@ def fill_proj_properties(
 
     # Compute transform
     head, _ = os.path.split(meta_links.product_metadata_href)
-    src = rasterio.open(f'{head}/{meta_links.grouped_hrefs["measurement"][0]}')
-    gcps = src.get_gcps()
-    s1_transform = rasterio.transform.from_gcps(gcps[0])
-    src.close()
+    try:
+        src = rasterio.open(
+            f'{head}/{meta_links.grouped_hrefs["measurement"][0]}')
+        gcps = src.get_gcps()
+        s1_transform = rasterio.transform.from_gcps(gcps[0])
+        src.close()
 
-    proj_ext.transform = s1_transform
-
+        proj_ext.transform = s1_transform
+    except IOError:
+        pass
     proj_ext.epsg = 4326
 
     proj_ext.geometry = product_meta.geometry

@@ -113,11 +113,17 @@ def create_item(
             ),
         )
 
+    images_media_type = None
+    if archive_format == Format.SAFE:
+        images_media_type = pystac.MediaType.GEOTIFF
+    elif archive_format == Format.COG:
+        images_media_type = pystac.MediaType.COG
+
     image_assets = dict([
-        image_asset_from_href(
-            os.path.join(granule_href, image_path),
-            item,
-        ) for image_path in product_metadata.image_paths
+        image_asset_from_href(os.path.join(granule_href, image_path),
+                              item,
+                              media_type=images_media_type)
+        for image_path in product_metadata.image_paths
     ])
 
     for key, asset in image_assets.items():

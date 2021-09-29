@@ -37,14 +37,12 @@ def image_asset_from_href(
 
     if band_id is not None:
         band = SENTINEL_POLARISATIONS[band_id]
-        # Hard code the resolution
-        asset_res = "10m"
 
         # Create asset
         asset = pystac.Asset(
             href=asset_href,
             media_type=asset_media_type,
-            title=f"{band.name} - {asset_res}",
+            title=band.name,
             roles=["data"],
         )
 

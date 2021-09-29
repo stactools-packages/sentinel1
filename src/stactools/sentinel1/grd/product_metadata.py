@@ -138,6 +138,11 @@ class ProductMetadata:
 
         resolutions = {"F": "full", "H": "high", "M": "medium"}
 
+        tmp = self._root.find(".//s1sarl1:sliceNumber")
+        slice_number = tmp.text if tmp is not None else None
+        tmp = self._root.find(".//s1sarl1:totalSlices")
+        total_slices = tmp.text if tmp is not None else None
+
         result = {
             "start_datetime":
             str(self.start_datetime),
@@ -154,7 +159,11 @@ class ProductMetadata:
             "s1:resolution":
             resolutions[self.resolution],
             "s1:orbit_source":
-            self.orbit_source()
+            self.orbit_source(),
+            "s1:slice_number":
+            slice_number,
+            "s1:total_slices":
+            total_slices
         }
 
         return {k: v for k, v in result.items() if v is not None}

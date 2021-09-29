@@ -151,6 +151,31 @@ class ProductMetadata:
             self.product_id.split("_")[3][0],
             "s1:resolution":
             resolutions[self.product_id.split("_")[2][-1]],
+            "s1:orbit_source":
+            self.orbit_source()
         }
 
         return {k: v for k, v in result.items() if v is not None}
+
+    def orbit_source(self) -> str:
+        for resource in self._root.findall(
+                ".//{http://www.esa.int/safe/sentinel-1.0}resource[@role]"):
+
+            name = resource.find_attr("name", ".")
+            if name is None or not name.endswith(".EOF"):
+                continue
+
+            role = resource.find_attr("role", ".")
+            if role is None or not role.startswith("AUX_"):
+                continue
+
+            if role == "AUX_POE":
+                return "POEORB"
+            elif role == "AUX_RES":
+                return "RESORB"
+            elif role == "AUX_PRE":
+                return "PREORB"
+            else:
+                raise RuntimeError(f"Invalid orbit file role found: {role}")
+
+        return "DOWNLINK"

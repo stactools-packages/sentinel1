@@ -64,7 +64,7 @@ def create_item(
     # sar
     sar = SarExtension.ext(item, add_if_missing=True)
     fill_sar_properties(sar, metalinks.product_metadata_href,
-                        read_href_modifier)
+                        product_metadata.resolution, read_href_modifier)
 
     # sat
     sat = SatExtension.ext(item, add_if_missing=True)

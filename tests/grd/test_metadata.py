@@ -39,7 +39,8 @@ class Sentinel1MetadataTest(unittest.TestCase):
         # ---- Add Extensions ----
         # sar
         sar = SarExtension.ext(item, add_if_missing=True)
-        fill_sar_properties(sar, metalinks.product_metadata_href)
+        fill_sar_properties(sar, metalinks.product_metadata_href,
+                            product_metadata.resolution)
 
         # sat
         sat = SatExtension.ext(item, add_if_missing=True)

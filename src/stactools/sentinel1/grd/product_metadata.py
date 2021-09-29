@@ -24,6 +24,8 @@ class ProductMetadata:
         self.file_hrefs = file_hrefs
         self.file_mapper = file_mapper
 
+        self.resolution = self.product_id.split("_")[2][-1]
+
         def _get_geometries():
             # Find the footprint descriptor
             footprint_text = self._root.findall(".//gml:coordinates")
@@ -150,7 +152,7 @@ class ProductMetadata:
             "s1:level":
             self.product_id.split("_")[3][0],
             "s1:resolution":
-            resolutions[self.product_id.split("_")[2][-1]],
+            resolutions[self.resolution],
             "s1:orbit_source":
             self.orbit_source()
         }

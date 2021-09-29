@@ -1,6 +1,7 @@
 from typing import Optional
 
-from pystac.extensions.sar import FrequencyBand, Polarization
+from pystac.extensions.sar import (FrequencyBand, ObservationDirection,
+                                   Polarization)
 from pystac.extensions.sat import OrbitState
 from stactools.core.io import ReadHrefModifier
 from stactools.core.io.xml import XmlElement
@@ -32,6 +33,7 @@ def fill_sar_properties(sar_ext,
     sar_ext.looks_range = 5
     sar_ext.looks_azimuth = 1
     sar_ext.pixel_spacing_range = 10
+    sar_ext.observation_direction = ObservationDirection.RIGHT
 
     # Read properties
     sar_ext.instrument_mode = root.findall(".//s1sarl1:mode")[0].text

@@ -13,11 +13,12 @@ class ProductMetadataError(Exception):
 
 class ProductMetadata:
     def __init__(
-            self,
-            href,
-            file_hrefs: Dict[str, List[str]],
-            file_mapper: Callable[[str], str],
-            read_href_modifier: Optional[ReadHrefModifier] = None) -> None:
+        self,
+        href,
+        file_hrefs: Dict[str, List[str]],
+        file_mapper: Callable[[str], str],
+        read_href_modifier: Optional[ReadHrefModifier] = None,
+    ) -> None:
         self.href = href
         self._root = XmlElement.from_file(href, read_href_modifier)
         self.file_hrefs = file_hrefs
@@ -132,6 +133,9 @@ class ProductMetadata:
 
     @property
     def metadata_dict(self) -> Dict[str, Any]:
+
+        resolutions = {"F": "full", "H": "high", "M": "medium"}
+
         result = {
             "start_datetime":
             str(self.start_datetime),
@@ -141,6 +145,12 @@ class ProductMetadata:
             self._root.findall(".//s1sarl1:instrumentConfigurationID")[0].text,
             "s1:datatake_id":
             self._root.findall(".//s1sarl1:missionDataTakeID")[0].text,
+            "s1:product_timeliness":
+            self._root.findall(".//s1sarl1:productTimelinessCategory")[0].text,
+            "s1:level":
+            self.product_id.split("_")[3][0],
+            "s1:resolution":
+            resolutions[self.product_id.split("_")[2][-1]],
         }
 
         return {k: v for k, v in result.items() if v is not None}

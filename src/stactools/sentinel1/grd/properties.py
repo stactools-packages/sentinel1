@@ -121,38 +121,3 @@ def fill_sat_properties(sat_ext,
 
     sat_ext.relative_orbit = int(
         root.findall(".//safe:relativeOrbitNumber")[0].text)
-
-
-def fill_proj_properties(
-    proj_ext,
-    meta_links,
-    product_meta,
-    read_href_modifier: Optional[ReadHrefModifier] = None,
-):
-    """Fills the properties for SAR.
-
-    Based on the sar Extension.py
-
-    Args:
-        proj_ext (pystac.extensions.sar.SarExtension): The extension to be populated.
-        read_href_modifier: A function that takes an HREF and returns a modified HREF.
-            This can be used to modify a HREF to make it readable, e.g. appending
-            an Azure SAS token or creating a signed URL.
-
-    Returns:
-        pystac.Asset: An asset with the SAR relevant properties.
-    """
-    # Read meta file
-    links = meta_links.create_product_asset()
-    root = XmlElement.from_file(links[0][1].href, read_href_modifier)
-
-    proj_ext.epsg = 4326
-
-    proj_ext.geometry = product_meta.geometry
-
-    proj_ext.bbox = product_meta.bbox
-
-    x_size = int(root.findall(".//numberOfSamples")[0].text)
-    y_size = int(root.findall(".//numberOfLines")[0].text)
-
-    proj_ext.shape = [x_size, y_size]

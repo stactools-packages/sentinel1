@@ -6,9 +6,21 @@ from shapely.geometry import Polygon, mapping  # type: ignore
 from stactools.core.io import ReadHrefModifier
 from stactools.core.io.xml import XmlElement
 
+from stactools.sentinel1.grd.metadata_links import MetadataLinks
+
 
 class ProductMetadataError(Exception):
     pass
+
+
+def get_shape(meta_links: MetadataLinks, read_href_modifier: Optional[ReadHrefModifier]) -> List[int]:
+    links = meta_links.create_product_asset()
+    root = XmlElement.from_file(links[0][1].href, read_href_modifier)
+
+    x_size = int(root.findall(".//numberOfSamples")[0].text)
+    y_size = int(root.findall(".//numberOfLines")[0].text)
+
+    return [x_size, y_size]
 
 
 class ProductMetadata:
@@ -154,7 +166,7 @@ class ProductMetadata:
             self._root.findall(".//s1sarl1:missionDataTakeID")[0].text,
             "s1:product_timeliness":
             self._root.findall(".//s1sarl1:productTimelinessCategory")[0].text,
-            "s1:level":
+            "s1:processing_level":
             self.product_id.split("_")[3][0],
             "s1:resolution":
             resolutions[self.resolution],

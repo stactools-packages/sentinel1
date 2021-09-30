@@ -19,7 +19,7 @@ ACQUISITION_MODES = [
     "Extra Wide Swath (EW)",
     "Wave (WV)",
 ]
-SENTINEL_CONSTELLATION = "Sentinel 1"
+SENTINEL_CONSTELLATION = "Sentinel-1"
 
 SENTINEL_PROVIDER = pystac.Provider(
     name="ESA",

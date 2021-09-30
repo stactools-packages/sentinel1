@@ -4,7 +4,6 @@ from typing import Optional
 
 import pystac
 from pystac.extensions.eo import EOExtension
-from pystac.extensions.projection import ProjectionExtension
 from pystac.extensions.sar import SarExtension
 from pystac.extensions.sat import SatExtension
 from stactools.core.io import ReadHrefModifier
@@ -14,9 +13,8 @@ from .bands import image_asset_from_href
 from .constants import (SENTINEL_CONSTELLATION, SENTINEL_LICENSE,
                         SENTINEL_PROVIDER)
 from .metadata_links import MetadataLinks
-from .product_metadata import ProductMetadata
-from .properties import (fill_proj_properties, fill_sar_properties,
-                         fill_sat_properties)
+from .product_metadata import ProductMetadata, get_shape
+from .properties import (fill_sar_properties, fill_sat_properties)
 
 logger = logging.getLogger(__name__)
 
@@ -74,18 +72,14 @@ def create_item(
     # eo
     EOExtension.ext(item, add_if_missing=True)
 
-    # proj
-    proj = ProjectionExtension.ext(item, add_if_missing=True)
-    fill_proj_properties(proj, metalinks, product_metadata, read_href_modifier)
-    proj.geometry = None  # Remove "proj:geometry", it's identical to "geometry"
-
     # --Common metadata--
     item.common_metadata.providers = [SENTINEL_PROVIDER]
     item.common_metadata.platform = product_metadata.platform
     item.common_metadata.constellation = SENTINEL_CONSTELLATION
 
     # s1 properties
-    item.properties.update({**product_metadata.metadata_dict})
+    shape = get_shape(metalinks, read_href_modifier)
+    item.properties.update({**product_metadata.metadata_dict, "s1:shape": shape})
 
     # Add assets to item
     item.add_asset(*metalinks.create_manifest_asset())

@@ -1,14 +1,12 @@
 import unittest
 
 import pystac
-from pystac.extensions.projection import ProjectionExtension
 from pystac.extensions.sar import SarExtension
 from pystac.extensions.sat import SatExtension
 
 from stactools.sentinel1.grd.metadata_links import MetadataLinks
 from stactools.sentinel1.grd.product_metadata import ProductMetadata
-from stactools.sentinel1.grd.properties import (fill_proj_properties,
-                                                fill_sar_properties,
+from stactools.sentinel1.grd.properties import (fill_sar_properties,
                                                 fill_sat_properties)
 from tests import test_data
 
@@ -46,19 +44,14 @@ class Sentinel1MetadataTest(unittest.TestCase):
         sat = SatExtension.ext(item, add_if_missing=True)
         fill_sat_properties(sat, metalinks.product_metadata_href)
 
-        # proj
-        proj = ProjectionExtension.ext(item, add_if_missing=True)
-        fill_proj_properties(proj, metalinks, product_metadata)
-
         # Make a dictionary of the properties
+        # TODO: test more of the properties
         s1_props = {
             "bbox": item.bbox,
             "sar_band": item.properties["sar:frequency_band"],
             "centre_frequency": item.properties["sar:center_frequency"],
             "polarizations": item.properties["sar:polarizations"],
-            "epsg": item.properties["proj:epsg"],
-            "product_type": item.properties["sar:product_type"],
-            "shape": item.properties["proj:shape"],
+            "product_type": item.properties["sar:product_type"]
         }
 
         expected = {
@@ -66,9 +59,7 @@ class Sentinel1MetadataTest(unittest.TestCase):
             "sar_band": "C",
             "centre_frequency": 5.405,
             "polarizations": ["VV", "VH"],
-            "epsg": 4326,
-            "product_type": "GRD",
-            "shape": [26144, 16676],
+            "product_type": "GRD"
         }
 
         for k, v in expected.items():

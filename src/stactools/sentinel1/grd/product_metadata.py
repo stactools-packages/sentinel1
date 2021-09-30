@@ -13,7 +13,8 @@ class ProductMetadataError(Exception):
     pass
 
 
-def get_shape(meta_links: MetadataLinks, read_href_modifier: Optional[ReadHrefModifier]) -> List[int]:
+def get_shape(meta_links: MetadataLinks,
+              read_href_modifier: Optional[ReadHrefModifier]) -> List[int]:
     links = meta_links.create_product_asset()
     root = XmlElement.from_file(links[0][1].href, read_href_modifier)
 

@@ -153,32 +153,44 @@ class MetadataLinks:
                 for x in self.grouped_hrefs["calibration_noise"]]
 
     def create_manifest_asset(self):
+        desc = "General product metadata in XML format. Contains a high-level textual " \
+               "description of the product and references to all of product's components, " \
+               "the product metadata, including the product identification and the resource " \
+               "references, and references to the physical location of each component file " \
+               "contained in the product."
+
         asset = pystac.Asset(href=self.href,
                              media_type=pystac.MediaType.XML,
-                             roles=["metadata"])
+                             title="Manifest File",
+                             roles=["metadata"],
+                             description=desc)
         return SAFE_MANIFEST_ASSET_KEY, asset
 
     def create_product_asset(self):
         assets = []
+        desc = "Describes the main characteristics corresponding to the band: state of the " \
+               "platform during acquisition, image properties, Doppler information, geographic " \
+               "location, etc."
         for key, href in self.annotation_hrefs:
-            asset = pystac.Asset(
-                href=href,
-                media_type=pystac.MediaType.XML,
-                title="Product Schema",
-                roles=["metadata"],
-            )
+            asset = pystac.Asset(href=href,
+                                 media_type=pystac.MediaType.XML,
+                                 title="Product Schema",
+                                 roles=["metadata"],
+                                 description=desc)
             assets.append((key, asset))
         return assets
 
     def create_calibration_asset(self):
         assets = []
+        desc = "Calibration metadata including calibration information and the beta nought, " \
+               "sigma nought, gamma and digital number look-up tables that can be used for " \
+               "absolute product calibration."
         for key, href in self.calibration_hrefs:
-            asset = pystac.Asset(
-                href=href,
-                media_type=pystac.MediaType.XML,
-                title="Calibration Schema",
-                roles=["metadata"],
-            )
+            asset = pystac.Asset(href=href,
+                                 media_type=pystac.MediaType.XML,
+                                 title="Calibration Schema",
+                                 roles=["metadata"],
+                                 description=desc)
             assets.append((key, asset))
         return assets
 
@@ -190,6 +202,6 @@ class MetadataLinks:
                 media_type=pystac.MediaType.XML,
                 title="Noise Schema",
                 roles=["metadata"],
-            )
+                description="Estimated thermal noise look-up tables")
             assets.append((key, asset))
         return assets

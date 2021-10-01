@@ -1,23 +1,43 @@
-import os
 from datetime import datetime
-from typing import Any, Dict, List, Optional
+from typing import Any, Callable, Dict, List, Optional
 
 from pystac.utils import str_to_datetime
 from shapely.geometry import Polygon, mapping  # type: ignore
+from stactools.core.io import ReadHrefModifier
 from stactools.core.io.xml import XmlElement
+
+from stactools.sentinel1.grd.metadata_links import MetadataLinks
 
 
 class ProductMetadataError(Exception):
     pass
 
 
+def get_shape(meta_links: MetadataLinks,
+              read_href_modifier: Optional[ReadHrefModifier]) -> List[int]:
+    links = meta_links.create_product_asset()
+    root = XmlElement.from_file(links[0][1].href, read_href_modifier)
+
+    x_size = int(root.findall(".//numberOfSamples")[0].text)
+    y_size = int(root.findall(".//numberOfLines")[0].text)
+
+    return [x_size, y_size]
+
+
 class ProductMetadata:
     def __init__(
         self,
         href,
+        file_hrefs: Dict[str, List[str]],
+        file_mapper: Callable[[str], str],
+        manifest: XmlElement,
     ) -> None:
         self.href = href
-        self._root = XmlElement.from_file(href)
+        self._root = manifest
+        self.file_hrefs = file_hrefs
+        self.file_mapper = file_mapper
+
+        self.resolution = self.product_id.split("_")[2][-1]
 
         def _get_geometries():
             # Find the footprint descriptor
@@ -124,12 +144,18 @@ class ProductMetadata:
 
     @property
     def image_paths(self) -> List[str]:
-        head_folder = os.path.dirname(self.href)
-        measurements = os.path.join(head_folder, "measurement")
-        return [x for x in os.listdir(measurements) if x.endswith("tiff")]
+        return [self.file_mapper(x) for x in self.file_hrefs["measurement"]]
 
     @property
     def metadata_dict(self) -> Dict[str, Any]:
+
+        resolutions = {"F": "full", "H": "high", "M": "medium"}
+
+        tmp = self._root.find(".//s1sarl1:sliceNumber")
+        slice_number = tmp.text if tmp is not None else None
+        tmp = self._root.find(".//s1sarl1:totalSlices")
+        total_slices = tmp.text if tmp is not None else None
+
         result = {
             "start_datetime":
             str(self.start_datetime),
@@ -139,6 +165,41 @@ class ProductMetadata:
             self._root.findall(".//s1sarl1:instrumentConfigurationID")[0].text,
             "s1:datatake_id":
             self._root.findall(".//s1sarl1:missionDataTakeID")[0].text,
+            "s1:product_timeliness":
+            self._root.findall(".//s1sarl1:productTimelinessCategory")[0].text,
+            "s1:processing_level":
+            self.product_id.split("_")[3][0],
+            "s1:resolution":
+            resolutions[self.resolution],
+            "s1:orbit_source":
+            self.orbit_source(),
+            "s1:slice_number":
+            slice_number,
+            "s1:total_slices":
+            total_slices
         }
 
         return {k: v for k, v in result.items() if v is not None}
+
+    def orbit_source(self) -> str:
+        for resource in self._root.findall(
+                ".//{http://www.esa.int/safe/sentinel-1.0}resource[@role]"):
+
+            name = resource.find_attr("name", ".")
+            if name is None or not name.endswith(".EOF"):
+                continue
+
+            role = resource.find_attr("role", ".")
+            if role is None or not role.startswith("AUX_"):
+                continue
+
+            if role == "AUX_POE":
+                return "POEORB"
+            elif role == "AUX_RES":
+                return "RESORB"
+            elif role == "AUX_PRE":
+                return "PREORB"
+            else:
+                raise RuntimeError(f"Invalid orbit file role found: {role}")
+
+        return "DOWNLINK"

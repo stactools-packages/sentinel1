@@ -37,16 +37,14 @@ def image_asset_from_href(
 
     if band_id is not None:
         band = SENTINEL_POLARISATIONS[band_id]
-        # Hard code the resolution
-        asset_res = "10m"
 
         # Create asset
-        asset = pystac.Asset(
-            href=asset_href,
-            media_type=asset_media_type,
-            title=f"{band.name} - {asset_res}",
-            roles=["data"],
-        )
+        desc = "Actual SAR data that have been processed into an image"
+        asset = pystac.Asset(href=asset_href,
+                             media_type=asset_media_type,
+                             title=band.name,
+                             roles=["data"],
+                             description=desc)
 
         asset_eo = EOExtension.ext(asset)
         asset_eo.bands = [SENTINEL_POLARISATIONS[band_id]]

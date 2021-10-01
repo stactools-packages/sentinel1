@@ -23,7 +23,8 @@ class Sentinel1MetadataTest(unittest.TestCase):
 
         product_metadata = ProductMetadata(metalinks.product_metadata_href,
                                            metalinks.grouped_hrefs,
-                                           metalinks.map_filename)
+                                           metalinks.map_filename,
+                                           metalinks.manifest)
 
         item = pystac.Item(
             id=product_metadata.scene_id,
@@ -37,12 +38,12 @@ class Sentinel1MetadataTest(unittest.TestCase):
         # ---- Add Extensions ----
         # sar
         sar = SarExtension.ext(item, add_if_missing=True)
-        fill_sar_properties(sar, metalinks.product_metadata_href,
+        fill_sar_properties(sar, metalinks.manifest,
                             product_metadata.resolution)
 
         # sat
         sat = SatExtension.ext(item, add_if_missing=True)
-        fill_sat_properties(sat, metalinks.product_metadata_href)
+        fill_sat_properties(sat, metalinks.manifest)
 
         # Make a dictionary of the properties
         # TODO: test more of the properties

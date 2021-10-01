@@ -1,10 +1,8 @@
-from typing import Dict, Optional
+from typing import Dict
 
-import pystac
 from pystac.extensions.sar import (FrequencyBand, ObservationDirection,
-                                   Polarization)
-from pystac.extensions.sat import OrbitState
-from stactools.core.io import ReadHrefModifier
+                                   Polarization, SarExtension)
+from pystac.extensions.sat import OrbitState, SatExtension
 from stactools.core.io.xml import XmlElement
 
 
@@ -43,41 +41,30 @@ product_data_summary: Dict[str, Dict[str, ProductDataEntry]] = {
 }
 
 
-def fill_sar_properties(sar_ext: pystac.extensions.sar.SarExtension,
-                        href: str,
-                        resolution: str,
-                        read_href_modifier: Optional[ReadHrefModifier] = None):
+def fill_sar_properties(sar_ext: SarExtension, manifest: XmlElement,
+                        resolution: str):
     """Fills the properties for SAR.
 
     Based on the sar Extension.py
 
     Args:
-        sar_ext (pystac.extensions.sar.SarExtension): The extension to be populated.
-        href (str): The HREF to the scene, this is expected to be an XML file.
+        sar_ext (SarExtension): The extension to be populated.
         resolution (str): product resolution, needed to select metadata from
             static values in product_data_summary
-        read_href_modifier: A function that takes an HREF and returns a modified HREF.
-            This can be used to modify a HREF to make it readable, e.g. appending
-            an Azure SAS token or creating a signed URL.
-
-    Returns:
-        pystac.Asset: An asset with the SAR relevant properties.
+        manifest (XmlElement): manifest.safe file parsed into an XmlElement
     """
-    # Read meta file
-    root = XmlElement.from_file(href, read_href_modifier)
-
     # Fixed properties
     sar_ext.frequency_band = FrequencyBand("C")
     sar_ext.center_frequency = 5.405
     sar_ext.observation_direction = ObservationDirection.RIGHT
 
     # Read properties
-    sar_ext.instrument_mode = root.findall(".//s1sarl1:mode")[0].text
+    sar_ext.instrument_mode = manifest.findall(".//s1sarl1:mode")[0].text
     sar_ext.polarizations = [
         Polarization(x.text)
-        for x in root.findall(".//s1sarl1:transmitterReceiverPolarisation")
+        for x in manifest.findall(".//s1sarl1:transmitterReceiverPolarisation")
     ]
-    sar_ext.product_type = root.findall(".//s1sarl1:productType")[0].text
+    sar_ext.product_type = manifest.findall(".//s1sarl1:productType")[0].text
 
     # Properties depending on mode and resolution
     product_data = product_data_summary[sar_ext.instrument_mode][resolution]
@@ -90,34 +77,27 @@ def fill_sar_properties(sar_ext: pystac.extensions.sar.SarExtension,
     sar_ext.looks_azimuth = product_data.no_looks_azi
     sar_ext.looks_equivalent_number = product_data.enl
 
+    return sar_ext
 
-def fill_sat_properties(sat_ext,
-                        href,
-                        read_href_modifier: Optional[ReadHrefModifier] = None):
-    """Fills the properties for SAR.
 
-    Based on the sar Extension.py
+def fill_sat_properties(sat_ext: SatExtension, manifest: XmlElement):
+    """Fills the properties for SAT.
+
+    Based on the sat Extension.py
 
     Args:
-        sat_ext (pystac.extensions.sar.SarExtension): The extension to be populated.
-        href (str): The HREF to the scene, this is expected to be an XML file.
-        read_href_modifier: A function that takes an HREF and returns a modified HREF.
-            This can be used to modify a HREF to make it readable, e.g. appending
-            an Azure SAS token or creating a signed URL.
-
-    Returns:
-        pystac.Asset: An asset with the SAR relevant properties.
+        sat_ext (SatExtension): The extension to be populated.
+        manifest (XmlElement): manifest.safe file parsed into an XmlElement
     """
-    # Read meta file
-    root = XmlElement.from_file(href, read_href_modifier)
 
-    sat_ext.platform_international_designator = root.findall(
+    sat_ext.platform_international_designator = manifest.findall(
         ".//safe:nssdcIdentifier")[0].text
 
-    orbit_state = root.findall(".//s1:pass")[0].text
+    orbit_state = manifest.findall(".//s1:pass")[0].text
     sat_ext.orbit_state = OrbitState(orbit_state.lower())
 
-    sat_ext.absolute_orbit = int(root.findall(".//safe:orbitNumber")[0].text)
+    sat_ext.absolute_orbit = int(
+        manifest.findall(".//safe:orbitNumber")[0].text)
 
     sat_ext.relative_orbit = int(
-        root.findall(".//safe:relativeOrbitNumber")[0].text)
+        manifest.findall(".//safe:relativeOrbitNumber")[0].text)

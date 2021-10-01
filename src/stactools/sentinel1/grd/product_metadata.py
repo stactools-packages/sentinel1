@@ -30,10 +30,10 @@ class ProductMetadata:
         href,
         file_hrefs: Dict[str, List[str]],
         file_mapper: Callable[[str], str],
-        read_href_modifier: Optional[ReadHrefModifier] = None,
+        manifest: XmlElement,
     ) -> None:
         self.href = href
-        self._root = XmlElement.from_file(href, read_href_modifier)
+        self._root = manifest
         self.file_hrefs = file_hrefs
         self.file_mapper = file_mapper
 

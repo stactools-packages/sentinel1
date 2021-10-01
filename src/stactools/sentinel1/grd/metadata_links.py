@@ -68,8 +68,8 @@ class MetadataLinks:
         self.href = os.path.join(granule_href, "manifest.safe")
         self.archive_format = archive_format
 
-        root = XmlElement.from_file(self.href, read_href_modifier)
-        data_object_section = root.find("dataObjectSection")
+        self.manifest = XmlElement.from_file(self.href, read_href_modifier)
+        data_object_section = self.manifest.find("dataObjectSection")
         if data_object_section is None:
             raise ManifestError(
                 f"Manifest at {self.href} does not have a dataObjectSection")

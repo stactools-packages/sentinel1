@@ -46,7 +46,7 @@ def create_item(
         metalinks.product_metadata_href,
         metalinks.grouped_hrefs,
         metalinks.map_filename,
-        read_href_modifier,
+        metalinks.manifest,
     )
 
     item = pystac.Item(
@@ -61,13 +61,11 @@ def create_item(
     # ---- Add Extensions ----
     # sar
     sar = SarExtension.ext(item, add_if_missing=True)
-    fill_sar_properties(sar, metalinks.product_metadata_href,
-                        product_metadata.resolution, read_href_modifier)
+    fill_sar_properties(sar, metalinks.manifest, product_metadata.resolution)
 
     # sat
     sat = SatExtension.ext(item, add_if_missing=True)
-    fill_sat_properties(sat, metalinks.product_metadata_href,
-                        read_href_modifier)
+    fill_sat_properties(sat, metalinks.manifest)
 
     # eo
     EOExtension.ext(item, add_if_missing=True)

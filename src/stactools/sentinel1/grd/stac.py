@@ -42,13 +42,11 @@ def create_item(
 
     metalinks = MetadataLinks(granule_href, read_href_modifier, archive_format)
 
-    product_metadata = ProductMetadata(
-        metalinks.product_metadata_href,
-        metalinks.grouped_hrefs,
-        metalinks.map_filename,
-        metalinks.manifest,
-        metalinks.product_info
-    )
+    product_metadata = ProductMetadata(metalinks.product_metadata_href,
+                                       metalinks.grouped_hrefs,
+                                       metalinks.map_filename,
+                                       metalinks.manifest,
+                                       metalinks.product_info)
 
     item = pystac.Item(
         id=product_metadata.scene_id,

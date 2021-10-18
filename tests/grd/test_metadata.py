@@ -24,7 +24,8 @@ class Sentinel1MetadataTest(unittest.TestCase):
         product_metadata = ProductMetadata(metalinks.product_metadata_href,
                                            metalinks.grouped_hrefs,
                                            metalinks.map_filename,
-                                           metalinks.manifest)
+                                           metalinks.manifest,
+                                           metalinks.product_info)
 
         item = pystac.Item(
             id=product_metadata.scene_id,

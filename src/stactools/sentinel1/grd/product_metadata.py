@@ -26,14 +26,9 @@ def get_shape(meta_links: MetadataLinks,
 
 
 class ProductMetadata:
-    def __init__(
-        self,
-        href,
-        file_hrefs: Dict[str, List[str]],
-        file_mapper: Callable[[str], str],
-        manifest: XmlElement,
-        product_info: Optional[Dict]
-    ) -> None:
+    def __init__(self, href, file_hrefs: Dict[str, List[str]],
+                 file_mapper: Callable[[str], str], manifest: XmlElement,
+                 product_info: Optional[Dict]) -> None:
         self.href = href
         self._root = manifest
         self.file_hrefs = file_hrefs
@@ -51,8 +46,8 @@ class ProductMetadata:
                     )
                 # Convert to values
                 footprint_value = [
-                    float(x)
-                    for x in footprint_text[0].text.replace(" ", ",").split(",")
+                    float(x) for x in footprint_text[0].text.replace(
+                        " ", ",").split(",")
                 ]
 
                 footprint_points = [
@@ -70,7 +65,9 @@ class ProductMetadata:
 
                 def parse_polygon(geom: List):
                     def fail():
-                        raise RuntimeError(f"Can't parse Polygon from: {json.dumps(geom)} for {href}")
+                        raise RuntimeError(
+                            f"Can't parse Polygon from: {json.dumps(geom)} for {href}"
+                        )
 
                     if len(geom) > 1:
                         if not isinstance(geom[0], List):
@@ -78,7 +75,8 @@ class ProductMetadata:
                         if len(geom[0]) == 2:
                             if not isinstance(geom[0][0], float):
                                 fail()
-                            return Polygon([(point[0], point[1]) for point in geom])
+                            return Polygon([(point[0], point[1])
+                                            for point in geom])
                     elif len(geom) == 1:
                         return parse_polygon(geom[0])
                     else:

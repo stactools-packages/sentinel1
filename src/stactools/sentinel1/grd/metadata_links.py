@@ -78,6 +78,7 @@ class MetadataLinks:
         self.product_metadata_href = os.path.join(granule_href,
                                                   "manifest.safe")
 
+        self.product_info = None
         if archive_format == Format.COG:
             self.product_info_href = os.path.join(granule_href,
                                                   "productInfo.json")

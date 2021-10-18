@@ -47,6 +47,7 @@ def create_item(
         metalinks.grouped_hrefs,
         metalinks.map_filename,
         metalinks.manifest,
+        metalinks.product_info
     )
 
     item = pystac.Item(

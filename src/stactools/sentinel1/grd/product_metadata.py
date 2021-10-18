@@ -1,3 +1,4 @@
+import json
 from datetime import datetime
 from typing import Any, Callable, Dict, List, Optional
 
@@ -31,6 +32,7 @@ class ProductMetadata:
         file_hrefs: Dict[str, List[str]],
         file_mapper: Callable[[str], str],
         manifest: XmlElement,
+        product_info: Optional[Dict]
     ) -> None:
         self.href = href
         self._root = manifest
@@ -40,27 +42,53 @@ class ProductMetadata:
         self.resolution = self.product_id.split("_")[2][-1]
 
         def _get_geometries():
-            # Find the footprint descriptor
-            footprint_text = self._root.findall(".//gml:coordinates")
-            if footprint_text is None:
-                ProductMetadataError(
-                    f"Cannot parse footprint from product metadata at {self.href}"
-                )
-            # Convert to values
-            footprint_value = [
-                float(x)
-                for x in footprint_text[0].text.replace(" ", ",").split(",")
-            ]
+            if product_info is None:
+                # Find the footprint descriptor
+                footprint_text = self._root.findall(".//gml:coordinates")
+                if footprint_text is None:
+                    ProductMetadataError(
+                        f"Cannot parse footprint from product metadata at {self.href}"
+                    )
+                # Convert to values
+                footprint_value = [
+                    float(x)
+                    for x in footprint_text[0].text.replace(" ", ",").split(",")
+                ]
 
-            footprint_points = [
-                p[::-1] for p in list(zip(*[iter(footprint_value)] * 2))
-            ]
+                footprint_points = [
+                    p[::-1] for p in list(zip(*[iter(footprint_value)] * 2))
+                ]
 
-            footprint_polygon = Polygon(footprint_points)
-            geometry = mapping(footprint_polygon)
-            bbox = footprint_polygon.bounds
+                footprint_polygon = Polygon(footprint_points)
+                geometry = mapping(footprint_polygon)
+                bbox = footprint_polygon.bounds
 
-            return (bbox, geometry)
+                return bbox, geometry
+
+            else:
+                geometry = product_info["footprint"]["coordinates"]
+
+                def parse_polygon(geom: List):
+                    def fail():
+                        raise RuntimeError(f"Can't parse Polygon from: {json.dumps(geom)} for {href}")
+
+                    if len(geom) > 1:
+                        if not isinstance(geom[0], List):
+                            fail()
+                        if len(geom[0]) == 2:
+                            if not isinstance(geom[0][0], float):
+                                fail()
+                            return Polygon([(point[0], point[1]) for point in geom])
+                    elif len(geom) == 1:
+                        return parse_polygon(geom[0])
+                    else:
+                        fail()
+
+                footprint_polygon = parse_polygon(geometry)
+                geometry = mapping(footprint_polygon)
+                bbox = footprint_polygon.bounds
+
+                return bbox, geometry
 
         self.bbox, self.geometry = _get_geometries()
 

@@ -2,9 +2,11 @@ from datetime import datetime
 from typing import Any, Callable, Dict, List, Optional
 
 from pystac.utils import str_to_datetime
-from shapely.geometry import Polygon, mapping, MultiPolygon, LineString  # type: ignore
+from shapely.geometry import MultiPolygon  # type: ignore
+from shapely.geometry import Polygon, mapping
 from stactools.core.io import ReadHrefModifier
 from stactools.core.io.xml import XmlElement
+
 from stactools.sentinel1.grd.metadata_links import MetadataLinks
 
 
@@ -63,9 +65,11 @@ class ProductMetadata:
                 if geom_type.lower() == "polygon":
                     footprint_geom = Polygon(*coordinates)
                 elif geom_type.lower() == "multipolygon":
-                    footprint_geom = MultiPolygon(coordinates, context_type="geojson")
+                    footprint_geom = MultiPolygon(coordinates,
+                                                  context_type="geojson")
                 else:
-                    raise RuntimeError("Can't read geometry of type " + geom_type)
+                    raise RuntimeError("Can't read geometry of type " +
+                                       geom_type)
 
                 geometry = mapping(footprint_geom)
                 bbox = footprint_geom.bounds

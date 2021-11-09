@@ -2,6 +2,7 @@ import os
 from tempfile import TemporaryDirectory
 
 import pystac
+from pystac.extensions.raster import RasterExtension
 from pystac.utils import is_absolute_href
 from stactools.testing import CliTestCase
 
@@ -83,6 +84,8 @@ class CreateItemTest(CliTestCase):
                             os.path.join(tmp_dir, fname))
 
                         item.validate()
+
+                        self.assertTrue(RasterExtension.has_extension(item))
 
                         for asset in item.assets.values():
                             self.assertTrue(is_absolute_href(asset.href))

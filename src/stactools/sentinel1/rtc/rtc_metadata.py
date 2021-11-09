@@ -85,6 +85,7 @@ class RTCMetadata:
                 start = str_to_datetime(min(times))
                 end = str_to_datetime(max(times))
                 mid = start + (end - start) / 2
+                mid = mid.replace(microsecond=0)
             return start, mid, end
 
         self.metadata, self.bbox, self.geometry = _load_metadata_from_asset()

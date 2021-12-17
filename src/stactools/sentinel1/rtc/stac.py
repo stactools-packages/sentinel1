@@ -147,6 +147,7 @@ def create_item(
         RasterExtension.ext(asset).bands = [RasterBand.create(**RasterInfo)]
 
         item.add_asset(product_metadata.asset_dict[image]['key'], asset)
+        RasterExtension.add_to(item)
 
     # Metadata
     if include_grd_metadata:

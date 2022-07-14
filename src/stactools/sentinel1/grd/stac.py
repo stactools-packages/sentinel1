@@ -75,9 +75,14 @@ def create_item(
     item.common_metadata.constellation = SENTINEL_CONSTELLATION
 
     # s1 properties
-    shape = get_shape(metalinks, read_href_modifier)
+    extra_properties = {}
+
+    if not os.getenv("SKIP_SHAPE"):
+        shape = get_shape(metalinks, read_href_modifier)
+        extra_properties["s1:shape"] = shape
+
     item.properties.update({
-        **product_metadata.metadata_dict, "s1:shape": shape
+        **product_metadata.metadata_dict, **extra_properties
     })
 
     # Add assets to item

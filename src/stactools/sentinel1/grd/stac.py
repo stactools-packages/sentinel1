@@ -42,12 +42,11 @@ def create_item(
 
     metalinks = MetadataLinks(granule_href, read_href_modifier, archive_format)
 
-    product_metadata = ProductMetadata(
-        metalinks.product_metadata_href,
-        metalinks.grouped_hrefs,
-        metalinks.map_filename,
-        metalinks.manifest,
-    )
+    product_metadata = ProductMetadata(metalinks.product_metadata_href,
+                                       metalinks.grouped_hrefs,
+                                       metalinks.map_filename,
+                                       metalinks.manifest,
+                                       metalinks.product_info)
 
     item = pystac.Item(
         id=product_metadata.scene_id,
@@ -76,9 +75,14 @@ def create_item(
     item.common_metadata.constellation = SENTINEL_CONSTELLATION
 
     # s1 properties
-    shape = get_shape(metalinks, read_href_modifier)
+    extra_properties = {}
+
+    if not os.getenv("SKIP_SHAPE"):
+        shape = get_shape(metalinks, read_href_modifier)
+        extra_properties["s1:shape"] = shape
+
     item.properties.update({
-        **product_metadata.metadata_dict, "s1:shape": shape
+        **product_metadata.metadata_dict, **extra_properties
     })
 
     # Add assets to item

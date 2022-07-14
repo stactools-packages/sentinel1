@@ -2,7 +2,8 @@ from datetime import datetime
 from typing import Any, Callable, Dict, List, Optional
 
 from pystac.utils import str_to_datetime
-from shapely.geometry import Polygon, mapping  # type: ignore
+from shapely.geometry import MultiPolygon  # type: ignore
+from shapely.geometry import Polygon, mapping
 from stactools.core.io import ReadHrefModifier
 from stactools.core.io.xml import XmlElement
 
@@ -25,13 +26,9 @@ def get_shape(meta_links: MetadataLinks,
 
 
 class ProductMetadata:
-    def __init__(
-        self,
-        href,
-        file_hrefs: Dict[str, List[str]],
-        file_mapper: Callable[[str], str],
-        manifest: XmlElement,
-    ) -> None:
+    def __init__(self, href, file_hrefs: Dict[str, List[str]],
+                 file_mapper: Callable[[str], str], manifest: XmlElement,
+                 product_info: Optional[Dict]) -> None:
         self.href = href
         self._root = manifest
         self.file_hrefs = file_hrefs
@@ -40,27 +37,44 @@ class ProductMetadata:
         self.resolution = self.product_id.split("_")[2][-1]
 
         def _get_geometries():
-            # Find the footprint descriptor
-            footprint_text = self._root.findall(".//gml:coordinates")
-            if footprint_text is None:
-                ProductMetadataError(
-                    f"Cannot parse footprint from product metadata at {self.href}"
-                )
-            # Convert to values
-            footprint_value = [
-                float(x)
-                for x in footprint_text[0].text.replace(" ", ",").split(",")
-            ]
+            if product_info is None:
+                # Find the footprint descriptor
+                footprint_text = self._root.findall(".//gml:coordinates")
+                if footprint_text is None:
+                    ProductMetadataError(
+                        f"Cannot parse footprint from product metadata at {self.href}"
+                    )
+                # Convert to values
+                footprint_value = [
+                    float(x) for x in footprint_text[0].text.replace(
+                        " ", ",").split(",")
+                ]
 
-            footprint_points = [
-                p[::-1] for p in list(zip(*[iter(footprint_value)] * 2))
-            ]
+                footprint_points = [
+                    p[::-1] for p in list(zip(*[iter(footprint_value)] * 2))
+                ]
 
-            footprint_polygon = Polygon(footprint_points)
-            geometry = mapping(footprint_polygon)
-            bbox = footprint_polygon.bounds
+                footprint_polygon = Polygon(footprint_points)
+                geometry = mapping(footprint_polygon)
+                bbox = footprint_polygon.bounds
 
-            return (bbox, geometry)
+            else:
+                coordinates = product_info["footprint"]["coordinates"]
+                geom_type = str(product_info["footprint"]["type"])
+
+                if geom_type.lower() == "polygon":
+                    footprint_geom = Polygon(*coordinates)
+                elif geom_type.lower() == "multipolygon":
+                    footprint_geom = MultiPolygon(coordinates,
+                                                  context_type="geojson")
+                else:
+                    raise RuntimeError("Can't read geometry of type " +
+                                       geom_type)
+
+                geometry = mapping(footprint_geom)
+                bbox = footprint_geom.bounds
+
+            return bbox, geometry
 
         self.bbox, self.geometry = _get_geometries()
 

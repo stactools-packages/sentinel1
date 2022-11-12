@@ -63,12 +63,14 @@ class MetadataLinks:
     def __init__(self,
                  granule_href: str,
                  read_href_modifier: Optional[ReadHrefModifier] = None,
-                 archive_format: Format = Format.SAFE) -> None:
+                 archive_format: Format = Format.SAFE,
+                 **kwargs) -> None:
         self.granule_href = granule_href
         self.href = os.path.join(granule_href, "manifest.safe")
         self.archive_format = archive_format
 
-        self.manifest = XmlElement.from_file(self.href, read_href_modifier)
+        self.manifest = XmlElement.from_file(self.href, read_href_modifier,
+                                             **kwargs)
         data_object_section = self.manifest.find("dataObjectSection")
         if data_object_section is None:
             raise ManifestError(
@@ -83,7 +85,7 @@ class MetadataLinks:
                                                   "productInfo.json")
             self.product_info = json.loads(
                 stactools.core.io.read_text(self.product_info_href,
-                                            read_href_modifier))
+                                            read_href_modifier, **kwargs))
             self.filename_map = self.product_info["filenameMap"]
 
         file_location_list = self._data_object_section.findall(

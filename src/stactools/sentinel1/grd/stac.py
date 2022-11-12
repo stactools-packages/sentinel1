@@ -1,6 +1,6 @@
 import logging
 import os
-from typing import Optional
+from typing import Optional, Any
 
 import pystac
 from pystac.extensions.eo import EOExtension
@@ -23,6 +23,7 @@ def create_item(
     granule_href: str,
     read_href_modifier: Optional[ReadHrefModifier] = None,
     archive_format: Format = Format.SAFE,
+    **kwargs: Any,
 ) -> pystac.Item:
     """Create a STC Item from a Sentinel-1 GRD scene.
 
@@ -40,7 +41,12 @@ def create_item(
         pystac.Item: An item representing the Sentinel-1 GRD scene.
     """
 
-    metalinks = MetadataLinks(granule_href, read_href_modifier, archive_format)
+    metalinks = MetadataLinks(
+        granule_href,
+        read_href_modifier,
+        archive_format,
+        **kwargs,
+    )
 
     product_metadata = ProductMetadata(
         metalinks.product_metadata_href,
@@ -76,7 +82,7 @@ def create_item(
     item.common_metadata.constellation = SENTINEL_CONSTELLATION
 
     # s1 properties
-    shape = get_shape(metalinks, read_href_modifier)
+    shape = get_shape(metalinks, read_href_modifier, **kwargs)
     item.properties.update({
         **product_metadata.metadata_dict, "s1:shape": shape
     })

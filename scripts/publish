@@ -9,7 +9,7 @@ fi
 function usage() {
     echo -n \
         "Usage: $(basename "$0")
-Publish all stactools packages.
+Publish this stactools package.
 
 Options:
 --test    Publish to test pypi

@@ -1,6 +1,6 @@
 import logging
 import os
-from typing import Optional, Any
+from typing import Any, Optional
 
 import pystac
 from pystac.extensions.eo import EOExtension

@@ -13,23 +13,13 @@ Execute project linters.
 "
 }
 
-EC_EXCLUDE="(__pycache__|.git|.coverage|coverage.xml|.*\.egg-info|.mypy_cache|.tif|.tiff|.npy)"
-
-DIRS_TO_CHECK=("src" "tests" "scripts")
-
 if [ "${BASH_SOURCE[0]}" = "${0}" ]; then
     if [ "${1:-}" = "--help" ]; then
         usage
     else
-        # Text formatting
-        ec --exclude "$EC_EXCLUDE"
-        # Sort imports
-        isort --check .
-        # Code formatting
-        yapf -dpr ${DIRS_TO_CHECK[@]}
         # Lint
-        flake8 ${DIRS_TO_CHECK[@]}
+        pre-commit run flake8 --all-files
         # Type checking
-        mypy src
+        pre-commit run mypy --all-files
     fi
 fi

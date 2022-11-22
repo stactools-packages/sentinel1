@@ -17,9 +17,8 @@ if [ "${BASH_SOURCE[0]}" = "${0}" ]; then
     if [ "${1:-}" = "--help" ]; then
         usage
     else
-        export PIP_NO_BINARY=rasterio
         python -m pip install --upgrade pip
-        pip install .
+        pip install . --no-binary rasterio
         pip install -r requirements-dev.txt
     fi
 fi

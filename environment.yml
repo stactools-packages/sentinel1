@@ -2,5 +2,7 @@ name: stactools-sentinel1
 channels:
   - conda-forge
 dependencies:
-  - gdal
-  - rasterio~=1.2
+  - conda-forge::gdal>=3.3
+  - conda-forge::geos>=3.3
+  - conda-forge::rasterio>=1.3
+  - conda-forge::libstdcxx-ng # gdal dependency. Make sure it's from the same channel as gdal

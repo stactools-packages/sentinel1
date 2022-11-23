@@ -1,15 +1,14 @@
 import stactools.core
 from stactools.cli.registry import Registry
 
-from stactools.sentinel1.commands import create_sentinel1_command
-
 stactools.core.use_fsspec()
 
 
-def register_plugin(registry: Registry):
+def register_plugin(registry: Registry) -> None:
     # Register subcommands
+    from stactools.sentinel1 import commands
 
-    registry.register_subcommand(create_sentinel1_command)
+    registry.register_subcommand(commands.create_sentinel1_command)
 
 
-__version__ = '0.2.1'
+__version__ = "0.2.1"

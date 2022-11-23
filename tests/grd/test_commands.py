@@ -1,10 +1,12 @@
 import os
 from tempfile import TemporaryDirectory
+from typing import Callable, List
 
 import pystac
+from click import Command, Group
 from pystac.extensions.eo import EOExtension
 from pystac.utils import is_absolute_href
-from stactools.testing import CliTestCase
+from stactools.testing.cli_test import CliTestCase
 
 from stactools.sentinel1.commands import create_sentinel1_command
 from stactools.sentinel1.grd.constants import SENTINEL_POLARISATIONS
@@ -12,11 +14,10 @@ from tests import test_data
 
 
 class CreateItemTest(CliTestCase):
-
-    def create_subcommand_functions(self):
+    def create_subcommand_functions(self) -> List[Callable[[Group], Command]]:
         return [create_sentinel1_command]
 
-    def test_create_item(self):
+    def test_create_item(self) -> None:
         item_id = "S1A_IW_GRDH_1SDV_20210809T173953_20210809T174018_039156_049F13_6FF8"
         granule_href = test_data.get_path(
             "data-files/grd/S1A_IW_GRDH_1SDV_20210809T173953_20210809T174018_039156_049F13_6FF8.SAFE"  # noqa
@@ -24,9 +25,7 @@ class CreateItemTest(CliTestCase):
 
         with self.subTest(granule_href):
             with TemporaryDirectory() as tmp_dir:
-                cmd = [
-                    "sentinel1", "grd", "create-item", granule_href, tmp_dir
-                ]
+                cmd = ["sentinel1", "grd", "create-item", granule_href, tmp_dir]
                 self.run_command(cmd)
 
                 jsons = [p for p in os.listdir(tmp_dir) if p.endswith(".json")]
@@ -51,8 +50,7 @@ class CreateItemTest(CliTestCase):
                     if bands is not None:
                         bands_seen |= set(b.name for b in bands)
 
-                [
-                    self.assertTrue(
-                        x.lower() in list(SENTINEL_POLARISATIONS.keys()))
-                    for x in bands_seen
-                ]
+                # TODO: Verify the intent of this test
+                # The prior test was in a List Comprehension which doesn't evaluate to a return
+                for x in bands_seen:
+                    self.assertTrue(x.lower() in list(SENTINEL_POLARISATIONS.keys()))

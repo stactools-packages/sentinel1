@@ -26,8 +26,7 @@ def image_asset_from_href(
         if ext.lower() in [".tiff", ".tif"]:
             asset_media_type = pystac.MediaType.GEOTIFF
         else:
-            raise Exception(
-                f"Must supply a media type for asset : {asset_href}")
+            raise Exception(f"Must supply a media type for asset : {asset_href}")
 
     # Handle band image
     if len(os.path.basename(asset_href).split(".")[0].split("-")) == 2:
@@ -40,11 +39,13 @@ def image_asset_from_href(
 
         # Create asset
         desc = "Actual SAR data that have been processed into an image"
-        asset = pystac.Asset(href=asset_href,
-                             media_type=asset_media_type,
-                             title=band.name,
-                             roles=["data"],
-                             description=desc)
+        asset = pystac.Asset(
+            href=asset_href,
+            media_type=asset_media_type,
+            title=band.name,
+            roles=["data"],
+            description=desc,
+        )
 
         asset_eo = EOExtension.ext(asset)
         asset_eo.bands = [SENTINEL_POLARISATIONS[band_id]]

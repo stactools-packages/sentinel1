@@ -5,9 +5,8 @@ from stactools.sentinel1.rtc.commands import rtc_cmd
 
 
 def create_sentinel1_command(cli: click.Group) -> click.Command:
-
-    @cli.group('sentinel1')
-    def sentinel1_cmd():
+    @cli.group("sentinel1")
+    def sentinel1_cmd() -> None:
         """Commands for working with sentinel1 data"""
         pass
 

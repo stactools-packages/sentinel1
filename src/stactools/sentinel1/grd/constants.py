@@ -9,8 +9,8 @@ PRODUCT_METADATA_ASSET_KEY = "product-metadata"
 
 SENTINEL_LICENSE = Link(
     rel="license",
-    target="https://sentinel.esa.int/documents/" +
-    "247904/690755/Sentinel_Data_Legal_Notice",
+    target="https://sentinel.esa.int/documents/"
+    + "247904/690755/Sentinel_Data_Legal_Notice",
 )
 
 ACQUISITION_MODES = [
@@ -32,23 +32,19 @@ SENTINEL_PROVIDER = pystac.Provider(
 )
 
 SENTINEL_POLARISATIONS = {
-    "vh":
-    Band.create(
+    "vh": Band.create(
         name="VH",
         description="VH band: vertical transmit and horizontal receive",
     ),
-    "hh":
-    Band.create(
+    "hh": Band.create(
         name="HH",
         description="HH band: horizontal transmit and horizontal receive",
     ),
-    "hv":
-    Band.create(
+    "hv": Band.create(
         name="HV",
         description="HV band: horizontal transmit and vertical receive",
     ),
-    "vv":
-    Band.create(
+    "vv": Band.create(
         name="VV",
         description="VV band: vertical transmit and vertical receive",
     ),

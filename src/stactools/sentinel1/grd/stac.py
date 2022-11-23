@@ -10,8 +10,7 @@ from stactools.core.io import ReadHrefModifier
 
 from . import Format
 from .bands import image_asset_from_href
-from .constants import (SENTINEL_CONSTELLATION, SENTINEL_LICENSE,
-                        SENTINEL_PROVIDER)
+from .constants import SENTINEL_CONSTELLATION, SENTINEL_LICENSE, SENTINEL_PROVIDER
 from .metadata_links import MetadataLinks
 from .product_metadata import ProductMetadata, get_shape
 from .properties import fill_sar_properties, fill_sat_properties
@@ -83,9 +82,7 @@ def create_item(
 
     # s1 properties
     shape = get_shape(metalinks, read_href_modifier, **kwargs)
-    item.properties.update({
-        **product_metadata.metadata_dict, "s1:shape": shape
-    })
+    item.properties.update({**product_metadata.metadata_dict, "s1:shape": shape})
 
     # Add assets to item
     item.add_asset(*metalinks.create_manifest_asset())
@@ -104,19 +101,24 @@ def create_item(
 
     # Thumbnail
     if metalinks.thumbnail_href is not None:
-        desc = "An averaged, decimated preview image in PNG format. Single polarisation " \
-               "products are represented with a grey scale image. Dual polarisation products " \
-               "are represented by a single composite colour image in RGB with the red channel " \
-               "(R) representing the  co-polarisation VV or HH), the green channel (G) " \
-               "represents the cross-polarisation (VH or HV) and the blue channel (B) " \
-               "represents the ratio of the cross an co-polarisations."
+        desc = (
+            "An averaged, decimated preview image in PNG format. Single polarisation "
+            "products are represented with a grey scale image. Dual polarisation products "
+            "are represented by a single composite colour image in RGB with the red channel "
+            "(R) representing the  co-polarisation VV or HH), the green channel (G) "
+            "represents the cross-polarisation (VH or HV) and the blue channel (B) "
+            "represents the ratio of the cross an co-polarisations."
+        )
         item.add_asset(
             "thumbnail",
-            pystac.Asset(href=metalinks.thumbnail_href,
-                         media_type=pystac.MediaType.PNG,
-                         roles=["thumbnail"],
-                         title="Preview Image",
-                         description=desc))
+            pystac.Asset(
+                href=metalinks.thumbnail_href,
+                media_type=pystac.MediaType.PNG,
+                roles=["thumbnail"],
+                title="Preview Image",
+                description=desc,
+            ),
+        )
 
     images_media_type = None
     if archive_format == Format.SAFE:
@@ -124,12 +126,16 @@ def create_item(
     elif archive_format == Format.COG:
         images_media_type = pystac.MediaType.COG
 
-    image_assets = dict([
-        image_asset_from_href(os.path.join(granule_href, image_path),
-                              item,
-                              media_type=images_media_type)
-        for image_path in product_metadata.image_paths
-    ])
+    image_assets = dict(
+        [
+            image_asset_from_href(
+                os.path.join(granule_href, image_path),
+                item,
+                media_type=images_media_type,
+            )
+            for image_path in product_metadata.image_paths
+        ]
+    )
 
     for key, asset in image_assets.items():
         assert key not in item.assets

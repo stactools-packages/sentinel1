@@ -2,16 +2,16 @@ import itertools
 import json
 import os
 import re
-from typing import Dict, List, Optional, Tuple
+from typing import Any, Dict, List, Optional, Tuple
 
 import pystac
 import stactools.core.io
-from lxml import etree  # type: ignore
+from lxml import etree
 from stactools.core.io import ReadHrefModifier
 from stactools.core.io.xml import XmlElement
 
+from . import Format
 from .constants import SAFE_MANIFEST_ASSET_KEY
-from .stac import Format
 
 
 class ManifestError(Exception):
@@ -19,11 +19,17 @@ class ManifestError(Exception):
 
 
 dataset_naming_pattern = re.compile(
-    "^.*" + "(?P<mission>s1a|s1b)" +
-    "-(?P<swath>s[1-6]|iw[1-3]?|ew[1-5]?|wv[1-2]|en|n[1-6]|is[1-7])" +
-    "-(?P<type>slc|grd)" + "-(?P<polarisation>hh|hv|vv|vh)" +
-    "-([0-9]{8}t[0-9]{6})" + "-([0-9]{8}t[0-9]{6})" + "-([0-9]{6})" +
-    "-([0-9a-f]{6})" + ".*$")
+    "^.*"
+    + "(?P<mission>s1a|s1b)"
+    + "-(?P<swath>s[1-6]|iw[1-3]?|ew[1-5]?|wv[1-2]|en|n[1-6]|is[1-7])"
+    + "-(?P<type>slc|grd)"
+    + "-(?P<polarisation>hh|hv|vv|vh)"
+    + "-([0-9]{8}t[0-9]{6})"
+    + "-([0-9]{8}t[0-9]{6})"
+    + "-([0-9]{6})"
+    + "-([0-9a-f]{6})"
+    + ".*$"
+)
 
 
 def extract_properties(href: str, properties: List[str]) -> List[str]:
@@ -31,12 +37,10 @@ def extract_properties(href: str, properties: List[str]) -> List[str]:
     if matches is not None:
         return [matches.group(name) for name in properties]
     else:
-        raise RuntimeError(
-            f"href doesn't match dataset naming pattern: {href}")
+        raise RuntimeError(f"href doesn't match dataset naming pattern: {href}")
 
 
 def group_files(hrefs: List[str]) -> Dict[str, List[str]]:
-
     def determine_group(href: str) -> str:
         if href.startswith("annotation/calibration/calibration"):
             return "calibration_calibration"
@@ -61,45 +65,47 @@ def group_files(hrefs: List[str]) -> Dict[str, List[str]]:
 
 
 class MetadataLinks:
-
-    def __init__(self,
-                 granule_href: str,
-                 read_href_modifier: Optional[ReadHrefModifier] = None,
-                 archive_format: Format = Format.SAFE,
-                 **kwargs) -> None:
+    def __init__(
+        self,
+        granule_href: str,
+        read_href_modifier: Optional[ReadHrefModifier] = None,
+        archive_format: Format = Format.SAFE,
+        **kwargs: Any,
+    ) -> None:
         self.granule_href = granule_href
         self.href = os.path.join(granule_href, "manifest.safe")
         self.archive_format = archive_format
 
-        self.manifest = XmlElement.from_file(self.href, read_href_modifier,
-                                             **kwargs)
+        self.manifest = XmlElement.from_file(self.href, read_href_modifier, **kwargs)
         data_object_section = self.manifest.find("dataObjectSection")
         if data_object_section is None:
             raise ManifestError(
-                f"Manifest at {self.href} does not have a dataObjectSection")
+                f"Manifest at {self.href} does not have a dataObjectSection"
+            )
 
         self._data_object_section = data_object_section
-        self.product_metadata_href = os.path.join(granule_href,
-                                                  "manifest.safe")
+        self.product_metadata_href = os.path.join(granule_href, "manifest.safe")
 
         if archive_format == Format.COG:
-            self.product_info_href = os.path.join(granule_href,
-                                                  "productInfo.json")
+            self.product_info_href = os.path.join(granule_href, "productInfo.json")
             self.product_info = json.loads(
-                stactools.core.io.read_text(self.product_info_href,
-                                            read_href_modifier, **kwargs))
+                stactools.core.io.read_text(
+                    self.product_info_href, read_href_modifier, **kwargs
+                )
+            )
             self.filename_map = self.product_info["filenameMap"]
 
         file_location_list = self._data_object_section.findall(
-            "dataObject/byteStream/fileLocation[@href]")
+            "dataObject/byteStream/fileLocation[@href]"
+        )
 
         def href_finder(el: XmlElement) -> Optional[str]:
-            href = el.find_attr('href', '.')
+            href = el.find_attr("href", ".")
             if href is not None:
                 return href.strip("./")
             else:
                 raise RuntimeError(
-                    f"No href found in XML element {etree.tostring(el.element)}"  # type: ignore
+                    f"No href found in XML element {etree.tostring(el.element)}"
                 )
 
         optional_href_list = [href_finder(href) for href in file_location_list]
@@ -111,10 +117,9 @@ class MetadataLinks:
         if self.archive_format == Format.SAFE:
             return filename
         elif self.archive_format == Format.COG:
-            return self.filename_map[filename]
+            return str(self.filename_map[filename])
         else:
-            raise RuntimeError(
-                f"Unknown format encountered: {self.archive_format}")
+            raise RuntimeError(f"Unknown format encountered: {self.archive_format}")
 
     def _find_href(self, xpaths: List[str]) -> Optional[str]:
         file_path = None
@@ -137,68 +142,92 @@ class MetadataLinks:
 
     @property
     def annotation_hrefs(self) -> List[Tuple[str, str]]:
-        return [("schema-product-{}".format(
-            *extract_properties(x, ["polarisation"])),
-                 os.path.join(self.granule_href, self.map_filename(x)))
-                for x in self.grouped_hrefs["annotation"] if x.endswith("xml")]
+        return [
+            (
+                "schema-product-{}".format(*extract_properties(x, ["polarisation"])),
+                os.path.join(self.granule_href, self.map_filename(x)),
+            )
+            for x in self.grouped_hrefs["annotation"]
+            if x.endswith("xml")
+        ]
 
     @property
     def calibration_hrefs(self) -> List[Tuple[str, str]]:
-        return [("schema-calibration-{}".format(
-            *extract_properties(x, ["polarisation"])),
-                 os.path.join(self.granule_href, self.map_filename(x)))
-                for x in self.grouped_hrefs["calibration_calibration"]]
+        return [
+            (
+                "schema-calibration-{}".format(
+                    *extract_properties(x, ["polarisation"])
+                ),
+                os.path.join(self.granule_href, self.map_filename(x)),
+            )
+            for x in self.grouped_hrefs["calibration_calibration"]
+        ]
 
     @property
     def noise_hrefs(self) -> List[Tuple[str, str]]:
-        return [("schema-noise-{}".format(
-            *extract_properties(x, ["polarisation"])),
-                 os.path.join(self.granule_href, self.map_filename(x)))
-                for x in self.grouped_hrefs["calibration_noise"]]
+        return [
+            (
+                "schema-noise-{}".format(*extract_properties(x, ["polarisation"])),
+                os.path.join(self.granule_href, self.map_filename(x)),
+            )
+            for x in self.grouped_hrefs["calibration_noise"]
+        ]
 
-    def create_manifest_asset(self):
-        desc = "General product metadata in XML format. Contains a high-level textual " \
-               "description of the product and references to all of product's components, " \
-               "the product metadata, including the product identification and the resource " \
-               "references, and references to the physical location of each component file " \
-               "contained in the product."
+    def create_manifest_asset(self) -> Tuple[str, pystac.asset.Asset]:
+        desc = (
+            "General product metadata in XML format. Contains a high-level textual "
+            "description of the product and references to all of product's components, "
+            "the product metadata, including the product identification and the resource "
+            "references, and references to the physical location of each component file "
+            "contained in the product."
+        )
 
-        asset = pystac.Asset(href=self.href,
-                             media_type=pystac.MediaType.XML,
-                             title="Manifest File",
-                             roles=["metadata"],
-                             description=desc)
+        asset = pystac.Asset(
+            href=self.href,
+            media_type=pystac.MediaType.XML,
+            title="Manifest File",
+            roles=["metadata"],
+            description=desc,
+        )
         return SAFE_MANIFEST_ASSET_KEY, asset
 
-    def create_product_asset(self):
+    def create_product_asset(self) -> List[Tuple[str, pystac.asset.Asset]]:
         assets = []
-        desc = "Describes the main characteristics corresponding to the band: state of the " \
-               "platform during acquisition, image properties, Doppler information, geographic " \
-               "location, etc."
+        desc = (
+            "Describes the main characteristics corresponding to the band: state of the "
+            "platform during acquisition, image properties, Doppler information, geographic "
+            "location, etc."
+        )
         for key, href in self.annotation_hrefs:
-            asset = pystac.Asset(href=href,
-                                 media_type=pystac.MediaType.XML,
-                                 title="Product Schema",
-                                 roles=["metadata"],
-                                 description=desc)
+            asset = pystac.Asset(
+                href=href,
+                media_type=pystac.MediaType.XML,
+                title="Product Schema",
+                roles=["metadata"],
+                description=desc,
+            )
             assets.append((key, asset))
         return assets
 
-    def create_calibration_asset(self):
+    def create_calibration_asset(self) -> List[Tuple[str, pystac.asset.Asset]]:
         assets = []
-        desc = "Calibration metadata including calibration information and the beta nought, " \
-               "sigma nought, gamma and digital number look-up tables that can be used for " \
-               "absolute product calibration."
+        desc = (
+            "Calibration metadata including calibration information and the beta nought, "
+            "sigma nought, gamma and digital number look-up tables that can be used for "
+            "absolute product calibration."
+        )
         for key, href in self.calibration_hrefs:
-            asset = pystac.Asset(href=href,
-                                 media_type=pystac.MediaType.XML,
-                                 title="Calibration Schema",
-                                 roles=["metadata"],
-                                 description=desc)
+            asset = pystac.Asset(
+                href=href,
+                media_type=pystac.MediaType.XML,
+                title="Calibration Schema",
+                roles=["metadata"],
+                description=desc,
+            )
             assets.append((key, asset))
         return assets
 
-    def create_noise_asset(self):
+    def create_noise_asset(self) -> List[Tuple[str, pystac.asset.Asset]]:
         assets = []
         for key, href in self.noise_hrefs:
             asset = pystac.Asset(
@@ -206,6 +235,7 @@ class MetadataLinks:
                 media_type=pystac.MediaType.XML,
                 title="Noise Schema",
                 roles=["metadata"],
-                description="Estimated thermal noise look-up tables")
+                description="Estimated thermal noise look-up tables",
+            )
             assets.append((key, asset))
         return assets

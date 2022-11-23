@@ -6,14 +6,12 @@ from pystac.extensions.sat import SatExtension
 
 from stactools.sentinel1.grd.metadata_links import MetadataLinks
 from stactools.sentinel1.grd.product_metadata import ProductMetadata
-from stactools.sentinel1.grd.properties import (fill_sar_properties,
-                                                fill_sat_properties)
+from stactools.sentinel1.grd.properties import fill_sar_properties, fill_sat_properties
 from tests import test_data
 
 
 class Sentinel1MetadataTest(unittest.TestCase):
-
-    def test_parses_product_metadata_properties(self):
+    def test_parses_product_metadata_properties(self) -> None:
 
         # Get the path of the test xml
         manifest_path = test_data.get_path(
@@ -22,10 +20,12 @@ class Sentinel1MetadataTest(unittest.TestCase):
 
         metalinks = MetadataLinks(manifest_path)
 
-        product_metadata = ProductMetadata(metalinks.product_metadata_href,
-                                           metalinks.grouped_hrefs,
-                                           metalinks.map_filename,
-                                           metalinks.manifest)
+        product_metadata = ProductMetadata(
+            metalinks.product_metadata_href,
+            metalinks.grouped_hrefs,
+            metalinks.map_filename,
+            metalinks.manifest,
+        )
 
         item = pystac.Item(
             id=product_metadata.scene_id,
@@ -39,8 +39,7 @@ class Sentinel1MetadataTest(unittest.TestCase):
         # ---- Add Extensions ----
         # sar
         sar = SarExtension.ext(item, add_if_missing=True)
-        fill_sar_properties(sar, metalinks.manifest,
-                            product_metadata.resolution)
+        fill_sar_properties(sar, metalinks.manifest, product_metadata.resolution)
 
         # sat
         sat = SatExtension.ext(item, add_if_missing=True)
@@ -53,15 +52,15 @@ class Sentinel1MetadataTest(unittest.TestCase):
             "sar_band": item.properties["sar:frequency_band"],
             "centre_frequency": item.properties["sar:center_frequency"],
             "polarizations": item.properties["sar:polarizations"],
-            "product_type": item.properties["sar:product_type"]
+            "product_type": item.properties["sar:product_type"],
         }
 
         expected = {
-            "bbox": (1.512143, 44.536255, 5.188996, 46.436539),
+            "bbox": [1.512143, 44.536255, 5.188996, 46.436539],
             "sar_band": "C",
             "centre_frequency": 5.405,
             "polarizations": ["VV", "VH"],
-            "product_type": "GRD"
+            "product_type": "GRD",
         }
 
         for k, v in expected.items():

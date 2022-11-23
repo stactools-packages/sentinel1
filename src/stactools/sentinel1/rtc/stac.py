@@ -4,7 +4,7 @@ from datetime import datetime
 from typing import List, Optional
 
 import pystac
-from pystac.collection import Summaries
+from pystac import Summaries
 from pystac.extensions.projection import ProjectionExtension
 from pystac.extensions.raster import RasterBand, RasterExtension
 from pystac.extensions.sar import SarExtension
@@ -17,33 +17,30 @@ logger = logging.getLogger(__name__)
 
 
 def create_collection() -> pystac.Collection:
-    """Creates a STAC Collection for Sentinel-1 RTC
-    """
+    """Creates a STAC Collection for Sentinel-1 RTC"""
     # Lists of all possible values for items
     summary_dict = {
-        'constellation': [c.SENTINEL_CONSTELLATION],
-        'platform': c.SENTINEL_PLATFORMS,
-        'gsd': [c.SENTINEL_RTC_SAR['gsd']],
-        'proj:epsg': c.SENTINEL_RTC_EPSGS
+        "constellation": [c.SENTINEL_CONSTELLATION],
+        "platform": c.SENTINEL_PLATFORMS,
+        "gsd": [c.SENTINEL_RTC_SAR["gsd"]],
+        "proj:epsg": c.SENTINEL_RTC_EPSGS,
     }
 
     collection = pystac.Collection(
-        'sentinel1-rtc-aws',
+        id="sentinel1-rtc-aws",
         description=c.SENTINEL_RTC_DESCRIPTION,
         extent=c.SENTINEL_RTC_EXTENT,
-        title='Sentinel-1 RTC CONUS',
+        title="Sentinel-1 RTC CONUS",
         stac_extensions=[
             SarExtension.get_schema_uri(),
             SatExtension.get_schema_uri(),
             ProjectionExtension.get_schema_uri(),
             RasterExtension.get_schema_uri(),
             # Can use pystac.extensions once implemented
-            'https://stac-extensions.github.io/processing/v1.0.0/schema.json',
-            'https://stac-extensions.github.io/mgrs/v1.0.0/schema.json',
+            "https://stac-extensions.github.io/processing/v1.0.0/schema.json",
+            "https://stac-extensions.github.io/mgrs/v1.0.0/schema.json",
         ],
-        keywords=[
-            'backscatter', 'radiometry', 'sentinel', 'copernicus', 'esa', 'sar'
-        ],
+        keywords=["backscatter", "radiometry", "sentinel", "copernicus", "esa", "sar"],
         providers=[c.SENTINEL_PROVIDER, c.SENTINEL_RTC_PROVIDER],
         summaries=Summaries(summary_dict),
     )
@@ -53,7 +50,7 @@ def create_collection() -> pystac.Collection:
 
 def create_item(
     granule_href: str,
-    asset_name: str = 'local_incident_angle.tif',
+    asset_name: str = "local_incident_angle.tif",
     additional_providers: Optional[List[pystac.Provider]] = None,
     include_grd_metadata: Optional[bool] = False,
 ) -> pystac.Item:
@@ -69,20 +66,20 @@ def create_item(
     Returns:
         pystac.Item: Item populated with STAC core and common extension metadata,
             from the Sentinel 1 RTC Geotiff files.
-    """ # noqa
+    """  # noqa
     product_metadata = RTCMetadata(granule_href, asset_name)
 
-    item = pystac.Item(id=product_metadata.product_id,
-                       geometry=product_metadata.geometry,
-                       bbox=product_metadata.bbox,
-                       datetime=product_metadata.datetime,
-                       properties={})
+    item = pystac.Item(
+        id=product_metadata.product_id,
+        geometry=product_metadata.geometry,
+        bbox=product_metadata.bbox,
+        datetime=product_metadata.datetime,
+        properties={},
+    )
 
     # --Common metadata--
     # https://github.com/radiantearth/stac-spec/blob/master/item-spec/common-metadata.md
-    item.common_metadata.providers = [
-        c.SENTINEL_PROVIDER, c.SENTINEL_RTC_PROVIDER
-    ]
+    item.common_metadata.providers = [c.SENTINEL_PROVIDER, c.SENTINEL_RTC_PROVIDER]
 
     if additional_providers is not None:
         item.common_metadata.providers.extend(additional_providers)
@@ -90,7 +87,7 @@ def create_item(
     item.common_metadata.constellation = c.SENTINEL_CONSTELLATION
     item.common_metadata.platform = product_metadata.platform
     item.common_metadata.instruments = c.SENTINEL_INSTRUMENTS
-    item.common_metadata.gsd = c.SENTINEL_RTC_SAR['gsd']
+    item.common_metadata.gsd = c.SENTINEL_RTC_SAR["gsd"]
 
     item.common_metadata.start_datetime = product_metadata.start_datetime
     item.common_metadata.end_datetime = product_metadata.end_datetime
@@ -107,16 +104,16 @@ def create_item(
     sar.frequency_band = c.SENTINEL_FREQUENCY_BAND
     sar.center_frequency = c.SENTINEL_CENTER_FREQUENCY
     sar.observation_direction = c.SENTINEL_OBSERVATION_DIRECTION
-    sar.instrument_mode = c.SENTINEL_RTC_SAR['instrument_mode']
-    sar.product_type = c.SENTINEL_RTC_SAR['product_type']
-    sar.polarizations = c.SENTINEL_RTC_SAR['polarizations']
-    sar.resolution_range = c.SENTINEL_RTC_SAR['resolution_range']
-    sar.resolution_azimuth = c.SENTINEL_RTC_SAR['resolution_azimuth']
-    sar.pixel_spacing_range = c.SENTINEL_RTC_SAR['pixel_spacing_range']
-    sar.pixel_spacing_azimuth = c.SENTINEL_RTC_SAR['pixel_spacing_azimuth']
-    sar.looks_equivalent_number = c.SENTINEL_RTC_SAR['looks_equivalent_number']
-    sar.looks_range = c.SENTINEL_RTC_SAR['looks_range']
-    sar.looks_azimuth = c.SENTINEL_RTC_SAR['looks_azimuth']
+    sar.instrument_mode = c.SENTINEL_RTC_SAR["instrument_mode"]
+    sar.product_type = c.SENTINEL_RTC_SAR["product_type"]
+    sar.polarizations = c.SENTINEL_RTC_SAR["polarizations"]
+    sar.resolution_range = c.SENTINEL_RTC_SAR["resolution_range"]
+    sar.resolution_azimuth = c.SENTINEL_RTC_SAR["resolution_azimuth"]
+    sar.pixel_spacing_range = c.SENTINEL_RTC_SAR["pixel_spacing_range"]
+    sar.pixel_spacing_azimuth = c.SENTINEL_RTC_SAR["pixel_spacing_azimuth"]
+    sar.looks_equivalent_number = c.SENTINEL_RTC_SAR["looks_equivalent_number"]
+    sar.looks_range = c.SENTINEL_RTC_SAR["looks_range"]
+    sar.looks_azimuth = c.SENTINEL_RTC_SAR["looks_azimuth"]
 
     # SAT https://github.com/stac-extensions/sat
     sat = SatExtension.ext(item, add_if_missing=True)
@@ -127,7 +124,7 @@ def create_item(
     # PROJECTION https://github.com/stac-extensions/projection
     projection = ProjectionExtension.ext(item, add_if_missing=True)
     projection.epsg = product_metadata.epsg
-    projection.transform = product_metadata.metadata['transform']
+    projection.transform = product_metadata.metadata["transform"]
     projection.shape = product_metadata.shape
 
     # --Assets--
@@ -135,38 +132,42 @@ def create_item(
     # COGs
     for image in product_metadata.image_paths:
         asset_href = os.path.join(product_metadata.href, image)
-        logger.debug(f'Creating asset for image {asset_href}')
+        logger.debug(f"Creating asset for image {asset_href}")
 
-        asset = pystac.Asset(href=asset_href,
-                             media_type=product_metadata.image_media_type,
-                             title=product_metadata.asset_dict[image]['title'],
-                             roles=product_metadata.asset_dict[image]['roles'])
+        asset = pystac.Asset(
+            href=asset_href,
+            media_type=product_metadata.image_media_type,
+            title=product_metadata.asset_dict[image]["title"],
+            roles=product_metadata.asset_dict[image]["roles"],
+        )
 
         # Raster https://github.com/stac-extensions/raster#raster-band-object
-        RasterInfo = product_metadata.asset_dict[image]['raster']
+        RasterInfo = product_metadata.asset_dict[image]["raster"]
         RasterExtension.ext(asset).bands = [RasterBand.create(**RasterInfo)]
 
-        item.add_asset(product_metadata.asset_dict[image]['key'], asset)
+        item.add_asset(product_metadata.asset_dict[image]["key"], asset)
         RasterExtension.add_to(item)
 
     # Metadata
     if include_grd_metadata:
         for i, grd in enumerate(product_metadata.grd_ids):
-            json_href = os.path.join(product_metadata.href, grd,
-                                     'productInfo.json')
-            asset = pystac.Asset(href=json_href,
-                                 media_type=pystac.MediaType.JSON,
-                                 title=f'{grd} JSON metadata',
-                                 roles=['metadata'])
-            item.add_asset(f'productInfo_{i}', asset)
+            json_href = os.path.join(product_metadata.href, grd, "productInfo.json")
+            asset = pystac.Asset(
+                href=json_href,
+                media_type=pystac.MediaType.JSON,
+                title=f"{grd} JSON metadata",
+                roles=["metadata"],
+            )
+            item.add_asset(f"productInfo_{i}", asset)
 
-            xml_href = os.path.join(product_metadata.href, grd,
-                                    'manifest.safe')
-            asset = pystac.Asset(href=xml_href,
-                                 media_type=pystac.MediaType.XML,
-                                 title=f'{grd} XML metadata',
-                                 roles=['metadata'])
-            item.add_asset(f'manifest_{i}', asset)
+            xml_href = os.path.join(product_metadata.href, grd, "manifest.safe")
+            asset = pystac.Asset(
+                href=xml_href,
+                media_type=pystac.MediaType.XML,
+                title=f"{grd} XML metadata",
+                roles=["metadata"],
+            )
+            item.add_asset(f"manifest_{i}", asset)
 
     # --Links--
     # item.links.append(c.SENTINEL_LICENSE)

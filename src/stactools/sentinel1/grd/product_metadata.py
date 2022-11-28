@@ -52,16 +52,16 @@ class ProductMetadata:
 
         def _get_geometries() -> Tuple[List[float], Dict[str, Any]]:
             # Find the footprint descriptor
-            footprint_text = self._root.findall(".//gml:coordinates")
+            footprint_text = self._root.find_text(".//gml:coordinates")
             if footprint_text is None:
-                ProductMetadataError(
+                raise ProductMetadataError(
                     f"Cannot parse footprint from product metadata at {self.href}"
                 )
-            # Convert to values
-            footprint_value = [
-                float(x)
-                for x in str(footprint_text[0].text).replace(" ", ",").split(",")
-            ]
+            else:
+                # Convert to values
+                footprint_value = [
+                    float(x) for x in footprint_text.replace(" ", ",").split(",")
+                ]
 
             footprint_points = [
                 p[::-1] for p in list(zip(*[iter(footprint_value)] * 2))
@@ -93,7 +93,7 @@ class ProductMetadata:
     def product_id(self) -> str:
         # Parse the name from href as it doesn't exist in xml files
         href = self.href
-        result = str(href.split("/")[-2])
+        result = href.split("/")[-2]
         if result is None:
             raise ValueError(
                 "Cannot determine product ID using product metadata " f"at {self.href}"
@@ -103,8 +103,8 @@ class ProductMetadata:
 
     @property
     def get_datetime(self) -> datetime:
-        start_time = self._root.findall(".//safe:startTime")[0].text
-        end_time = self._root.findall(".//safe:stopTime")[0].text
+        start_time = self._root.find_text(".//safe:startTime")
+        end_time = self._root.find_text(".//safe:stopTime")
 
         if start_time is not None:
             central_time = (
@@ -126,7 +126,7 @@ class ProductMetadata:
 
     @property
     def start_datetime(self) -> datetime:
-        time = self._root.findall(".//safe:startTime")
+        time = self._root.find_text(".//safe:startTime")
 
         if time is None:
             raise ValueError(
@@ -134,7 +134,7 @@ class ProductMetadata:
                 f"at {self.href}"
             )
         else:
-            return str_to_datetime(f"{time[0].text}Z")
+            return str_to_datetime(f"{time}Z")
 
     @property
     def end_datetime(self) -> datetime:

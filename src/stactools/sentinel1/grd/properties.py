@@ -74,14 +74,14 @@ def fill_sar_properties(
     # Read properties
     instrument_mode = manifest.find_text(".//s1sarl1:mode")
     if instrument_mode:
-        sar_ext.instrument_mode = str(instrument_mode)
+        sar_ext.instrument_mode = instrument_mode
     sar_ext.polarizations = [
         Polarization(x.text)
         for x in manifest.findall(".//s1sarl1:transmitterReceiverPolarisation")
     ]
     product_type = manifest.find_text(".//s1sarl1:productType")
     if product_type:
-        sar_ext.product_type = str(product_type)
+        sar_ext.product_type = product_type
 
     # Properties depending on mode and resolution
     product_data = product_data_summary[sar_ext.instrument_mode][resolution]

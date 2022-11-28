@@ -105,9 +105,9 @@ def fill_sat_properties(sat_ext: SatExtension[T], manifest: XmlElement) -> None:
         manifest (XmlElement): manifest.safe file parsed into an XmlElement
     """
 
-    sat_ext.platform_international_designator = manifest.findall(
+    sat_ext.platform_international_designator = manifest.find_text(
         ".//safe:nssdcIdentifier"
-    )[0].text
+    )
 
     orbit_state = manifest.find_text(".//s1:pass")
     if orbit_state:

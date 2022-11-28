@@ -178,15 +178,13 @@ class ProductMetadata:
         result = {
             "start_datetime": str(self.start_datetime),
             "end_datetime": str(self.end_datetime),
-            "s1:instrument_configuration_ID": self._root.findall(
+            "s1:instrument_configuration_ID": self._root.find_text(
                 ".//s1sarl1:instrumentConfigurationID"
-            )[0].text,
-            "s1:datatake_id": self._root.findall(".//s1sarl1:missionDataTakeID")[
-                0
-            ].text,
-            "s1:product_timeliness": self._root.findall(
+            ),
+            "s1:datatake_id": self._root.find_text(".//s1sarl1:missionDataTakeID"),
+            "s1:product_timeliness": self._root.find_text(
                 ".//s1sarl1:productTimelinessCategory"
-            )[0].text,
+            ),
             "s1:processing_level": self.product_id.split("_")[3][0],
             "s1:resolution": resolutions[self.resolution],
             "s1:orbit_source": self.orbit_source(),

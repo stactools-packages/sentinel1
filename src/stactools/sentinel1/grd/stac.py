@@ -3,10 +3,15 @@ import os
 from typing import Any, Optional
 
 import pystac
+from pystac import Summaries
 from pystac.extensions.eo import EOExtension
+from pystac.extensions.projection import ProjectionExtension
+from pystac.extensions.raster import RasterExtension
 from pystac.extensions.sar import SarExtension
 from pystac.extensions.sat import SatExtension
 from stactools.core.io import ReadHrefModifier
+
+from stactools.sentinel1.grd import constants as c
 
 from . import Format
 from .bands import image_asset_from_href
@@ -16,6 +21,39 @@ from .product_metadata import ProductMetadata, get_shape
 from .properties import fill_sar_properties, fill_sat_properties
 
 logger = logging.getLogger(__name__)
+
+
+def create_collection() -> pystac.Collection:
+    """Creates a STAC Collection for Sentinel-1 RTC"""
+    # Lists of all possible values for items
+    summary_dict = {
+        "constellation": [c.SENTINEL_CONSTELLATION],
+        # "platform": c.SENTINEL_PLATFORMS,
+        # "gsd": [c.SENTINEL_RTC_SAR["gsd"]],
+        # "proj:epsg": c.SENTINEL_RTC_EPSGS,
+    }
+
+    collection = pystac.Collection(
+        id="sentinel1-grd-aws",
+        description=c.SENTINEL_GRD_DESCRIPTION,
+        extent=c.SENTINEL_GRD_EXTENT,
+        title="Sentinel-1 GRD CONUS",
+        stac_extensions=[
+            SarExtension.get_schema_uri(),
+            SatExtension.get_schema_uri(),
+            ProjectionExtension.get_schema_uri(),
+            RasterExtension.get_schema_uri(),
+            # Can use pystac.extensions once implemented
+            "https://stac-extensions.github.io/processing/v1.0.0/schema.json",
+            "https://stac-extensions.github.io/mgrs/v1.0.0/schema.json",
+        ],
+        # TODO: Verify keywords are correct
+        keywords=["ground", "radiometry", "sentinel", "copernicus", "esa", "sar"],
+        providers=[c.SENTINEL_PROVIDER],  # c.SENTINEL_RTC_PROVIDER
+        summaries=Summaries(summary_dict),
+    )
+
+    return collection
 
 
 def create_item(

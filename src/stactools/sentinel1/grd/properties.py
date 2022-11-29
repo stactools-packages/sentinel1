@@ -7,6 +7,7 @@ from stactools.core.io.xml import XmlElement
 
 
 class ProductDataEntry:
+
     def __init__(self, resolution_rng: float, resolution_azi: float,
                  pixel_spacing_rng: float, pixel_spacing_azi: float,
                  no_looks_rng: int, no_looks_azi: int, enl: float):

@@ -25,6 +25,7 @@ def get_shape(meta_links: MetadataLinks,
 
 
 class ProductMetadata:
+
     def __init__(
         self,
         href,

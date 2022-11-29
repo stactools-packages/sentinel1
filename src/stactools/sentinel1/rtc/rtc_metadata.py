@@ -17,6 +17,7 @@ logger = logging.getLogger(__name__)
 
 
 class RTCMetadata:
+
     def __init__(self, href, asset):
         self.href = href
         self.asset = asset

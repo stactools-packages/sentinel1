@@ -4,10 +4,20 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/). This project attempts to match the major and minor versions of [stactools](https://github.com/stac-utils/stactools) and increments the patch number as needed.
 
+## [Unreleased]
+
+### Fixed
+
+- Temporal extent for the RTC Collection, and some typing ([#17](https://github.com/stactools-packages/sentinel1/pull/17))
+
 ## [v0.2.1] - 2021-11-08
+
 ### Added
+
 - Add support for remote links and URL signing in GRD package
+
 ### Changed
+
 - Make GRD input format selectable via parameter - SAFE (default) or COG
 - Rename GRD schema keys to better reflect their contents
 - Ensure RTC Items list RasterExtension (#16)

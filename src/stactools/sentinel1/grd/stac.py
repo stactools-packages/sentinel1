@@ -15,7 +15,6 @@ from stactools.sentinel1.grd import constants as c
 
 from . import Format
 from .bands import image_asset_from_href
-from .constants import SENTINEL_CONSTELLATION, SENTINEL_LICENSE, SENTINEL_PROVIDER
 from .metadata_links import MetadataLinks
 from .product_metadata import ProductMetadata, get_shape
 from .properties import fill_sar_properties, fill_sat_properties
@@ -34,10 +33,10 @@ def create_collection() -> pystac.Collection:
     }
 
     collection = pystac.Collection(
-        id="sentinel1-grd-aws",
+        id="sentinel1-grd",
         description=c.SENTINEL_GRD_DESCRIPTION,
         extent=c.SENTINEL_GRD_EXTENT,
-        title="Sentinel-1 GRD CONUS",
+        title="Sentinel-1 GRD",
         stac_extensions=[
             SarExtension.get_schema_uri(),
             SatExtension.get_schema_uri(),
@@ -47,9 +46,8 @@ def create_collection() -> pystac.Collection:
             "https://stac-extensions.github.io/processing/v1.0.0/schema.json",
             "https://stac-extensions.github.io/mgrs/v1.0.0/schema.json",
         ],
-        # TODO: Verify keywords are correct
-        keywords=["ground", "radiometry", "sentinel", "copernicus", "esa", "sar"],
-        providers=[c.SENTINEL_PROVIDER],  # c.SENTINEL_RTC_PROVIDER
+        keywords=c.SENTINEL_GRD_KEYWORDS,
+        providers=[c.SENTINEL_PROVIDER],  # c.SENTINEL_GRD_PROVIDER
         summaries=Summaries(summary_dict),
     )
 
@@ -114,9 +112,9 @@ def create_item(
     EOExtension.ext(item, add_if_missing=True)
 
     # --Common metadata--
-    item.common_metadata.providers = [SENTINEL_PROVIDER]
+    item.common_metadata.providers = [c.SENTINEL_PROVIDER]
     item.common_metadata.platform = product_metadata.platform
-    item.common_metadata.constellation = SENTINEL_CONSTELLATION
+    item.common_metadata.constellation = c.SENTINEL_CONSTELLATION
 
     # s1 properties
     shape = get_shape(metalinks, read_href_modifier, **kwargs)
@@ -180,6 +178,6 @@ def create_item(
         item.add_asset(key, asset)
 
     # --Links--
-    item.links.append(SENTINEL_LICENSE)
+    item.links.append(c.SENTINEL_GRD_LICENSE)
 
     return item

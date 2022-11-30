@@ -28,7 +28,7 @@ def create_collection() -> pystac.Collection:
     # Lists of all possible values for items
     summary_dict = {
         "constellation": [c.SENTINEL_CONSTELLATION],
-        # "platform": c.SENTINEL_PLATFORMS,
+        "platform": c.SENTINEL_PLATFORMS,
         # "gsd": [c.SENTINEL_RTC_SAR["gsd"]],
         # "proj:epsg": c.SENTINEL_RTC_EPSGS,
     }

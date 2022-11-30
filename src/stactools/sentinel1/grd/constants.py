@@ -16,9 +16,11 @@ SENTINEL_LICENSE = Link(
     + "247904/690755/Sentinel_Data_Legal_Notice",
 )
 
+SENTINEL_PLATFORMS = ["sentinel-1a", "sentinel-1b"]
+
 SENTINEL_GRD_DESCRIPTION = "Sentinel1 ground range detected (GRD) over CONUS. The Sentinel-1 mission is a constellation of C-band Synthetic Aperature Radar (SAR) satellites from the European Space Agency launched since 2014. These satellites collect observations of radar backscatter intensity day or night, regardless of the weather conditions, making them enormously valuable for environmental monitoring. These radar data have been processed from original Ground Range Detected (GRD) scenes into a Radiometrically Terrain Corrected, tiled product suitable for analysis. This product is available over the Contiguous United States (CONUS) since 2017 when Sentinel-1 data became globally available."  # noqa: E501
 
-SENTINEL_GRD_START: datetime = str_to_datetime("2016-07-29T00:00:00Z")
+SENTINEL_GRD_START: datetime = str_to_datetime("2014-10-10T00:00:00Z")
 # TODO: Lookup extent - double check that this is correct
 SENTINEL_GRD_EXTENT = Extent(
     SpatialExtent([-124.73460, 24.54254, -66.89191, 49.36949]),

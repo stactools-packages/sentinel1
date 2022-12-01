@@ -1,7 +1,9 @@
 from datetime import datetime
+from typing import Any, Dict
 
 import pystac
 from pystac import Extent, ProviderRole, SpatialExtent, TemporalExtent
+from pystac.extensions import sar
 from pystac.extensions.eo import Band
 from pystac.link import Link
 from pystac.utils import str_to_datetime
@@ -61,7 +63,7 @@ SENTINEL_GRD_LICENSE = Link(
 
 SENTINEL_GRD_KEYWORDS = ["ground", "sentinel", "copernicus", "esa", "sar"]
 
-SENTINEL_POLARISATIONS = {
+SENTINEL_POLARIZATIONS = {
     "vh": Band.create(
         name="VH",
         description="VH band: vertical transmit and horizontal receive",
@@ -79,3 +81,15 @@ SENTINEL_POLARISATIONS = {
         description="VV band: vertical transmit and vertical receive",
     ),
 }
+
+SENTINEL_GRD_SAR = {
+    "product_type": ["GRD"],
+    "instrument_mode": ["IW", "EW", "SM"],
+    "frequency_band": [sar.FrequencyBand.C],
+    "polarizations": [
+        sar.Polarization.VH,
+        sar.Polarization.HH,
+        sar.Polarization.HV,
+        sar.Polarization.VV,
+    ],
+}  # type: Dict[str, Any]

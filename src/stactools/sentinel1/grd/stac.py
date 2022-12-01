@@ -51,6 +51,15 @@ def create_collection() -> pystac.Collection:
         summaries=Summaries(summary_dict),
     )
 
+    # SAR Extension
+    sar = SarExtension.summaries(collection, add_if_missing=True)
+    sar.polarizations = c.SENTINEL_GRD_SAR["polarizations"]
+    sar.product_type = c.SENTINEL_GRD_SAR["product_type"]
+    sar.instrument_mode = c.SENTINEL_GRD_SAR["instrument_mode"]
+    sar.frequency_band = c.SENTINEL_GRD_SAR["frequency_band"]
+
+    # assets = ItemAssetsExtension.ext(collection, add_if_missing=True)
+
     return collection
 
 
@@ -138,12 +147,12 @@ def create_item(
     # Thumbnail
     if metalinks.thumbnail_href is not None:
         desc = (
-            "An averaged, decimated preview image in PNG format. Single polarisation "
-            "products are represented with a grey scale image. Dual polarisation products "
+            "An averaged, decimated preview image in PNG format. Single polarization "
+            "products are represented with a grey scale image. Dual polarization products "
             "are represented by a single composite colour image in RGB with the red channel "
-            "(R) representing the  co-polarisation VV or HH), the green channel (G) "
-            "represents the cross-polarisation (VH or HV) and the blue channel (B) "
-            "represents the ratio of the cross an co-polarisations."
+            "(R) representing the  co-polarization VV or HH), the green channel (G) "
+            "represents the cross-polarization (VH or HV) and the blue channel (B) "
+            "represents the ratio of the cross an co-polarizations."
         )
         item.add_asset(
             "thumbnail",

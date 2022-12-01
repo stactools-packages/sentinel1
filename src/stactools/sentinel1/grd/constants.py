@@ -110,7 +110,7 @@ SENTINEL_GRD_SAR = {
     # "looks_equivalent_number": [],
 }  # type: Dict[str, Any]
 
-SENTINEL_ASSETS = {
+SENTINEL_GRD_ASSETS = {
     "VH": AssetDefinition(
         {
             "title": "VH",
@@ -141,6 +141,326 @@ SENTINEL_ASSETS = {
             "type": "image/tiff; application=geotiff; profile=cloud-optimized",
             "description": "VV polarization backscattering coefficient, 16-bit DN.",
             "role": "data",
+        }
+    ),
+    "calibration-ew-hh": AssetDefinition(
+        {
+            "title": "calibration-ew-hh",
+            "type": "application/xml",
+            "description": "",
+            "role": "",
+        }
+    ),
+    "calibration-ew-hv": AssetDefinition(
+        {
+            "title": "calibration-ew-hv",
+            "type": "application/xml",
+            "description": "",
+            "role": "",
+        }
+    ),
+    "calibration-iw-hh": AssetDefinition(
+        {
+            "title": "calibration-iw-hh",
+            "type": "application/xml",
+            "description": "",
+            "role": "",
+        }
+    ),
+    "calibration-s4-vh": AssetDefinition(
+        {
+            "title": "calibration-s4-vh",
+            "type": "application/xml",
+            "description": "",
+            "role": "",
+        }
+    ),
+    "calibration-s4-vv": AssetDefinition(
+        {
+            "title": "calibration-s4-vv",
+            "type": "application/xml",
+            "description": "",
+            "role": "",
+        }
+    ),
+    "noise-ew-hh": AssetDefinition(
+        {
+            "title": "noise-ew-hh",
+            "type": "application/xml",
+            "description": "",
+            "role": "",
+        }
+    ),
+    "noise-ew-hv": AssetDefinition(
+        {
+            "title": "noise-ew-hv",
+            "type": "application/xml",
+            "description": "",
+            "role": "",
+        }
+    ),
+    "noise-iw-hh": AssetDefinition(
+        {
+            "title": "noise-iw-hh",
+            "type": "application/xml",
+            "description": "",
+            "role": "",
+        }
+    ),
+    "noise-s4-vh": AssetDefinition(
+        {
+            "title": "noise-s4-vh",
+            "type": "application/xml",
+            "description": "",
+            "role": "",
+        }
+    ),
+    "noise-s4-vv": AssetDefinition(
+        {
+            "title": "noise-s4-vv",
+            "type": "application/xml",
+            "description": "",
+            "role": "",
+        }
+    ),
+    "ew-hh.xml": AssetDefinition(
+        {
+            "title": "ew-hh",
+            "type": "application/xml",
+            "description": "",
+            "role": "",
+        }
+    ),
+    "ew-hv.xml": AssetDefinition(
+        {
+            "title": "ew-hv",
+            "type": "application/xml",
+            "description": "",
+            "role": "",
+        }
+    ),
+    "iw-hh.xml": AssetDefinition(
+        {
+            "title": "iw-hh",
+            "type": "application/xml",
+            "description": "",
+            "role": "",
+        }
+    ),
+    "s4-vh.xml": AssetDefinition(
+        {
+            "title": "s4-vh",
+            "type": "application/xml",
+            "description": "",
+            "role": "",
+        }
+    ),
+    "s4-vv.xml": AssetDefinition(
+        {
+            "title": "s4-vv",
+            "type": "application/xml",
+            "description": "",
+            "role": "",
+        }
+    ),
+    "rfi-ew-hh": AssetDefinition(
+        {
+            "title": "rfi-ew-hh",
+            "type": "application/xml",
+            "description": "",
+            "role": "",
+        }
+    ),
+    "rfi-ew-hv": AssetDefinition(
+        {
+            "title": "rfi-ew-hv",
+            "type": "application/xml",
+            "description": "",
+            "role": "",
+        }
+    ),
+    "rfi-iw-hh": AssetDefinition(
+        {
+            "title": "rfi-iw-hh",
+            "type": "application/xml",
+            "description": "",
+            "role": "",
+        }
+    ),
+    "rfi-s4-vh": AssetDefinition(
+        {
+            "title": "rfi-s4-vh",
+            "type": "application/xml",
+            "description": "",
+            "role": "",
+        }
+    ),
+    "rfi-s4-vv": AssetDefinition(
+        {
+            "title": "rfi-s4-vv",
+            "type": "application/xml",
+            "description": "",
+            "role": "",
+        }
+    ),
+    # "manifest": AssetDefinition(
+    #     {
+    #         "title": "manifest",
+    #         "type": "",
+    #         "description": "",
+    #         "role": "",
+    #     }
+    # ),
+    "ew-hh.tiff": AssetDefinition(
+        {
+            "title": "ew-hh",
+            "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+            "description": "",
+            "role": "",
+        }
+    ),
+    "ew-hv.tiff": AssetDefinition(
+        {
+            "title": "ew-hv",
+            "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+            "description": "",
+            "role": "",
+        }
+    ),
+    "iw-hh.tiff": AssetDefinition(
+        {
+            "title": "iw-hh",
+            "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+            "description": "",
+            "role": "",
+        }
+    ),
+    "s4-vh.tiff": AssetDefinition(
+        {
+            "title": "s4-vh",
+            "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+            "description": "",
+            "role": "",
+        }
+    ),
+    "s4-vv.tiff": AssetDefinition(
+        {
+            "title": "s4-vv",
+            "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+            "description": "",
+            "role": "",
+        }
+    ),
+    "logo": AssetDefinition(
+        {
+            "title": "logo",
+            "type": "image/png",
+            "description": "",
+            "role": "",
+        }
+    ),
+    "map-overlay": AssetDefinition(
+        {
+            "title": "map-overlay",
+            "type": "application/vnd.google-earth.kml+xml",
+            "description": "",
+            "role": "",
+        }
+    ),
+    "product-preview": AssetDefinition(
+        {
+            "title": "product-preview",
+            "type": "text/html",
+            "description": "",
+            "role": "",
+        }
+    ),
+    "quick-look": AssetDefinition(
+        {
+            "title": "quick-look",
+            "type": "image/png",
+            "description": "",
+            "role": "",
+        }
+    ),
+    "productInfo": AssetDefinition(
+        {
+            "title": "productInfo",
+            "type": "application/json",
+            "description": "",
+            "role": "",
+        }
+    ),
+    "s1-level-1-calibration": AssetDefinition(
+        {
+            "title": "s1-level-1-calibration",
+            "type": "application/xml",
+            "description": "",
+            "role": "",
+        }
+    ),
+    "s1-level-1-measurement": AssetDefinition(
+        {
+            "title": "s1-level-1-measurement",
+            "type": "application/xml",
+            "description": "",
+            "role": "",
+        }
+    ),
+    "s1-level-1-noise": AssetDefinition(
+        {
+            "title": "s1-level-1-noise",
+            "type": "application/xml",
+            "description": "",
+            "role": "",
+        }
+    ),
+    "s1-level-1-product": AssetDefinition(
+        {
+            "title": "s1-level-1-product",
+            "type": "application/xml",
+            "description": "",
+            "role": "",
+        }
+    ),
+    "s1-level-1-quicklook": AssetDefinition(
+        {
+            "title": "s1-level-1-quicklook",
+            "type": "application/xml",
+            "description": "",
+            "role": "",
+        }
+    ),
+    "s1-level-1-rfi": AssetDefinition(
+        {
+            "title": "s1-level-1-rfi",
+            "type": "application/xml",
+            "description": "",
+            "role": "",
+        }
+    ),
+    "s1-map-overlay": AssetDefinition(
+        {
+            "title": "s1-map-overlay",
+            "type": "application/xml",
+            "description": "",
+            "role": "",
+        }
+    ),
+    "s1-object-types": AssetDefinition(
+        {
+            "title": "s1-object-types",
+            "type": "application/xml",
+            "description": "",
+            "role": "",
+        }
+    ),
+    "s1-product-preview": AssetDefinition(
+        {
+            "title": "s1-product-preview",
+            "type": "application/xml",
+            "description": "",
+            "role": "",
         }
     ),
 }

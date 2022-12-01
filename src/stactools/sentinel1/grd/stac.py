@@ -60,7 +60,7 @@ def create_collection() -> pystac.Collection:
     sar.frequency_band = c.SENTINEL_GRD_SAR["frequency_band"]
 
     assets = ItemAssetsExtension.ext(collection, add_if_missing=True)
-    assets.item_assets = c.SENTINEL_ASSETS
+    assets.item_assets = c.SENTINEL_GRD_ASSETS
 
     return collection
 

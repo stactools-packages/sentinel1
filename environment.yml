@@ -3,4 +3,4 @@ channels:
   - conda-forge
 dependencies:
   - gdal
-  - rasterio~=1.2
+  - rasterio

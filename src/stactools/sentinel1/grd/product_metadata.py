@@ -26,9 +26,15 @@ def get_shape(meta_links: MetadataLinks,
 
 
 class ProductMetadata:
-    def __init__(self, href, file_hrefs: Dict[str, List[str]],
-                 file_mapper: Callable[[str], str], manifest: XmlElement,
-                 product_info: Optional[Dict]) -> None:
+
+    def __init__(
+        self,
+        href,
+        file_hrefs: Dict[str, List[str]],
+        file_mapper: Callable[[str], str],
+        manifest: XmlElement,
+        product_info: Optional[Dict],
+    ) -> None:
         self.href = href
         self._root = manifest
         self.file_hrefs = file_hrefs

@@ -12,6 +12,7 @@ from tests import test_data
 
 
 class Sentinel1MetadataTest(unittest.TestCase):
+
     def test_parses_product_metadata_properties(self):
 
         # Get the path of the test xml

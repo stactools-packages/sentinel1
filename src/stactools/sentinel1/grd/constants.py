@@ -5,6 +5,7 @@ import pystac
 from pystac import Extent, ProviderRole, SpatialExtent, TemporalExtent
 from pystac.extensions import sar
 from pystac.extensions.eo import Band
+from pystac.extensions.item_assets import AssetDefinition
 from pystac.link import Link
 from pystac.utils import str_to_datetime
 
@@ -83,13 +84,63 @@ SENTINEL_POLARIZATIONS = {
 }
 
 SENTINEL_GRD_SAR = {
+    # "looks_range": [],
     "product_type": ["GRD"],
-    "instrument_mode": ["IW", "EW", "SM"],
-    "frequency_band": [sar.FrequencyBand.C],
+    "looks_azimuth": [1, 5],
     "polarizations": [
-        sar.Polarization.VH,
         sar.Polarization.HH,
-        sar.Polarization.HV,
         sar.Polarization.VV,
+        [
+            sar.Polarization.HH,
+            sar.Polarization.HV,
+        ],
+        [
+            sar.Polarization.VV,
+            sar.Polarization.VH,
+        ],
     ],
+    "frequency_band": [sar.FrequencyBand.C],
+    "instrument_mode": ["IW", "EW", "SM"],
+    # "center_frequency": [],
+    # "resolution_range": [],
+    # "resolution_azimuth": [],
+    # "pixel_spacing_range": [],
+    # "observation_direction": [],
+    # "pixel_spacing_azimuth": [],
+    # "looks_equivalent_number": [],
 }  # type: Dict[str, Any]
+
+SENTINEL_ASSETS = {
+    "VH": AssetDefinition(
+        {
+            "title": "VH",
+            "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+            "description": "VH polarization backscattering coefficient, 16-bit DN.",
+            "role": "data",
+        }
+    ),
+    "HH": AssetDefinition(
+        {
+            "title": "HH",
+            "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+            "description": "HH polarization backscattering coefficient, 16-bit DN.",
+            "role": "data",
+        }
+    ),
+    "HV": AssetDefinition(
+        {
+            "title": "HV",
+            "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+            "description": "HV polarization backscattering coefficient, 16-bit DN.",
+            "role": "data",
+        }
+    ),
+    "VV": AssetDefinition(
+        {
+            "title": "VV",
+            "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+            "description": "VV polarization backscattering coefficient, 16-bit DN.",
+            "role": "data",
+        }
+    ),
+}

@@ -5,6 +5,7 @@ from typing import Any, Optional
 import pystac
 from pystac import Summaries
 from pystac.extensions.eo import EOExtension
+from pystac.extensions.item_assets import ItemAssetsExtension
 from pystac.extensions.projection import ProjectionExtension
 from pystac.extensions.raster import RasterExtension
 from pystac.extensions.sar import SarExtension
@@ -58,7 +59,8 @@ def create_collection() -> pystac.Collection:
     sar.instrument_mode = c.SENTINEL_GRD_SAR["instrument_mode"]
     sar.frequency_band = c.SENTINEL_GRD_SAR["frequency_band"]
 
-    # assets = ItemAssetsExtension.ext(collection, add_if_missing=True)
+    assets = ItemAssetsExtension.ext(collection, add_if_missing=True)
+    assets.item_assets = c.SENTINEL_ASSETS
 
     return collection
 

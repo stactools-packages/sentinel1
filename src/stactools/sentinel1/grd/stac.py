@@ -82,7 +82,8 @@ def create_item(
         extra_properties["s1:shape"] = shape
 
     item.properties.update({
-        **product_metadata.metadata_dict, **extra_properties
+        **product_metadata.metadata_dict,
+        **extra_properties
     })
 
     # Add assets to item

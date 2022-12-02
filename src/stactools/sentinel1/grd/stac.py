@@ -54,10 +54,12 @@ def create_collection() -> pystac.Collection:
 
     # SAR Extension
     sar = SarExtension.summaries(collection, add_if_missing=True)
-    sar.polarizations = c.SENTINEL_GRD_SAR["polarizations"]
     sar.product_type = c.SENTINEL_GRD_SAR["product_type"]
-    sar.instrument_mode = c.SENTINEL_GRD_SAR["instrument_mode"]
+    sar.polarizations = c.SENTINEL_GRD_SAR["polarizations"]
     sar.frequency_band = c.SENTINEL_GRD_SAR["frequency_band"]
+    sar.instrument_mode = c.SENTINEL_GRD_SAR["instrument_mode"]
+    sar.center_frequency = c.SENTINEL_GRD_SAR["center_frequency"]
+    sar.observation_direction = c.SENTINEL_GRD_SAR["observation_direction"]
 
     assets = ItemAssetsExtension.ext(collection, add_if_missing=True)
     assets.item_assets = c.SENTINEL_GRD_ASSETS

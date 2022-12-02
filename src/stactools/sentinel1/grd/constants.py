@@ -86,7 +86,7 @@ SENTINEL_POLARIZATIONS = {
 SENTINEL_GRD_SAR = {
     # "looks_range": [],
     "product_type": ["GRD"],
-    "looks_azimuth": [1, 5],
+    # "looks_azimuth": [1, 5],
     "polarizations": [
         sar.Polarization.HH,
         sar.Polarization.VV,
@@ -101,366 +101,203 @@ SENTINEL_GRD_SAR = {
     ],
     "frequency_band": [sar.FrequencyBand.C],
     "instrument_mode": ["IW", "EW", "SM"],
-    # "center_frequency": [],
+    "center_frequency": [5.405],
     # "resolution_range": [],
     # "resolution_azimuth": [],
     # "pixel_spacing_range": [],
-    # "observation_direction": [],
+    "observation_direction": [sar.ObservationDirection.RIGHT],
     # "pixel_spacing_azimuth": [],
     # "looks_equivalent_number": [],
 }  # type: Dict[str, Any]
 
 SENTINEL_GRD_ASSETS = {
-    "VH": AssetDefinition(
+    "vh": AssetDefinition(
         {
             "title": "VH",
-            "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+            "type": pystac.MediaType.COG,
             "description": "VH polarization backscattering coefficient, 16-bit DN.",
-            "role": "data",
+            "roles": ["data"],
         }
     ),
-    "HH": AssetDefinition(
+    "hh": AssetDefinition(
         {
             "title": "HH",
-            "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+            "type": pystac.MediaType.COG,
             "description": "HH polarization backscattering coefficient, 16-bit DN.",
-            "role": "data",
+            "roles": ["data"],
         }
     ),
-    "HV": AssetDefinition(
+    "hv": AssetDefinition(
         {
             "title": "HV",
-            "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+            "type": pystac.MediaType.COG,
             "description": "HV polarization backscattering coefficient, 16-bit DN.",
-            "role": "data",
+            "roles": ["data"],
         }
     ),
-    "VV": AssetDefinition(
+    "vv": AssetDefinition(
         {
             "title": "VV",
-            "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+            "type": pystac.MediaType.COG,
             "description": "VV polarization backscattering coefficient, 16-bit DN.",
-            "role": "data",
+            "roles": ["data"],
         }
     ),
-    "calibration-ew-hh": AssetDefinition(
+    "schema-calibration-hh": AssetDefinition(
         {
-            "title": "calibration-ew-hh",
-            "type": "application/xml",
-            "description": "",
-            "role": "",
+            "title": "Calibration Schema",
+            "type": pystac.MediaType.XML,
+            "description": (
+                "Calibration metadata including calibration information and the beta nought, "
+                "sigma nought, gamma and digital number look-up tables that can be used for "
+                "absolute product calibration."
+            ),
+            "roles": ["metadata"],
         }
     ),
-    "calibration-ew-hv": AssetDefinition(
+    "schema-calibration-hv": AssetDefinition(
         {
-            "title": "calibration-ew-hv",
-            "type": "application/xml",
-            "description": "",
-            "role": "",
+            "title": "Calibration Schema",
+            "type": pystac.MediaType.XML,
+            "description": (
+                "Calibration metadata including calibration information and the beta nought, "
+                "sigma nought, gamma and digital number look-up tables that can be used for "
+                "absolute product calibration."
+            ),
+            "roles": ["metadata"],
         }
     ),
-    "calibration-iw-hh": AssetDefinition(
+    "schema-calibration-vh": AssetDefinition(
         {
-            "title": "calibration-iw-hh",
-            "type": "application/xml",
-            "description": "",
-            "role": "",
+            "title": "Calibration Schema",
+            "type": pystac.MediaType.XML,
+            "description": (
+                "Calibration metadata including calibration information and the beta nought, "
+                "sigma nought, gamma and digital number look-up tables that can be used for "
+                "absolute product calibration."
+            ),
+            "roles": ["metadata"],
         }
     ),
-    "calibration-s4-vh": AssetDefinition(
+    "schema-calibration-vv": AssetDefinition(
         {
-            "title": "calibration-s4-vh",
-            "type": "application/xml",
-            "description": "",
-            "role": "",
+            "title": "Calibration Schema",
+            "type": pystac.MediaType.XML,
+            "description": (
+                "Calibration metadata including calibration information and the beta nought, "
+                "sigma nought, gamma and digital number look-up tables that can be used for "
+                "absolute product calibration."
+            ),
+            "roles": ["metadata"],
         }
     ),
-    "calibration-s4-vv": AssetDefinition(
+    "schema-noise-hh": AssetDefinition(
         {
-            "title": "calibration-s4-vv",
-            "type": "application/xml",
-            "description": "",
-            "role": "",
+            "title": "Noise Schema",
+            "type": pystac.MediaType.XML,
+            "description": "Estimated thermal noise look-up tables",
+            "roles": ["metadata"],
         }
     ),
-    "noise-ew-hh": AssetDefinition(
+    "schema-noise-hv": AssetDefinition(
         {
-            "title": "noise-ew-hh",
-            "type": "application/xml",
-            "description": "",
-            "role": "",
+            "title": "Noise Schema",
+            "type": pystac.MediaType.XML,
+            "description": "Estimated thermal noise look-up tables",
+            "roles": ["metadata"],
         }
     ),
-    "noise-ew-hv": AssetDefinition(
+    "schema-noise-vh": AssetDefinition(
         {
-            "title": "noise-ew-hv",
-            "type": "application/xml",
-            "description": "",
-            "role": "",
+            "title": "Noise Schema",
+            "type": pystac.MediaType.XML,
+            "description": "Estimated thermal noise look-up tables",
+            "roles": ["metadata"],
         }
     ),
-    "noise-iw-hh": AssetDefinition(
+    "schema-noise-vv": AssetDefinition(
         {
-            "title": "noise-iw-hh",
-            "type": "application/xml",
-            "description": "",
-            "role": "",
+            "title": "Noise Schema",
+            "type": pystac.MediaType.XML,
+            "description": "Estimated thermal noise look-up tables",
+            "roles": ["metadata"],
         }
     ),
-    "noise-s4-vh": AssetDefinition(
+    "schema-product-hh": AssetDefinition(
         {
-            "title": "noise-s4-vh",
-            "type": "application/xml",
-            "description": "",
-            "role": "",
+            "title": "Product Schema",
+            "type": pystac.MediaType.XML,
+            "description": (
+                "Describes the main characteristics corresponding to the band: state of the "
+                "platform during acquisition, image properties, Doppler information, geographic "
+                "location, etc."
+            ),
+            "roles": ["metadata"],
         }
     ),
-    "noise-s4-vv": AssetDefinition(
+    "schema-product-hv": AssetDefinition(
         {
-            "title": "noise-s4-vv",
-            "type": "application/xml",
-            "description": "",
-            "role": "",
+            "title": "Product Schema",
+            "type": pystac.MediaType.XML,
+            "description": (
+                "Describes the main characteristics corresponding to the band: state of the "
+                "platform during acquisition, image properties, Doppler information, geographic "
+                "location, etc."
+            ),
+            "roles": ["metadata"],
         }
     ),
-    "ew-hh.xml": AssetDefinition(
+    "schema-product-vh": AssetDefinition(
         {
-            "title": "ew-hh",
-            "type": "application/xml",
-            "description": "",
-            "role": "",
+            "title": "Product Schema",
+            "type": pystac.MediaType.XML,
+            "description": (
+                "Describes the main characteristics corresponding to the band: state of the "
+                "platform during acquisition, image properties, Doppler information, geographic "
+                "location, etc."
+            ),
+            "roles": ["metadata"],
         }
     ),
-    "ew-hv.xml": AssetDefinition(
+    "schema-product-vv": AssetDefinition(
         {
-            "title": "ew-hv",
-            "type": "application/xml",
-            "description": "",
-            "role": "",
+            "title": "Product Schema",
+            "type": pystac.MediaType.XML,
+            "description": (
+                "Describes the main characteristics corresponding to the band: state of the "
+                "platform during acquisition, image properties, Doppler information, geographic "
+                "location, etc."
+            ),
+            "roles": ["metadata"],
         }
     ),
-    "iw-hh.xml": AssetDefinition(
+    "safe-manifest": AssetDefinition(
         {
-            "title": "iw-hh",
-            "type": "application/xml",
-            "description": "",
-            "role": "",
+            "title": "Manifest File",
+            "type": pystac.MediaType.XML,
+            "description": (
+                "General product metadata in XML format. Contains a high-level textual "
+                "description of the product and references to all of product's components, "
+                "the product metadata, including the product identification and the resource "
+                "references, and references to the physical location of each component file "
+                "contained in the product."
+            ),
+            "roles": ["metadata"],
         }
     ),
-    "s4-vh.xml": AssetDefinition(
+    "thumbnail": AssetDefinition(
         {
-            "title": "s4-vh",
-            "type": "application/xml",
-            "description": "",
-            "role": "",
-        }
-    ),
-    "s4-vv.xml": AssetDefinition(
-        {
-            "title": "s4-vv",
-            "type": "application/xml",
-            "description": "",
-            "role": "",
-        }
-    ),
-    "rfi-ew-hh": AssetDefinition(
-        {
-            "title": "rfi-ew-hh",
-            "type": "application/xml",
-            "description": "",
-            "role": "",
-        }
-    ),
-    "rfi-ew-hv": AssetDefinition(
-        {
-            "title": "rfi-ew-hv",
-            "type": "application/xml",
-            "description": "",
-            "role": "",
-        }
-    ),
-    "rfi-iw-hh": AssetDefinition(
-        {
-            "title": "rfi-iw-hh",
-            "type": "application/xml",
-            "description": "",
-            "role": "",
-        }
-    ),
-    "rfi-s4-vh": AssetDefinition(
-        {
-            "title": "rfi-s4-vh",
-            "type": "application/xml",
-            "description": "",
-            "role": "",
-        }
-    ),
-    "rfi-s4-vv": AssetDefinition(
-        {
-            "title": "rfi-s4-vv",
-            "type": "application/xml",
-            "description": "",
-            "role": "",
-        }
-    ),
-    # "manifest": AssetDefinition(
-    #     {
-    #         "title": "manifest",
-    #         "type": "",
-    #         "description": "",
-    #         "role": "",
-    #     }
-    # ),
-    "ew-hh.tiff": AssetDefinition(
-        {
-            "title": "ew-hh",
-            "type": "image/tiff; application=geotiff; profile=cloud-optimized",
-            "description": "",
-            "role": "",
-        }
-    ),
-    "ew-hv.tiff": AssetDefinition(
-        {
-            "title": "ew-hv",
-            "type": "image/tiff; application=geotiff; profile=cloud-optimized",
-            "description": "",
-            "role": "",
-        }
-    ),
-    "iw-hh.tiff": AssetDefinition(
-        {
-            "title": "iw-hh",
-            "type": "image/tiff; application=geotiff; profile=cloud-optimized",
-            "description": "",
-            "role": "",
-        }
-    ),
-    "s4-vh.tiff": AssetDefinition(
-        {
-            "title": "s4-vh",
-            "type": "image/tiff; application=geotiff; profile=cloud-optimized",
-            "description": "",
-            "role": "",
-        }
-    ),
-    "s4-vv.tiff": AssetDefinition(
-        {
-            "title": "s4-vv",
-            "type": "image/tiff; application=geotiff; profile=cloud-optimized",
-            "description": "",
-            "role": "",
-        }
-    ),
-    "logo": AssetDefinition(
-        {
-            "title": "logo",
-            "type": "image/png",
-            "description": "",
-            "role": "",
-        }
-    ),
-    "map-overlay": AssetDefinition(
-        {
-            "title": "map-overlay",
-            "type": "application/vnd.google-earth.kml+xml",
-            "description": "",
-            "role": "",
-        }
-    ),
-    "product-preview": AssetDefinition(
-        {
-            "title": "product-preview",
-            "type": "text/html",
-            "description": "",
-            "role": "",
-        }
-    ),
-    "quick-look": AssetDefinition(
-        {
-            "title": "quick-look",
-            "type": "image/png",
-            "description": "",
-            "role": "",
-        }
-    ),
-    "productInfo": AssetDefinition(
-        {
-            "title": "productInfo",
-            "type": "application/json",
-            "description": "",
-            "role": "",
-        }
-    ),
-    "s1-level-1-calibration": AssetDefinition(
-        {
-            "title": "s1-level-1-calibration",
-            "type": "application/xml",
-            "description": "",
-            "role": "",
-        }
-    ),
-    "s1-level-1-measurement": AssetDefinition(
-        {
-            "title": "s1-level-1-measurement",
-            "type": "application/xml",
-            "description": "",
-            "role": "",
-        }
-    ),
-    "s1-level-1-noise": AssetDefinition(
-        {
-            "title": "s1-level-1-noise",
-            "type": "application/xml",
-            "description": "",
-            "role": "",
-        }
-    ),
-    "s1-level-1-product": AssetDefinition(
-        {
-            "title": "s1-level-1-product",
-            "type": "application/xml",
-            "description": "",
-            "role": "",
-        }
-    ),
-    "s1-level-1-quicklook": AssetDefinition(
-        {
-            "title": "s1-level-1-quicklook",
-            "type": "application/xml",
-            "description": "",
-            "role": "",
-        }
-    ),
-    "s1-level-1-rfi": AssetDefinition(
-        {
-            "title": "s1-level-1-rfi",
-            "type": "application/xml",
-            "description": "",
-            "role": "",
-        }
-    ),
-    "s1-map-overlay": AssetDefinition(
-        {
-            "title": "s1-map-overlay",
-            "type": "application/xml",
-            "description": "",
-            "role": "",
-        }
-    ),
-    "s1-object-types": AssetDefinition(
-        {
-            "title": "s1-object-types",
-            "type": "application/xml",
-            "description": "",
-            "role": "",
-        }
-    ),
-    "s1-product-preview": AssetDefinition(
-        {
-            "title": "s1-product-preview",
-            "type": "application/xml",
-            "description": "",
-            "role": "",
+            "title": "Preview Image",
+            "type": pystac.MediaType.PNG,
+            "description": (
+                "An averaged, decimated preview image in PNG format. Single polarization "
+                "products are represented with a grey scale image. Dual polarization products "
+                "are represented by a single composite colour image in RGB with the red channel "
+                "(R) representing the  co-polarization VV or HH), the green channel (G) "
+                "represents the cross-polarization (VH or HV) and the blue channel (B) "
+                "represents the ratio of the cross an co-polarizations."
+            ),
+            "roles": ["thumbnail"],
         }
     ),
 }

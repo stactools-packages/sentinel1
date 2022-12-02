@@ -21,7 +21,13 @@ SENTINEL_LICENSE = Link(
 
 SENTINEL_PLATFORMS = ["sentinel-1a", "sentinel-1b"]
 
-SENTINEL_GRD_DESCRIPTION = "Sentinel-1 Ground Range Detected (GRD). The Sentinel-1 mission is a constellation of C-band Synthetic Aperature Radar (SAR) satellites from the European Space Agency launched since 2014. These satellites collect observations of radar backscatter intensity day or night, regardless of the weather conditions, making them enormously valuable for environmental monitoring."  # noqa: E501
+SENTINEL_GRD_DESCRIPTION = (
+    "Level-1 Ground Range Detected (GRD) products consist of focused SAR data that has been detected, multi-looked and projected to ground range using an Earth ellipsoid model. The ellipsoid projection of the GRD products is corrected using the terrain height specified in the product general annotation. "  # noqa: E501
+    "The terrain height used varies in azimuth but is constant in range. Ground range coordinates are the slant range coordinates projected onto the ellipsoid of the Earth. Pixel values represent detected magnitude. Phase information is lost. The resulting product has approximately square spatial resolution "  # noqa: E501
+    "and square pixel spacing with reduced speckle due to the multi-look processing. The noise vector annotation data set, within the product annotations, contains thermal noise vectors so that users can apply a thermal noise correction by subtracting the noise from the power detected image. "  # noqa: E501
+    "The thermal noise correction is, for example, supported by the Sentinel-1 Toolbox (S1TBX). For the IW and EW GRD products, multi-looking is performed on each burst individually. All bursts in all sub-swaths are then seamlessly merged to form a single, contiguous, ground range detected image per polarisation channel."  # noqa: E501
+    "GRD products are available in three resolutions, characterised by the acquisition mode and the level of multi-looking applied: Full Resolution (FR), High Resolution (HR), Medium Resolution (MR)."  # noqa: E501
+)
 
 SENTINEL_GRD_START: datetime = str_to_datetime("2014-10-10T00:00:00Z")
 SENTINEL_GRD_EXTENT = Extent(

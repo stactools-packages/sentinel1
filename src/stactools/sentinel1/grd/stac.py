@@ -46,6 +46,7 @@ def create_collection() -> pystac.Collection:
 
     # Links
     collection.links.append(c.SENTINEL_GRD_LICENSE)
+    collection.links.append(c.SENTINEL_GRD_TECHNICAL_GUIDE)
 
     # SAR Extension
     sar = SarExtension.summaries(collection, add_if_missing=True)
@@ -199,5 +200,6 @@ def create_item(
 
     # --Links--
     item.links.append(c.SENTINEL_GRD_LICENSE)
+    item.links.append(c.SENTINEL_GRD_TECHNICAL_GUIDE)
 
     return item

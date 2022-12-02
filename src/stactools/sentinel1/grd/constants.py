@@ -63,6 +63,12 @@ SENTINEL_GRD_PROVIDER = pystac.Provider(
     url="https://registry.opendata.aws/sentinel-1/",
 )
 
+SENTINEL_GRD_TECHNICAL_GUIDE = Link(
+    title="Sentinel-1 Ground Range Detected (GRD) Technical Guide",
+    rel="about",
+    target="https://sentinels.copernicus.eu/web/sentinel/technical-guides/sentinel-1-sar/products-algorithms/level-1-algorithms/ground-range-detected",  # noqa: E501
+)
+
 SENTINEL_GRD_LICENSE = Link(
     title="Sentinel License",
     rel="license",

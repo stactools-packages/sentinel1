@@ -3,7 +3,7 @@ from typing import Any, Dict
 
 import pystac
 from pystac import Extent, ProviderRole, SpatialExtent, TemporalExtent
-from pystac.extensions import sar
+from pystac.extensions import sar, sat
 from pystac.extensions.eo import Band
 from pystac.extensions.item_assets import AssetDefinition
 from pystac.link import Link
@@ -21,7 +21,7 @@ SENTINEL_LICENSE = Link(
 
 SENTINEL_PLATFORMS = ["sentinel-1a", "sentinel-1b"]
 
-SENTINEL_GRD_DESCRIPTION = "Sentinel1 ground range detected (GRD) over CONUS. The Sentinel-1 mission is a constellation of C-band Synthetic Aperature Radar (SAR) satellites from the European Space Agency launched since 2014. These satellites collect observations of radar backscatter intensity day or night, regardless of the weather conditions, making them enormously valuable for environmental monitoring. These radar data have been processed from original Ground Range Detected (GRD) scenes into a Radiometrically Terrain Corrected, tiled product suitable for analysis. This product is available over the Contiguous United States (CONUS) since 2017 when Sentinel-1 data became globally available."  # noqa: E501
+SENTINEL_GRD_DESCRIPTION = "Sentinel-1 Ground Range Detected (GRD). The Sentinel-1 mission is a constellation of C-band Synthetic Aperature Radar (SAR) satellites from the European Space Agency launched since 2014. These satellites collect observations of radar backscatter intensity day or night, regardless of the weather conditions, making them enormously valuable for environmental monitoring."  # noqa: E501
 
 SENTINEL_GRD_START: datetime = str_to_datetime("2014-10-10T00:00:00Z")
 SENTINEL_GRD_EXTENT = Extent(
@@ -54,10 +54,11 @@ SENTINEL_GRD_PROVIDER = pystac.Provider(
         ProviderRole.PROCESSOR,
         ProviderRole.LICENSOR,
     ],
-    url="https://earth.esa.int/eogateway",
+    url="https://registry.opendata.aws/sentinel-1/",
 )
 
 SENTINEL_GRD_LICENSE = Link(
+    title="Sentinel License",
     rel="license",
     target="https://scihub.copernicus.eu/twiki/do/view/SciHubWebPortal/TermsConditions",
 )
@@ -82,11 +83,14 @@ SENTINEL_POLARIZATIONS = {
         description="VV band: vertical transmit and vertical receive",
     ),
 }
+SENTINEL_GRD_SAT = {
+    "orbit_state": [sat.OrbitState.ASCENDING, sat.OrbitState.DESCENDING]
+}
 
 SENTINEL_GRD_SAR = {
-    # "looks_range": [],
+    "looks_range": [2, 3, 5, 6],
     "product_type": ["GRD"],
-    # "looks_azimuth": [1, 5],
+    "looks_azimuth": [1, 2, 6],
     "polarizations": [
         sar.Polarization.HH,
         sar.Polarization.VV,
@@ -102,12 +106,12 @@ SENTINEL_GRD_SAR = {
     "frequency_band": [sar.FrequencyBand.C],
     "instrument_mode": ["IW", "EW", "SM"],
     "center_frequency": [5.405],
-    # "resolution_range": [],
-    # "resolution_azimuth": [],
-    # "pixel_spacing_range": [],
+    "resolution_range": [9, 20, 23, 50, 93],
+    "resolution_azimuth": [9, 22, 23, 50, 87],
+    "pixel_spacing_range": [3.5, 10, 25, 40],
     "observation_direction": [sar.ObservationDirection.RIGHT],
-    # "pixel_spacing_azimuth": [],
-    # "looks_equivalent_number": [],
+    "pixel_spacing_azimuth": [3.5, 10, 25, 40],
+    "looks_equivalent_number": [3.7, 29.7, 398.4, 4.4, 81.8, 2.8, 10.7, 123.7],
 }  # type: Dict[str, Any]
 
 SENTINEL_GRD_ASSETS = {

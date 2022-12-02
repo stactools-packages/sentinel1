@@ -6,8 +6,6 @@ import pystac
 from pystac import Summaries
 from pystac.extensions.eo import EOExtension
 from pystac.extensions.item_assets import ItemAssetsExtension
-from pystac.extensions.projection import ProjectionExtension
-from pystac.extensions.raster import RasterExtension
 from pystac.extensions.sar import SarExtension
 from pystac.extensions.sat import SatExtension
 from stactools.core.io import ReadHrefModifier
@@ -29,8 +27,6 @@ def create_collection() -> pystac.Collection:
     summary_dict = {
         "constellation": [c.SENTINEL_CONSTELLATION],
         "platform": c.SENTINEL_PLATFORMS,
-        # "gsd": [c.SENTINEL_RTC_SAR["gsd"]],
-        # "proj:epsg": c.SENTINEL_RTC_EPSGS,
     }
 
     collection = pystac.Collection(
@@ -41,26 +37,37 @@ def create_collection() -> pystac.Collection:
         stac_extensions=[
             SarExtension.get_schema_uri(),
             SatExtension.get_schema_uri(),
-            ProjectionExtension.get_schema_uri(),
-            RasterExtension.get_schema_uri(),
-            # Can use pystac.extensions once implemented
-            "https://stac-extensions.github.io/processing/v1.0.0/schema.json",
-            "https://stac-extensions.github.io/mgrs/v1.0.0/schema.json",
+            EOExtension.get_schema_uri(),
         ],
         keywords=c.SENTINEL_GRD_KEYWORDS,
-        providers=[c.SENTINEL_PROVIDER],  # c.SENTINEL_GRD_PROVIDER
+        providers=[c.SENTINEL_PROVIDER, c.SENTINEL_GRD_PROVIDER],
         summaries=Summaries(summary_dict),
     )
 
+    # Links
+    collection.links.append(c.SENTINEL_GRD_LICENSE)
+
     # SAR Extension
     sar = SarExtension.summaries(collection, add_if_missing=True)
+    sar.looks_range = c.SENTINEL_GRD_SAR["looks_range"]
     sar.product_type = c.SENTINEL_GRD_SAR["product_type"]
+    sar.looks_azimuth = c.SENTINEL_GRD_SAR["looks_azimuth"]
     sar.polarizations = c.SENTINEL_GRD_SAR["polarizations"]
     sar.frequency_band = c.SENTINEL_GRD_SAR["frequency_band"]
     sar.instrument_mode = c.SENTINEL_GRD_SAR["instrument_mode"]
     sar.center_frequency = c.SENTINEL_GRD_SAR["center_frequency"]
+    sar.resolution_range = c.SENTINEL_GRD_SAR["resolution_range"]
+    sar.resolution_azimuth = c.SENTINEL_GRD_SAR["resolution_azimuth"]
+    sar.pixel_spacing_range = c.SENTINEL_GRD_SAR["pixel_spacing_range"]
     sar.observation_direction = c.SENTINEL_GRD_SAR["observation_direction"]
+    sar.pixel_spacing_azimuth = c.SENTINEL_GRD_SAR["pixel_spacing_azimuth"]
+    sar.looks_equivalent_number = c.SENTINEL_GRD_SAR["looks_equivalent_number"]
 
+    # SAT Extension
+    sat = SatExtension.summaries(collection, add_if_missing=True)
+    sat.orbit_state = c.SENTINEL_GRD_SAT["orbit_state"]
+
+    # Item Asset Extension
     assets = ItemAssetsExtension.ext(collection, add_if_missing=True)
     assets.item_assets = c.SENTINEL_GRD_ASSETS
 

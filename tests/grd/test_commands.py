@@ -10,7 +10,7 @@ from stactools.testing.cli_test import CliTestCase
 
 from stactools.sentinel1.commands import create_sentinel1_command
 from stactools.sentinel1.grd import stac
-from stactools.sentinel1.grd.constants import SENTINEL_POLARISATIONS
+from stactools.sentinel1.grd.constants import SENTINEL_POLARIZATIONS
 from tests import test_data
 
 
@@ -63,4 +63,4 @@ class CreateItemTest(CliTestCase):
                 # TODO: Verify the intent of this test
                 # The prior test was in a List Comprehension which doesn't evaluate to a return
                 for x in bands_seen:
-                    self.assertTrue(x.lower() in list(SENTINEL_POLARISATIONS.keys()))
+                    self.assertTrue(x.lower() in list(SENTINEL_POLARIZATIONS.keys()))

@@ -1,6 +1,5 @@
 import logging
 import os
-from typing import Optional
 
 import click
 
@@ -38,9 +37,7 @@ def create_collection_command(destination: str) -> None:
 @click.argument("src")
 @click.argument("dst")
 @click.option("--format", default="SAFE", type=str, help="SAFE or COG format")
-def create_item_command(
-    src: str, dst: str, href: Optional[str] = None, format: str = "SAFE"
-) -> None:
+def create_item_command(src: str, dst: str, format: str = "SAFE") -> None:
     """Creates a STAC Collection
 
     Args:

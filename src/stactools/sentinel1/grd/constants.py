@@ -83,6 +83,7 @@ SENTINEL_POLARIZATIONS = {
         description="VV band: vertical transmit and vertical receive",
     ),
 }
+
 SENTINEL_GRD_SAT = {
     "orbit_state": [sat.OrbitState.ASCENDING, sat.OrbitState.DESCENDING]
 }
@@ -94,6 +95,8 @@ SENTINEL_GRD_SAR = {
     "polarizations": [
         sar.Polarization.HH,
         sar.Polarization.VV,
+        sar.Polarization.HV,
+        sar.Polarization.VH,
         [
             sar.Polarization.HH,
             sar.Polarization.HV,

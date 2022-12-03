@@ -19,11 +19,11 @@ class CreateItemTest(CliTestCase):
         return [create_sentinel1_command]
 
     def test_create_collection(self) -> None:
-        collection = stac.create_collection()
+        collection = stac.create_collection("")
         assert isinstance(collection, pystac.Collection)
 
     def test_validate_collection(self) -> None:
-        collection = stac.create_collection()
+        collection = stac.create_collection("")
         collection.normalize_hrefs("./")
         collection.validate()
 

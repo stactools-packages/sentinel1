@@ -18,6 +18,7 @@ if [ "${BASH_SOURCE[0]}" = "${0}" ]; then
         usage
     else
         ./scripts/update
+        ./scripts/lint
         ./scripts/test
     fi
 fi

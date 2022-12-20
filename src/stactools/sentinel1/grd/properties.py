@@ -60,12 +60,16 @@ def fill_sar_properties(sar_ext: SarExtension, manifest: XmlElement,
     sar_ext.observation_direction = ObservationDirection.RIGHT
 
     # Read properties
-    sar_ext.instrument_mode = manifest.findall(".//s1sarl1:mode")[0].text
+    instrument_mode = manifest.findall(".//s1sarl1:mode")[0].text
+    assert instrument_mode is not None
+    sar_ext.instrument_mode = instrument_mode
     sar_ext.polarizations = [
         Polarization(x.text)
         for x in manifest.findall(".//s1sarl1:transmitterReceiverPolarisation")
     ]
-    sar_ext.product_type = manifest.findall(".//s1sarl1:productType")[0].text
+    product_type = manifest.findall(".//s1sarl1:productType")[0].text
+    assert product_type is not None
+    sar_ext.product_type = product_type
 
     # Properties depending on mode and resolution
     product_data = product_data_summary[sar_ext.instrument_mode][resolution]
@@ -95,10 +99,13 @@ def fill_sat_properties(sat_ext: SatExtension, manifest: XmlElement):
         ".//safe:nssdcIdentifier")[0].text
 
     orbit_state = manifest.findall(".//s1:pass")[0].text
+    assert orbit_state is not None
     sat_ext.orbit_state = OrbitState(orbit_state.lower())
 
-    sat_ext.absolute_orbit = int(
-        manifest.findall(".//safe:orbitNumber")[0].text)
+    absolute_orbit = manifest.findall(".//safe:orbitNumber")[0].text
+    assert absolute_orbit is not None
+    sat_ext.absolute_orbit = int(absolute_orbit)
 
-    sat_ext.relative_orbit = int(
-        manifest.findall(".//safe:relativeOrbitNumber")[0].text)
+    relative_orbit = manifest.findall(".//safe:relativeOrbitNumber")[0].text
+    assert relative_orbit is not None
+    sat_ext.relative_orbit = int(relative_orbit)

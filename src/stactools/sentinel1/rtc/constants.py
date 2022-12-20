@@ -51,14 +51,14 @@ SENTINEL_RTC_DESCRIPTION = 'Sentinel1 radiometric terrain corrected backscatter 
 
 SENTINEL_RTC_EXTENT = Extent(
     SpatialExtent([-124.73460, 24.54254, -66.89191, 49.36949]),
-    TemporalExtent([str_to_datetime("2016-07-29T00:00:00Z"), None]))
+    TemporalExtent([[str_to_datetime("2016-07-29T00:00:00Z"), None]]))
 
 utm_zones = ['10', '11', '12', '13', '14', '15', '16', '17', '18', '19']
 SENTINEL_RTC_EPSGS = [int(f'326{x}') for x in utm_zones]
 
 # RTC is derived from S1 GRD, so include input GRD properties for IW2 (center swath)
 # https://sentinel.esa.int/web/sentinel/technical-guides/sentinel-1-sar/products-algorithms/level-1-algorithms/ground-range-detected/iw
-SENTINEL_RTC_SAR = {
+SENTINEL_RTC_SAR: Dict[str, Any] = {
     'instrument_mode': 'IW',
     'product_type': 'RTC',
     'polarizations': [sar.Polarization.VV, sar.Polarization.VH],
@@ -70,4 +70,4 @@ SENTINEL_RTC_SAR = {
     'looks_range': 5,
     'looks_azimuth': 1,
     'gsd': 20  # final MGRS pixel posting
-}  # type: Dict[str, Any]
+}

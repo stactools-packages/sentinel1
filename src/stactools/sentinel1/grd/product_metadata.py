@@ -28,6 +28,7 @@ def get_shape(
 
 
 class ProductMetadata:
+
     def __init__(
         self,
         href,

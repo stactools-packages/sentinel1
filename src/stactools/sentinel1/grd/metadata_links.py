@@ -36,6 +36,7 @@ def extract_properties(href: str, properties: List[str]) -> List[str]:
 
 
 def group_files(hrefs: List[str]) -> Dict[str, List[str]]:
+
     def determine_group(href: str) -> str:
         if href.startswith("annotation/calibration/calibration"):
             return "calibration_calibration"
@@ -60,6 +61,7 @@ def group_files(hrefs: List[str]) -> Dict[str, List[str]]:
 
 
 class MetadataLinks:
+
     def __init__(self,
                  granule_href: str,
                  read_href_modifier: Optional[ReadHrefModifier] = None,

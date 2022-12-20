@@ -18,8 +18,13 @@ def get_shape(meta_links: MetadataLinks,
     links = meta_links.create_product_asset()
     root = XmlElement.from_file(links[0][1].href, read_href_modifier)
 
-    x_size = int(root.findall(".//numberOfSamples")[0].text)
-    y_size = int(root.findall(".//numberOfLines")[0].text)
+    number_of_samples = root.findall(".//numberOfSamples")[0].text
+    assert number_of_samples is not None
+    x_size = int(number_of_samples)
+
+    number_of_lines = root.findall(".//numberOfLines")[0].text
+    assert number_of_lines is not None
+    y_size = int(number_of_lines)
 
     return [x_size, y_size]
 
@@ -94,7 +99,9 @@ class ProductMetadata:
     @property
     def get_datetime(self) -> datetime:
         start_time = self._root.findall(".//safe:startTime")[0].text
+        assert start_time is not None
         end_time = self._root.findall(".//safe:stopTime")[0].text
+        assert end_time is not None
 
         central_time = (
             datetime.strptime(start_time, "%Y-%m-%dT%H:%M:%S.%f") +
@@ -134,7 +141,9 @@ class ProductMetadata:
     def platform(self) -> Optional[str]:
 
         family_name = self._root.findall(".//safe:familyName")[0].text
+        assert family_name is not None
         platform_name = self._root.findall(".//safe:number")[0].text
+        assert platform_name is not None
 
         return family_name + platform_name
 

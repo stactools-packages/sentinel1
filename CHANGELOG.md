@@ -31,7 +31,7 @@ number as needed.
 
 - Added `stac sentinel1 grd` subcommand
 - `stac sentinel1 create-item` now required subcommand `grd` or `rtc`
-- Support for Microsoft Azure storage: similar format to SAFE,  
+- Support for Microsoft Azure storage: similar format to SAFE,\
 without `.SAFE` ending to the folders and slightly different file names.
 
 ## [0.1.0] - 2021-09-04

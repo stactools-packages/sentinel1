@@ -21,7 +21,7 @@ from .properties import fill_sar_properties, fill_sat_properties
 logger = logging.getLogger(__name__)
 
 
-def create_collection(json_path: str) -> pystac.Collection:
+def create_collection() -> pystac.Collection:
     """Creates a STAC Collection for Sentinel-1 RTC"""
     # Lists of all possible values for items
     summary_dict = {
@@ -34,7 +34,6 @@ def create_collection(json_path: str) -> pystac.Collection:
         description=c.SENTINEL_GRD_DESCRIPTION,
         extent=c.SENTINEL_GRD_EXTENT,
         title="Sentinel-1 GRD",
-        href=json_path,
         stac_extensions=[
             SarExtension.get_schema_uri(),
             SatExtension.get_schema_uri(),

@@ -23,8 +23,9 @@ def grd_cmd() -> None:
 def create_collection_command(destination: str) -> None:
     """Creates a STAC Collection for Sentinel1 GRD products"""
 
+    collection = create_collection()
     json_path = os.path.join(destination, "sentinel1-grd.json")
-    collection = create_collection(json_path)
+    collection.set_self_href(os.path.join(os.path.basename(json_path)))
     collection.validate()
     collection.save_object(dest_href=json_path)
 

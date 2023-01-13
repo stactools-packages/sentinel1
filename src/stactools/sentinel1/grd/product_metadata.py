@@ -57,11 +57,11 @@ class ProductMetadata:
                 raise ProductMetadataError(
                     f"Cannot parse footprint from product metadata at {self.href}"
                 )
-            else:
-                # Convert to values
-                footprint_value = [
-                    float(x) for x in footprint_text.replace(" ", ",").split(",")
-                ]
+
+            # Convert to values
+            footprint_value = [
+                float(x) for x in footprint_text.replace(" ", ",").split(",")
+            ]
 
             footprint_points = [
                 p[::-1] for p in list(zip(*[iter(footprint_value)] * 2))

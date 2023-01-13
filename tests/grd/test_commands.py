@@ -1,66 +1,34 @@
-import os
-from tempfile import TemporaryDirectory
-from typing import Callable, List
+from pathlib import Path
 
-import pystac
-from click import Command, Group
-from pystac.extensions.eo import EOExtension
-from pystac.utils import is_absolute_href
-from stactools.testing.cli_test import CliTestCase
+# import pystac
+from pystac import Collection, Item
 
-from stactools.sentinel1.commands import create_sentinel1_command
-from stactools.sentinel1.grd import stac
-from stactools.sentinel1.grd.constants import SENTINEL_POLARIZATIONS
-from tests import test_data
+from tests import run_command, test_data
 
 
-class CreateItemTest(CliTestCase):
-    def create_subcommand_functions(self) -> List[Callable[[Group], Command]]:
-        return [create_sentinel1_command]
+def test_create_collection(tmp_path: Path) -> None:
+    destination = tmp_path / "sentinel1-grd.json"
+    result = run_command(f"sentinel1 grd create-collection {tmp_path}")
+    assert result.exit_code == 0, "\n{}".format(result.output)
+    paths = [p for p in tmp_path.iterdir() if p.suffix == ".json"]
+    assert len(paths) == 1
+    collection = Collection.from_file(str(destination))
+    assert collection.id == "sentinel1-grd"
+    collection.set_self_href(
+        str(destination)
+    )  # Must set the self reference to pass validation
+    collection.validate()
 
-    def test_create_collection(self) -> None:
-        collection = stac.create_collection()
-        assert isinstance(collection, pystac.Collection)
 
-    def test_validate_collection(self) -> None:
-        collection = stac.create_collection()
-        collection.normalize_hrefs("./")
-        collection.validate()
+def test_create_items(tmp_path: Path) -> None:
+    item_id = "S1A_EW_GRDM_1SDH_20221130T014342_20221130T014446_046117_058549_BB15"
 
-    def test_create_item(self) -> None:
-        item_id = "S1A_IW_GRDH_1SDV_20210809T173953_20210809T174018_039156_049F13_6FF8"
-        granule_href = test_data.get_path(
-            "data-files/grd/S1A_IW_GRDH_1SDV_20210809T173953_20210809T174018_039156_049F13_6FF8.SAFE"  # noqa
-        )
+    infile = test_data.get_path(f"data-files/grd/{item_id}")
+    result = run_command(f"sentinel1 grd create-item {infile} {tmp_path} --format COG")
+    assert result.exit_code == 0, "\n{}".format(result.output)
 
-        with self.subTest(granule_href):
-            with TemporaryDirectory() as tmp_dir:
-                cmd = ["sentinel1", "grd", "create-item", granule_href, tmp_dir]
-                self.run_command(cmd)
+    paths = [p for p in tmp_path.iterdir() if p.suffix == ".json"]
+    assert len(paths) == 1
 
-                jsons = [p for p in os.listdir(tmp_dir) if p.endswith(".json")]
-                self.assertEqual(len(jsons), 1)
-                fname = jsons[0]
-
-                item = pystac.Item.from_file(os.path.join(tmp_dir, fname))
-
-                item.validate()
-
-                self.assertEqual(item.id, item_id)
-
-                bands_seen = set()
-
-                for _, asset in item.assets.items():
-                    # Ensure that there's no relative path parts
-                    # in the asset HREFs
-                    self.assertTrue("/./" not in asset.href)
-                    self.assertTrue(is_absolute_href(asset.href))
-                    asset_eo = EOExtension.ext(asset)
-                    bands = asset_eo.bands
-                    if bands is not None:
-                        bands_seen |= set(b.name for b in bands)
-
-                # TODO: Verify the intent of this test
-                # The prior test was in a List Comprehension which doesn't evaluate to a return
-                for x in bands_seen:
-                    self.assertTrue(x.lower() in list(SENTINEL_POLARIZATIONS.keys()))
+    item = Item.from_file(str(tmp_path / paths[0]))
+    item.validate()

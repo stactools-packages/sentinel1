@@ -14,9 +14,10 @@ class ProductMetadataError(Exception):
 
 
 def get_shape(meta_links: MetadataLinks,
-              read_href_modifier: Optional[ReadHrefModifier]) -> List[int]:
+              read_href_modifier: Optional[ReadHrefModifier],
+              **kwargs: Any) -> List[int]:
     links = meta_links.create_product_asset()
-    root = XmlElement.from_file(links[0][1].href, read_href_modifier)
+    root = XmlElement.from_file(links[0][1].href, read_href_modifier, **kwargs)
 
     number_of_samples = root.findall(".//numberOfSamples")[0].text
     assert number_of_samples is not None

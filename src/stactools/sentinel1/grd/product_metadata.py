@@ -152,7 +152,9 @@ class ProductMetadata:
     def platform(self) -> Optional[str]:
 
         family_name = self._root.findall(".//safe:familyName")[0].text
+        assert family_name is not None
         platform_name = self._root.findall(".//safe:number")[0].text
+        assert platform_name is not None
 
         return f"{family_name}{platform_name}"
 

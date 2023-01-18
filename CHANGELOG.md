@@ -9,7 +9,7 @@ number as needed.
 
 ## [Unreleased]
 
-- Upgraded core linting and testing to latest from Template stactools 8b15971
+- Upgraded core linting and testing to latest from **stactools-template** (<https://github.com/stactools-packages/template/commit/8b15971a9f1fae7933b0e45aac8d59188daf5db5>)
 
 ## [0.3.0] - 2022-12-01
 

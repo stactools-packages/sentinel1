@@ -1,8 +1,8 @@
 from datetime import datetime
-from typing import Any, Callable, Dict, List, Optional
+from typing import Any, Callable, Dict, List, Optional, Tuple
 
 from pystac.utils import str_to_datetime
-from shapely.geometry import Polygon, mapping  # type: ignore
+from shapely.geometry import Polygon, mapping
 from stactools.core.io import ReadHrefModifier
 from stactools.core.io.xml import XmlElement
 
@@ -13,28 +13,32 @@ class ProductMetadataError(Exception):
     pass
 
 
-def get_shape(meta_links: MetadataLinks,
-              read_href_modifier: Optional[ReadHrefModifier],
-              **kwargs: Any) -> List[int]:
+def get_shape(
+    meta_links: MetadataLinks,
+    read_href_modifier: Optional[ReadHrefModifier],
+    **kwargs: Any,
+) -> List[int]:
     links = meta_links.create_product_asset()
     root = XmlElement.from_file(links[0][1].href, read_href_modifier, **kwargs)
 
-    number_of_samples = root.findall(".//numberOfSamples")[0].text
-    assert number_of_samples is not None
-    x_size = int(number_of_samples)
+    num_samples = root.find_text(".//numberOfSamples")
+    num_lines = root.find_text(".//numberOfLines")
 
-    number_of_lines = root.findall(".//numberOfLines")[0].text
-    assert number_of_lines is not None
-    y_size = int(number_of_lines)
+    if num_samples and num_lines:
+        x_size = int(num_samples)
+        y_size = int(num_lines)
+        return [x_size, y_size]
 
-    return [x_size, y_size]
+    raise ValueError(
+        "Cannot determine shape, samples and lines, using product metadata "
+        f"in {links[0][1].href}"
+    )
 
 
 class ProductMetadata:
-
     def __init__(
         self,
-        href,
+        href: str,
         file_hrefs: Dict[str, List[str]],
         file_mapper: Callable[[str], str],
         manifest: XmlElement,
@@ -46,17 +50,17 @@ class ProductMetadata:
 
         self.resolution = self.product_id.split("_")[2][-1]
 
-        def _get_geometries():
+        def _get_geometries() -> Tuple[List[float], Dict[str, Any]]:
             # Find the footprint descriptor
-            footprint_text = self._root.findall(".//gml:coordinates")
+            footprint_text = self._root.find_text(".//gml:coordinates")
             if footprint_text is None:
-                ProductMetadataError(
+                raise ProductMetadataError(
                     f"Cannot parse footprint from product metadata at {self.href}"
                 )
+
             # Convert to values
             footprint_value = [
-                float(x)
-                for x in footprint_text[0].text.replace(" ", ",").split(",")
+                float(x) for x in footprint_text.replace(" ", ",").split(",")
             ]
 
             footprint_points = [
@@ -65,7 +69,7 @@ class ProductMetadata:
 
             footprint_polygon = Polygon(footprint_points)
             geometry = mapping(footprint_polygon)
-            bbox = footprint_polygon.bounds
+            bbox = list(footprint_polygon.bounds)
 
             return (bbox, geometry)
 
@@ -92,40 +96,45 @@ class ProductMetadata:
         result = href.split("/")[-2]
         if result is None:
             raise ValueError(
-                "Cannot determine product ID using product metadata "
-                f"at {self.href}")
+                "Cannot determine product ID using product metadata " f"at {self.href}"
+            )
         else:
             return result
 
     @property
     def get_datetime(self) -> datetime:
-        start_time = self._root.findall(".//safe:startTime")[0].text
-        assert start_time is not None
-        end_time = self._root.findall(".//safe:stopTime")[0].text
-        assert end_time is not None
+        start_time = self._root.find_text(".//safe:startTime")
+        end_time = self._root.find_text(".//safe:stopTime")
 
-        central_time = (
-            datetime.strptime(start_time, "%Y-%m-%dT%H:%M:%S.%f") +
-            (datetime.strptime(end_time, "%Y-%m-%dT%H:%M:%S.%f") -
-             datetime.strptime(start_time, "%Y-%m-%dT%H:%M:%S.%f")) / 2)
+        if start_time is not None:
+            central_time = (
+                datetime.strptime(str(start_time), "%Y-%m-%dT%H:%M:%S.%f")
+                + (
+                    datetime.strptime(str(end_time), "%Y-%m-%dT%H:%M:%S.%f")
+                    - datetime.strptime(str(start_time), "%Y-%m-%dT%H:%M:%S.%f")
+                )
+                / 2
+            )
 
         if central_time is None:
             raise ValueError(
                 "Cannot determine product start time using product metadata "
-                f"at {self.href}")
+                f"at {self.href}"
+            )
         else:
             return str_to_datetime(str(central_time))
 
     @property
     def start_datetime(self) -> datetime:
-        time = self._root.findall(".//safe:startTime")
+        time = self._root.find_text(".//safe:startTime")
 
         if time is None:
             raise ValueError(
                 "Cannot determine product start time using product metadata "
-                f"at {self.href}")
+                f"at {self.href}"
+            )
         else:
-            return str_to_datetime(f"{time[0].text}Z")
+            return str_to_datetime(f"{time}Z")
 
     @property
     def end_datetime(self) -> datetime:
@@ -134,7 +143,8 @@ class ProductMetadata:
         if time is None:
             raise ValueError(
                 "Cannot determine product start time using product metadata "
-                f"at {self.href}")
+                f"at {self.href}"
+            )
         else:
             return str_to_datetime(f"{time[0].text}Z")
 
@@ -146,7 +156,7 @@ class ProductMetadata:
         platform_name = self._root.findall(".//safe:number")[0].text
         assert platform_name is not None
 
-        return family_name + platform_name
+        return f"{family_name}{platform_name}"
 
     @property
     def cycle_number(self) -> Optional[str]:
@@ -168,33 +178,28 @@ class ProductMetadata:
         total_slices = tmp.text if tmp is not None else None
 
         result = {
-            "start_datetime":
-            str(self.start_datetime),
-            "end_datetime":
-            str(self.end_datetime),
-            "s1:instrument_configuration_ID":
-            self._root.findall(".//s1sarl1:instrumentConfigurationID")[0].text,
-            "s1:datatake_id":
-            self._root.findall(".//s1sarl1:missionDataTakeID")[0].text,
-            "s1:product_timeliness":
-            self._root.findall(".//s1sarl1:productTimelinessCategory")[0].text,
-            "s1:processing_level":
-            self.product_id.split("_")[3][0],
-            "s1:resolution":
-            resolutions[self.resolution],
-            "s1:orbit_source":
-            self.orbit_source(),
-            "s1:slice_number":
-            slice_number,
-            "s1:total_slices":
-            total_slices
+            "start_datetime": str(self.start_datetime),
+            "end_datetime": str(self.end_datetime),
+            "s1:instrument_configuration_ID": self._root.find_text(
+                ".//s1sarl1:instrumentConfigurationID"
+            ),
+            "s1:datatake_id": self._root.find_text(".//s1sarl1:missionDataTakeID"),
+            "s1:product_timeliness": self._root.find_text(
+                ".//s1sarl1:productTimelinessCategory"
+            ),
+            "s1:processing_level": self.product_id.split("_")[3][0],
+            "s1:resolution": resolutions[self.resolution],
+            "s1:orbit_source": self.orbit_source(),
+            "s1:slice_number": slice_number,
+            "s1:total_slices": total_slices,
         }
 
         return {k: v for k, v in result.items() if v is not None}
 
     def orbit_source(self) -> str:
         for resource in self._root.findall(
-                ".//{http://www.esa.int/safe/sentinel-1.0}resource[@role]"):
+            ".//{http://www.esa.int/safe/sentinel-1.0}resource[@role]"
+        ):
 
             name = resource.find_attr("name", ".")
             if name is None or not name.endswith(".EOF"):

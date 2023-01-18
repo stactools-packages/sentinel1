@@ -9,7 +9,7 @@ logger = logging.getLogger(__name__)
 
 
 @click.group("grd")
-def grd_cmd():
+def grd_cmd() -> None:
     """Commands for working with sentinel1 GRD data"""
     pass
 
@@ -20,7 +20,7 @@ def grd_cmd():
 )
 @click.argument("src")
 @click.argument("dst")
-def create_item_command(src, dst):
+def create_item_command(src: str, dst: str) -> None:
     """Creates a STAC Collection
 
     Args:

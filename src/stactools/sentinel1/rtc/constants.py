@@ -62,7 +62,7 @@ SENTINEL_RTC_EPSGS = [int(f"326{x}") for x in utm_zones]
 
 # RTC is derived from S1 GRD, so include input GRD properties for IW2 (center swath)
 # https://sentinel.esa.int/web/sentinel/technical-guides/sentinel-1-sar/products-algorithms/level-1-algorithms/ground-range-detected/iw
-SENTINEL_RTC_SAR = {
+SENTINEL_RTC_SAR: Dict[str, Any] = {
     "instrument_mode": "IW",
     "product_type": "RTC",
     "polarizations": [sar.Polarization.VV, sar.Polarization.VH],
@@ -74,4 +74,4 @@ SENTINEL_RTC_SAR = {
     "looks_range": 5,
     "looks_azimuth": 1,
     "gsd": 20,  # final MGRS pixel posting
-}  # type: Dict[str, Any]
+}

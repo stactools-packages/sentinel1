@@ -60,7 +60,5 @@ class CreateItemTest(CliTestCase):
                     if bands is not None:
                         bands_seen |= set(b.name for b in bands)
 
-                # TODO: Verify the intent of this test
-                # The prior test was in a List Comprehension which doesn't evaluate to a return
                 for x in bands_seen:
                     self.assertTrue(x.lower() in list(SENTINEL_POLARIZATIONS.keys()))

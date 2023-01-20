@@ -57,11 +57,11 @@ class ProductMetadata:
                 raise ProductMetadataError(
                     f"Cannot parse footprint from product metadata at {self.href}"
                 )
-            else:
-                # Convert to values
-                footprint_value = [
-                    float(x) for x in footprint_text.replace(" ", ",").split(",")
-                ]
+
+            # Convert to values
+            footprint_value = [
+                float(x) for x in footprint_text.replace(" ", ",").split(",")
+            ]
 
             footprint_points = [
                 p[::-1] for p in list(zip(*[iter(footprint_value)] * 2))
@@ -152,7 +152,9 @@ class ProductMetadata:
     def platform(self) -> Optional[str]:
 
         family_name = self._root.findall(".//safe:familyName")[0].text
+        assert family_name is not None
         platform_name = self._root.findall(".//safe:number")[0].text
+        assert platform_name is not None
 
         return f"{family_name}{platform_name}"
 

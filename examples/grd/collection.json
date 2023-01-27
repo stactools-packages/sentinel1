@@ -1,0 +1,326 @@
+{
+  "type": "Collection",
+  "id": "sentinel1-grd",
+  "stac_version": "1.0.0",
+  "description": "Level-1 Ground Range Detected (GRD) products consist of focused SAR data that has been detected, multi-looked and projected to ground range using an Earth ellipsoid model. The ellipsoid projection of the GRD products is corrected using the terrain height specified in the product general annotation. The terrain height used varies in azimuth but is constant in range. Ground range coordinates are the slant range coordinates projected onto the ellipsoid of the Earth. Pixel values represent detected magnitude. Phase information is lost. The resulting product has approximately square spatial resolution and square pixel spacing with reduced speckle due to the multi-look processing. The noise vector annotation data set, within the product annotations, contains thermal noise vectors so that users can apply a thermal noise correction by subtracting the noise from the power detected image. The thermal noise correction is, for example, supported by the Sentinel-1 Toolbox (S1TBX). For the IW and EW GRD products, multi-looking is performed on each burst individually. All bursts in all sub-swaths are then seamlessly merged to form a single, contiguous, ground range detected image per polarisation channel.GRD products are available in three resolutions, characterised by the acquisition mode and the level of multi-looking applied: Full Resolution (FR), High Resolution (HR), Medium Resolution (MR).",
+  "links": [
+    {
+      "rel": "root",
+      "href": "./collection.json",
+      "type": "application/json",
+      "title": "Sentinel-1 GRD"
+    },
+    {
+      "rel": "license",
+      "href": "https://scihub.copernicus.eu/twiki/do/view/SciHubWebPortal/TermsConditions",
+      "title": "Sentinel License"
+    },
+    {
+      "rel": "about",
+      "href": "https://sentinels.copernicus.eu/web/sentinel/technical-guides/sentinel-1-sar/products-algorithms/level-1-algorithms/ground-range-detected",
+      "title": "Sentinel-1 Ground Range Detected (GRD) Technical Guide"
+    },
+    {
+      "rel": "item",
+      "href": "./S1A_EW_GRDM_1SDH_20221130T014342_20221130T014446_046117_058549_BB15/S1A_EW_GRDM_1SDH_20221130T014342_20221130T014446_046117_058549_BB15.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "item",
+      "href": "./S1A_IW_GRDH_1SDV_20210809T173953_20210809T174018_039156_049F13_6FF8/S1A_IW_GRDH_1SDV_20210809T173953_20210809T174018_039156_049F13_6FF8.json",
+      "type": "application/json"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/sar/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/sat/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/eo/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/item-assets/v1.0.0/schema.json"
+  ],
+  "item_assets": {
+    "vh": {
+      "title": "VH",
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "description": "VH polarization backscattering coefficient, 16-bit DN.",
+      "roles": [
+        "data"
+      ]
+    },
+    "hh": {
+      "title": "HH",
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "description": "HH polarization backscattering coefficient, 16-bit DN.",
+      "roles": [
+        "data"
+      ]
+    },
+    "hv": {
+      "title": "HV",
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "description": "HV polarization backscattering coefficient, 16-bit DN.",
+      "roles": [
+        "data"
+      ]
+    },
+    "vv": {
+      "title": "VV",
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "description": "VV polarization backscattering coefficient, 16-bit DN.",
+      "roles": [
+        "data"
+      ]
+    },
+    "schema-calibration-hh": {
+      "title": "Calibration Schema",
+      "type": "application/xml",
+      "description": "Calibration metadata including calibration information and the beta nought, sigma nought, gamma and digital number look-up tables that can be used for absolute product calibration.",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "schema-calibration-hv": {
+      "title": "Calibration Schema",
+      "type": "application/xml",
+      "description": "Calibration metadata including calibration information and the beta nought, sigma nought, gamma and digital number look-up tables that can be used for absolute product calibration.",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "schema-calibration-vh": {
+      "title": "Calibration Schema",
+      "type": "application/xml",
+      "description": "Calibration metadata including calibration information and the beta nought, sigma nought, gamma and digital number look-up tables that can be used for absolute product calibration.",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "schema-calibration-vv": {
+      "title": "Calibration Schema",
+      "type": "application/xml",
+      "description": "Calibration metadata including calibration information and the beta nought, sigma nought, gamma and digital number look-up tables that can be used for absolute product calibration.",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "schema-noise-hh": {
+      "title": "Noise Schema",
+      "type": "application/xml",
+      "description": "Estimated thermal noise look-up tables",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "schema-noise-hv": {
+      "title": "Noise Schema",
+      "type": "application/xml",
+      "description": "Estimated thermal noise look-up tables",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "schema-noise-vh": {
+      "title": "Noise Schema",
+      "type": "application/xml",
+      "description": "Estimated thermal noise look-up tables",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "schema-noise-vv": {
+      "title": "Noise Schema",
+      "type": "application/xml",
+      "description": "Estimated thermal noise look-up tables",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "schema-product-hh": {
+      "title": "Product Schema",
+      "type": "application/xml",
+      "description": "Describes the main characteristics corresponding to the band: state of the platform during acquisition, image properties, Doppler information, geographic location, etc.",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "schema-product-hv": {
+      "title": "Product Schema",
+      "type": "application/xml",
+      "description": "Describes the main characteristics corresponding to the band: state of the platform during acquisition, image properties, Doppler information, geographic location, etc.",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "schema-product-vh": {
+      "title": "Product Schema",
+      "type": "application/xml",
+      "description": "Describes the main characteristics corresponding to the band: state of the platform during acquisition, image properties, Doppler information, geographic location, etc.",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "schema-product-vv": {
+      "title": "Product Schema",
+      "type": "application/xml",
+      "description": "Describes the main characteristics corresponding to the band: state of the platform during acquisition, image properties, Doppler information, geographic location, etc.",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "safe-manifest": {
+      "title": "Manifest File",
+      "type": "application/xml",
+      "description": "General product metadata in XML format. Contains a high-level textual description of the product and references to all of product's components, the product metadata, including the product identification and the resource references, and references to the physical location of each component file contained in the product.",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "thumbnail": {
+      "title": "Preview Image",
+      "type": "image/png",
+      "description": "An averaged, decimated preview image in PNG format. Single polarization products are represented with a grey scale image. Dual polarization products are represented by a single composite colour image in RGB with the red channel (R) representing the  co-polarization VV or HH), the green channel (G) represents the cross-polarization (VH or HV) and the blue channel (B) represents the ratio of the cross an co-polarizations.",
+      "roles": [
+        "thumbnail"
+      ]
+    }
+  },
+  "title": "Sentinel-1 GRD",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -180.0,
+          -90.0,
+          180.0,
+          90.0
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2014-10-10T00:00:00Z",
+          null
+        ]
+      ]
+    }
+  },
+  "license": "proprietary",
+  "keywords": [
+    "ground",
+    "sentinel",
+    "copernicus",
+    "esa",
+    "sar"
+  ],
+  "providers": [
+    {
+      "name": "ESA",
+      "roles": [
+        "producer",
+        "processor",
+        "licensor"
+      ],
+      "url": "https://earth.esa.int/eogateway"
+    },
+    {
+      "name": "Sinergise",
+      "roles": [
+        "host",
+        "processor",
+        "licensor"
+      ],
+      "url": "https://registry.opendata.aws/sentinel-1/"
+    }
+  ],
+  "summaries": {
+    "constellation": [
+      "sentinel-1"
+    ],
+    "platform": [
+      "sentinel-1a",
+      "sentinel-1b"
+    ],
+    "sar:looks_range": [
+      2,
+      3,
+      5,
+      6
+    ],
+    "sar:product_type": [
+      "GRD"
+    ],
+    "sar:looks_azimuth": [
+      1,
+      2,
+      6
+    ],
+    "sar:polarizations": [
+      "HH",
+      "VV",
+      "HV",
+      "VH",
+      [
+        "HH",
+        "HV"
+      ],
+      [
+        "VV",
+        "VH"
+      ]
+    ],
+    "sar:frequency_band": [
+      "C"
+    ],
+    "sar:instrument_mode": [
+      "IW",
+      "EW",
+      "SM"
+    ],
+    "sar:center_frequency": [
+      5.405
+    ],
+    "sar:resolution_range": [
+      9,
+      20,
+      23,
+      50,
+      93
+    ],
+    "sar:resolution_azimuth": [
+      9,
+      22,
+      23,
+      50,
+      87
+    ],
+    "sar:pixel_spacing_range": [
+      3.5,
+      10,
+      25,
+      40
+    ],
+    "sar:observation_direction": [
+      "right"
+    ],
+    "sar:pixel_spacing_azimuth": [
+      3.5,
+      10,
+      25,
+      40
+    ],
+    "sar:looks_equivalent_number": [
+      3.7,
+      29.7,
+      398.4,
+      4.4,
+      81.8,
+      2.8,
+      10.7,
+      123.7
+    ],
+    "sat:orbit_state": [
+      "ascending",
+      "descending"
+    ]
+  }
+}

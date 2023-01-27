@@ -1,0 +1,228 @@
+{
+  "type": "Feature",
+  "stac_version": "1.0.0",
+  "id": "S1A_EW_GRDM_1SDH_20221130T014342_20221130T014446_046117_058549_BB15",
+  "properties": {
+    "sar:frequency_band": "C",
+    "sar:center_frequency": 5.405,
+    "sar:observation_direction": "right",
+    "sar:instrument_mode": "EW",
+    "sar:polarizations": [
+      "HH",
+      "HV"
+    ],
+    "sar:product_type": "GRD",
+    "sar:resolution_range": 93,
+    "sar:resolution_azimuth": 87,
+    "sar:pixel_spacing_range": 40,
+    "sar:pixel_spacing_azimuth": 40,
+    "sar:looks_range": 6,
+    "sar:looks_azimuth": 2,
+    "sar:looks_equivalent_number": 10.7,
+    "sat:platform_international_designator": "2014-016A",
+    "sat:orbit_state": "descending",
+    "sat:absolute_orbit": 46117,
+    "sat:relative_orbit": 20,
+    "providers": [
+      {
+        "name": "ESA",
+        "roles": [
+          "producer",
+          "processor",
+          "licensor"
+        ],
+        "url": "https://earth.esa.int/eogateway"
+      }
+    ],
+    "platform": "SENTINEL-1A",
+    "constellation": "sentinel-1",
+    "start_datetime": "2022-11-30 01:43:42.546629+00:00",
+    "end_datetime": "2022-11-30 01:44:46.839082+00:00",
+    "s1:instrument_configuration_ID": "7",
+    "s1:datatake_id": "361801",
+    "s1:product_timeliness": "Fast-24h",
+    "s1:processing_level": "1",
+    "s1:resolution": "medium",
+    "s1:orbit_source": "RESORB",
+    "s1:slice_number": "1",
+    "s1:total_slices": "5",
+    "s1:shape": [
+      10487,
+      10708
+    ],
+    "datetime": "2022-11-30T01:44:14.692855Z"
+  },
+  "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+      [
+        [
+          91.651596,
+          76.879097
+        ],
+        [
+          75.348396,
+          78.260895
+        ],
+        [
+          81.596954,
+          81.972343
+        ],
+        [
+          102.789734,
+          80.113571
+        ],
+        [
+          91.651596,
+          76.879097
+        ]
+      ]
+    ]
+  },
+  "links": [
+    {
+      "rel": "license",
+      "href": "https://scihub.copernicus.eu/twiki/do/view/SciHubWebPortal/TermsConditions",
+      "title": "Sentinel License"
+    },
+    {
+      "rel": "about",
+      "href": "https://sentinels.copernicus.eu/web/sentinel/technical-guides/sentinel-1-sar/products-algorithms/level-1-algorithms/ground-range-detected",
+      "title": "Sentinel-1 Ground Range Detected (GRD) Technical Guide"
+    },
+    {
+      "rel": "root",
+      "href": "../collection.json",
+      "type": "application/json",
+      "title": "Sentinel-1 GRD"
+    },
+    {
+      "rel": "collection",
+      "href": "../collection.json",
+      "type": "application/json",
+      "title": "Sentinel-1 GRD"
+    },
+    {
+      "rel": "parent",
+      "href": "../collection.json",
+      "type": "application/json",
+      "title": "Sentinel-1 GRD"
+    }
+  ],
+  "assets": {
+    "safe-manifest": {
+      "href": "../../../tests/data-files/grd/S1A_EW_GRDM_1SDH_20221130T014342_20221130T014446_046117_058549_BB15/manifest.safe",
+      "type": "application/xml",
+      "title": "Manifest File",
+      "description": "General product metadata in XML format. Contains a high-level textual description of the product and references to all of product's components, the product metadata, including the product identification and the resource references, and references to the physical location of each component file contained in the product.",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "schema-product-hh": {
+      "href": "../../../tests/data-files/grd/S1A_EW_GRDM_1SDH_20221130T014342_20221130T014446_046117_058549_BB15/annotation/rfi/rfi-ew-hh.xml",
+      "type": "application/xml",
+      "title": "Product Schema",
+      "description": "Describes the main characteristics corresponding to the band: state of the platform during acquisition, image properties, Doppler information, geographic location, etc.",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "schema-product-hv": {
+      "href": "../../../tests/data-files/grd/S1A_EW_GRDM_1SDH_20221130T014342_20221130T014446_046117_058549_BB15/annotation/rfi/rfi-ew-hv.xml",
+      "type": "application/xml",
+      "title": "Product Schema",
+      "description": "Describes the main characteristics corresponding to the band: state of the platform during acquisition, image properties, Doppler information, geographic location, etc.",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "schema-calibration-hh": {
+      "href": "../../../tests/data-files/grd/S1A_EW_GRDM_1SDH_20221130T014342_20221130T014446_046117_058549_BB15/annotation/calibration/calibration-ew-hh.xml",
+      "type": "application/xml",
+      "title": "Calibration Schema",
+      "description": "Calibration metadata including calibration information and the beta nought, sigma nought, gamma and digital number look-up tables that can be used for absolute product calibration.",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "schema-calibration-hv": {
+      "href": "../../../tests/data-files/grd/S1A_EW_GRDM_1SDH_20221130T014342_20221130T014446_046117_058549_BB15/annotation/calibration/calibration-ew-hv.xml",
+      "type": "application/xml",
+      "title": "Calibration Schema",
+      "description": "Calibration metadata including calibration information and the beta nought, sigma nought, gamma and digital number look-up tables that can be used for absolute product calibration.",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "schema-noise-hh": {
+      "href": "../../../tests/data-files/grd/S1A_EW_GRDM_1SDH_20221130T014342_20221130T014446_046117_058549_BB15/annotation/calibration/noise-ew-hh.xml",
+      "type": "application/xml",
+      "title": "Noise Schema",
+      "description": "Estimated thermal noise look-up tables",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "schema-noise-hv": {
+      "href": "../../../tests/data-files/grd/S1A_EW_GRDM_1SDH_20221130T014342_20221130T014446_046117_058549_BB15/annotation/calibration/noise-ew-hv.xml",
+      "type": "application/xml",
+      "title": "Noise Schema",
+      "description": "Estimated thermal noise look-up tables",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "thumbnail": {
+      "href": "../../../tests/data-files/grd/S1A_EW_GRDM_1SDH_20221130T014342_20221130T014446_046117_058549_BB15/preview/quick-look.png",
+      "type": "image/png",
+      "title": "Preview Image",
+      "description": "An averaged, decimated preview image in PNG format. Single polarization products are represented with a grey scale image. Dual polarization products are represented by a single composite colour image in RGB with the red channel (R) representing the  co-polarization VV or HH), the green channel (G) represents the cross-polarization (VH or HV) and the blue channel (B) represents the ratio of the cross an co-polarizations.",
+      "roles": [
+        "thumbnail"
+      ]
+    },
+    "hh": {
+      "href": "../../../tests/data-files/grd/S1A_EW_GRDM_1SDH_20221130T014342_20221130T014446_046117_058549_BB15/measurement/ew-hh.tiff",
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "title": "HH",
+      "description": "Actual SAR data that have been processed into an image",
+      "eo:bands": [
+        {
+          "name": "HH",
+          "description": "HH band: horizontal transmit and horizontal receive"
+        }
+      ],
+      "roles": [
+        "data"
+      ]
+    },
+    "hv": {
+      "href": "../../../tests/data-files/grd/S1A_EW_GRDM_1SDH_20221130T014342_20221130T014446_046117_058549_BB15/measurement/ew-hv.tiff",
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "title": "HV",
+      "description": "Actual SAR data that have been processed into an image",
+      "eo:bands": [
+        {
+          "name": "HV",
+          "description": "HV band: horizontal transmit and vertical receive"
+        }
+      ],
+      "roles": [
+        "data"
+      ]
+    }
+  },
+  "bbox": [
+    75.348396,
+    76.879097,
+    102.789734,
+    81.972343
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/sar/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/sat/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/eo/v1.0.0/schema.json"
+  ],
+  "collection": "sentinel1-grd"
+}

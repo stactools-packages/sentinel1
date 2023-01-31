@@ -54,7 +54,7 @@ def create_collection(json_path: str) -> pystac.Collection:
     sar.looks_range = c.SENTINEL_GRD_SAR["looks_range"]
     sar.product_type = c.SENTINEL_GRD_SAR["product_type"]
     sar.looks_azimuth = c.SENTINEL_GRD_SAR["looks_azimuth"]
-    sar.polarizations = c.SENTINEL_GRD_SAR["polarizations"]
+    sar.polarizations = c.SENTINEL_GRD_SAR["polarisations"]
     sar.frequency_band = c.SENTINEL_GRD_SAR["frequency_band"]
     sar.instrument_mode = c.SENTINEL_GRD_SAR["instrument_mode"]
     sar.center_frequency = c.SENTINEL_GRD_SAR["center_frequency"]
@@ -165,7 +165,7 @@ def create_item(
             "are represented by a single composite colour image in RGB with the red channel "
             "(R) representing the  co-polarization VV or HH), the green channel (G) "
             "represents the cross-polarization (VH or HV) and the blue channel (B) "
-            "represents the ratio of the cross an co-polarizations."
+            "represents the ratio of the cross an co-polariations."
         )
         item.add_asset(
             "thumbnail",

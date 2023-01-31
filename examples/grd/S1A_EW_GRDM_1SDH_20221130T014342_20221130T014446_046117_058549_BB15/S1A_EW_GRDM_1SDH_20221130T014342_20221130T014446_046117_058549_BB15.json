@@ -177,7 +177,7 @@
       "href": "../../../tests/data-files/grd/S1A_EW_GRDM_1SDH_20221130T014342_20221130T014446_046117_058549_BB15/preview/quick-look.png",
       "type": "image/png",
       "title": "Preview Image",
-      "description": "An averaged, decimated preview image in PNG format. Single polarization products are represented with a grey scale image. Dual polarization products are represented by a single composite colour image in RGB with the red channel (R) representing the  co-polarization VV or HH), the green channel (G) represents the cross-polarization (VH or HV) and the blue channel (B) represents the ratio of the cross an co-polarizations.",
+      "description": "An averaged, decimated preview image in PNG format. Single polarization products are represented with a grey scale image. Dual polarization products are represented by a single composite colour image in RGB with the red channel (R) representing the  co-polarization VV or HH), the green channel (G) represents the cross-polarization (VH or HV) and the blue channel (B) represents the ratio of the cross an co-polariations.",
       "roles": [
         "thumbnail"
       ]

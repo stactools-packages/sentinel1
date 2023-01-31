@@ -5,7 +5,7 @@ from typing import Optional, Tuple
 import pystac
 from pystac.extensions.eo import EOExtension
 
-from stactools.sentinel1.grd.constants import SENTINEL_POLARIZATIONS
+from stactools.sentinel1.grd.constants import SENTINEL_POLARISATIONS
 
 logger = logging.getLogger(__name__)
 
@@ -35,7 +35,7 @@ def image_asset_from_href(
         band_id = os.path.basename(asset_href).split(".")[0].split("-")[3]
 
     if band_id is not None:
-        band = SENTINEL_POLARIZATIONS[band_id]
+        band = SENTINEL_POLARISATIONS[band_id]
 
         # Create asset
         desc = "Actual SAR data that have been processed into an image"
@@ -48,7 +48,7 @@ def image_asset_from_href(
         )
 
         asset_eo = EOExtension.ext(asset)
-        asset_eo.bands = [SENTINEL_POLARIZATIONS[band_id]]
+        asset_eo.bands = [SENTINEL_POLARISATIONS[band_id]]
 
         return (band_id, asset)
 

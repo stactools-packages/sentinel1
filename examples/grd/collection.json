@@ -41,7 +41,7 @@
     "vh": {
       "title": "VH",
       "type": "image/tiff; application=geotiff; profile=cloud-optimized",
-      "description": "VH polarization backscattering coefficient, 16-bit DN.",
+      "description": "VH polarisation backscattering coefficient, 16-bit DN.",
       "roles": [
         "data"
       ]
@@ -49,7 +49,7 @@
     "hh": {
       "title": "HH",
       "type": "image/tiff; application=geotiff; profile=cloud-optimized",
-      "description": "HH polarization backscattering coefficient, 16-bit DN.",
+      "description": "HH polarisation backscattering coefficient, 16-bit DN.",
       "roles": [
         "data"
       ]
@@ -57,7 +57,7 @@
     "hv": {
       "title": "HV",
       "type": "image/tiff; application=geotiff; profile=cloud-optimized",
-      "description": "HV polarization backscattering coefficient, 16-bit DN.",
+      "description": "HV polarisation backscattering coefficient, 16-bit DN.",
       "roles": [
         "data"
       ]
@@ -65,7 +65,7 @@
     "vv": {
       "title": "VV",
       "type": "image/tiff; application=geotiff; profile=cloud-optimized",
-      "description": "VV polarization backscattering coefficient, 16-bit DN.",
+      "description": "VV polarisation backscattering coefficient, 16-bit DN.",
       "roles": [
         "data"
       ]
@@ -177,7 +177,7 @@
     "thumbnail": {
       "title": "Preview Image",
       "type": "image/png",
-      "description": "An averaged, decimated preview image in PNG format. Single polarization products are represented with a grey scale image. Dual polarization products are represented by a single composite colour image in RGB with the red channel (R) representing the  co-polarization VV or HH), the green channel (G) represents the cross-polarization (VH or HV) and the blue channel (B) represents the ratio of the cross an co-polarizations.",
+      "description": "An averaged, decimated preview image in PNG format. Single polarisation products are represented with a grey scale image. Dual polarisation products are represented by a single composite colour image in RGB with the red channel (R) representing the  co-polarisation VV or HH), the green channel (G) represents the cross-polarisation (VH or HV) and the blue channel (B) represents the ratio of the cross an co-polarisations.",
       "roles": [
         "thumbnail"
       ]

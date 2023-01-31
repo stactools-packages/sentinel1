@@ -77,7 +77,7 @@ SENTINEL_GRD_LICENSE = Link(
 
 SENTINEL_GRD_KEYWORDS = ["ground", "sentinel", "copernicus", "esa", "sar"]
 
-SENTINEL_POLARIZATIONS = {
+SENTINEL_POLARISATIONS = {
     "vh": Band.create(
         name="VH",
         description="VH band: vertical transmit and horizontal receive",
@@ -100,11 +100,11 @@ SENTINEL_GRD_SAT = {
     "orbit_state": [sat.OrbitState.ASCENDING, sat.OrbitState.DESCENDING]
 }
 
-SENTINEL_GRD_SAR = {
+SENTINEL_GRD_SAR: Dict[str, Any] = {
     "looks_range": [2, 3, 5, 6],
     "product_type": ["GRD"],
     "looks_azimuth": [1, 2, 6],
-    "polarizations": [
+    "polarisations": [
         sar.Polarization.HH,
         sar.Polarization.VV,
         sar.Polarization.HV,
@@ -127,14 +127,14 @@ SENTINEL_GRD_SAR = {
     "observation_direction": [sar.ObservationDirection.RIGHT],
     "pixel_spacing_azimuth": [3.5, 10, 25, 40],
     "looks_equivalent_number": [3.7, 29.7, 398.4, 4.4, 81.8, 2.8, 10.7, 123.7],
-}  # type: Dict[str, Any]
+}
 
 SENTINEL_GRD_ASSETS = {
     "vh": AssetDefinition(
         {
             "title": "VH",
             "type": pystac.MediaType.COG,
-            "description": "VH polarization backscattering coefficient, 16-bit DN.",
+            "description": "VH polarisation backscattering coefficient, 16-bit DN.",
             "roles": ["data"],
         }
     ),
@@ -142,7 +142,7 @@ SENTINEL_GRD_ASSETS = {
         {
             "title": "HH",
             "type": pystac.MediaType.COG,
-            "description": "HH polarization backscattering coefficient, 16-bit DN.",
+            "description": "HH polarisation backscattering coefficient, 16-bit DN.",
             "roles": ["data"],
         }
     ),
@@ -150,7 +150,7 @@ SENTINEL_GRD_ASSETS = {
         {
             "title": "HV",
             "type": pystac.MediaType.COG,
-            "description": "HV polarization backscattering coefficient, 16-bit DN.",
+            "description": "HV polarisation backscattering coefficient, 16-bit DN.",
             "roles": ["data"],
         }
     ),
@@ -158,7 +158,7 @@ SENTINEL_GRD_ASSETS = {
         {
             "title": "VV",
             "type": pystac.MediaType.COG,
-            "description": "VV polarization backscattering coefficient, 16-bit DN.",
+            "description": "VV polarisation backscattering coefficient, 16-bit DN.",
             "roles": ["data"],
         }
     ),
@@ -309,12 +309,12 @@ SENTINEL_GRD_ASSETS = {
             "title": "Preview Image",
             "type": pystac.MediaType.PNG,
             "description": (
-                "An averaged, decimated preview image in PNG format. Single polarization "
-                "products are represented with a grey scale image. Dual polarization products "
+                "An averaged, decimated preview image in PNG format. Single polarisation "
+                "products are represented with a grey scale image. Dual polarisation products "
                 "are represented by a single composite colour image in RGB with the red channel "
-                "(R) representing the  co-polarization VV or HH), the green channel (G) "
-                "represents the cross-polarization (VH or HV) and the blue channel (B) "
-                "represents the ratio of the cross an co-polarizations."
+                "(R) representing the  co-polarisation VV or HH), the green channel (G) "
+                "represents the cross-polarisation (VH or HV) and the blue channel (B) "
+                "represents the ratio of the cross an co-polarisations."
             ),
             "roles": ["thumbnail"],
         }

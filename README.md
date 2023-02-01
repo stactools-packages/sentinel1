@@ -9,8 +9,8 @@
 - PyPI: <https://pypi.org/project/stactools-sentinel1/>
 - Owners: @scottyhq (RTC), @maximlamare (GRD)
 - Dataset homepages:
-  - [RTC](https://registry.opendata.aws/sentinel-1-rtc-indigo/),
-  - [GRD](https://registry.opendata.aws/sentinel-1/
+  - [RTC](https://registry.opendata.aws/sentinel-1-rtc-indigo/)
+  - [GRD](https://registry.opendata.aws/sentinel-1/)
 - STAC extensions used:
   - [projection](https://github.com/stac-extensions/projection/)
   - [sar](https://github.com/stac-extensions/sar)

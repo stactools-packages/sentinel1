@@ -165,7 +165,7 @@ def create_item(
             "are represented by a single composite colour image in RGB with the red channel "
             "(R) representing the  co-polarization VV or HH), the green channel (G) "
             "represents the cross-polarization (VH or HV) and the blue channel (B) "
-            "represents the ratio of the cross an co-polariations."
+            "represents the ratio of the cross an co-polarizations."
         )
         item.add_asset(
             "thumbnail",

@@ -25,7 +25,7 @@ SENTINEL_GRD_DESCRIPTION = (
     "Level-1 Ground Range Detected (GRD) products consist of focused SAR data that has been detected, multi-looked and projected to ground range using an Earth ellipsoid model. The ellipsoid projection of the GRD products is corrected using the terrain height specified in the product general annotation. "  # noqa: E501
     "The terrain height used varies in azimuth but is constant in range. Ground range coordinates are the slant range coordinates projected onto the ellipsoid of the Earth. Pixel values represent detected magnitude. Phase information is lost. The resulting product has approximately square spatial resolution "  # noqa: E501
     "and square pixel spacing with reduced speckle due to the multi-look processing. The noise vector annotation data set, within the product annotations, contains thermal noise vectors so that users can apply a thermal noise correction by subtracting the noise from the power detected image. "  # noqa: E501
-    "The thermal noise correction is, for example, supported by the Sentinel-1 Toolbox (S1TBX). For the IW and EW GRD products, multi-looking is performed on each burst individually. All bursts in all sub-swaths are then seamlessly merged to form a single, contiguous, ground range detected image per polarisation channel."  # noqa: E501
+    "The thermal noise correction is, for example, supported by the Sentinel-1 Toolbox (S1TBX). For the IW and EW GRD products, multi-looking is performed on each burst individually. All bursts in all sub-swaths are then seamlessly merged to form a single, contiguous, ground range detected image per polarization channel."  # noqa: E501
     "GRD products are available in three resolutions, characterised by the acquisition mode and the level of multi-looking applied: Full Resolution (FR), High Resolution (HR), Medium Resolution (MR)."  # noqa: E501
 )
 
@@ -77,7 +77,7 @@ SENTINEL_GRD_LICENSE = Link(
 
 SENTINEL_GRD_KEYWORDS = ["ground", "sentinel", "copernicus", "esa", "sar"]
 
-SENTINEL_POLARISATIONS = {
+SENTINEL_POLARIZATIONS = {
     "vh": Band.create(
         name="VH",
         description="VH band: vertical transmit and horizontal receive",
@@ -104,7 +104,7 @@ SENTINEL_GRD_SAR: Dict[str, Any] = {
     "looks_range": [2, 3, 5, 6],
     "product_type": ["GRD"],
     "looks_azimuth": [1, 2, 6],
-    "polarisations": [
+    "polarizations": [
         sar.Polarization.HH,
         sar.Polarization.VV,
         sar.Polarization.HV,
@@ -134,7 +134,7 @@ SENTINEL_GRD_ASSETS = {
         {
             "title": "VH",
             "type": pystac.MediaType.COG,
-            "description": "VH polarisation backscattering coefficient, 16-bit DN.",
+            "description": "VH polarization backscattering coefficient, 16-bit DN.",
             "roles": ["data"],
         }
     ),
@@ -142,7 +142,7 @@ SENTINEL_GRD_ASSETS = {
         {
             "title": "HH",
             "type": pystac.MediaType.COG,
-            "description": "HH polarisation backscattering coefficient, 16-bit DN.",
+            "description": "HH polarization backscattering coefficient, 16-bit DN.",
             "roles": ["data"],
         }
     ),
@@ -150,7 +150,7 @@ SENTINEL_GRD_ASSETS = {
         {
             "title": "HV",
             "type": pystac.MediaType.COG,
-            "description": "HV polarisation backscattering coefficient, 16-bit DN.",
+            "description": "HV polarization backscattering coefficient, 16-bit DN.",
             "roles": ["data"],
         }
     ),
@@ -158,7 +158,7 @@ SENTINEL_GRD_ASSETS = {
         {
             "title": "VV",
             "type": pystac.MediaType.COG,
-            "description": "VV polarisation backscattering coefficient, 16-bit DN.",
+            "description": "VV polarization backscattering coefficient, 16-bit DN.",
             "roles": ["data"],
         }
     ),
@@ -309,12 +309,12 @@ SENTINEL_GRD_ASSETS = {
             "title": "Preview Image",
             "type": pystac.MediaType.PNG,
             "description": (
-                "An averaged, decimated preview image in PNG format. Single polarisation "
-                "products are represented with a grey scale image. Dual polarisation products "
+                "An averaged, decimated preview image in PNG format. Single polarization "
+                "products are represented with a grey scale image. Dual polarization products "
                 "are represented by a single composite colour image in RGB with the red channel "
-                "(R) representing the  co-polarisation VV or HH), the green channel (G) "
-                "represents the cross-polarisation (VH or HV) and the blue channel (B) "
-                "represents the ratio of the cross an co-polarisations."
+                "(R) representing the  co-polarization VV or HH), the green channel (G) "
+                "represents the cross-polarization (VH or HV) and the blue channel (B) "
+                "represents the ratio of the cross an co-polarizations."
             ),
             "roles": ["thumbnail"],
         }

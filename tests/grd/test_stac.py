@@ -3,7 +3,7 @@ from pystac.extensions.eo import EOExtension
 from pystac.utils import is_absolute_href
 
 from stactools.sentinel1.grd import Format, stac
-from stactools.sentinel1.grd.constants import SENTINEL_POLARISATIONS
+from stactools.sentinel1.grd.constants import SENTINEL_POLARIZATIONS
 from tests import test_data
 
 
@@ -44,4 +44,4 @@ def test_create_item() -> None:
     # TODO: Verify the intent of this test
     # The prior test was in a List Comprehension which doesn't evaluate to a return
     for x in bands_seen:
-        assert x.lower() in list(SENTINEL_POLARISATIONS.keys())
+        assert x.lower() in list(SENTINEL_POLARIZATIONS.keys())

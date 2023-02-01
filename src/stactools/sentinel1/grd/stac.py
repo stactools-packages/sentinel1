@@ -54,7 +54,7 @@ def create_collection(json_path: str) -> pystac.Collection:
     sar.looks_range = c.SENTINEL_GRD_SAR["looks_range"]
     sar.product_type = c.SENTINEL_GRD_SAR["product_type"]
     sar.looks_azimuth = c.SENTINEL_GRD_SAR["looks_azimuth"]
-    sar.polarizations = c.SENTINEL_GRD_SAR["polarisations"]
+    sar.polarizations = c.SENTINEL_GRD_SAR["polarizations"]
     sar.frequency_band = c.SENTINEL_GRD_SAR["frequency_band"]
     sar.instrument_mode = c.SENTINEL_GRD_SAR["instrument_mode"]
     sar.center_frequency = c.SENTINEL_GRD_SAR["center_frequency"]

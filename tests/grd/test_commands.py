@@ -10,7 +10,7 @@ from pystac.utils import is_absolute_href
 from stactools.testing.cli_test import CliTestCase
 
 from stactools.sentinel1.commands import create_sentinel1_command
-from stactools.sentinel1.grd.constants import SENTINEL_POLARISATIONS
+from stactools.sentinel1.grd.constants import SENTINEL_POLARIZATIONS
 from tests import test_data
 
 
@@ -71,4 +71,4 @@ class CreateItemTest(CliTestCase):
                         bands_seen |= set(b.name for b in bands)
 
                 for x in bands_seen:
-                    self.assertTrue(x.lower() in list(SENTINEL_POLARISATIONS.keys()))
+                    self.assertTrue(x.lower() in list(SENTINEL_POLARIZATIONS.keys()))

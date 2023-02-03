@@ -11,8 +11,9 @@ number as needed.
 
 ## [Unreleased]
 
-- Upgraded core linting and testing to latest from **stactools-template** (<https://github.com/stactools-packages/template/commit/8b15971a9f1fae7933b0e45aac8d59188daf5db5>)
-- Added `create-collection` command for `sentinel1 grd` along with matching tests
+### Added
+
+- Added `create-collection` command for `sentinel1 grd` ([#24](https://github.com/stactools-packages/sentinel1/pull/24))
 
 ## [0.4.0] - 2022-01-31
 

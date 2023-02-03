@@ -3,19 +3,77 @@ import os
 from typing import Any, Optional
 
 import pystac
+from pystac import Summaries
 from pystac.extensions.eo import EOExtension
+from pystac.extensions.item_assets import ItemAssetsExtension
 from pystac.extensions.sar import SarExtension
 from pystac.extensions.sat import SatExtension
 from stactools.core.io import ReadHrefModifier
 
+from stactools.sentinel1.grd import constants as c
+
 from . import Format
 from .bands import image_asset_from_href
-from .constants import SENTINEL_CONSTELLATION, SENTINEL_LICENSE, SENTINEL_PROVIDER
 from .metadata_links import MetadataLinks
 from .product_metadata import ProductMetadata, get_shape
 from .properties import fill_sar_properties, fill_sat_properties
 
 logger = logging.getLogger(__name__)
+
+
+def create_collection(json_path: str) -> pystac.Collection:
+    """Creates a STAC Collection for Sentinel-1 RTC"""
+    # Lists of all possible values for items
+    summary_dict = {
+        "constellation": [c.SENTINEL_CONSTELLATION],
+        "platform": c.SENTINEL_PLATFORMS,
+    }
+
+    collection = pystac.Collection(
+        id="sentinel1-grd",
+        description=c.SENTINEL_GRD_DESCRIPTION,
+        extent=c.SENTINEL_GRD_EXTENT,
+        title="Sentinel-1 GRD",
+        href=json_path,
+        stac_extensions=[
+            SarExtension.get_schema_uri(),
+            SatExtension.get_schema_uri(),
+            EOExtension.get_schema_uri(),
+        ],
+        keywords=c.SENTINEL_GRD_KEYWORDS,
+        providers=[c.SENTINEL_PROVIDER, c.SENTINEL_GRD_PROVIDER],
+        summaries=Summaries(summary_dict),
+    )
+
+    # Links
+    collection.links.append(c.SENTINEL_GRD_LICENSE)
+    collection.links.append(c.SENTINEL_GRD_TECHNICAL_GUIDE)
+
+    # SAR Extension
+    sar = SarExtension.summaries(collection, add_if_missing=True)
+    sar.looks_range = c.SENTINEL_GRD_SAR["looks_range"]
+    sar.product_type = c.SENTINEL_GRD_SAR["product_type"]
+    sar.looks_azimuth = c.SENTINEL_GRD_SAR["looks_azimuth"]
+    sar.polarizations = c.SENTINEL_GRD_SAR["polarizations"]
+    sar.frequency_band = c.SENTINEL_GRD_SAR["frequency_band"]
+    sar.instrument_mode = c.SENTINEL_GRD_SAR["instrument_mode"]
+    sar.center_frequency = c.SENTINEL_GRD_SAR["center_frequency"]
+    sar.resolution_range = c.SENTINEL_GRD_SAR["resolution_range"]
+    sar.resolution_azimuth = c.SENTINEL_GRD_SAR["resolution_azimuth"]
+    sar.pixel_spacing_range = c.SENTINEL_GRD_SAR["pixel_spacing_range"]
+    sar.observation_direction = c.SENTINEL_GRD_SAR["observation_direction"]
+    sar.pixel_spacing_azimuth = c.SENTINEL_GRD_SAR["pixel_spacing_azimuth"]
+    sar.looks_equivalent_number = c.SENTINEL_GRD_SAR["looks_equivalent_number"]
+
+    # SAT Extension
+    sat = SatExtension.summaries(collection, add_if_missing=True)
+    sat.orbit_state = c.SENTINEL_GRD_SAT["orbit_state"]
+
+    # Item Asset Extension
+    assets = ItemAssetsExtension.ext(collection, add_if_missing=True)
+    assets.item_assets = c.SENTINEL_GRD_ASSETS
+
+    return collection
 
 
 def create_item(
@@ -76,9 +134,9 @@ def create_item(
     EOExtension.ext(item, add_if_missing=True)
 
     # --Common metadata--
-    item.common_metadata.providers = [SENTINEL_PROVIDER]
+    item.common_metadata.providers = [c.SENTINEL_PROVIDER]
     item.common_metadata.platform = product_metadata.platform
-    item.common_metadata.constellation = SENTINEL_CONSTELLATION
+    item.common_metadata.constellation = c.SENTINEL_CONSTELLATION
 
     # s1 properties
     shape = get_shape(metalinks, read_href_modifier, **kwargs)
@@ -102,12 +160,12 @@ def create_item(
     # Thumbnail
     if metalinks.thumbnail_href is not None:
         desc = (
-            "An averaged, decimated preview image in PNG format. Single polarisation "
-            "products are represented with a grey scale image. Dual polarisation products "
+            "An averaged, decimated preview image in PNG format. Single polarization "
+            "products are represented with a grey scale image. Dual polarization products "
             "are represented by a single composite colour image in RGB with the red channel "
-            "(R) representing the  co-polarisation VV or HH), the green channel (G) "
-            "represents the cross-polarisation (VH or HV) and the blue channel (B) "
-            "represents the ratio of the cross an co-polarisations."
+            "(R) representing the  co-polarization VV or HH), the green channel (G) "
+            "represents the cross-polarization (VH or HV) and the blue channel (B) "
+            "represents the ratio of the cross an co-polarizations."
         )
         item.add_asset(
             "thumbnail",
@@ -142,6 +200,7 @@ def create_item(
         item.add_asset(key, asset)
 
     # --Links--
-    item.links.append(SENTINEL_LICENSE)
+    item.links.append(c.SENTINEL_GRD_LICENSE)
+    item.links.append(c.SENTINEL_GRD_TECHNICAL_GUIDE)
 
     return item

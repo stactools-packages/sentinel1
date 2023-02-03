@@ -1,4 +1,5 @@
 import os
+from pathlib import Path
 from tempfile import TemporaryDirectory
 from typing import Callable, List
 
@@ -9,13 +10,32 @@ from pystac.utils import is_absolute_href
 from stactools.testing.cli_test import CliTestCase
 
 from stactools.sentinel1.commands import create_sentinel1_command
-from stactools.sentinel1.grd.constants import SENTINEL_POLARISATIONS
+from stactools.sentinel1.grd.constants import SENTINEL_POLARIZATIONS
 from tests import test_data
 
 
 class CreateItemTest(CliTestCase):
     def create_subcommand_functions(self) -> List[Callable[[Group], Command]]:
         return [create_sentinel1_command]
+
+    def test_create_collection(self) -> None:
+        with TemporaryDirectory() as tmp_dir:
+            tmp_path = Path(tmp_dir)
+            destination = tmp_path / "sentinel1-grd.json"
+            cmd = ["sentinel1", "grd", "create-collection", f"{tmp_path}"]
+            result = self.run_command(cmd)
+
+            assert result.exit_code == 0, "\n{}".format(result.output)
+            paths = [p for p in tmp_path.iterdir() if p.suffix == ".json"]
+
+            assert len(paths) == 1
+            collection = pystac.Collection.from_file(str(destination))
+
+            assert collection.id == "sentinel1-grd"
+            # collection.set_self_href(
+            #    str(destination)
+            # )  # Must set the self reference to pass validation
+            collection.validate()
 
     def test_create_item(self) -> None:
         item_id = "S1A_IW_GRDH_1SDV_20210809T173953_20210809T174018_039156_049F13_6FF8"
@@ -51,4 +71,4 @@ class CreateItemTest(CliTestCase):
                         bands_seen |= set(b.name for b in bands)
 
                 for x in bands_seen:
-                    self.assertTrue(x.lower() in list(SENTINEL_POLARISATIONS.keys()))
+                    self.assertTrue(x.lower() in list(SENTINEL_POLARIZATIONS.keys()))

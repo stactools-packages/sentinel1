@@ -11,6 +11,10 @@ number as needed.
 
 ## [Unreleased]
 
+### Added
+
+- Added `create-collection` command for `sentinel1 grd` ([#24](https://github.com/stactools-packages/sentinel1/pull/24))
+
 ## [0.4.0] - 2022-01-31
 
 ### Added

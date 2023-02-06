@@ -2,6 +2,7 @@
 """
 Generate example STAC from test data
 """
+import shutil
 from pathlib import Path
 
 import pystac
@@ -12,10 +13,12 @@ from stactools.sentinel1.rtc import stac as rtc
 
 # GRD generate examples
 root = Path(__file__).parents[1]
-examples = root / "examples" / "grd"
+examples = root / "examples"
 grd_data = root / "tests" / "data-files" / "grd"
 
-grd_collection = grd.create_collection(str(examples))
+shutil.rmtree(examples, ignore_errors=True)
+
+grd_collection = grd.create_collection(str(examples / "grd" / "collection.json"))
 
 item1 = grd.create_item(
     str(
@@ -32,16 +35,19 @@ item2 = grd.create_item(
 )
 grd_collection.add_items([item1, item2])
 
-grd_collection.normalize_hrefs(str(examples))
+grd_collection.normalize_hrefs(str(examples / "grd"))
 grd_collection.make_all_asset_hrefs_relative()
+grd_collection.validate_all()
 grd_collection.save(catalog_type=pystac.CatalogType.SELF_CONTAINED)
 
 # RTC generate examples
 catalog = pystac.Catalog(
     id="sentinel1-rtc-example",
-    description="Example Catalog: Analysis Ready Sentinel-1 Backscatter Imagery AWS Public Dataset",
+    description=(
+        "Example Catalog: Analysis Ready Sentinel-1 "
+        "Backscatter Imagery AWS Public Dataset"
+    ),
     title="Sentinel-1 RTC AWS Open Data",
-    catalog_type=pystac.CatalogType.RELATIVE_PUBLISHED,
 )
 
 collection = rtc.create_collection()
@@ -57,10 +63,7 @@ collection.add_items([item1, item2])
 
 catalog.add_child(collection)
 catalog.generate_subcatalogs(template="${year}")
-
-catalog.normalize_hrefs("./")
-# NOTE: can simplify after https://github.com/stac-utils/pystac/pull/565/files
-# published_root_url = 'https://raw.githubusercontent.com/stactools-packages/sentinel1/main/examples/catalog.json' # noqa: E501
-# catalog.set_self_href(published_root_url) # !!! manually change after saving !!!
+catalog.normalize_hrefs(str(examples / "rtc"))
+catalog.make_all_asset_hrefs_relative()
 catalog.validate_all()
-catalog.save()
+catalog.save(catalog_type=pystac.CatalogType.SELF_CONTAINED)

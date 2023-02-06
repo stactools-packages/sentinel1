@@ -7,17 +7,14 @@
     {
       "rel": "root",
       "href": "./catalog.json",
-      "type": "application/json"
+      "type": "application/json",
+      "title": "Sentinel-1 RTC AWS Open Data"
     },
     {
       "rel": "child",
       "href": "./sentinel1-rtc-aws/collection.json",
-      "type": "application/json"
-    },
-    {
-      "rel": "self",
-      "href": "https://raw.githubusercontent.com/stactools-packages/sentinel1/main/examples/catalog.json",
-      "type": "application/json"
+      "type": "application/json",
+      "title": "Sentinel-1 RTC CONUS"
     }
   ],
   "stac_extensions": [],

@@ -112,5 +112,8 @@ git checkout -b newfeature
 ./scripts/format
 ./scripts/test
 
+# If you're changing the output STAC metadata, update the examples
+./scripts/create_examples.py
+
 # Once tests pass, commit changes and create a pull request
 ```

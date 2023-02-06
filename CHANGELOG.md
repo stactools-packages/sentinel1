@@ -11,11 +11,17 @@ number as needed.
 
 ## [Unreleased]
 
+## [0.5.0] - 2023-02-06
+
 ### Added
 
 - Added `create-collection` command for `sentinel1 grd` ([#24](https://github.com/stactools-packages/sentinel1/pull/24))
 
-## [0.4.0] - 2022-01-31
+### Changed
+
+- Some variable names in `constants.py` ([#24](https://github.com/stactools-packages/sentinel1/pull/24))
+
+## [0.4.0] - 2023-01-31
 
 ### Added
 
@@ -57,7 +63,8 @@ without `.SAFE` ending to the folders and slightly different file names.
 - Initial release!
 - Support for Sentinel1 AWS RTC public dataset
 
-[Unreleased]: https://github.com/stactools-packages/sentinel1/compare/v0.4.0...HEAD
+[Unreleased]: https://github.com/stactools-packages/sentinel1/compare/v0.5.0...HEAD
+[0.5.0]: https://github.com/stactools-packages/sentinel1/compare/v0.4.0...v0.5.0
 [0.4.0]: https://github.com/stactools-packages/sentinel1/compare/v0.3.0...v0.4.0
 [0.3.0]: https://github.com/stactools-packages/sentinel1/compare/v0.2.0...v0.3.0
 [0.2.0]: https://github.com/stactools-packages/sentinel1/compare/v0.1.0...v0.2.0

@@ -3,7 +3,7 @@ FROM ghcr.io/stac-utils/stactools:${STACTOOLS_VERSION}-dev
 
 ARG DOCKER_NAMESPACE_PACKAGE_DIR
 ARG DOCKER_WORKDIR
-ENV PYTHON_VERSION=3.9
+ENV PYTHON_VERSION=3.10
 WORKDIR $DOCKER_WORKDIR
 
 RUN apt-get -y -q update \
@@ -15,7 +15,7 @@ COPY pyproject.toml requirements-dev.txt setup.cfg ./
 COPY src/$DOCKER_NAMESPACE_PACKAGE_DIR/__init__.py src/$DOCKER_NAMESPACE_PACKAGE_DIR/
 RUN pip install -r requirements-dev.txt \
     && pip install . --no-binary rasterio \
-    && rm -r /opt/conda/lib/python$PYTHON_VERSION/site-packages/$DOCKER_NAMESPACE_PACKAGE_DIR || true
+    && rm -r /opt/conda/lib/python$PYTHON_VERSION/site-packages/$DOCKER_NAMESPACE_PACKAGE_DIR
 
 COPY . ./
 RUN git init

@@ -15,7 +15,7 @@ COPY pyproject.toml requirements-dev.txt setup.cfg ./
 COPY src/$DOCKER_NAMESPACE_PACKAGE_DIR/__init__.py src/$DOCKER_NAMESPACE_PACKAGE_DIR/
 RUN pip install -r requirements-dev.txt \
     && pip install . --no-binary rasterio \
-    && rm -r /opt/conda/lib/python$PYTHON_VERSION/site-packages/$DOCKER_NAMESPACE_PACKAGE_DIR
+    && rm -r /opt/conda/lib/python$PYTHON_VERSION/site-packages/$DOCKER_NAMESPACE_PACKAGE_DIR || true
 
 COPY . ./
 RUN git init

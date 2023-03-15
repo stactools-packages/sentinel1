@@ -10,7 +10,7 @@ WORKDIR $DOCKER_WORKDIR
 COPY pyproject.toml setup.cfg ./
 COPY src/$DOCKER_NAMESPACE_PACKAGE_DIR/__init__.py src/$DOCKER_NAMESPACE_PACKAGE_DIR/
 RUN pip install . --no-binary rasterio \
-    && rm -r /opt/conda/lib/python$PYTHON_VERSION/site-packages/$DOCKER_NAMESPACE_PACKAGE_DIR
+    && rm -r /opt/conda/lib/python$PYTHON_VERSION/site-packages/$DOCKER_NAMESPACE_PACKAGE_DIR || true
 
 COPY src ./src
 RUN git init

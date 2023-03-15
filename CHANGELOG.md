@@ -11,6 +11,11 @@ number as needed.
 
 ## [Unreleased]
 
+## Fixed
+
+- GRD Item Properties field start_datetime and end_datetime values were not valid
+  RFC 3339 datetimes, as they were missing the `T` separating the date and time.
+
 ## [0.5.0] - 2023-02-06
 
 ### Added

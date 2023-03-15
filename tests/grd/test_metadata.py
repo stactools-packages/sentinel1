@@ -47,7 +47,7 @@ class Sentinel1MetadataTest(unittest.TestCase):
 
         # Make a dictionary of the properties
         # TODO: test more of the properties
-        s1_props = {
+        properties_actual = {
             "bbox": item.bbox,
             "sar_band": item.properties["sar:frequency_band"],
             "centre_frequency": item.properties["sar:center_frequency"],
@@ -55,7 +55,7 @@ class Sentinel1MetadataTest(unittest.TestCase):
             "product_type": item.properties["sar:product_type"],
         }
 
-        expected = {
+        properties_expected = {
             "bbox": [1.512143, 44.536255, 5.188996, 46.436539],
             "sar_band": "C",
             "centre_frequency": 5.405,
@@ -63,6 +63,6 @@ class Sentinel1MetadataTest(unittest.TestCase):
             "product_type": "GRD",
         }
 
-        for k, v in expected.items():
-            self.assertIn(k, s1_props)
-            self.assertEqual(s1_props[k], v)
+        for k, v in properties_expected.items():
+            self.assertIn(k, properties_actual)
+            self.assertEqual(properties_actual[k], v)

@@ -1,7 +1,7 @@
 from datetime import datetime
 from typing import Any, Callable, Dict, List, Optional, Tuple
 
-from pystac.utils import str_to_datetime
+from pystac.utils import datetime_to_str, str_to_datetime
 from shapely.geometry import Polygon, mapping
 from stactools.core.io import ReadHrefModifier
 from stactools.core.io.xml import XmlElement
@@ -178,8 +178,8 @@ class ProductMetadata:
         total_slices = tmp.text if tmp is not None else None
 
         result = {
-            "start_datetime": str(self.start_datetime),
-            "end_datetime": str(self.end_datetime),
+            "start_datetime": datetime_to_str(self.start_datetime),
+            "end_datetime": datetime_to_str(self.end_datetime),
             "s1:instrument_configuration_ID": self._root.find_text(
                 ".//s1sarl1:instrumentConfigurationID"
             ),

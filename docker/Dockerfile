@@ -3,7 +3,7 @@ FROM ghcr.io/stac-utils/stactools:$STACTOOLS_VERSION
 
 ARG DOCKER_NAMESPACE_PACKAGE_DIR
 ARG DOCKER_WORKDIR
-ENV PYTHON_VERSION=3.9
+ENV PYTHON_VERSION=3.10
 WORKDIR $DOCKER_WORKDIR
 
 # For caching purposes, install dependencies but remove the actual package

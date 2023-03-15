@@ -45,3 +45,6 @@ def test_create_item() -> None:
     # The prior test was in a List Comprehension which doesn't evaluate to a return
     for x in bands_seen:
         assert x.lower() in list(SENTINEL_POLARIZATIONS.keys())
+
+    assert item.properties.get("start_datetime") == "2021-08-09T17:39:53.153776Z"
+    assert item.properties.get("end_datetime") == "2021-08-09T17:40:18.152800Z"

@@ -9,9 +9,11 @@ This project attempts to match the major and minor versions of
 [stactools](https://github.com/stac-utils/stactools) and increments the patch
 number as needed.
 
-## [Unreleased]
+## [Unreleased] - TBD
 
-## Fixed
+## [0.5.1] - 2023-03-15
+
+### Fixed
 
 - GRD Item Properties field start_datetime and end_datetime values were not valid
   RFC 3339 datetimes, as they were missing the `T` separating the date and time ([#30](https://github.com/stactools-packages/sentinel1/pull/30))
@@ -68,7 +70,8 @@ without `.SAFE` ending to the folders and slightly different file names.
 - Initial release!
 - Support for Sentinel1 AWS RTC public dataset
 
-[Unreleased]: https://github.com/stactools-packages/sentinel1/compare/v0.5.0...HEAD
+[Unreleased]: https://github.com/stactools-packages/sentinel1/compare/v0.5.1...HEAD
+[0.5.1]: https://github.com/stactools-packages/sentinel1/compare/v0.5.0...v0.5.1
 [0.5.0]: https://github.com/stactools-packages/sentinel1/compare/v0.4.0...v0.5.0
 [0.4.0]: https://github.com/stactools-packages/sentinel1/compare/v0.3.0...v0.4.0
 [0.3.0]: https://github.com/stactools-packages/sentinel1/compare/v0.2.0...v0.3.0

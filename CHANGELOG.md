@@ -18,6 +18,11 @@ number as needed.
 - GRD Item Properties field start_datetime and end_datetime values were not valid
   RFC 3339 datetimes, as they were missing the `T` separating the date and time ([#30](https://github.com/stactools-packages/sentinel1/pull/30))
 
+## Fixed
+
+- GRD Item Properties field start_datetime and end_datetime values were not valid
+  RFC 3339 datetimes, as they were missing the `T` separating the date and time ([#30](https://github.com/stactools-packages/sentinel1/pull/30))
+
 ## [0.5.0] - 2023-02-06
 
 ### Added

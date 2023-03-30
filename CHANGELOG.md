@@ -11,6 +11,10 @@ number as needed.
 
 ## [Unreleased] - TBD
 
+### Added
+
+- Added unique title for each product, calibration and noise schema item-asset ([#35](https://github.com/stactools-packages/sentinel1/pull/35))
+
 ## [0.5.1] - 2023-03-15
 
 ### Fixed

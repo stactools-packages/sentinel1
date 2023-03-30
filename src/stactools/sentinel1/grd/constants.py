@@ -132,7 +132,7 @@ SENTINEL_GRD_SAR: Dict[str, Any] = {
 SENTINEL_GRD_ASSETS = {
     "vh": AssetDefinition(
         {
-            "title": "VH",
+            "title": "VH Data",
             "type": pystac.MediaType.COG,
             "description": "VH polarization backscattering coefficient, 16-bit DN.",
             "roles": ["data"],
@@ -140,7 +140,7 @@ SENTINEL_GRD_ASSETS = {
     ),
     "hh": AssetDefinition(
         {
-            "title": "HH",
+            "title": "HH Data",
             "type": pystac.MediaType.COG,
             "description": "HH polarization backscattering coefficient, 16-bit DN.",
             "roles": ["data"],
@@ -148,7 +148,7 @@ SENTINEL_GRD_ASSETS = {
     ),
     "hv": AssetDefinition(
         {
-            "title": "HV",
+            "title": "HV Data",
             "type": pystac.MediaType.COG,
             "description": "HV polarization backscattering coefficient, 16-bit DN.",
             "roles": ["data"],
@@ -156,7 +156,7 @@ SENTINEL_GRD_ASSETS = {
     ),
     "vv": AssetDefinition(
         {
-            "title": "VV",
+            "title": "VV Data",
             "type": pystac.MediaType.COG,
             "description": "VV polarization backscattering coefficient, 16-bit DN.",
             "roles": ["data"],

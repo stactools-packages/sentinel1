@@ -243,7 +243,7 @@ class MetadataLinks:
             # Extract polarisation from href using extract_properties
             polarisation = extract_properties(href, ["polarisation"])[0].upper()
             # Create a unique title for each asset using the extracted polarisation
-            title = f"Product Schema ({polarisation})"
+            title = f"Noise Schema ({polarisation})"
             asset = pystac.Asset(
                 href=href,
                 media_type=pystac.MediaType.XML,

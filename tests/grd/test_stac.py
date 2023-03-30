@@ -48,3 +48,14 @@ def test_create_item() -> None:
 
     assert item.properties.get("start_datetime") == "2021-08-09T17:39:53.153776Z"
     assert item.properties.get("end_datetime") == "2021-08-09T17:40:18.152800Z"
+
+    # Test polarisation is present in the asset title
+    polarisations = ["HH", "HV", "VV", "VH"]
+    asset_types = ["schema-calibration", "schema-noise", "schema-product"]
+    for polarisation in polarisations:
+        for asset_type in asset_types:
+            asset_key = f"{asset_type}-{polarisation.lower()}"
+            if asset_key in item.assets:
+                asset_title = item.assets[asset_key].title
+                if asset_title:
+                    assert polarisation == asset_title[: len(polarisation)]

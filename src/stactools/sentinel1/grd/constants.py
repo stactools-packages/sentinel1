@@ -164,7 +164,7 @@ SENTINEL_GRD_ASSETS = {
     ),
     "schema-calibration-hh": AssetDefinition(
         {
-            "title": "Calibration Schema",
+            "title": "Calibration Schema (HH)",
             "type": pystac.MediaType.XML,
             "description": (
                 "Calibration metadata including calibration information and the beta nought, "
@@ -176,7 +176,7 @@ SENTINEL_GRD_ASSETS = {
     ),
     "schema-calibration-hv": AssetDefinition(
         {
-            "title": "Calibration Schema",
+            "title": "Calibration Schema (HV)",
             "type": pystac.MediaType.XML,
             "description": (
                 "Calibration metadata including calibration information and the beta nought, "
@@ -188,7 +188,7 @@ SENTINEL_GRD_ASSETS = {
     ),
     "schema-calibration-vh": AssetDefinition(
         {
-            "title": "Calibration Schema",
+            "title": "Calibration Schema (VH)",
             "type": pystac.MediaType.XML,
             "description": (
                 "Calibration metadata including calibration information and the beta nought, "
@@ -200,7 +200,7 @@ SENTINEL_GRD_ASSETS = {
     ),
     "schema-calibration-vv": AssetDefinition(
         {
-            "title": "Calibration Schema",
+            "title": "Calibration Schema (VV)",
             "type": pystac.MediaType.XML,
             "description": (
                 "Calibration metadata including calibration information and the beta nought, "
@@ -212,7 +212,7 @@ SENTINEL_GRD_ASSETS = {
     ),
     "schema-noise-hh": AssetDefinition(
         {
-            "title": "Noise Schema",
+            "title": "Noise Schema (HH)",
             "type": pystac.MediaType.XML,
             "description": "Estimated thermal noise look-up tables",
             "roles": ["metadata"],
@@ -220,7 +220,7 @@ SENTINEL_GRD_ASSETS = {
     ),
     "schema-noise-hv": AssetDefinition(
         {
-            "title": "Noise Schema",
+            "title": "Noise Schema (HV)",
             "type": pystac.MediaType.XML,
             "description": "Estimated thermal noise look-up tables",
             "roles": ["metadata"],
@@ -228,7 +228,7 @@ SENTINEL_GRD_ASSETS = {
     ),
     "schema-noise-vh": AssetDefinition(
         {
-            "title": "Noise Schema",
+            "title": "Noise Schema (VH)",
             "type": pystac.MediaType.XML,
             "description": "Estimated thermal noise look-up tables",
             "roles": ["metadata"],
@@ -236,7 +236,7 @@ SENTINEL_GRD_ASSETS = {
     ),
     "schema-noise-vv": AssetDefinition(
         {
-            "title": "Noise Schema",
+            "title": "Noise Schema (VV)",
             "type": pystac.MediaType.XML,
             "description": "Estimated thermal noise look-up tables",
             "roles": ["metadata"],
@@ -244,7 +244,7 @@ SENTINEL_GRD_ASSETS = {
     ),
     "schema-product-hh": AssetDefinition(
         {
-            "title": "Product Schema",
+            "title": "Product Schema (HH)",
             "type": pystac.MediaType.XML,
             "description": (
                 "Describes the main characteristics corresponding to the band: state of the "
@@ -256,7 +256,7 @@ SENTINEL_GRD_ASSETS = {
     ),
     "schema-product-hv": AssetDefinition(
         {
-            "title": "Product Schema",
+            "title": "Product Schema (HV)",
             "type": pystac.MediaType.XML,
             "description": (
                 "Describes the main characteristics corresponding to the band: state of the "
@@ -268,7 +268,7 @@ SENTINEL_GRD_ASSETS = {
     ),
     "schema-product-vh": AssetDefinition(
         {
-            "title": "Product Schema",
+            "title": "Product Schema (VH)",
             "type": pystac.MediaType.XML,
             "description": (
                 "Describes the main characteristics corresponding to the band: state of the "
@@ -280,7 +280,7 @@ SENTINEL_GRD_ASSETS = {
     ),
     "schema-product-vv": AssetDefinition(
         {
-            "title": "Product Schema",
+            "title": "Product Schema (VV)",
             "type": pystac.MediaType.XML,
             "description": (
                 "Describes the main characteristics corresponding to the band: state of the "

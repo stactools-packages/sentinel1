@@ -42,7 +42,7 @@ def image_asset_from_href(
         asset = pystac.Asset(
             href=asset_href,
             media_type=asset_media_type,
-            title=band.name,
+            title=f"{band.name} Data",
             roles=["data"],
             description=desc,
         )

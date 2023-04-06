@@ -122,7 +122,7 @@
     "schema-product-vh": {
       "href": "../../../tests/data-files/grd/S1A_IW_GRDH_1SDV_20210809T173953_20210809T174018_039156_049F13_6FF8.SAFE/annotation/s1a-iw-grd-vh-20210809t173953-20210809t174018-039156-049f13-002.xml",
       "type": "application/xml",
-      "title": "Product Schema",
+      "title": "VH Product Schema",
       "description": "Describes the main characteristics corresponding to the band: state of the platform during acquisition, image properties, Doppler information, geographic location, etc.",
       "roles": [
         "metadata"
@@ -131,7 +131,7 @@
     "schema-product-vv": {
       "href": "../../../tests/data-files/grd/S1A_IW_GRDH_1SDV_20210809T173953_20210809T174018_039156_049F13_6FF8.SAFE/annotation/s1a-iw-grd-vv-20210809t173953-20210809t174018-039156-049f13-001.xml",
       "type": "application/xml",
-      "title": "Product Schema",
+      "title": "VV Product Schema",
       "description": "Describes the main characteristics corresponding to the band: state of the platform during acquisition, image properties, Doppler information, geographic location, etc.",
       "roles": [
         "metadata"
@@ -140,7 +140,7 @@
     "schema-calibration-vh": {
       "href": "../../../tests/data-files/grd/S1A_IW_GRDH_1SDV_20210809T173953_20210809T174018_039156_049F13_6FF8.SAFE/annotation/calibration/calibration-s1a-iw-grd-vh-20210809t173953-20210809t174018-039156-049f13-002.xml",
       "type": "application/xml",
-      "title": "Calibration Schema",
+      "title": "VH Calibration Schema",
       "description": "Calibration metadata including calibration information and the beta nought, sigma nought, gamma and digital number look-up tables that can be used for absolute product calibration.",
       "roles": [
         "metadata"
@@ -149,7 +149,7 @@
     "schema-calibration-vv": {
       "href": "../../../tests/data-files/grd/S1A_IW_GRDH_1SDV_20210809T173953_20210809T174018_039156_049F13_6FF8.SAFE/annotation/calibration/calibration-s1a-iw-grd-vv-20210809t173953-20210809t174018-039156-049f13-001.xml",
       "type": "application/xml",
-      "title": "Calibration Schema",
+      "title": "VV Calibration Schema",
       "description": "Calibration metadata including calibration information and the beta nought, sigma nought, gamma and digital number look-up tables that can be used for absolute product calibration.",
       "roles": [
         "metadata"
@@ -158,7 +158,7 @@
     "schema-noise-vh": {
       "href": "../../../tests/data-files/grd/S1A_IW_GRDH_1SDV_20210809T173953_20210809T174018_039156_049F13_6FF8.SAFE/annotation/calibration/noise-s1a-iw-grd-vh-20210809t173953-20210809t174018-039156-049f13-002.xml",
       "type": "application/xml",
-      "title": "Noise Schema",
+      "title": "VH Noise Schema",
       "description": "Estimated thermal noise look-up tables",
       "roles": [
         "metadata"
@@ -167,7 +167,7 @@
     "schema-noise-vv": {
       "href": "../../../tests/data-files/grd/S1A_IW_GRDH_1SDV_20210809T173953_20210809T174018_039156_049F13_6FF8.SAFE/annotation/calibration/noise-s1a-iw-grd-vv-20210809t173953-20210809t174018-039156-049f13-001.xml",
       "type": "application/xml",
-      "title": "Noise Schema",
+      "title": "VV Noise Schema",
       "description": "Estimated thermal noise look-up tables",
       "roles": [
         "metadata"
@@ -185,7 +185,7 @@
     "vh": {
       "href": "../../../tests/data-files/grd/S1A_IW_GRDH_1SDV_20210809T173953_20210809T174018_039156_049F13_6FF8.SAFE/measurement/s1a-iw-grd-vh-20210809t173953-20210809t174018-039156-049f13-002.tiff",
       "type": "image/tiff; application=geotiff",
-      "title": "VH",
+      "title": "VH Data",
       "description": "Actual SAR data that have been processed into an image",
       "eo:bands": [
         {
@@ -200,7 +200,7 @@
     "vv": {
       "href": "../../../tests/data-files/grd/S1A_IW_GRDH_1SDV_20210809T173953_20210809T174018_039156_049F13_6FF8.SAFE/measurement/s1a-iw-grd-vv-20210809t173953-20210809t174018-039156-049f13-001.tiff",
       "type": "image/tiff; application=geotiff",
-      "title": "VV",
+      "title": "VV Data",
       "description": "Actual SAR data that have been processed into an image",
       "eo:bands": [
         {

@@ -49,7 +49,7 @@ def test_create_item() -> None:
     assert item.properties.get("start_datetime") == "2021-08-09T17:39:53.153776Z"
     assert item.properties.get("end_datetime") == "2021-08-09T17:40:18.152800Z"
 
-    # Test polarisation is present in the asset title
+    # Test polarisation added to item-asset schemas titles
     polarisations = ["HH", "HV", "VV", "VH"]
     asset_types = ["schema-calibration", "schema-noise", "schema-product"]
     for polarisation in polarisations:

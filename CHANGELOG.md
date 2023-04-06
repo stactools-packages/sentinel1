@@ -13,7 +13,7 @@ number as needed.
 
 ### Added
 
-- Added unique title for each product, calibration and noise schema item-asset ([#35](https://github.com/stactools-packages/sentinel1/pull/35))
+- Added polarization to item-asset titles for schemas and data ([#35](https://github.com/stactools-packages/sentinel1/pull/35))
 
 ## [0.5.1] - 2023-03-15
 

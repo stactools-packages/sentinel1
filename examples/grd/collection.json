@@ -39,7 +39,7 @@
   ],
   "item_assets": {
     "vh": {
-      "title": "VH Data",
+      "title": "VH",
       "type": "image/tiff; application=geotiff; profile=cloud-optimized",
       "description": "VH polarization backscattering coefficient, 16-bit DN.",
       "roles": [
@@ -47,7 +47,7 @@
       ]
     },
     "hh": {
-      "title": "HH Data",
+      "title": "HH",
       "type": "image/tiff; application=geotiff; profile=cloud-optimized",
       "description": "HH polarization backscattering coefficient, 16-bit DN.",
       "roles": [
@@ -55,7 +55,7 @@
       ]
     },
     "hv": {
-      "title": "HV Data",
+      "title": "HV",
       "type": "image/tiff; application=geotiff; profile=cloud-optimized",
       "description": "HV polarization backscattering coefficient, 16-bit DN.",
       "roles": [
@@ -63,7 +63,7 @@
       ]
     },
     "vv": {
-      "title": "VV Data",
+      "title": "VV",
       "type": "image/tiff; application=geotiff; profile=cloud-optimized",
       "description": "VV polarization backscattering coefficient, 16-bit DN.",
       "roles": [
@@ -71,7 +71,7 @@
       ]
     },
     "schema-calibration-hh": {
-      "title": "HH Calibration Schema",
+      "title": "Calibration Schema",
       "type": "application/xml",
       "description": "Calibration metadata including calibration information and the beta nought, sigma nought, gamma and digital number look-up tables that can be used for absolute product calibration.",
       "roles": [
@@ -79,7 +79,7 @@
       ]
     },
     "schema-calibration-hv": {
-      "title": "HV Calibration Schema",
+      "title": "Calibration Schema",
       "type": "application/xml",
       "description": "Calibration metadata including calibration information and the beta nought, sigma nought, gamma and digital number look-up tables that can be used for absolute product calibration.",
       "roles": [
@@ -87,7 +87,7 @@
       ]
     },
     "schema-calibration-vh": {
-      "title": "VH Calibration Schema",
+      "title": "Calibration Schema",
       "type": "application/xml",
       "description": "Calibration metadata including calibration information and the beta nought, sigma nought, gamma and digital number look-up tables that can be used for absolute product calibration.",
       "roles": [
@@ -95,7 +95,7 @@
       ]
     },
     "schema-calibration-vv": {
-      "title": "VV Calibration Schema",
+      "title": "Calibration Schema",
       "type": "application/xml",
       "description": "Calibration metadata including calibration information and the beta nought, sigma nought, gamma and digital number look-up tables that can be used for absolute product calibration.",
       "roles": [
@@ -103,7 +103,7 @@
       ]
     },
     "schema-noise-hh": {
-      "title": "HH Noise Schema",
+      "title": "Noise Schema",
       "type": "application/xml",
       "description": "Estimated thermal noise look-up tables",
       "roles": [
@@ -111,7 +111,7 @@
       ]
     },
     "schema-noise-hv": {
-      "title": "HV Noise Schema",
+      "title": "Noise Schema",
       "type": "application/xml",
       "description": "Estimated thermal noise look-up tables",
       "roles": [
@@ -119,7 +119,7 @@
       ]
     },
     "schema-noise-vh": {
-      "title": "VH Noise Schema",
+      "title": "Noise Schema",
       "type": "application/xml",
       "description": "Estimated thermal noise look-up tables",
       "roles": [
@@ -127,7 +127,7 @@
       ]
     },
     "schema-noise-vv": {
-      "title": "VV Noise Schema",
+      "title": "Noise Schema",
       "type": "application/xml",
       "description": "Estimated thermal noise look-up tables",
       "roles": [
@@ -135,7 +135,7 @@
       ]
     },
     "schema-product-hh": {
-      "title": "HH Product Schema",
+      "title": "Product Schema",
       "type": "application/xml",
       "description": "Describes the main characteristics corresponding to the band: state of the platform during acquisition, image properties, Doppler information, geographic location, etc.",
       "roles": [
@@ -143,7 +143,7 @@
       ]
     },
     "schema-product-hv": {
-      "title": "HV Product Schema",
+      "title": "Product Schema",
       "type": "application/xml",
       "description": "Describes the main characteristics corresponding to the band: state of the platform during acquisition, image properties, Doppler information, geographic location, etc.",
       "roles": [
@@ -151,7 +151,7 @@
       ]
     },
     "schema-product-vh": {
-      "title": "VH Product Schema",
+      "title": "Product Schema",
       "type": "application/xml",
       "description": "Describes the main characteristics corresponding to the band: state of the platform during acquisition, image properties, Doppler information, geographic location, etc.",
       "roles": [
@@ -159,7 +159,7 @@
       ]
     },
     "schema-product-vv": {
-      "title": "VV Product Schema",
+      "title": "Product Schema",
       "type": "application/xml",
       "description": "Describes the main characteristics corresponding to the band: state of the platform during acquisition, image properties, Doppler information, geographic location, etc.",
       "roles": [

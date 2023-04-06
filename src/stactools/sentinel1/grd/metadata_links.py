@@ -199,15 +199,10 @@ class MetadataLinks:
             "location, etc."
         )
         for key, href in self.annotation_hrefs:
-            # Extract polarisation from href using extract_properties
-            polarisation = extract_properties(href, ["polarisation"])[0].upper()
-            # Create a unique title for each asset using the extracted polarisation
-            title = f"{polarisation} Product Schema"
-
             asset = pystac.Asset(
                 href=href,
                 media_type=pystac.MediaType.XML,
-                title=title,
+                title="Product Schema",
                 roles=["metadata"],
                 description=desc,
             )
@@ -222,15 +217,10 @@ class MetadataLinks:
             "absolute product calibration."
         )
         for key, href in self.calibration_hrefs:
-            # Extract polarisation from href using extract_properties
-            polarisation = extract_properties(href, ["polarisation"])[0].upper()
-            # Create a unique title for each asset using the extracted polarisation
-            title = f"{polarisation} Calibration Schema"
-
             asset = pystac.Asset(
                 href=href,
                 media_type=pystac.MediaType.XML,
-                title=title,
+                title="Calibration Schema",
                 roles=["metadata"],
                 description=desc,
             )
@@ -240,14 +230,10 @@ class MetadataLinks:
     def create_noise_asset(self) -> List[Tuple[str, pystac.asset.Asset]]:
         assets = []
         for key, href in self.noise_hrefs:
-            # Extract polarisation from href using extract_properties
-            polarisation = extract_properties(href, ["polarisation"])[0].upper()
-            # Create a unique title for each asset using the extracted polarisation
-            title = f"{polarisation} Noise Schema"
             asset = pystac.Asset(
                 href=href,
                 media_type=pystac.MediaType.XML,
-                title=title,
+                title="Noise Schema",
                 roles=["metadata"],
                 description="Estimated thermal noise look-up tables",
             )

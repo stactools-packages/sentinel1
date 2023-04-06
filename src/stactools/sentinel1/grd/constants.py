@@ -132,7 +132,7 @@ SENTINEL_GRD_SAR: Dict[str, Any] = {
 SENTINEL_GRD_ASSETS = {
     "vh": AssetDefinition(
         {
-            "title": "VH Data",
+            "title": "VH",
             "type": pystac.MediaType.COG,
             "description": "VH polarization backscattering coefficient, 16-bit DN.",
             "roles": ["data"],
@@ -140,7 +140,7 @@ SENTINEL_GRD_ASSETS = {
     ),
     "hh": AssetDefinition(
         {
-            "title": "HH Data",
+            "title": "HH",
             "type": pystac.MediaType.COG,
             "description": "HH polarization backscattering coefficient, 16-bit DN.",
             "roles": ["data"],
@@ -148,7 +148,7 @@ SENTINEL_GRD_ASSETS = {
     ),
     "hv": AssetDefinition(
         {
-            "title": "HV Data",
+            "title": "HV",
             "type": pystac.MediaType.COG,
             "description": "HV polarization backscattering coefficient, 16-bit DN.",
             "roles": ["data"],
@@ -156,7 +156,7 @@ SENTINEL_GRD_ASSETS = {
     ),
     "vv": AssetDefinition(
         {
-            "title": "VV Data",
+            "title": "VV",
             "type": pystac.MediaType.COG,
             "description": "VV polarization backscattering coefficient, 16-bit DN.",
             "roles": ["data"],
@@ -164,7 +164,7 @@ SENTINEL_GRD_ASSETS = {
     ),
     "schema-calibration-hh": AssetDefinition(
         {
-            "title": "HH Calibration Schema",
+            "title": "Calibration Schema",
             "type": pystac.MediaType.XML,
             "description": (
                 "Calibration metadata including calibration information and the beta nought, "
@@ -176,7 +176,7 @@ SENTINEL_GRD_ASSETS = {
     ),
     "schema-calibration-hv": AssetDefinition(
         {
-            "title": "HV Calibration Schema",
+            "title": "Calibration Schema",
             "type": pystac.MediaType.XML,
             "description": (
                 "Calibration metadata including calibration information and the beta nought, "
@@ -188,7 +188,7 @@ SENTINEL_GRD_ASSETS = {
     ),
     "schema-calibration-vh": AssetDefinition(
         {
-            "title": "VH Calibration Schema",
+            "title": "Calibration Schema",
             "type": pystac.MediaType.XML,
             "description": (
                 "Calibration metadata including calibration information and the beta nought, "
@@ -200,7 +200,7 @@ SENTINEL_GRD_ASSETS = {
     ),
     "schema-calibration-vv": AssetDefinition(
         {
-            "title": "VV Calibration Schema",
+            "title": "Calibration Schema",
             "type": pystac.MediaType.XML,
             "description": (
                 "Calibration metadata including calibration information and the beta nought, "
@@ -212,7 +212,7 @@ SENTINEL_GRD_ASSETS = {
     ),
     "schema-noise-hh": AssetDefinition(
         {
-            "title": "HH Noise Schema",
+            "title": "Noise Schema",
             "type": pystac.MediaType.XML,
             "description": "Estimated thermal noise look-up tables",
             "roles": ["metadata"],
@@ -220,7 +220,7 @@ SENTINEL_GRD_ASSETS = {
     ),
     "schema-noise-hv": AssetDefinition(
         {
-            "title": "HV Noise Schema",
+            "title": "Noise Schema",
             "type": pystac.MediaType.XML,
             "description": "Estimated thermal noise look-up tables",
             "roles": ["metadata"],
@@ -228,7 +228,7 @@ SENTINEL_GRD_ASSETS = {
     ),
     "schema-noise-vh": AssetDefinition(
         {
-            "title": "VH Noise Schema",
+            "title": "Noise Schema",
             "type": pystac.MediaType.XML,
             "description": "Estimated thermal noise look-up tables",
             "roles": ["metadata"],
@@ -236,7 +236,7 @@ SENTINEL_GRD_ASSETS = {
     ),
     "schema-noise-vv": AssetDefinition(
         {
-            "title": "VV Noise Schema",
+            "title": "Noise Schema",
             "type": pystac.MediaType.XML,
             "description": "Estimated thermal noise look-up tables",
             "roles": ["metadata"],
@@ -244,7 +244,7 @@ SENTINEL_GRD_ASSETS = {
     ),
     "schema-product-hh": AssetDefinition(
         {
-            "title": "HH Product Schema",
+            "title": "Product Schema",
             "type": pystac.MediaType.XML,
             "description": (
                 "Describes the main characteristics corresponding to the band: state of the "
@@ -256,7 +256,7 @@ SENTINEL_GRD_ASSETS = {
     ),
     "schema-product-hv": AssetDefinition(
         {
-            "title": "HV Product Schema",
+            "title": "Product Schema",
             "type": pystac.MediaType.XML,
             "description": (
                 "Describes the main characteristics corresponding to the band: state of the "
@@ -268,7 +268,7 @@ SENTINEL_GRD_ASSETS = {
     ),
     "schema-product-vh": AssetDefinition(
         {
-            "title": "VH Product Schema",
+            "title": "Product Schema",
             "type": pystac.MediaType.XML,
             "description": (
                 "Describes the main characteristics corresponding to the band: state of the "
@@ -280,7 +280,7 @@ SENTINEL_GRD_ASSETS = {
     ),
     "schema-product-vv": AssetDefinition(
         {
-            "title": "VV Product Schema",
+            "title": "Product Schema",
             "type": pystac.MediaType.XML,
             "description": (
                 "Describes the main characteristics corresponding to the band: state of the "

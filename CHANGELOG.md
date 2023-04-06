@@ -11,13 +11,15 @@ number as needed.
 
 ## [Unreleased] - TBD
 
-### Fixed
-
-- Fixed updated item-asset titles to work with COG format granules. ([#37](https://github.com/stactools-packages/sentinel1/pull/37))
+## [0.5.2] - TBD
 
 ### Added
 
 - Added polarization to item-asset titles for schemas and data ([#35](https://github.com/stactools-packages/sentinel1/pull/35))
+
+### Fixed
+
+- Fixed updated item-asset titles to work with COG format granules. ([#37](https://github.com/stactools-packages/sentinel1/pull/37))
 
 ## [0.5.1] - 2023-03-15
 
@@ -83,7 +85,8 @@ without `.SAFE` ending to the folders and slightly different file names.
 - Initial release!
 - Support for Sentinel1 AWS RTC public dataset
 
-[Unreleased]: https://github.com/stactools-packages/sentinel1/compare/v0.5.1...HEAD
+[Unreleased]: https://github.com/stactools-packages/sentinel1/compare/v0.5.2...HEAD
+[0.5.2]: https://github.com/stactools-packages/sentinel1/compare/v0.5.1...v0.5.2
 [0.5.1]: https://github.com/stactools-packages/sentinel1/compare/v0.5.0...v0.5.1
 [0.5.0]: https://github.com/stactools-packages/sentinel1/compare/v0.4.0...v0.5.0
 [0.4.0]: https://github.com/stactools-packages/sentinel1/compare/v0.3.0...v0.4.0

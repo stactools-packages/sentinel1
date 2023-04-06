@@ -39,7 +39,7 @@
   ],
   "item_assets": {
     "vh": {
-      "title": "VH",
+      "title": "VH Data",
       "type": "image/tiff; application=geotiff; profile=cloud-optimized",
       "description": "VH polarization backscattering coefficient, 16-bit DN.",
       "roles": [
@@ -47,7 +47,7 @@
       ]
     },
     "hh": {
-      "title": "HH",
+      "title": "HH Data",
       "type": "image/tiff; application=geotiff; profile=cloud-optimized",
       "description": "HH polarization backscattering coefficient, 16-bit DN.",
       "roles": [
@@ -55,7 +55,7 @@
       ]
     },
     "hv": {
-      "title": "HV",
+      "title": "HV Data",
       "type": "image/tiff; application=geotiff; profile=cloud-optimized",
       "description": "HV polarization backscattering coefficient, 16-bit DN.",
       "roles": [
@@ -63,7 +63,7 @@
       ]
     },
     "vv": {
-      "title": "VV",
+      "title": "VV Data",
       "type": "image/tiff; application=geotiff; profile=cloud-optimized",
       "description": "VV polarization backscattering coefficient, 16-bit DN.",
       "roles": [

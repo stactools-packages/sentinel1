@@ -122,7 +122,7 @@
     "schema-product-hh": {
       "href": "../../../tests/data-files/grd/S1A_EW_GRDM_1SDH_20221130T014342_20221130T014446_046117_058549_BB15/annotation/rfi/rfi-ew-hh.xml",
       "type": "application/xml",
-      "title": "Product Schema",
+      "title": "HH Product Schema",
       "description": "Describes the main characteristics corresponding to the band: state of the platform during acquisition, image properties, Doppler information, geographic location, etc.",
       "roles": [
         "metadata"
@@ -131,7 +131,7 @@
     "schema-product-hv": {
       "href": "../../../tests/data-files/grd/S1A_EW_GRDM_1SDH_20221130T014342_20221130T014446_046117_058549_BB15/annotation/rfi/rfi-ew-hv.xml",
       "type": "application/xml",
-      "title": "Product Schema",
+      "title": "HV Product Schema",
       "description": "Describes the main characteristics corresponding to the band: state of the platform during acquisition, image properties, Doppler information, geographic location, etc.",
       "roles": [
         "metadata"
@@ -140,7 +140,7 @@
     "schema-calibration-hh": {
       "href": "../../../tests/data-files/grd/S1A_EW_GRDM_1SDH_20221130T014342_20221130T014446_046117_058549_BB15/annotation/calibration/calibration-ew-hh.xml",
       "type": "application/xml",
-      "title": "Calibration Schema",
+      "title": "HH Calibration Schema",
       "description": "Calibration metadata including calibration information and the beta nought, sigma nought, gamma and digital number look-up tables that can be used for absolute product calibration.",
       "roles": [
         "metadata"
@@ -149,7 +149,7 @@
     "schema-calibration-hv": {
       "href": "../../../tests/data-files/grd/S1A_EW_GRDM_1SDH_20221130T014342_20221130T014446_046117_058549_BB15/annotation/calibration/calibration-ew-hv.xml",
       "type": "application/xml",
-      "title": "Calibration Schema",
+      "title": "HV Calibration Schema",
       "description": "Calibration metadata including calibration information and the beta nought, sigma nought, gamma and digital number look-up tables that can be used for absolute product calibration.",
       "roles": [
         "metadata"
@@ -158,7 +158,7 @@
     "schema-noise-hh": {
       "href": "../../../tests/data-files/grd/S1A_EW_GRDM_1SDH_20221130T014342_20221130T014446_046117_058549_BB15/annotation/calibration/noise-ew-hh.xml",
       "type": "application/xml",
-      "title": "Noise Schema",
+      "title": "HH Noise Schema",
       "description": "Estimated thermal noise look-up tables",
       "roles": [
         "metadata"
@@ -167,7 +167,7 @@
     "schema-noise-hv": {
       "href": "../../../tests/data-files/grd/S1A_EW_GRDM_1SDH_20221130T014342_20221130T014446_046117_058549_BB15/annotation/calibration/noise-ew-hv.xml",
       "type": "application/xml",
-      "title": "Noise Schema",
+      "title": "HV Noise Schema",
       "description": "Estimated thermal noise look-up tables",
       "roles": [
         "metadata"
@@ -185,7 +185,7 @@
     "hh": {
       "href": "../../../tests/data-files/grd/S1A_EW_GRDM_1SDH_20221130T014342_20221130T014446_046117_058549_BB15/measurement/ew-hh.tiff",
       "type": "image/tiff; application=geotiff; profile=cloud-optimized",
-      "title": "HH",
+      "title": "HH Data",
       "description": "Actual SAR data that have been processed into an image",
       "eo:bands": [
         {
@@ -200,7 +200,7 @@
     "hv": {
       "href": "../../../tests/data-files/grd/S1A_EW_GRDM_1SDH_20221130T014342_20221130T014446_046117_058549_BB15/measurement/ew-hv.tiff",
       "type": "image/tiff; application=geotiff; profile=cloud-optimized",
-      "title": "HV",
+      "title": "HV Data",
       "description": "Actual SAR data that have been processed into an image",
       "eo:bands": [
         {

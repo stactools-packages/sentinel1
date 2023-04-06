@@ -11,6 +11,10 @@ number as needed.
 
 ## [Unreleased] - TBD
 
+### Fixed
+
+- Fixed updated item-asset titles to work with COG format granules. ([#37](https://github.com/stactools-packages/sentinel1/pull/37))
+
 ### Added
 
 - Added polarization to item-asset titles for schemas and data ([#35](https://github.com/stactools-packages/sentinel1/pull/35))

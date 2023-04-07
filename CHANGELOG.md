@@ -11,6 +11,10 @@ number as needed.
 
 ## [Unreleased] - TBD
 
+## Fixed
+
+- Update to stactools v.0.4.5 ([#39](https://github.com/stactools-packages/sentinel1/pull/39))
+
 ## [0.5.2] - TBD
 
 ### Added

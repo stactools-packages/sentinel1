@@ -32,6 +32,14 @@ dataset_naming_pattern = re.compile(
 )
 
 
+def extract_polarisation(href: str) -> str:
+    match = re.search(r"(hh|hv|vv|vh)", href)
+    if match:
+        return match.group(0).upper()
+    else:
+        raise RuntimeError(f"Failed to match polarisation: {href}")
+
+
 def extract_properties(href: str, properties: List[str]) -> List[str]:
     matches = dataset_naming_pattern.match(href)
     if matches is not None:
@@ -199,14 +207,19 @@ class MetadataLinks:
             "location, etc."
         )
         for key, href in self.annotation_hrefs:
-            asset = pystac.Asset(
-                href=href,
-                media_type=pystac.MediaType.XML,
-                title="Product Schema",
-                roles=["metadata"],
-                description=desc,
-            )
-            assets.append((key, asset))
+            # Extract polarisation from href
+            polarisation = extract_polarisation(href)
+            if polarisation:
+                # Add polarisation to title
+                title = f"{polarisation} Product Schema"
+                asset = pystac.Asset(
+                    href=href,
+                    media_type=pystac.MediaType.XML,
+                    title=title,
+                    roles=["metadata"],
+                    description=desc,
+                )
+                assets.append((key, asset))
         return assets
 
     def create_calibration_asset(self) -> List[Tuple[str, pystac.asset.Asset]]:
@@ -217,25 +230,35 @@ class MetadataLinks:
             "absolute product calibration."
         )
         for key, href in self.calibration_hrefs:
-            asset = pystac.Asset(
-                href=href,
-                media_type=pystac.MediaType.XML,
-                title="Calibration Schema",
-                roles=["metadata"],
-                description=desc,
-            )
-            assets.append((key, asset))
+            # Extract polarisation from href
+            polarisation = extract_polarisation(href)
+            if polarisation:
+                # Add polarisation to title
+                title = f"{polarisation} Calibration Schema"
+                asset = pystac.Asset(
+                    href=href,
+                    media_type=pystac.MediaType.XML,
+                    title=title,
+                    roles=["metadata"],
+                    description=desc,
+                )
+                assets.append((key, asset))
         return assets
 
     def create_noise_asset(self) -> List[Tuple[str, pystac.asset.Asset]]:
         assets = []
         for key, href in self.noise_hrefs:
-            asset = pystac.Asset(
-                href=href,
-                media_type=pystac.MediaType.XML,
-                title="Noise Schema",
-                roles=["metadata"],
-                description="Estimated thermal noise look-up tables",
-            )
-            assets.append((key, asset))
+            # Extract polarisation from href
+            polarisation = extract_polarisation(href)
+            if polarisation:
+                # Add polarisation to title
+                title = f"{polarisation} Noise Schema"
+                asset = pystac.Asset(
+                    href=href,
+                    media_type=pystac.MediaType.XML,
+                    title=title,
+                    roles=["metadata"],
+                    description="Estimated thermal noise look-up tables",
+                )
+                assets.append((key, asset))
         return assets

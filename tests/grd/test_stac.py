@@ -67,3 +67,14 @@ def test_create_item() -> None:
     ]
 
     assert item.properties.get("proj:centroid") == {"lat": 45.48933, "lon": 3.36974}
+
+    # Test polarisation added to item-asset schemas titles
+    polarisations = ["HH", "HV", "VV", "VH"]
+    asset_types = ["schema-calibration", "schema-noise", "schema-product"]
+    for polarisation in polarisations:
+        for asset_type in asset_types:
+            asset_key = f"{asset_type}-{polarisation.lower()}"
+            if asset_key in item.assets:
+                asset_title = item.assets[asset_key].title
+                if asset_title:
+                    assert polarisation == asset_title[: len(polarisation)]

@@ -15,6 +15,21 @@ number as needed.
 
 - Add Projection Extension fields to GRD Items ([#34](https://github.com/stactools-packages/sentinel1/pull/34))
 
+## Fixed
+
+- Update to stactools v.0.4.5 ([#39](https://github.com/stactools-packages/sentinel1/pull/39))
+
+## [0.5.2] - 2023-04-06
+
+### Added
+
+- Added polarization to item-asset titles for schemas and data ([#35](https://github.com/stactools-packages/sentinel1/pull/35))
+
+### Fixed
+
+- Fixed updated item-asset titles to work with COG format granules. ([#37](https://github.com/stactools-packages/sentinel1/pull/37))
+>>>>>>> main
+
 ## [0.5.1] - 2023-03-15
 
 ### Fixed
@@ -79,7 +94,9 @@ without `.SAFE` ending to the folders and slightly different file names.
 - Initial release!
 - Support for Sentinel1 AWS RTC public dataset
 
-[Unreleased]: https://github.com/stactools-packages/sentinel1/compare/v0.5.1...HEAD
+[Unreleased]: https://github.com/stactools-packages/sentinel1/compare/v0.5.3...HEAD
+[0.5.3]: https://github.com/stactools-packages/sentinel1/compare/v0.5.2...v0.5.3
+[0.5.2]: https://github.com/stactools-packages/sentinel1/compare/v0.5.1...v0.5.2
 [0.5.1]: https://github.com/stactools-packages/sentinel1/compare/v0.5.0...v0.5.1
 [0.5.0]: https://github.com/stactools-packages/sentinel1/compare/v0.4.0...v0.5.0
 [0.4.0]: https://github.com/stactools-packages/sentinel1/compare/v0.3.0...v0.4.0

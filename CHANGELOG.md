@@ -11,9 +11,15 @@ number as needed.
 
 ## [Unreleased] - TBD
 
+### Changed
+
+- Use consistent Item `id` field for reprocessed items. This changes the ID value
+  to no longer have the processing ID on the end.
+
 ### Added
 
 - Add Projection Extension fields to GRD Items ([#34](https://github.com/stactools-packages/sentinel1/pull/34))
+- Add `s1:product_identifier` and `s1:processing_datetime` fields
 
 ## Fixed
 

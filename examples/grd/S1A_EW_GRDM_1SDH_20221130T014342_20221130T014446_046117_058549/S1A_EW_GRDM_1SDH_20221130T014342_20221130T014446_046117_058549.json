@@ -1,7 +1,7 @@
 {
   "type": "Feature",
   "stac_version": "1.0.0",
-  "id": "S1A_EW_GRDM_1SDH_20221130T014342_20221130T014446_046117_058549_BB15",
+  "id": "S1A_EW_GRDM_1SDH_20221130T014342_20221130T014446_046117_058549",
   "properties": {
     "sar:frequency_band": "C",
     "sar:center_frequency": 5.405,
@@ -73,6 +73,8 @@
       10487,
       10708
     ],
+    "s1:product_identifier": "S1A_EW_GRDM_1SDH_20221130T014342_20221130T014446_046117_058549_BB15",
+    "s1:processing_datetime": "2022-11-30T07:19:57.000000Z",
     "datetime": "2022-11-30T01:44:14.692855Z"
   },
   "geometry": {

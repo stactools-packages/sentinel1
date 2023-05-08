@@ -19,7 +19,9 @@ def test_validate_collection() -> None:
 
 
 def test_create_item() -> None:
-    item_id = "S1A_IW_GRDH_1SDV_20210809T173953_20210809T174018_039156_049F13_6FF8"
+    product_identifier = (
+        "S1A_IW_GRDH_1SDV_20210809T173953_20210809T174018_039156_049F13_6FF8"
+    )
     granule_href = test_data.get_path(
         "data-files/grd/S1A_IW_GRDH_1SDV_20210809T173953_20210809T174018_039156_049F13_6FF8.SAFE"  # noqa
     )
@@ -27,7 +29,7 @@ def test_create_item() -> None:
 
     item.validate()
 
-    assert item.id == item_id
+    assert item.id == product_identifier[:-5]
 
     bands_seen = set()
 
@@ -78,3 +80,8 @@ def test_create_item() -> None:
                 asset_title = item.assets[asset_key].title
                 if asset_title:
                     assert polarisation == asset_title[: len(polarisation)]
+
+    assert item.properties.get("s1:product_identifier") == product_identifier
+    assert (
+        item.properties.get("s1:processing_datetime") == "2021-08-09T20:19:58.000000Z"
+    )

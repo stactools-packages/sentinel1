@@ -65,3 +65,5 @@ def test_create_item() -> None:
         -7.26852815177481e-05,
         46.436539,
     ]
+
+    assert item.properties.get("proj:centroid") == {"lat": 45.48933, "lon": 3.36974}

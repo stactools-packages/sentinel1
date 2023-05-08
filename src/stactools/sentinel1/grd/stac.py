@@ -3,6 +3,7 @@ import os
 from typing import Any, Optional
 
 import pystac
+import shapely
 from pystac import Summaries
 from pystac.extensions.eo import EOExtension
 from pystac.extensions.item_assets import ItemAssetsExtension
@@ -142,6 +143,8 @@ def create_item(
     shape = get_shape(metalinks, read_href_modifier, **kwargs)
     projection.shape = shape
     projection.transform = transform_from_bbox(projection.bbox, shape)
+    centroid = shapely.geometry.shape(item.geometry).centroid
+    projection.centroid = {"lat": round(centroid.y, 5), "lon": round(centroid.x, 5)}
 
     # --Common metadata--
     item.common_metadata.providers = [c.SENTINEL_PROVIDER]

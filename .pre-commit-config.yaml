@@ -31,4 +31,4 @@ repos:
       rev: v0.33.0
       hooks:
           - id: markdownlint
-            args: ["--ignore", ".github/ISSUE_TEMPLATE/feature_request.md"]
+            args: ["--ignore", ".github/ISSUE_TEMPLATE/feature_request.md", "--disable", "MD024"]

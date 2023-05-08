@@ -28,7 +28,6 @@ number as needed.
 ### Fixed
 
 - Fixed updated item-asset titles to work with COG format granules. ([#37](https://github.com/stactools-packages/sentinel1/pull/37))
->>>>>>> main
 
 ## [0.5.1] - 2023-03-15
 

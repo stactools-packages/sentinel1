@@ -38,7 +38,7 @@ class CreateItemTest(CliTestCase):
             collection.validate()
 
     def test_create_item(self) -> None:
-        item_id = "S1A_IW_GRDH_1SDV_20210809T173953_20210809T174018_039156_049F13_6FF8"
+        item_id = "S1A_IW_GRDH_1SDV_20210809T173953_20210809T174018_039156_049F13"
         granule_href = test_data.get_path(
             "data-files/grd/S1A_IW_GRDH_1SDV_20210809T173953_20210809T174018_039156_049F13_6FF8.SAFE"  # noqa
         )

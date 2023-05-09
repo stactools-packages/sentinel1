@@ -115,8 +115,14 @@ def create_item(
         metalinks.manifest,
     )
 
+    scene_id = product_metadata.scene_id
+
+    # Remove the last segment of the scene id so the same scene reprocessed
+    # at different times will have the same Item ID
+    item_id = scene_id[:-5]
+
     item = pystac.Item(
-        id=product_metadata.scene_id,
+        id=item_id,
         geometry=product_metadata.geometry,
         bbox=product_metadata.bbox,
         datetime=product_metadata.get_datetime,
@@ -151,8 +157,16 @@ def create_item(
     item.common_metadata.platform = product_metadata.platform
     item.common_metadata.constellation = c.SENTINEL_CONSTELLATION
 
-    # s1 properties
-    item.properties.update({**product_metadata.metadata_dict, "s1:shape": shape})
+    # Add s1 properties
+    item.properties.update(product_metadata.metadata_dict)
+
+    item.properties["s1:shape"] = shape
+    item.properties["s1:product_identifier"] = scene_id
+
+    if pdt := metalinks.manifest.find_attr(
+        "stop", ".//safe:processing[@name='GRD Post Processing']"
+    ):
+        item.properties["s1:processing_datetime"] = f"{pdt}Z"
 
     # Add assets to item
     item.add_asset(*metalinks.create_manifest_asset())

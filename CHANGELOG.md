@@ -21,7 +21,9 @@ number as needed.
 - Add Projection Extension fields to GRD Items ([#34](https://github.com/stactools-packages/sentinel1/pull/34))
 - GRD: Add `s1:product_identifier` and `s1:processing_datetime` fields ([#42](https://github.com/stactools-packages/sentinel1/pull/42))
 
-## Fixed
+## [0.5.3] - 2023-04-07
+
+### Changed
 
 - Update to stactools v.0.4.5 ([#39](https://github.com/stactools-packages/sentinel1/pull/39))
 
@@ -38,11 +40,6 @@ number as needed.
 ## [0.5.1] - 2023-03-15
 
 ### Fixed
-
-- GRD Item Properties field start_datetime and end_datetime values were not valid
-  RFC 3339 datetimes, as they were missing the `T` separating the date and time ([#30](https://github.com/stactools-packages/sentinel1/pull/30))
-
-## Fixed
 
 - GRD Item Properties field start_datetime and end_datetime values were not valid
   RFC 3339 datetimes, as they were missing the `T` separating the date and time ([#30](https://github.com/stactools-packages/sentinel1/pull/30))

@@ -23,6 +23,29 @@
     "sat:orbit_state": "descending",
     "sat:absolute_orbit": 46117,
     "sat:relative_orbit": 20,
+    "proj:epsg": 4326,
+    "proj:bbox": [
+      75.348396,
+      76.879097,
+      102.789734,
+      81.972343
+    ],
+    "proj:shape": [
+      10487,
+      10708
+    ],
+    "proj:transform": [
+      0.002562694994396713,
+      0.0,
+      75.348396,
+      0.0,
+      -0.00048567235625059536,
+      81.972343
+    ],
+    "proj:centroid": {
+      "lat": 79.38542,
+      "lon": 88.01982
+    },
     "providers": [
       {
         "name": "ESA",
@@ -36,8 +59,8 @@
     ],
     "platform": "SENTINEL-1A",
     "constellation": "sentinel-1",
-    "start_datetime": "2022-11-30 01:43:42.546629+00:00",
-    "end_datetime": "2022-11-30 01:44:46.839082+00:00",
+    "start_datetime": "2022-11-30T01:43:42.546629Z",
+    "end_datetime": "2022-11-30T01:44:46.839082Z",
     "s1:instrument_configuration_ID": "7",
     "s1:datatake_id": "361801",
     "s1:product_timeliness": "Fast-24h",
@@ -222,7 +245,8 @@
   "stac_extensions": [
     "https://stac-extensions.github.io/sar/v1.0.0/schema.json",
     "https://stac-extensions.github.io/sat/v1.0.0/schema.json",
-    "https://stac-extensions.github.io/eo/v1.0.0/schema.json"
+    "https://stac-extensions.github.io/eo/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/projection/v1.1.0/schema.json"
   ],
   "collection": "sentinel1-grd"
 }

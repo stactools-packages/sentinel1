@@ -43,12 +43,18 @@ Level-1](https://sentinel.esa.int/web/sentinel/user-guides/sentinel-1-sar/resolu
 product. It is used to create STAC Items from the SAFE manifest format of the
 data hosted on Microsoft Azure.
 
-## Examples
+## Example Outputs
 
-### STAC objects
+### RTC
 
-- [Item (RTC)](examples/sentinel1-rtc-aws/2016/S1B_20161121_12SYJ_ASC/S1B_20161121_12SYJ_ASC.json)
-- [Item (GRD)](examples/grd/item.json)
+- [Collection](examples/rtc/sentinel1-rtc-aws/collection.json)
+- [Item (S1B_20161121_12SYJ_ASC)](examples/rtc/sentinel1-rtc-aws/2016/S1B_20161121_12SYJ_ASC/S1B_20161121_12SYJ_ASC.json)
+- [Item (S1A_20200103_17RMJ_ASC)](examples/rtc/sentinel1-rtc-aws/2020/S1A_20200103_17RMJ_ASC/S1A_20200103_17RMJ_ASC.json)
+
+### GRD
+
+- [Item (S1A_EW_GRDM_1SDH_20221130T014342_20221130T014446_046117_058549_BB15)](examples/grd/S1A_EW_GRDM_1SDH_20221130T014342_20221130T014446_046117_058549_BB15/S1A_EW_GRDM_1SDH_20221130T014342_20221130T014446_046117_058549_BB15.json)
+- [Item (S1A_IW_GRDH_1SDV_20210809T173953_20210809T174018_039156_049F13_6FF8)](examples/grd/S1A_IW_GRDH_1SDV_20210809T173953_20210809T174018_039156_049F13_6FF8/S1A_IW_GRDH_1SDV_20210809T173953_20210809T174018_039156_049F13_6FF8.json)
 
 ## How to use
 

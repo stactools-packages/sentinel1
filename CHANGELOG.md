@@ -11,6 +11,10 @@ number as needed.
 
 ## [Unreleased] - TBD
 
+### Added
+
+- Add Projection Extension fields to GRD Items ([#34](https://github.com/stactools-packages/sentinel1/pull/34))
+
 ## Fixed
 
 - Update to stactools v.0.4.5 ([#39](https://github.com/stactools-packages/sentinel1/pull/39))

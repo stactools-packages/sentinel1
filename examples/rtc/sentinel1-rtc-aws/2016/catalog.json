@@ -21,6 +21,5 @@
       "type": "application/json",
       "title": "Sentinel-1 RTC CONUS"
     }
-  ],
-  "stac_extensions": []
+  ]
 }

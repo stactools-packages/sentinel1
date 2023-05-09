@@ -49,6 +49,25 @@ def test_create_item() -> None:
     assert item.properties.get("start_datetime") == "2021-08-09T17:39:53.153776Z"
     assert item.properties.get("end_datetime") == "2021-08-09T17:40:18.152800Z"
 
+    assert item.properties.get("proj:epsg") == 4326
+    assert item.properties.get("proj:bbox") == [
+        1.512143,
+        44.536255,
+        5.188996,
+        46.436539,
+    ]
+    assert item.properties.get("proj:shape") == [26144, 16676]
+    assert item.properties.get("proj:transform") == [
+        0.0002204877068841449,
+        0.0,
+        1.512143,
+        0.0,
+        -7.26852815177481e-05,
+        46.436539,
+    ]
+
+    assert item.properties.get("proj:centroid") == {"lat": 45.48933, "lon": 3.36974}
+
     # Test polarisation added to item-asset schemas titles
     polarisations = ["HH", "HV", "VV", "VH"]
     asset_types = ["schema-calibration", "schema-noise", "schema-product"]

@@ -35,7 +35,7 @@
     "gsd": 20,
     "start_datetime": "2020-01-03T23:35:56Z",
     "end_datetime": "2020-01-03T23:36:46Z",
-    "created": "2023-02-06T19:01:47.703965Z",
+    "created": "2023-05-08T20:18:00.955675Z",
     "mgrs:utm_zone": "17",
     "mgrs:latitude_band": "R",
     "mgrs:grid_square": "MJ",
@@ -245,7 +245,7 @@
   "stac_extensions": [
     "https://stac-extensions.github.io/sar/v1.0.0/schema.json",
     "https://stac-extensions.github.io/sat/v1.0.0/schema.json",
-    "https://stac-extensions.github.io/projection/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/projection/v1.1.0/schema.json",
     "https://stac-extensions.github.io/raster/v1.1.0/schema.json"
   ],
   "collection": "sentinel1-rtc-aws"

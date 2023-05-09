@@ -3,12 +3,15 @@ import os
 from typing import Any, Optional
 
 import pystac
+import shapely
 from pystac import Summaries
 from pystac.extensions.eo import EOExtension
 from pystac.extensions.item_assets import ItemAssetsExtension
+from pystac.extensions.projection import ProjectionExtension
 from pystac.extensions.sar import SarExtension
 from pystac.extensions.sat import SatExtension
 from stactools.core.io import ReadHrefModifier
+from stactools.core.projection import transform_from_bbox
 
 from stactools.sentinel1.grd import constants as c
 
@@ -65,7 +68,7 @@ def create_collection(json_path: str) -> pystac.Collection:
     sar.pixel_spacing_azimuth = c.SENTINEL_GRD_SAR["pixel_spacing_azimuth"]
     sar.looks_equivalent_number = c.SENTINEL_GRD_SAR["looks_equivalent_number"]
 
-    # SAT Extension
+    # Satellite Extension
     sat = SatExtension.summaries(collection, add_if_missing=True)
     sat.orbit_state = c.SENTINEL_GRD_SAT["orbit_state"]
 
@@ -122,16 +125,26 @@ def create_item(
     )
 
     # ---- Add Extensions ----
-    # sar
+    # SAR Extension
     sar = SarExtension.ext(item, add_if_missing=True)
     fill_sar_properties(sar, metalinks.manifest, product_metadata.resolution)
 
-    # sat
+    # Satellite Extension
     sat = SatExtension.ext(item, add_if_missing=True)
     fill_sat_properties(sat, metalinks.manifest)
 
     # eo
     EOExtension.ext(item, add_if_missing=True)
+
+    # Projection Extension
+    projection = ProjectionExtension.ext(item, add_if_missing=True)
+    projection.epsg = 4326
+    projection.bbox = product_metadata.bbox
+    shape = get_shape(metalinks, read_href_modifier, **kwargs)
+    projection.shape = shape
+    projection.transform = transform_from_bbox(projection.bbox, shape)
+    centroid = shapely.geometry.shape(item.geometry).centroid
+    projection.centroid = {"lat": round(centroid.y, 5), "lon": round(centroid.x, 5)}
 
     # --Common metadata--
     item.common_metadata.providers = [c.SENTINEL_PROVIDER]
@@ -139,7 +152,6 @@ def create_item(
     item.common_metadata.constellation = c.SENTINEL_CONSTELLATION
 
     # s1 properties
-    shape = get_shape(metalinks, read_href_modifier, **kwargs)
     item.properties.update({**product_metadata.metadata_dict, "s1:shape": shape})
 
     # Add assets to item

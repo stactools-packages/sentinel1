@@ -96,7 +96,7 @@ without `.SAFE` ending to the folders and slightly different file names.
 - Initial release!
 - Support for Sentinel1 AWS RTC public dataset
 
-[Unreleased]: https://github.com/stactools-packages/sentinel1/compare/v0.5.3...HEAD
+[Unreleased]: https://github.com/stactools-packages/sentinel1/compare/v0.6.0...HEAD
 [0.6.0]: https://github.com/stactools-packages/sentinel1/compare/v0.5.3...v0.6.0
 [0.5.3]: https://github.com/stactools-packages/sentinel1/compare/v0.5.2...v0.5.3
 [0.5.2]: https://github.com/stactools-packages/sentinel1/compare/v0.5.1...v0.5.2

@@ -154,7 +154,11 @@ def create_item(
 
     # --Common metadata--
     item.common_metadata.providers = [c.SENTINEL_PROVIDER]
-    item.common_metadata.platform = product_metadata.platform
+    item.common_metadata.platform = (
+        product_metadata.platform.lower()
+        if product_metadata.platform
+        else product_metadata.platform
+    )
     item.common_metadata.constellation = c.SENTINEL_CONSTELLATION
 
     # Add s1 properties

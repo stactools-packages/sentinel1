@@ -11,6 +11,10 @@ number as needed.
 
 ## [Unreleased] - TBD
 
+### Changed
+
+- GRD: `platform` property is now lowercase to conform with STAC spec recommendations. This also makes it consistent with the values defined in the Collection Summaries. ([#50](https://github.com/stactools-packages/sentinel1/pull/50))
+
 ### Fixed
 
 - Fixed polarization detection used when determining the asset title ([#49](https://github.com/stactools-packages/sentinel1/pull/49))

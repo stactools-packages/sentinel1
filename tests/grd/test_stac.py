@@ -2,7 +2,9 @@ import pystac
 from pystac.extensions.eo import EOExtension
 from pystac.utils import is_absolute_href
 
-from stactools.sentinel1.grd import Format, stac
+from stactools.sentinel1.grd import Format
+from stactools.sentinel1.grd import constants as c
+from stactools.sentinel1.grd import stac
 from stactools.sentinel1.grd.constants import SENTINEL_POLARIZATIONS
 from tests import test_data
 
@@ -50,6 +52,9 @@ def test_create_item() -> None:
 
     assert item.properties.get("start_datetime") == "2021-08-09T17:39:53.153776Z"
     assert item.properties.get("end_datetime") == "2021-08-09T17:40:18.152800Z"
+
+    assert item.properties.get("constellation") == c.SENTINEL_CONSTELLATION
+    assert item.properties.get("platform") == "sentinel-1a"
 
     assert item.properties.get("proj:epsg") == 4326
     assert item.properties.get("proj:bbox") == [

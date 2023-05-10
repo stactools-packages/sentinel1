@@ -9,6 +9,12 @@ This project attempts to match the major and minor versions of
 [stactools](https://github.com/stac-utils/stactools) and increments the patch
 number as needed.
 
+## [Unreleased] - TBD
+
+## Fixed
+
+- Relaxed polarization regex to work with all files in a scene ([#53](https://github.com/stactools-packages/sentinel1/pull/53))
+
 ## [0.7.0] - 2023-05-10
 
 ### Changed

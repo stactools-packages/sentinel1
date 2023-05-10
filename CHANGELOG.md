@@ -13,7 +13,7 @@ number as needed.
 
 ### Fixed
 
-- Fixed polarization detection used when determining the asset title ([]())
+- Fixed polarization detection used when determining the asset title ([#49](https://github.com/stactools-packages/sentinel1/pull/49))
 
 ## [v0.6.0] - 2023-05-09
 

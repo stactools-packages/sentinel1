@@ -11,6 +11,7 @@ def test_extract_polarization() -> None:
         "S1A_EW_GRDM_1SDH_20221130T014342_20221130T014446_046117_058549_BB15/measurement/ew-hv.tiff": "HV",  # noqa: E501
         "S1A_EW_GRDM_1SDH_20221130T014342_20221130T014446_046117_058549_BB15/measurement/ew-vv.tiff": "VV",  # noqa: E501
         "S1A_EW_GRDM_1SDH_20221130T014342_20221130T014446_046117_058549_BB15/measurement/ew-vh.tiff": "VH",  # noqa: E501
+        "/var/folders/3q/jb-vv.xmlg6x0zx3194zq6_2jbwygjw0000gn/T/tmpe46tss8d/S1A_S3_GRDH_1SDV_20200101T152850_20200101T152909_030608_0381BB_B254/annotation/s3-vh.xml": "VH",  # noqa: E501
     }
 
     # initially, the extract_polarization looked for the two-letter polarization anywhere

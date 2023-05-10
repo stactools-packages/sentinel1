@@ -34,7 +34,7 @@ dataset_naming_pattern = re.compile(
 
 def extract_polarisation(href: str) -> str:
     if match := (
-        re.search(r"ew-(hh|hv|vv|vh)\.(?:tiff|xml)$", href)
+        re.search(r"-(hh|hv|vv|vh)\.(?:tiff|xml)$", href)
         or re.search(r"s1(?:a|b)-iw-grd-(hh|hv|vv|vh)-[-\w]+\.(?:tiff|xml)$", href)
     ):
         return match.group(1).upper()

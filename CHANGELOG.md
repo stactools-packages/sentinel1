@@ -9,6 +9,12 @@ This project attempts to match the major and minor versions of
 [stactools](https://github.com/stac-utils/stactools) and increments the patch
 number as needed.
 
+## [Unreleased] - TBD
+
+### Changed
+
+- GRD: `platform` property is now lowercase to conform with STAC spec recommendations. This also makes it consistent with the values defined in the Collection Summaries. ([]())
+
 ## [v0.6.0] - 2023-05-09
 
 ### Changed

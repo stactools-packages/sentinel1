@@ -9,6 +9,12 @@ This project attempts to match the major and minor versions of
 [stactools](https://github.com/stac-utils/stactools) and increments the patch
 number as needed.
 
+## [Unreleased] - TBD
+
+### Fixed
+
+- Fixed polarization detection used when determining the asset title ([#49](https://github.com/stactools-packages/sentinel1/pull/49))
+
 ## [v0.6.0] - 2023-05-09
 
 ### Changed

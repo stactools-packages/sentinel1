@@ -33,11 +33,13 @@ dataset_naming_pattern = re.compile(
 
 
 def extract_polarisation(href: str) -> str:
-    match = re.search(r"(hh|hv|vv|vh)", href)
-    if match:
-        return match.group(0).upper()
-    else:
-        raise RuntimeError(f"Failed to match polarisation: {href}")
+    if match := (
+        re.search(r"ew-(hh|hv|vv|vh)\.(?:tiff|xml)$", href)
+        or re.search(r"s1(?:a|b)-iw-grd-(hh|hv|vv|vh)-[-\w]+\.(?:tiff|xml)$", href)
+    ):
+        return match.group(1).upper()
+
+    raise RuntimeError(f"Failed to match polarisation: {href}")
 
 
 def extract_properties(href: str, properties: List[str]) -> List[str]:

@@ -13,7 +13,7 @@ number as needed.
 
 ### Changed
 
-- GRD: `platform` property is now lowercase to conform with STAC spec recommendations. This also makes it consistent with the values defined in the Collection Summaries. ([]())
+- GRD: `platform` property is now lowercase to conform with STAC spec recommendations. This also makes it consistent with the values defined in the Collection Summaries. ([#50](https://github.com/stactools-packages/sentinel1/pull/50))
 
 ## [v0.6.0] - 2023-05-09
 

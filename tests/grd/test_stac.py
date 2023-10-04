@@ -2,7 +2,7 @@ import pystac
 from pystac.extensions.eo import EOExtension
 from pystac.utils import is_absolute_href
 
-from stactools.sentinel1.grd import Format
+from stactools.sentinel1.formats import Format
 from stactools.sentinel1.grd import constants as c
 from stactools.sentinel1.grd import stac
 from stactools.sentinel1.grd.constants import SENTINEL_POLARIZATIONS

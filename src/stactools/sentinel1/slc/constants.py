@@ -1,62 +1,50 @@
 from datetime import datetime
-from typing import Any, Dict
+from typing import Dict, Any
 
 import pystac
 from pystac import Extent, ProviderRole, SpatialExtent, TemporalExtent
-from pystac.extensions import sar, sat
-from pystac.extensions.item_assets import AssetDefinition
 from pystac.link import Link
+from pystac.extensions import sar, sat
 from pystac.utils import str_to_datetime
+from pystac.extensions.item_assets import AssetDefinition
 
 from ..constants import *
 
 
-SENTINEL_GRD_DESCRIPTION = (
-    "Level-1 Ground Range Detected (GRD) products consist of focused SAR data that has been detected, multi-looked and projected to ground range using an Earth ellipsoid model. The ellipsoid projection of the GRD products is corrected using the terrain height specified in the product general annotation. "  # noqa: E501
-    "The terrain height used varies in azimuth but is constant in range. Ground range coordinates are the slant range coordinates projected onto the ellipsoid of the Earth. Pixel values represent detected magnitude. Phase information is lost. The resulting product has approximately square spatial resolution "  # noqa: E501
-    "and square pixel spacing with reduced speckle due to the multi-look processing. The noise vector annotation data set, within the product annotations, contains thermal noise vectors so that users can apply a thermal noise correction by subtracting the noise from the power detected image. "  # noqa: E501
-    "The thermal noise correction is, for example, supported by the Sentinel-1 Toolbox (S1TBX). For the IW and EW GRD products, multi-looking is performed on each burst individually. All bursts in all sub-swaths are then seamlessly merged to form a single, contiguous, ground range detected image per polarization channel."  # noqa: E501
-    "GRD products are available in three resolutions, characterised by the acquisition mode and the level of multi-looking applied: Full Resolution (FR), High Resolution (HR), Medium Resolution (MR)."  # noqa: E501
+SENTINEL_SLC_DESCRIPTION = (
+    "Level-1 Single Look Complex (SLC) products are images in the slant range by azimuth imaging plane, in the image plane of satellite data acquisition. Each image pixel is represented by a complex (I and Q) magnitude value and therefore contains both amplitude and phase information. Each I and Q value "  # noqa: E501
+    "is 16 bits per pixel. The processing for all SLC products results in a single look in each dimension using the full available signal bandwidth. The imagery is geo-referenced using orbit and attitude data from the satellite. SLC images are produced in a zero Doppler geometry. This convention is common "  # noqa: E501
+    "with the standard slant range products available from other SAR sensors."
 )
 
-SENTINEL_GRD_START: datetime = str_to_datetime("2014-10-10T00:00:00Z")
-SENTINEL_GRD_EXTENT = Extent(
+SENTINEL_SLC_START: datetime = str_to_datetime("2014-10-10T00:00:00Z")
+SENTINEL_SLC_EXTENT = Extent(
     SpatialExtent([-180.0, -90.0, 180.0, 90.0]),
-    TemporalExtent([[SENTINEL_GRD_START, None]]),
+    TemporalExtent([[SENTINEL_SLC_START, None]]),
 )
 
-SENTINEL_GRD_PROVIDER = pystac.Provider(
-    name="Sinergise",
-    roles=[
-        ProviderRole.HOST,
-        ProviderRole.PROCESSOR,
-        ProviderRole.LICENSOR,
-    ],
-    url="https://registry.opendata.aws/sentinel-1/",
-)
-
-SENTINEL_GRD_TECHNICAL_GUIDE = Link(
-    title="Sentinel-1 Ground Range Detected (GRD) Technical Guide",
+SENTINEL_SLC_TECHNICAL_GUIDE = Link(
+    title="Sentinel-1 Single Look Complex (SLC) Technical Guide",
     rel="about",
-    target="https://sentinels.copernicus.eu/web/sentinel/technical-guides/sentinel-1-sar/products-algorithms/level-1-algorithms/ground-range-detected",  # noqa: E501
+    target="https://sentinels.copernicus.eu/web/sentinel/technical-guides/sentinel-1-sar/products-algorithms/level-1-algorithms/single-look-complex",  # noqa: E501
 )
 
-SENTINEL_GRD_LICENSE = Link(
+SENTINEL_SLC_LICENSE = Link(
     title="Sentinel License",
     rel="license",
     target="https://scihub.copernicus.eu/twiki/do/view/SciHubWebPortal/TermsConditions",
 )
 
-SENTINEL_GRD_KEYWORDS = ["ground", "sentinel", "copernicus", "esa", "sar"]
+SENTINEL_SLC_KEYWORDS = ["ground", "sentinel", "copernicus", "esa", "sar"]
 
-SENTINEL_GRD_SAT = {
+SENTINEL_SLC_SAT = {
     "orbit_state": [sat.OrbitState.ASCENDING, sat.OrbitState.DESCENDING]
 }
 
-SENTINEL_GRD_SAR: Dict[str, Any] = {
-    "looks_range": [2, 3, 5, 6],
-    "product_type": ["GRD"],
-    "looks_azimuth": [1, 2, 6],
+SENTINEL_SLC_SAR: Dict[str, Any] = {
+    "looks_range": [1],
+    "product_type": ["SLC"],
+    "looks_azimuth": [1],
     "polarizations": [
         sar.Polarization.HH,
         sar.Polarization.VV,
@@ -72,17 +60,59 @@ SENTINEL_GRD_SAR: Dict[str, Any] = {
         ],
     ],
     "frequency_band": [sar.FrequencyBand.C],
-    "instrument_mode": ["IW", "EW", "SM"],
+    "instrument_mode": ["IW", "EW", "SM", "WV"],
     "center_frequency": [5.405],
-    "resolution_range": [9, 20, 23, 50, 93],
-    "resolution_azimuth": [9, 22, 23, 50, 87],
-    "pixel_spacing_range": [3.5, 10, 25, 40],
+    "resolution_range": [
+        1.7,
+        2.0,
+        2.5,
+        2.7,
+        3.1,
+        3.3,
+        3.6,
+        3.5,
+        7.9,
+        9.9,
+        11.6,
+        13.3,
+        14.4,
+    ],
+    "resolution_azimuth": [
+        3.9,
+        4.9,
+        22.5,
+        22.6,
+        22.7,
+        43.7,
+        44.3,
+        45.2,
+        45.6,
+        44.0,
+    ],
+    "pixel_spacing_range": [
+        1.5,
+        1.8,
+        2.2,
+        2.3,
+        2.6,
+        2.9,
+        3.1,
+        5.9,
+    ],
+    "pixel_spacing_azimuth": [
+        3.5,
+        3.6,
+        4.1,
+        4.2,
+        14.1,
+        19.9,
+    ],
     "observation_direction": [sar.ObservationDirection.RIGHT],
-    "pixel_spacing_azimuth": [3.5, 10, 25, 40],
-    "looks_equivalent_number": [3.7, 29.7, 398.4, 4.4, 81.8, 2.8, 10.7, 123.7],
+    "looks_equivalent_number": [1],
 }
 
-SENTINEL_GRD_ASSETS = {
+
+SENTINEL_SLC_ASSETS = {
     "vh": AssetDefinition(
         {
             "title": "VH Data",
@@ -273,3 +303,12 @@ SENTINEL_GRD_ASSETS = {
         }
     ),
 }
+
+
+SENTINEL_SLC_IW_TPRE = 2.299849  # Preamble length
+SENTINEL_SLC_IW_TBEAM = 2.758273  # Beam cycle time
+SENTINEL_SLC_IW_TORB = 12 * 86400 / 175  # Nominal orbit duration
+
+SENTINEL_SLC_EW_TPRE = 2.299970  # Preamble length
+SENTINEL_SLC_EW_TBEAM = 3.038376  # Beam cycle time
+SENTINEL_SLC_EW_TORB = 12 * 86400 / 175  # Nominal orbit duration

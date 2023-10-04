@@ -5,7 +5,7 @@ from typing import Optional, Tuple
 import pystac
 from pystac.extensions.eo import EOExtension
 
-from stactools.sentinel1.grd.constants import SENTINEL_POLARIZATIONS
+from stactools.sentinel1.constants import SENTINEL_POLARIZATIONS
 
 logger = logging.getLogger(__name__)
 

@@ -10,8 +10,8 @@ from lxml import etree
 from stactools.core.io import ReadHrefModifier
 from stactools.core.io.xml import XmlElement
 
-from . import Format
-from .constants import SAFE_MANIFEST_ASSET_KEY
+from .formats import Format
+from .grd.constants import SAFE_MANIFEST_ASSET_KEY
 
 
 class ManifestError(Exception):
@@ -33,11 +33,8 @@ dataset_naming_pattern = re.compile(
 
 
 def extract_polarisation(href: str) -> str:
-    if match := (
-        re.search(r"-(hh|hv|vv|vh)\.(?:tiff|xml)$", href)
-        or re.search(r"s1(?:a|b)-iw-grd-(hh|hv|vv|vh)-[-\w]+\.(?:tiff|xml)$", href)
-    ):
-        return match.group(1).upper()
+    if match := dataset_naming_pattern.match(href):
+        return match.group("polarisation").upper()
 
     raise RuntimeError(f"Failed to match polarisation: {href}")
 

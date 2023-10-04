@@ -3,35 +3,34 @@ import os
 
 import click
 
-from stactools.sentinel1.grd.stac import create_collection, create_item
-
+from .stac import create_collection, create_item
 from ..formats import Format
 
 logger = logging.getLogger(__name__)
 
 
-@click.group("grd")
-def grd_cmd() -> None:
-    """Commands for working with sentinel1 GRD data"""
+@click.group("slc")
+def slc_cmd() -> None:
+    """Commands for working with sentinel1 SLC data"""
     pass
 
 
-@grd_cmd.command(
-    "create-collection", short_help="Create a Sentinel1 GRD STAC Collection"
+@slc_cmd.command(
+    "create-collection", short_help="Create a Sentinel1 SLC STAC Collection"
 )
 @click.argument("destination")
 def create_collection_command(destination: str) -> None:
-    """Creates a STAC Collection for Sentinel1 GRD products"""
+    """Creates a STAC Collection for Sentinel1 SLC products"""
 
-    json_path = os.path.join(destination, "sentinel1-grd.json")
+    json_path = os.path.join(destination, "sentinel1-slc.json")
     collection = create_collection(json_path)
     collection.validate()
     collection.save_object(dest_href=json_path)
 
 
-@grd_cmd.command(
+@slc_cmd.command(
     "create-item",
-    short_help="Convert a Sentinel1 GRD scene into a STAC item",
+    short_help="Convert a Sentinel1 SLC scene into a STAC item",
 )
 @click.argument("src")
 @click.argument("dst")

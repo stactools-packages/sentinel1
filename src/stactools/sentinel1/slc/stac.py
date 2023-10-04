@@ -8,24 +8,28 @@ from pystac import Summaries
 from pystac.extensions.eo import EOExtension
 from pystac.extensions.item_assets import ItemAssetsExtension
 from pystac.extensions.projection import ProjectionExtension
-from pystac.extensions.sar import SarExtension
+from pystac.extensions.sar import SarExtension, AssetSarExtension
 from pystac.extensions.sat import SatExtension
 from stactools.core.io import ReadHrefModifier
 from stactools.core.projection import transform_from_bbox
 
 from ..formats import Format
 from ..bands import image_asset_from_href
-from ..metadata_links import MetadataLinks
 from ..product_metadata import get_shape
 from . import constants as c
-from .product_metadata import GRDProductMetadata
-from .properties import fill_sar_properties, fill_sat_properties
+from .metadata_links import SLCMetadataLinks, extract_properties
+from .product_metadata import SLCProductMetadata
+from .properties import (
+    fill_common_sar_properties,
+    fill_swath_sar_properties,
+    fill_sat_properties,
+)
 
 logger = logging.getLogger(__name__)
 
 
 def create_collection(json_path: str) -> pystac.Collection:
-    """Creates a STAC Collection for Sentinel-1 RTC"""
+    """Creates a STAC Collection for Sentinel-1 SLC"""
     # Lists of all possible values for items
     summary_dict = {
         "constellation": [c.SENTINEL_CONSTELLATION],
@@ -33,48 +37,48 @@ def create_collection(json_path: str) -> pystac.Collection:
     }
 
     collection = pystac.Collection(
-        id="sentinel1-grd",
-        description=c.SENTINEL_GRD_DESCRIPTION,
-        extent=c.SENTINEL_GRD_EXTENT,
-        title="Sentinel-1 GRD",
+        id="sentinel1-slc",
+        description=c.SENTINEL_SLC_DESCRIPTION,
+        extent=c.SENTINEL_SLC_EXTENT,
+        title="Sentinel-1 SLC",
         href=json_path,
         stac_extensions=[
             SarExtension.get_schema_uri(),
             SatExtension.get_schema_uri(),
             EOExtension.get_schema_uri(),
         ],
-        keywords=c.SENTINEL_GRD_KEYWORDS,
-        providers=[c.SENTINEL_PROVIDER, c.SENTINEL_GRD_PROVIDER],
+        keywords=c.SENTINEL_SLC_KEYWORDS,
+        providers=[c.SENTINEL_PROVIDER],  # TODO: c.SENTINEL_SLC_PROVIDER
         summaries=Summaries(summary_dict),
     )
 
     # Links
-    collection.links.append(c.SENTINEL_GRD_LICENSE)
-    collection.links.append(c.SENTINEL_GRD_TECHNICAL_GUIDE)
+    collection.links.append(c.SENTINEL_SLC_LICENSE)
+    collection.links.append(c.SENTINEL_SLC_TECHNICAL_GUIDE)
 
     # SAR Extension
     sar = SarExtension.summaries(collection, add_if_missing=True)
-    sar.looks_range = c.SENTINEL_GRD_SAR["looks_range"]
-    sar.product_type = c.SENTINEL_GRD_SAR["product_type"]
-    sar.looks_azimuth = c.SENTINEL_GRD_SAR["looks_azimuth"]
-    sar.polarizations = c.SENTINEL_GRD_SAR["polarizations"]
-    sar.frequency_band = c.SENTINEL_GRD_SAR["frequency_band"]
-    sar.instrument_mode = c.SENTINEL_GRD_SAR["instrument_mode"]
-    sar.center_frequency = c.SENTINEL_GRD_SAR["center_frequency"]
-    sar.resolution_range = c.SENTINEL_GRD_SAR["resolution_range"]
-    sar.resolution_azimuth = c.SENTINEL_GRD_SAR["resolution_azimuth"]
-    sar.pixel_spacing_range = c.SENTINEL_GRD_SAR["pixel_spacing_range"]
-    sar.observation_direction = c.SENTINEL_GRD_SAR["observation_direction"]
-    sar.pixel_spacing_azimuth = c.SENTINEL_GRD_SAR["pixel_spacing_azimuth"]
-    sar.looks_equivalent_number = c.SENTINEL_GRD_SAR["looks_equivalent_number"]
+    sar.looks_range = c.SENTINEL_SLC_SAR["looks_range"]
+    sar.product_type = c.SENTINEL_SLC_SAR["product_type"]
+    sar.looks_azimuth = c.SENTINEL_SLC_SAR["looks_azimuth"]
+    sar.polarizations = c.SENTINEL_SLC_SAR["polarizations"]
+    sar.frequency_band = c.SENTINEL_SLC_SAR["frequency_band"]
+    sar.instrument_mode = c.SENTINEL_SLC_SAR["instrument_mode"]
+    sar.center_frequency = c.SENTINEL_SLC_SAR["center_frequency"]
+    sar.resolution_range = c.SENTINEL_SLC_SAR["resolution_range"]
+    sar.resolution_azimuth = c.SENTINEL_SLC_SAR["resolution_azimuth"]
+    sar.pixel_spacing_range = c.SENTINEL_SLC_SAR["pixel_spacing_range"]
+    sar.observation_direction = c.SENTINEL_SLC_SAR["observation_direction"]
+    sar.pixel_spacing_azimuth = c.SENTINEL_SLC_SAR["pixel_spacing_azimuth"]
+    sar.looks_equivalent_number = c.SENTINEL_SLC_SAR["looks_equivalent_number"]
 
     # Satellite Extension
     sat = SatExtension.summaries(collection, add_if_missing=True)
-    sat.orbit_state = c.SENTINEL_GRD_SAT["orbit_state"]
+    sat.orbit_state = c.SENTINEL_SLC_SAT["orbit_state"]
 
     # Item Asset Extension
     assets = ItemAssetsExtension.ext(collection, add_if_missing=True)
-    assets.item_assets = c.SENTINEL_GRD_ASSETS
+    assets.item_assets = c.SENTINEL_SLC_ASSETS
 
     return collection
 
@@ -85,7 +89,7 @@ def create_item(
     archive_format: Format = Format.SAFE,
     **kwargs: Any,
 ) -> pystac.Item:
-    """Create a STC Item from a Sentinel-1 GRD scene.
+    """Create a STC Item from a Sentinel-1 SLC scene.
 
     Args:
         granule_href (str): The HREF to the granule.
@@ -98,17 +102,17 @@ def create_item(
 
 
     Returns:
-        pystac.Item: An item representing the Sentinel-1 GRD scene.
+        pystac.Item: An item representing the Sentinel-1 SLC scene.
     """
 
-    metalinks = MetadataLinks(
+    metalinks = SLCMetadataLinks(
         granule_href,
         read_href_modifier,
         archive_format,
         **kwargs,
     )
 
-    product_metadata = GRDProductMetadata(
+    product_metadata = SLCProductMetadata(
         metalinks.product_metadata_href,
         metalinks.grouped_hrefs,
         metalinks.map_filename,
@@ -133,7 +137,7 @@ def create_item(
     # ---- Add Extensions ----
     # SAR Extension
     sar = SarExtension.ext(item, add_if_missing=True)
-    fill_sar_properties(sar, metalinks.manifest, product_metadata.resolution)
+    fill_common_sar_properties(sar, metalinks.manifest)
 
     # Satellite Extension
     sat = SatExtension.ext(item, add_if_missing=True)
@@ -150,7 +154,10 @@ def create_item(
     projection.shape = shape
     projection.transform = transform_from_bbox(projection.bbox, shape)
     centroid = shapely.geometry.shape(item.geometry).centroid
-    projection.centroid = {"lat": round(centroid.y, 5), "lon": round(centroid.x, 5)}
+    projection.centroid = {
+        "lat": round(centroid.y, 5),
+        "lon": round(centroid.x, 5),
+    }
 
     # --Common metadata--
     item.common_metadata.providers = [c.SENTINEL_PROVIDER]
@@ -168,7 +175,7 @@ def create_item(
     item.properties["s1:product_identifier"] = scene_id
 
     if pdt := metalinks.manifest.find_attr(
-        "stop", ".//safe:processing[@name='GRD Post Processing']"
+        "stop", ".//safe:processing[@name='SLC Post Processing']"
     ):
         item.properties["s1:processing_datetime"] = f"{pdt}Z"
 
@@ -225,12 +232,17 @@ def create_item(
         ]
     )
 
-    for key, asset in image_assets.items():
+    for asset in image_assets.values():
+        polarisation, swath = extract_properties(asset.href, ["polarisation", "swath"])
+        key = f"{swath}-{polarisation}"
         assert key not in item.assets
         item.add_asset(key, asset)
+        asset_sar = AssetSarExtension.ext(asset, add_if_missing=True)
+
+        fill_swath_sar_properties(asset_sar, swath.upper())
 
     # --Links--
-    item.links.append(c.SENTINEL_GRD_LICENSE)
-    item.links.append(c.SENTINEL_GRD_TECHNICAL_GUIDE)
+    item.links.append(c.SENTINEL_SLC_LICENSE)
+    item.links.append(c.SENTINEL_SLC_TECHNICAL_GUIDE)
 
     return item

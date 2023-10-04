@@ -1,4 +1,4 @@
-from stactools.sentinel1.grd.metadata_links import extract_polarisation
+from stactools.sentinel1.metadata_links import extract_polarisation
 
 
 def test_extract_polarization() -> None:

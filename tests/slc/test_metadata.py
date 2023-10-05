@@ -5,8 +5,8 @@ from pystac.extensions.sar import SarExtension
 from pystac.extensions.sat import SatExtension
 
 from stactools.sentinel1.metadata_links import MetadataLinks
-from stactools.sentinel1.grd.product_metadata import GRDProductMetadata
-from stactools.sentinel1.grd.properties import fill_sar_properties, fill_sat_properties
+from stactools.sentinel1.slc.product_metadata import SLCProductMetadata
+from stactools.sentinel1.slc.properties import fill_common_sar_properties, fill_sat_properties
 from tests import test_data
 
 
@@ -15,12 +15,12 @@ class Sentinel1MetadataTest(unittest.TestCase):
 
         # Get the path of the test xml
         manifest_path = test_data.get_path(
-            "data-files/grd/S1A_IW_GRDH_1SDV_20210809T173953_20210809T174018_039156_049F13_6FF8.SAFE"  # noqa
+            "data-files/slc/S1A_IW_SL1__1_SH_20141031T095929_20141031T100002_003072_003842_91FC.SAFE"  # noqa
         )
 
         metalinks = MetadataLinks(manifest_path)
 
-        product_metadata = GRDProductMetadata(
+        product_metadata = SLCProductMetadata(
             metalinks.product_metadata_href,
             metalinks.grouped_hrefs,
             metalinks.map_filename,
@@ -39,7 +39,7 @@ class Sentinel1MetadataTest(unittest.TestCase):
         # ---- Add Extensions ----
         # sar
         sar = SarExtension.ext(item, add_if_missing=True)
-        fill_sar_properties(sar, metalinks.manifest, product_metadata.resolution)
+        fill_common_sar_properties(sar, metalinks.manifest)
 
         # sat
         sat = SatExtension.ext(item, add_if_missing=True)
@@ -56,11 +56,11 @@ class Sentinel1MetadataTest(unittest.TestCase):
         }
 
         properties_expected = {
-            "bbox": [1.512143, 44.536255, 5.188996, 46.436539],
+            "bbox": [-53.661625, 69.582458, -45.827332, 71.715393],
             "sar_band": "C",
             "centre_frequency": 5.405,
-            "polarizations": ["VV", "VH"],
-            "product_type": "GRD",
+            "polarizations": ["HH"],
+            "product_type": "SLC",
         }
 
         for k, v in properties_expected.items():

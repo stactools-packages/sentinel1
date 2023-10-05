@@ -16,8 +16,9 @@ from stactools.core.projection import transform_from_bbox
 from ..formats import Format
 from ..bands import image_asset_from_href
 from ..product_metadata import get_shape
+from ..metadata_links import extract_properties
 from . import constants as c
-from .metadata_links import SLCMetadataLinks, extract_properties
+from .metadata_links import SLCMetadataLinks
 from .product_metadata import SLCProductMetadata
 from .properties import (
     fill_common_sar_properties,

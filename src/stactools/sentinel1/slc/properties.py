@@ -6,7 +6,6 @@ from pystac.extensions.sar import (
     ObservationDirection,
     Polarization,
     SarExtension,
-    AssetSarExtension,
 )
 from pystac.extensions.sat import OrbitState, SatExtension
 from stactools.core.io.xml import XmlElement
@@ -97,7 +96,9 @@ def fill_common_sar_properties(
         sar_ext.product_type = product_type
 
 
-def fill_swath_sar_properties(sar_ext: AssetSarExtension, swath: str) -> None:
+def fill_swath_sar_properties(
+    sar_ext: SarExtension[pystac.Asset], swath: str
+) -> None:
     """Fills the properties for SAR.
 
     Based on the sar Extension.py

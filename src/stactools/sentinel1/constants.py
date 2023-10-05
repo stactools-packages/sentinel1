@@ -1,11 +1,6 @@
-from datetime import datetime
-from typing import Any, Dict
-
 import pystac
-from pystac import Extent, ProviderRole, SpatialExtent, TemporalExtent
-from pystac.extensions import sar, sat
+from pystac import ProviderRole
 from pystac.extensions.eo import Band
-from pystac.extensions.item_assets import AssetDefinition
 from pystac.link import Link
 
 INSPIRE_METADATA_ASSET_KEY = "inspire-metadata"

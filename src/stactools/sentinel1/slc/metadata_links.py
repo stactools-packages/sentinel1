@@ -1,17 +1,14 @@
-import itertools
-import json
 import os
-import re
-from typing import Any, Dict, List, Optional, Tuple
+from typing import List, Tuple
 
 import pystac
-import stactools.core.io
-from lxml import etree
-from stactools.core.io import ReadHrefModifier
-from stactools.core.io.xml import XmlElement
 
 from ..metadata_links import MetadataLinks, extract_properties
-from ..formats import Format
+
+
+def get_swath_and_polarisation(href: str) -> Tuple[str, str]:
+    swath, polarisation = extract_properties(href, ["swath", "polarisation"])
+    return (swath.upper(), polarisation.upper())
 
 
 class SLCMetadataLinks(MetadataLinks):
@@ -19,7 +16,7 @@ class SLCMetadataLinks(MetadataLinks):
     def annotation_hrefs(self) -> List[Tuple[str, str]]:
         return [
             (
-                "schema-product-{}-{}".format(*extract_properties(x, ["swath", "polarisation"])),
+                "schema-product-{}-{}".format(*get_swath_and_polarisation(x)),
                 os.path.join(self.granule_href, self.map_filename(x)),
             )
             for x in self.grouped_hrefs["annotation"]
@@ -31,7 +28,7 @@ class SLCMetadataLinks(MetadataLinks):
         return [
             (
                 "schema-calibration-{}-{}".format(
-                    *extract_properties(x, ["swath", "polarisation"])
+                    *get_swath_and_polarisation(x)
                 ),
                 os.path.join(self.granule_href, self.map_filename(x)),
             )
@@ -42,7 +39,7 @@ class SLCMetadataLinks(MetadataLinks):
     def noise_hrefs(self) -> List[Tuple[str, str]]:
         return [
             (
-                "schema-noise-{}-{}".format(*extract_properties(x, ["swath", "polarisation"])),
+                "schema-noise-{}-{}".format(*get_swath_and_polarisation(x)),
                 os.path.join(self.granule_href, self.map_filename(x)),
             )
             for x in self.grouped_hrefs["calibration_noise"]
@@ -57,7 +54,7 @@ class SLCMetadataLinks(MetadataLinks):
         )
         for key, href in self.annotation_hrefs:
             # Extract polarisation from href
-            polarisation, swath = extract_properties(href, ["polarisation", "swath"])
+            swath, polarisation = get_swath_and_polarisation(href)
             if polarisation:
                 # Add polarisation to title
                 title = f"{polarisation} {swath} Product Schema"
@@ -80,7 +77,7 @@ class SLCMetadataLinks(MetadataLinks):
         )
         for key, href in self.calibration_hrefs:
             # Extract polarisation from href
-            polarisation, swath = extract_properties(href, ["polarisation", "swath"])
+            polarisation, swath = get_swath_and_polarisation(href)
             if polarisation:
                 # Add polarisation to title
                 title = f"{polarisation} {swath} Calibration Schema"
@@ -98,7 +95,7 @@ class SLCMetadataLinks(MetadataLinks):
         assets = []
         for key, href in self.noise_hrefs:
             # Extract polarisation from href
-            polarisation, swath = extract_properties(href, ["polarisation", "swath"])
+            polarisation, swath = get_swath_and_polarisation(href)
             if polarisation:
                 # Add polarisation to title
                 title = f"{polarisation} {swath} Noise Schema"

@@ -2,7 +2,7 @@ from datetime import datetime
 from typing import Dict, Any
 
 import pystac
-from pystac import Extent, ProviderRole, SpatialExtent, TemporalExtent
+from pystac import Extent, SpatialExtent, TemporalExtent
 from pystac.link import Link
 from pystac.extensions import sar, sat
 from pystac.utils import str_to_datetime

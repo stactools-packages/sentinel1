@@ -1,0 +1,328 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xfdu:XFDU xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:gml="http://www.opengis.net/gml" xmlns:xfdu="urn:ccsds:schema:xfdu:1" xmlns:safe="http://www.esa.int/safe/sentinel-1.0" xmlns:s1="http://www.esa.int/safe/sentinel-1.0/sentinel-1" xmlns:s1sar="http://www.esa.int/safe/sentinel-1.0/sentinel-1/sar" xmlns:s1sarl1="http://www.esa.int/safe/sentinel-1.0/sentinel-1/sar/level-1" xmlns:s1sarl2="http://www.esa.int/safe/sentinel-1.0/sentinel-1/sar/level-2" xmlns:gx="http://www.google.com/kml/ext/2.2" version="esa/safe/sentinel-1.0/sentinel-1/sar/level-1/slc/standard/iwsp">
+  <informationPackageMap>
+    <xfdu:contentUnit unitType="SAFE Archive Information Package" textInfo="Sentinel-1 IW Level-1 SLC Product" dmdID="acquisitionPeriod platform generalProductInformation measurementOrbitReference measurementFrameSet" pdiID="processing">
+      <xfdu:contentUnit unitType="Metadata Unit" repID="s1Level1ProductSchema">
+        <dataObjectPointer dataObjectID="products1aiw1slchh20141031t09593120141031t095956003072003842001"/>
+      </xfdu:contentUnit>
+      <xfdu:contentUnit unitType="Metadata Unit" repID="s1Level1NoiseSchema">
+        <dataObjectPointer dataObjectID="noises1aiw1slchh20141031t09593120141031t095956003072003842001"/>
+      </xfdu:contentUnit>
+      <xfdu:contentUnit unitType="Metadata Unit" repID="s1Level1CalibrationSchema">
+        <dataObjectPointer dataObjectID="calibrations1aiw1slchh20141031t09593120141031t095956003072003842001"/>
+      </xfdu:contentUnit>
+      <xfdu:contentUnit unitType="Metadata Unit" repID="s1Level1ProductSchema">
+        <dataObjectPointer dataObjectID="products1aiw2slchh20141031t09593220141031t095957003072003842002"/>
+      </xfdu:contentUnit>
+      <xfdu:contentUnit unitType="Metadata Unit" repID="s1Level1NoiseSchema">
+        <dataObjectPointer dataObjectID="noises1aiw2slchh20141031t09593220141031t095957003072003842002"/>
+      </xfdu:contentUnit>
+      <xfdu:contentUnit unitType="Metadata Unit" repID="s1Level1CalibrationSchema">
+        <dataObjectPointer dataObjectID="calibrations1aiw2slchh20141031t09593220141031t095957003072003842002"/>
+      </xfdu:contentUnit>
+      <xfdu:contentUnit unitType="Metadata Unit" repID="s1Level1ProductSchema">
+        <dataObjectPointer dataObjectID="products1aiw3slchh20141031t09593320141031t095958003072003842003"/>
+      </xfdu:contentUnit>
+      <xfdu:contentUnit unitType="Metadata Unit" repID="s1Level1NoiseSchema">
+        <dataObjectPointer dataObjectID="noises1aiw3slchh20141031t09593320141031t095958003072003842003"/>
+      </xfdu:contentUnit>
+      <xfdu:contentUnit unitType="Metadata Unit" repID="s1Level1CalibrationSchema">
+        <dataObjectPointer dataObjectID="calibrations1aiw3slchh20141031t09593320141031t095958003072003842003"/>
+      </xfdu:contentUnit>
+      <xfdu:contentUnit unitType="Metadata Unit" repID="s1Level1MapOverlaySchema">
+        <dataObjectPointer dataObjectID="mapoverlay"/>
+      </xfdu:contentUnit>
+      <xfdu:contentUnit unitType="Metadata Unit" repID="s1Level1ProductPreviewSchema">
+        <dataObjectPointer dataObjectID="productpreview"/>
+      </xfdu:contentUnit>
+      <xfdu:contentUnit unitType="Measurement Data Unit" repID="s1Level1MeasurementSchema" dmdID="products1aiw1slchh20141031t09593120141031t095956003072003842001Annotation noises1aiw1slchh20141031t09593120141031t095956003072003842001Annotation calibrations1aiw1slchh20141031t09593120141031t095956003072003842001Annotation ">
+        <dataObjectPointer dataObjectID="s1aiw1slchh20141031t09593120141031t095956003072003842001"/>
+      </xfdu:contentUnit>
+      <xfdu:contentUnit unitType="Measurement Data Unit" repID="s1Level1MeasurementSchema" dmdID="products1aiw2slchh20141031t09593220141031t095957003072003842002Annotation noises1aiw2slchh20141031t09593220141031t095957003072003842002Annotation calibrations1aiw2slchh20141031t09593220141031t095957003072003842002Annotation ">
+        <dataObjectPointer dataObjectID="s1aiw2slchh20141031t09593220141031t095957003072003842002"/>
+      </xfdu:contentUnit>
+      <xfdu:contentUnit unitType="Measurement Data Unit" repID="s1Level1MeasurementSchema" dmdID="products1aiw3slchh20141031t09593320141031t095958003072003842003Annotation noises1aiw3slchh20141031t09593320141031t095958003072003842003Annotation calibrations1aiw3slchh20141031t09593320141031t095958003072003842003Annotation ">
+        <dataObjectPointer dataObjectID="s1aiw3slchh20141031t09593320141031t095958003072003842003"/>
+      </xfdu:contentUnit>
+      <xfdu:contentUnit unitType="Measurement Data Unit" repID="s1Level1QuickLookSchema">
+        <dataObjectPointer dataObjectID="quicklook"/>
+      </xfdu:contentUnit>
+    </xfdu:contentUnit>
+  </informationPackageMap>
+  <metadataSection>
+    <metadataObject ID="products1aiw1slchh20141031t09593120141031t095956003072003842001Annotation" classification="DESCRIPTION" category="DMD">
+      <dataObjectPointer dataObjectID="products1aiw1slchh20141031t09593120141031t095956003072003842001"/>
+    </metadataObject>
+    <metadataObject ID="noises1aiw1slchh20141031t09593120141031t095956003072003842001Annotation" classification="DESCRIPTION" category="DMD">
+      <dataObjectPointer dataObjectID="noises1aiw1slchh20141031t09593120141031t095956003072003842001"/>
+    </metadataObject>
+    <metadataObject ID="calibrations1aiw1slchh20141031t09593120141031t095956003072003842001Annotation" classification="DESCRIPTION" category="DMD">
+      <dataObjectPointer dataObjectID="calibrations1aiw1slchh20141031t09593120141031t095956003072003842001"/>
+    </metadataObject>
+    <metadataObject ID="products1aiw2slchh20141031t09593220141031t095957003072003842002Annotation" classification="DESCRIPTION" category="DMD">
+      <dataObjectPointer dataObjectID="products1aiw2slchh20141031t09593220141031t095957003072003842002"/>
+    </metadataObject>
+    <metadataObject ID="noises1aiw2slchh20141031t09593220141031t095957003072003842002Annotation" classification="DESCRIPTION" category="DMD">
+      <dataObjectPointer dataObjectID="noises1aiw2slchh20141031t09593220141031t095957003072003842002"/>
+    </metadataObject>
+    <metadataObject ID="calibrations1aiw2slchh20141031t09593220141031t095957003072003842002Annotation" classification="DESCRIPTION" category="DMD">
+      <dataObjectPointer dataObjectID="calibrations1aiw2slchh20141031t09593220141031t095957003072003842002"/>
+    </metadataObject>
+    <metadataObject ID="products1aiw3slchh20141031t09593320141031t095958003072003842003Annotation" classification="DESCRIPTION" category="DMD">
+      <dataObjectPointer dataObjectID="products1aiw3slchh20141031t09593320141031t095958003072003842003"/>
+    </metadataObject>
+    <metadataObject ID="noises1aiw3slchh20141031t09593320141031t095958003072003842003Annotation" classification="DESCRIPTION" category="DMD">
+      <dataObjectPointer dataObjectID="noises1aiw3slchh20141031t09593320141031t095958003072003842003"/>
+    </metadataObject>
+    <metadataObject ID="calibrations1aiw3slchh20141031t09593320141031t095958003072003842003Annotation" classification="DESCRIPTION" category="DMD">
+      <dataObjectPointer dataObjectID="calibrations1aiw3slchh20141031t09593320141031t095958003072003842003"/>
+    </metadataObject>
+    <metadataObject ID="mapoverlayAnnotation" classification="DESCRIPTION" category="DMD">
+      <dataObjectPointer dataObjectID="mapoverlay"/>
+    </metadataObject>
+    <metadataObject ID="productpreviewAnnotation" classification="DESCRIPTION" category="DMD">
+      <dataObjectPointer dataObjectID="productpreview"/>
+    </metadataObject>
+    <metadataObject ID="processing" classification="PROVENANCE" category="PDI">
+      <metadataWrap mimeType="text/xml" vocabularyName="SAFE" textInfo="Processing">
+        <xmlData>
+          <safe:processing name="SLC Post Processing" start="2014-10-31T20:26:53.174340" stop="2014-10-31T20:34:21.000000">
+            <safe:facility country="United Kingdom" name="UPA_" organisation="Airbus DS" site="Farnborough">
+              <safe:software name="Sentinel-1 IPF" version="002.36"/>
+            </safe:facility>
+            <safe:resource name="S1A_IW_SL1__1_SH_20141031T095929_20141031T100002_003072_003842_91FC.SAFE" role="Level-1 Intermediate SLC Product">
+              <processing name="SLC Processing" start="2014-10-31T20:29:09.000000" stop="2014-10-31T20:32:46.000000" xmlns="http://www.esa.int/safe/sentinel-1.0">
+                <facility country="United Kingdom" name="UPA_" organisation="Airbus DS" site="Farnborough">
+                  <software name="Sentinel-1 IPF" version="002.36"/>
+                </facility>
+                <resource name="/data/localWD/466903309//S1A_AUX_PP1_V20141014T123000_G20141014T122632.SAFE" role="AUX_PP1"/>
+                <resource name="/data/localWD/466903309//S1A_AUX_CAL_V20140915T100000_G20141003T151141.SAFE" role="AUX_CAL"/>
+                <resource name="/data/localWD/466903309//S1A_AUX_INS_V20140908T000000_G20140909T130314.SAFE" role="AUX_INS"/>
+                <resource name="/data/localWD/466903309//S1A_OPER_AUX_RESORB_OPOD_20141031T133602_V20141031T092943_20141031T124713.EOF" role="AUX_RES"/>
+                <resource name="/data/localWD/466903309//S1A_IW_RAW__0SSH_20141031T095929_20141031T100001_003072_003842_E98D.SAFE" role="Level-0 Product">
+                  <processing xmlns="http://www.esa.int/safe/sentinel-1.0" name="Generation of Sentinel-1 SAR Slice L0 product" start="2014-10-31T13:10:59.437739" stop="2014-10-31T13:11:00.788460">
+                    <resource name="S-1 Core PDGS S-1 Level-0 Product Format Specifications S1PD.SP.00110.ASTR" role="Applicable Document"/>
+                    <resource name="Sentinel-1 SAR Space Packet Protocol Data Unit S1-IF-ASD-PL-0007" role="Applicable Document" version="10"/>
+                    <resource name="Downlinked Stream" role="Raw Data">
+                      <processing xmlns="http://www.esa.int/safe/sentinel-1.0" name="Raw Data Downlink Channel1" start="2014-10-31T11:28:56.297790" stop="2014-10-31T11:29:26.587084">
+                        </processing>
+                    </resource>
+                  </processing>
+                </resource>
+                <resource name="Sentinel-1 Product Definition (S1-RS-MDA-52-7440) release 2/5" role="product definition"/>
+                <resource name="Sentinel-1 Product Specification (S1-RS-MDA-52-7441) release 2/7" role="product specification"/>
+              </processing>
+            </safe:resource>
+          </safe:processing>
+        </xmlData>
+      </metadataWrap>
+    </metadataObject>
+    <metadataObject ID="platform" classification="DESCRIPTION" category="DMD">
+      <metadataWrap mimeType="text/xml" vocabularyName="SAFE" textInfo="Platform Description">
+        <xmlData>
+          <safe:platform>
+            <safe:nssdcIdentifier>0000-000A</safe:nssdcIdentifier>
+            <safe:familyName>SENTINEL-1</safe:familyName>
+            <safe:number>A</safe:number>
+            <safe:instrument>
+              <safe:familyName abbreviation="SAR">Synthetic Aperture Radar</safe:familyName>
+              <safe:extension>
+                <s1sarl1:instrumentMode>
+                  <s1sarl1:mode>IW</s1sarl1:mode>
+                  <s1sarl1:swath>IW1</s1sarl1:swath>
+                  <s1sarl1:swath>IW2</s1sarl1:swath>
+                  <s1sarl1:swath>IW3</s1sarl1:swath>
+                </s1sarl1:instrumentMode>
+              </safe:extension>
+            </safe:instrument>
+          </safe:platform>
+        </xmlData>
+      </metadataWrap>
+    </metadataObject>
+    <metadataObject ID="measurementOrbitReference" classification="DESCRIPTION" category="DMD">
+      <metadataWrap mimeType="text/xml" vocabularyName="SAFE" textInfo="Orbit Reference">
+        <xmlData>
+          <safe:orbitReference>
+            <safe:orbitNumber type="start">3072</safe:orbitNumber>
+            <safe:orbitNumber type="stop">3072</safe:orbitNumber>
+            <safe:relativeOrbitNumber type="start">25</safe:relativeOrbitNumber>
+            <safe:relativeOrbitNumber type="stop">25</safe:relativeOrbitNumber>
+            <safe:cycleNumber>32</safe:cycleNumber>
+            <safe:phaseIdentifier>1</safe:phaseIdentifier>
+            <safe:extension>
+              <s1:orbitProperties>
+                <s1:pass>DESCENDING</s1:pass>
+                <s1:ascendingNodeTime>2014-10-31T09:29:49.126914</s1:ascendingNodeTime>
+              </s1:orbitProperties>
+            </safe:extension>
+          </safe:orbitReference>
+        </xmlData>
+      </metadataWrap>
+    </metadataObject>
+    <metadataObject ID="generalProductInformation" classification="DESCRIPTION" category="DMD">
+      <metadataWrap mimeType="text/xml" vocabularyName="SAFE" textInfo="General Product Information">
+        <xmlData>
+          <s1sarl1:standAloneProductInformation>
+            <s1sarl1:instrumentConfigurationID>3</s1sarl1:instrumentConfigurationID>
+            <s1sarl1:missionDataTakeID>14402</s1sarl1:missionDataTakeID>
+            <s1sarl1:transmitterReceiverPolarisation>HH</s1sarl1:transmitterReceiverPolarisation>
+            <s1sarl1:productClass>S</s1sarl1:productClass>
+            <s1sarl1:productClassDescription>SAR Standard L1 Product</s1sarl1:productClassDescription>
+            <s1sarl1:productComposition>Slice</s1sarl1:productComposition>
+            <s1sarl1:productType>SLC</s1sarl1:productType>
+            <s1sarl1:productTimelinessCategory>Fast-24h</s1sarl1:productTimelinessCategory>
+            <s1sarl1:sliceProductFlag>true</s1sarl1:sliceProductFlag>
+            <s1sarl1:segmentStartTime>2014-10-31T09:59:04.199318</s1sarl1:segmentStartTime>
+            <s1sarl1:sliceNumber>2</s1sarl1:sliceNumber>
+            <s1sarl1:totalSlices>10</s1sarl1:totalSlices>
+          </s1sarl1:standAloneProductInformation>
+        </xmlData>
+      </metadataWrap>
+    </metadataObject>
+    <metadataObject ID="acquisitionPeriod" classification="DESCRIPTION" category="DMD">
+      <metadataWrap mimeType="text/xml" vocabularyName="SAFE" textInfo="Acquisition Period">
+        <xmlData>
+          <safe:acquisitionPeriod>
+            <safe:startTime>2014-10-31T09:59:31.293840</safe:startTime>
+            <safe:stopTime>2014-10-31T09:59:58.717016</safe:stopTime>
+            <safe:extension>
+              <s1:timeANX>
+                <s1:startTimeANX>1.782167e+06</s1:startTimeANX>
+                <s1:stopTimeANX>1.809590e+06</s1:stopTimeANX>
+              </s1:timeANX>
+            </safe:extension>
+          </safe:acquisitionPeriod>
+        </xmlData>
+      </metadataWrap>
+    </metadataObject>
+    <metadataObject ID="measurementFrameSet" classification="DESCRIPTION" category="DMD">
+      <metadataWrap mimeType="text/xml" vocabularyName="SAFE" textInfo="Frame Set">
+        <xmlData>
+          <safe:frameSet>
+            <safe:frame>
+              <safe:footPrint srsName="http://www.opengis.net/gml/srs/epsg.xml#4326">
+                <gml:coordinates>69.582458,-47.241409 70.092194,-53.661625 71.715393,-52.765385 71.176399,-45.827332</gml:coordinates>
+              </safe:footPrint>
+            </safe:frame>
+          </safe:frameSet>
+        </xmlData>
+      </metadataWrap>
+    </metadataObject>
+    <metadataObject ID="s1Level1ProductSchema" classification="SYNTAX" category="REP">
+      <metadataReference mimeType="text/xml" vocabularyName="XML Schema" locatorType="URL" href="./support/s1-level-1-product.xsd"/>
+    </metadataObject>
+    <metadataObject ID="s1Level1NoiseSchema" classification="SYNTAX" category="REP">
+      <metadataReference mimeType="text/xml" vocabularyName="XML Schema" locatorType="URL" href="./support/s1-level-1-noise.xsd"/>
+    </metadataObject>
+    <metadataObject ID="s1Level1CalibrationSchema" classification="SYNTAX" category="REP">
+      <metadataReference mimeType="text/xml" vocabularyName="XML Schema" locatorType="URL" href="./support/s1-level-1-calibration.xsd"/>
+    </metadataObject>
+    <metadataObject ID="s1ObjectTypesSchema" classification="SYNTAX" category="REP">
+      <metadataReference mimeType="text/xml" vocabularyName="XML Schema" locatorType="URL" href="./support/s1-object-types.xsd"/>
+    </metadataObject>
+    <metadataObject ID="s1Level1MeasurementSchema" classification="SYNTAX" category="REP">
+      <metadataReference mimeType="text/xml" vocabularyName="SDF" locatorType="URL" href="./support/s1-level-1-measurement.xsd"/>
+    </metadataObject>
+    <metadataObject ID="s1Level1ProductPreviewSchema" classification="SYNTAX" category="REP">
+      <metadataReference mimeType="text/xml" vocabularyName="XML Schema" locatorType="URL" href="./support/s1-product-preview.xsd"/>
+    </metadataObject>
+    <metadataObject ID="s1Level1QuickLookSchema" classification="SYNTAX" category="REP">
+      <metadataReference mimeType="text/xml" vocabularyName="XML Schema" locatorType="URL" href="./support/s1-level-1-quicklook.xsd"/>
+    </metadataObject>
+    <metadataObject ID="s1Level1MapOverlaySchema" classification="SYNTAX" category="REP">
+      <metadataReference mimeType="text/xml" vocabularyName="XML Schema" locatorType="URL" href="./support/s1-map-overlay.xsd"/>
+    </metadataObject>
+  </metadataSection>
+  <dataObjectSection>
+    <dataObject ID="products1aiw1slchh20141031t09593120141031t095956003072003842001" repID="s1Level1ProductSchema">
+      <byteStream mimeType="text/xml" size="759769">
+        <fileLocation locatorType="URL" href="./annotation/s1a-iw1-slc-hh-20141031t095931-20141031t095956-003072-003842-001.xml"/>
+        <checksum checksumName="MD5">092a7f6151aa94af69a1024ec3ef7c1e</checksum>
+      </byteStream>
+    </dataObject>
+    <dataObject ID="noises1aiw1slchh20141031t09593120141031t095956003072003842001" repID="s1Level1NoiseSchema">
+      <byteStream mimeType="text/xml" size="89870">
+        <fileLocation locatorType="URL" href="./annotation/calibration/noise-s1a-iw1-slc-hh-20141031t095931-20141031t095956-003072-003842-001.xml"/>
+        <checksum checksumName="MD5">4c8bebf09d53b09104907a35e796210b</checksum>
+      </byteStream>
+    </dataObject>
+    <dataObject ID="calibrations1aiw1slchh20141031t09593120141031t095956003072003842001" repID="s1Level1CalibrationSchema">
+      <byteStream mimeType="text/xml" size="918724">
+        <fileLocation locatorType="URL" href="./annotation/calibration/calibration-s1a-iw1-slc-hh-20141031t095931-20141031t095956-003072-003842-001.xml"/>
+        <checksum checksumName="MD5">6bcf80b6fb0d98a81bc45abff0de08ed</checksum>
+      </byteStream>
+    </dataObject>
+    <dataObject ID="products1aiw2slchh20141031t09593220141031t095957003072003842002" repID="s1Level1ProductSchema">
+      <byteStream mimeType="text/xml" size="768828">
+        <fileLocation locatorType="URL" href="./annotation/s1a-iw2-slc-hh-20141031t095932-20141031t095957-003072-003842-002.xml"/>
+        <checksum checksumName="MD5">3aacea410213f4e01e691217d4aa6c1a</checksum>
+      </byteStream>
+    </dataObject>
+    <dataObject ID="noises1aiw2slchh20141031t09593220141031t095957003072003842002" repID="s1Level1NoiseSchema">
+      <byteStream mimeType="text/xml" size="106458">
+        <fileLocation locatorType="URL" href="./annotation/calibration/noise-s1a-iw2-slc-hh-20141031t095932-20141031t095957-003072-003842-002.xml"/>
+        <checksum checksumName="MD5">dad2e3a2e05c53f2bf01b4357de8a6d3</checksum>
+      </byteStream>
+    </dataObject>
+    <dataObject ID="calibrations1aiw2slchh20141031t09593220141031t095957003072003842002" repID="s1Level1CalibrationSchema">
+      <byteStream mimeType="text/xml" size="1087503">
+        <fileLocation locatorType="URL" href="./annotation/calibration/calibration-s1a-iw2-slc-hh-20141031t095932-20141031t095957-003072-003842-002.xml"/>
+        <checksum checksumName="MD5">432346e772b06cd0d8f7e64f77f92cb3</checksum>
+      </byteStream>
+    </dataObject>
+    <dataObject ID="products1aiw3slchh20141031t09593320141031t095958003072003842003" repID="s1Level1ProductSchema">
+      <byteStream mimeType="text/xml" size="696863">
+        <fileLocation locatorType="URL" href="./annotation/s1a-iw3-slc-hh-20141031t095933-20141031t095958-003072-003842-003.xml"/>
+        <checksum checksumName="MD5">3c707a91b1aaeb5868e059614bf0edc4</checksum>
+      </byteStream>
+    </dataObject>
+    <dataObject ID="noises1aiw3slchh20141031t09593320141031t095958003072003842003" repID="s1Level1NoiseSchema">
+      <byteStream mimeType="text/xml" size="102696">
+        <fileLocation locatorType="URL" href="./annotation/calibration/noise-s1a-iw3-slc-hh-20141031t095933-20141031t095958-003072-003842-003.xml"/>
+        <checksum checksumName="MD5">f952afa97809799eca71f86712e10388</checksum>
+      </byteStream>
+    </dataObject>
+    <dataObject ID="calibrations1aiw3slchh20141031t09593320141031t095958003072003842003" repID="s1Level1CalibrationSchema">
+      <byteStream mimeType="text/xml" size="1049221">
+        <fileLocation locatorType="URL" href="./annotation/calibration/calibration-s1a-iw3-slc-hh-20141031t095933-20141031t095958-003072-003842-003.xml"/>
+        <checksum checksumName="MD5">90db14441bb977ac88c44c8c7651d1ec</checksum>
+      </byteStream>
+    </dataObject>
+    <dataObject ID="mapoverlay" repID="s1Level1MapOverlaySchema">
+      <byteStream mimeType="text/xml" size="1022">
+        <fileLocation locatorType="URL" href="./preview/map-overlay.kml"/>
+        <checksum checksumName="MD5">ae69df768557530ac879607b29f6b172</checksum>
+      </byteStream>
+    </dataObject>
+    <dataObject ID="productpreview" repID="s1Level1ProductPreviewSchema">
+      <byteStream mimeType="text/xml" size="3975">
+        <fileLocation locatorType="URL" href="./preview/product-preview.html"/>
+        <checksum checksumName="MD5">5b5998b4223f4080f2d38ae0fd717a03</checksum>
+      </byteStream>
+    </dataObject>
+    <dataObject ID="s1aiw1slchh20141031t09593120141031t095956003072003842001" repID="s1Level1MeasurementSchema">
+      <byteStream mimeType="application/octet-stream" size="1239586235">
+        <fileLocation locatorType="URL" href="./measurement/s1a-iw1-slc-hh-20141031t095931-20141031t095956-003072-003842-001.tiff"/>
+        <checksum checksumName="MD5">d0772ce15ca9108b8b2641549dfda49b</checksum>
+      </byteStream>
+    </dataObject>
+    <dataObject ID="s1aiw2slchh20141031t09593220141031t095957003072003842002" repID="s1Level1MeasurementSchema">
+      <byteStream mimeType="application/octet-stream" size="1517554799">
+        <fileLocation locatorType="URL" href="./measurement/s1a-iw2-slc-hh-20141031t095932-20141031t095957-003072-003842-002.tiff"/>
+        <checksum checksumName="MD5">89aa75f8f7bdc47e633bb09a24e4845f</checksum>
+      </byteStream>
+    </dataObject>
+    <dataObject ID="s1aiw3slchh20141031t09593320141031t095958003072003842003" repID="s1Level1MeasurementSchema">
+      <byteStream mimeType="application/octet-stream" size="1482262595">
+        <fileLocation locatorType="URL" href="./measurement/s1a-iw3-slc-hh-20141031t095933-20141031t095958-003072-003842-003.tiff"/>
+        <checksum checksumName="MD5">0c8ef869093c4542b6061935def0ab31</checksum>
+      </byteStream>
+    </dataObject>
+    <dataObject ID="quicklook" repID="s1Level1QuickLookSchema">
+      <byteStream mimeType="application/octet-stream" size="1284323">
+        <fileLocation locatorType="URL" href="./preview/quick-look.png"/>
+        <checksum checksumName="MD5">39094a648906a7377d061dc05de81ea0</checksum>
+      </byteStream>
+    </dataObject>
+  </dataObjectSection>
+</xfdu:XFDU>

@@ -1,4 +1,5 @@
 from datetime import datetime
+from itertools import product
 from typing import Dict, Any
 
 import pystac
@@ -112,167 +113,98 @@ SENTINEL_SLC_SAR: Dict[str, Any] = {
 }
 
 
+SENTINEL_SLC_SWATHS = [
+    "IW1",
+    "IW2",
+    "IW3",
+    "EW1",
+    "EW2",
+    "EW3",
+    "EW4",
+    "EW5",
+    "S1",
+    "S2",
+    "S3",
+    "S4",
+    "S5",
+    "S6",
+    "WV1",
+    "WV2",
+]
+
+
+SENTINEL_SLC_IMAGE_ASSET_DEFINITIONS = {
+    f"{swath.lower()}-{pol.lower()}": AssetDefinition(
+        {
+            "title": f"{swath.upper()} {pol.upper()} Data",
+            "type": pystac.MediaType.COG,
+            "description": (
+                f"{swath.upper()} {pol.upper()} polarization backscattering"
+                "coefficient, 16-bit DN."
+            ),
+            "roles": ["data"],
+        }
+    )
+    for swath, pol in product(
+        SENTINEL_SLC_SWATHS, SENTINEL_POLARIZATIONS.keys()
+    )
+}
+
+SENTINEL_SLC_SCHEMA_CALIBRATION_ASSET_DEFINITIONS = {
+    f"schema-calibration-{swath.lower()}-{pol.lower()}": AssetDefinition(
+        {
+            "title": f"{pol.upper()} Calibration Schema",
+            "type": pystac.MediaType.XML,
+            "description": (
+                "Calibration metadata including calibration information and the beta nought, "
+                "sigma nought, gamma and digital number look-up tables that can be used for "
+                "absolute product calibration."
+            ),
+            "roles": ["metadata"],
+        }
+    )
+    for swath, pol in product(
+        SENTINEL_SLC_SWATHS, SENTINEL_POLARIZATIONS.keys()
+    )
+}
+
+SENTINEL_SLC_SCHEMA_NOISE_ASSET_DEFINITIONS = {
+    f"schema-noise-{swath.lower()}-{pol.lower()}": AssetDefinition(
+        {
+            "title": f"{pol.upper()} Noise Schema",
+            "type": pystac.MediaType.XML,
+            "description": "Estimated thermal noise look-up tables",
+            "roles": ["metadata"],
+        }
+    )
+    for swath, pol in product(
+        SENTINEL_SLC_SWATHS, SENTINEL_POLARIZATIONS.keys()
+    )
+}
+
+SENTINEL_SLC_SCHEMA_PRODUCT_ASSET_DEFINITIONS = {
+    f"schema-product-{swath.lower()}-{pol.lower()}": AssetDefinition(
+        {
+            "title": f"{pol.upper()} Product Schema",
+            "type": pystac.MediaType.XML,
+            "description": (
+                "Describes the main characteristics corresponding to the band: state of the "
+                "platform during acquisition, image properties, Doppler information, geographic "
+                "location, etc."
+            ),
+            "roles": ["metadata"],
+        }
+    )
+    for swath, pol in product(
+        SENTINEL_SLC_SWATHS, SENTINEL_POLARIZATIONS.keys()
+    )
+}
+
 SENTINEL_SLC_ASSETS = {
-    "vh": AssetDefinition(
-        {
-            "title": "VH Data",
-            "type": pystac.MediaType.COG,
-            "description": "VH polarization backscattering coefficient, 16-bit DN.",
-            "roles": ["data"],
-        }
-    ),
-    "hh": AssetDefinition(
-        {
-            "title": "HH Data",
-            "type": pystac.MediaType.COG,
-            "description": "HH polarization backscattering coefficient, 16-bit DN.",
-            "roles": ["data"],
-        }
-    ),
-    "hv": AssetDefinition(
-        {
-            "title": "HV Data",
-            "type": pystac.MediaType.COG,
-            "description": "HV polarization backscattering coefficient, 16-bit DN.",
-            "roles": ["data"],
-        }
-    ),
-    "vv": AssetDefinition(
-        {
-            "title": "VV Data",
-            "type": pystac.MediaType.COG,
-            "description": "VV polarization backscattering coefficient, 16-bit DN.",
-            "roles": ["data"],
-        }
-    ),
-    "schema-calibration-hh": AssetDefinition(
-        {
-            "title": "HH Calibration Schema",
-            "type": pystac.MediaType.XML,
-            "description": (
-                "Calibration metadata including calibration information and the beta nought, "
-                "sigma nought, gamma and digital number look-up tables that can be used for "
-                "absolute product calibration."
-            ),
-            "roles": ["metadata"],
-        }
-    ),
-    "schema-calibration-hv": AssetDefinition(
-        {
-            "title": "HV Calibration Schema",
-            "type": pystac.MediaType.XML,
-            "description": (
-                "Calibration metadata including calibration information and the beta nought, "
-                "sigma nought, gamma and digital number look-up tables that can be used for "
-                "absolute product calibration."
-            ),
-            "roles": ["metadata"],
-        }
-    ),
-    "schema-calibration-vh": AssetDefinition(
-        {
-            "title": "VH Calibration Schema",
-            "type": pystac.MediaType.XML,
-            "description": (
-                "Calibration metadata including calibration information and the beta nought, "
-                "sigma nought, gamma and digital number look-up tables that can be used for "
-                "absolute product calibration."
-            ),
-            "roles": ["metadata"],
-        }
-    ),
-    "schema-calibration-vv": AssetDefinition(
-        {
-            "title": "VV Calibration Schema",
-            "type": pystac.MediaType.XML,
-            "description": (
-                "Calibration metadata including calibration information and the beta nought, "
-                "sigma nought, gamma and digital number look-up tables that can be used for "
-                "absolute product calibration."
-            ),
-            "roles": ["metadata"],
-        }
-    ),
-    "schema-noise-hh": AssetDefinition(
-        {
-            "title": "HH Noise Schema",
-            "type": pystac.MediaType.XML,
-            "description": "Estimated thermal noise look-up tables",
-            "roles": ["metadata"],
-        }
-    ),
-    "schema-noise-hv": AssetDefinition(
-        {
-            "title": "HV Noise Schema",
-            "type": pystac.MediaType.XML,
-            "description": "Estimated thermal noise look-up tables",
-            "roles": ["metadata"],
-        }
-    ),
-    "schema-noise-vh": AssetDefinition(
-        {
-            "title": "VH Noise Schema",
-            "type": pystac.MediaType.XML,
-            "description": "Estimated thermal noise look-up tables",
-            "roles": ["metadata"],
-        }
-    ),
-    "schema-noise-vv": AssetDefinition(
-        {
-            "title": "VV Noise Schema",
-            "type": pystac.MediaType.XML,
-            "description": "Estimated thermal noise look-up tables",
-            "roles": ["metadata"],
-        }
-    ),
-    "schema-product-hh": AssetDefinition(
-        {
-            "title": "HH Product Schema",
-            "type": pystac.MediaType.XML,
-            "description": (
-                "Describes the main characteristics corresponding to the band: state of the "
-                "platform during acquisition, image properties, Doppler information, geographic "
-                "location, etc."
-            ),
-            "roles": ["metadata"],
-        }
-    ),
-    "schema-product-hv": AssetDefinition(
-        {
-            "title": "HV Product Schema",
-            "type": pystac.MediaType.XML,
-            "description": (
-                "Describes the main characteristics corresponding to the band: state of the "
-                "platform during acquisition, image properties, Doppler information, geographic "
-                "location, etc."
-            ),
-            "roles": ["metadata"],
-        }
-    ),
-    "schema-product-vh": AssetDefinition(
-        {
-            "title": "VH Product Schema",
-            "type": pystac.MediaType.XML,
-            "description": (
-                "Describes the main characteristics corresponding to the band: state of the "
-                "platform during acquisition, image properties, Doppler information, geographic "
-                "location, etc."
-            ),
-            "roles": ["metadata"],
-        }
-    ),
-    "schema-product-vv": AssetDefinition(
-        {
-            "title": "VV Product Schema",
-            "type": pystac.MediaType.XML,
-            "description": (
-                "Describes the main characteristics corresponding to the band: state of the "
-                "platform during acquisition, image properties, Doppler information, geographic "
-                "location, etc."
-            ),
-            "roles": ["metadata"],
-        }
-    ),
+    **SENTINEL_SLC_IMAGE_ASSET_DEFINITIONS,
+    **SENTINEL_SLC_SCHEMA_CALIBRATION_ASSET_DEFINITIONS,
+    **SENTINEL_SLC_SCHEMA_NOISE_ASSET_DEFINITIONS,
+    **SENTINEL_SLC_SCHEMA_PRODUCT_ASSET_DEFINITIONS,
     "safe-manifest": AssetDefinition(
         {
             "title": "Manifest File",

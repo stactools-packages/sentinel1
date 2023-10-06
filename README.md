@@ -43,6 +43,13 @@ Level-1](https://sentinel.esa.int/web/sentinel/user-guides/sentinel-1-sar/resolu
 product. It is used to create STAC Items from the SAFE manifest format of the
 data hosted on Microsoft Azure.
 
+## SLC
+
+The `stactools.sentinel1.slc` subpackage and `stac sentinel1 slc` commands deal
+with [Sentinel 1 Single Look Complex (SLC)
+Level-1](https://sentinel.esa.int/web/sentinel/user-guides/sentinel-1-sar/resolutions/level-1-single-look-complex)
+product.
+
 ## Example Outputs
 
 ### RTC
@@ -55,6 +62,11 @@ data hosted on Microsoft Azure.
 
 - [Item (S1A_EW_GRDM_1SDH_20221130T014342_20221130T014446_046117_058549)](examples/grd/S1A_EW_GRDM_1SDH_20221130T014342_20221130T014446_046117_058549/S1A_EW_GRDM_1SDH_20221130T014342_20221130T014446_046117_058549.json)
 - [Item (S1A_IW_GRDH_1SDV_20210809T173953_20210809T174018_039156_049F13)](examples/grd/S1A_IW_GRDH_1SDV_20210809T173953_20210809T174018_039156_049F13/S1A_IW_GRDH_1SDV_20210809T173953_20210809T174018_039156_049F13.json)
+
+### SLC
+
+- [Collection](examples/slc/collection.json)
+- [Item (S1A_IW_SL1__1_SH_20141031T095929_20141031T100002_003072_003842)](examples/slc/S1A_IW_SL1__1_SH_20141031T095929_20141031T100002_003072_003842/S1A_IW_SL1__1_SH_20141031T095929_20141031T100002_003072_003842.json)
 
 ## How to use
 
@@ -89,6 +101,16 @@ stac sentinel1 grd create-item source destination
 ```
 
 Use `stac sentinel1 grd --help` to see all subcommands and options.
+
+### SLC usage
+
+Description of the command line functions
+
+```bash
+stac sentinel1 slc create-item source destination
+```
+
+Use `stac sentinel1 slc --help` to see all subcommands and options.
 
 ## Development instructions
 

@@ -1,0 +1,2240 @@
+{
+  "type": "Collection",
+  "id": "sentinel1-slc",
+  "stac_version": "1.0.0",
+  "description": "Level-1 Single Look Complex (SLC) products are images in the slant range by azimuth imaging plane, in the image plane of satellite data acquisition. Each image pixel is represented by a complex (I and Q) magnitude value and therefore contains both amplitude and phase information. Each I and Q value is 16 bits per pixel. The processing for all SLC products results in a single look in each dimension using the full available signal bandwidth. The imagery is geo-referenced using orbit and attitude data from the satellite. SLC images are produced in a zero Doppler geometry. This convention is common with the standard slant range products available from other SAR sensors.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "./collection.json",
+      "type": "application/json",
+      "title": "Sentinel-1 SLC"
+    },
+    {
+      "rel": "license",
+      "href": "https://scihub.copernicus.eu/twiki/do/view/SciHubWebPortal/TermsConditions",
+      "title": "Sentinel License"
+    },
+    {
+      "rel": "about",
+      "href": "https://sentinels.copernicus.eu/web/sentinel/technical-guides/sentinel-1-sar/products-algorithms/level-1-algorithms/single-look-complex",
+      "title": "Sentinel-1 Single Look Complex (SLC) Technical Guide"
+    },
+    {
+      "rel": "item",
+      "href": "./S1A_IW_SL1__1_SH_20141031T095929_20141031T100002_003072_003842/S1A_IW_SL1__1_SH_20141031T095929_20141031T100002_003072_003842.json",
+      "type": "application/json"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/sar/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/sat/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/eo/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/item-assets/v1.0.0/schema.json"
+  ],
+  "item_assets": {
+    "iw1-vh": {
+      "title": "IW1 VH Data",
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "description": "IW1 VH polarization backscatteringcoefficient, 16-bit DN.",
+      "roles": [
+        "data"
+      ]
+    },
+    "iw1-hh": {
+      "title": "IW1 HH Data",
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "description": "IW1 HH polarization backscatteringcoefficient, 16-bit DN.",
+      "roles": [
+        "data"
+      ]
+    },
+    "iw1-hv": {
+      "title": "IW1 HV Data",
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "description": "IW1 HV polarization backscatteringcoefficient, 16-bit DN.",
+      "roles": [
+        "data"
+      ]
+    },
+    "iw1-vv": {
+      "title": "IW1 VV Data",
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "description": "IW1 VV polarization backscatteringcoefficient, 16-bit DN.",
+      "roles": [
+        "data"
+      ]
+    },
+    "iw2-vh": {
+      "title": "IW2 VH Data",
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "description": "IW2 VH polarization backscatteringcoefficient, 16-bit DN.",
+      "roles": [
+        "data"
+      ]
+    },
+    "iw2-hh": {
+      "title": "IW2 HH Data",
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "description": "IW2 HH polarization backscatteringcoefficient, 16-bit DN.",
+      "roles": [
+        "data"
+      ]
+    },
+    "iw2-hv": {
+      "title": "IW2 HV Data",
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "description": "IW2 HV polarization backscatteringcoefficient, 16-bit DN.",
+      "roles": [
+        "data"
+      ]
+    },
+    "iw2-vv": {
+      "title": "IW2 VV Data",
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "description": "IW2 VV polarization backscatteringcoefficient, 16-bit DN.",
+      "roles": [
+        "data"
+      ]
+    },
+    "iw3-vh": {
+      "title": "IW3 VH Data",
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "description": "IW3 VH polarization backscatteringcoefficient, 16-bit DN.",
+      "roles": [
+        "data"
+      ]
+    },
+    "iw3-hh": {
+      "title": "IW3 HH Data",
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "description": "IW3 HH polarization backscatteringcoefficient, 16-bit DN.",
+      "roles": [
+        "data"
+      ]
+    },
+    "iw3-hv": {
+      "title": "IW3 HV Data",
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "description": "IW3 HV polarization backscatteringcoefficient, 16-bit DN.",
+      "roles": [
+        "data"
+      ]
+    },
+    "iw3-vv": {
+      "title": "IW3 VV Data",
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "description": "IW3 VV polarization backscatteringcoefficient, 16-bit DN.",
+      "roles": [
+        "data"
+      ]
+    },
+    "ew1-vh": {
+      "title": "EW1 VH Data",
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "description": "EW1 VH polarization backscatteringcoefficient, 16-bit DN.",
+      "roles": [
+        "data"
+      ]
+    },
+    "ew1-hh": {
+      "title": "EW1 HH Data",
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "description": "EW1 HH polarization backscatteringcoefficient, 16-bit DN.",
+      "roles": [
+        "data"
+      ]
+    },
+    "ew1-hv": {
+      "title": "EW1 HV Data",
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "description": "EW1 HV polarization backscatteringcoefficient, 16-bit DN.",
+      "roles": [
+        "data"
+      ]
+    },
+    "ew1-vv": {
+      "title": "EW1 VV Data",
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "description": "EW1 VV polarization backscatteringcoefficient, 16-bit DN.",
+      "roles": [
+        "data"
+      ]
+    },
+    "ew2-vh": {
+      "title": "EW2 VH Data",
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "description": "EW2 VH polarization backscatteringcoefficient, 16-bit DN.",
+      "roles": [
+        "data"
+      ]
+    },
+    "ew2-hh": {
+      "title": "EW2 HH Data",
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "description": "EW2 HH polarization backscatteringcoefficient, 16-bit DN.",
+      "roles": [
+        "data"
+      ]
+    },
+    "ew2-hv": {
+      "title": "EW2 HV Data",
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "description": "EW2 HV polarization backscatteringcoefficient, 16-bit DN.",
+      "roles": [
+        "data"
+      ]
+    },
+    "ew2-vv": {
+      "title": "EW2 VV Data",
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "description": "EW2 VV polarization backscatteringcoefficient, 16-bit DN.",
+      "roles": [
+        "data"
+      ]
+    },
+    "ew3-vh": {
+      "title": "EW3 VH Data",
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "description": "EW3 VH polarization backscatteringcoefficient, 16-bit DN.",
+      "roles": [
+        "data"
+      ]
+    },
+    "ew3-hh": {
+      "title": "EW3 HH Data",
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "description": "EW3 HH polarization backscatteringcoefficient, 16-bit DN.",
+      "roles": [
+        "data"
+      ]
+    },
+    "ew3-hv": {
+      "title": "EW3 HV Data",
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "description": "EW3 HV polarization backscatteringcoefficient, 16-bit DN.",
+      "roles": [
+        "data"
+      ]
+    },
+    "ew3-vv": {
+      "title": "EW3 VV Data",
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "description": "EW3 VV polarization backscatteringcoefficient, 16-bit DN.",
+      "roles": [
+        "data"
+      ]
+    },
+    "ew4-vh": {
+      "title": "EW4 VH Data",
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "description": "EW4 VH polarization backscatteringcoefficient, 16-bit DN.",
+      "roles": [
+        "data"
+      ]
+    },
+    "ew4-hh": {
+      "title": "EW4 HH Data",
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "description": "EW4 HH polarization backscatteringcoefficient, 16-bit DN.",
+      "roles": [
+        "data"
+      ]
+    },
+    "ew4-hv": {
+      "title": "EW4 HV Data",
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "description": "EW4 HV polarization backscatteringcoefficient, 16-bit DN.",
+      "roles": [
+        "data"
+      ]
+    },
+    "ew4-vv": {
+      "title": "EW4 VV Data",
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "description": "EW4 VV polarization backscatteringcoefficient, 16-bit DN.",
+      "roles": [
+        "data"
+      ]
+    },
+    "ew5-vh": {
+      "title": "EW5 VH Data",
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "description": "EW5 VH polarization backscatteringcoefficient, 16-bit DN.",
+      "roles": [
+        "data"
+      ]
+    },
+    "ew5-hh": {
+      "title": "EW5 HH Data",
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "description": "EW5 HH polarization backscatteringcoefficient, 16-bit DN.",
+      "roles": [
+        "data"
+      ]
+    },
+    "ew5-hv": {
+      "title": "EW5 HV Data",
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "description": "EW5 HV polarization backscatteringcoefficient, 16-bit DN.",
+      "roles": [
+        "data"
+      ]
+    },
+    "ew5-vv": {
+      "title": "EW5 VV Data",
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "description": "EW5 VV polarization backscatteringcoefficient, 16-bit DN.",
+      "roles": [
+        "data"
+      ]
+    },
+    "s1-vh": {
+      "title": "S1 VH Data",
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "description": "S1 VH polarization backscatteringcoefficient, 16-bit DN.",
+      "roles": [
+        "data"
+      ]
+    },
+    "s1-hh": {
+      "title": "S1 HH Data",
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "description": "S1 HH polarization backscatteringcoefficient, 16-bit DN.",
+      "roles": [
+        "data"
+      ]
+    },
+    "s1-hv": {
+      "title": "S1 HV Data",
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "description": "S1 HV polarization backscatteringcoefficient, 16-bit DN.",
+      "roles": [
+        "data"
+      ]
+    },
+    "s1-vv": {
+      "title": "S1 VV Data",
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "description": "S1 VV polarization backscatteringcoefficient, 16-bit DN.",
+      "roles": [
+        "data"
+      ]
+    },
+    "s2-vh": {
+      "title": "S2 VH Data",
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "description": "S2 VH polarization backscatteringcoefficient, 16-bit DN.",
+      "roles": [
+        "data"
+      ]
+    },
+    "s2-hh": {
+      "title": "S2 HH Data",
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "description": "S2 HH polarization backscatteringcoefficient, 16-bit DN.",
+      "roles": [
+        "data"
+      ]
+    },
+    "s2-hv": {
+      "title": "S2 HV Data",
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "description": "S2 HV polarization backscatteringcoefficient, 16-bit DN.",
+      "roles": [
+        "data"
+      ]
+    },
+    "s2-vv": {
+      "title": "S2 VV Data",
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "description": "S2 VV polarization backscatteringcoefficient, 16-bit DN.",
+      "roles": [
+        "data"
+      ]
+    },
+    "s3-vh": {
+      "title": "S3 VH Data",
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "description": "S3 VH polarization backscatteringcoefficient, 16-bit DN.",
+      "roles": [
+        "data"
+      ]
+    },
+    "s3-hh": {
+      "title": "S3 HH Data",
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "description": "S3 HH polarization backscatteringcoefficient, 16-bit DN.",
+      "roles": [
+        "data"
+      ]
+    },
+    "s3-hv": {
+      "title": "S3 HV Data",
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "description": "S3 HV polarization backscatteringcoefficient, 16-bit DN.",
+      "roles": [
+        "data"
+      ]
+    },
+    "s3-vv": {
+      "title": "S3 VV Data",
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "description": "S3 VV polarization backscatteringcoefficient, 16-bit DN.",
+      "roles": [
+        "data"
+      ]
+    },
+    "s4-vh": {
+      "title": "S4 VH Data",
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "description": "S4 VH polarization backscatteringcoefficient, 16-bit DN.",
+      "roles": [
+        "data"
+      ]
+    },
+    "s4-hh": {
+      "title": "S4 HH Data",
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "description": "S4 HH polarization backscatteringcoefficient, 16-bit DN.",
+      "roles": [
+        "data"
+      ]
+    },
+    "s4-hv": {
+      "title": "S4 HV Data",
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "description": "S4 HV polarization backscatteringcoefficient, 16-bit DN.",
+      "roles": [
+        "data"
+      ]
+    },
+    "s4-vv": {
+      "title": "S4 VV Data",
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "description": "S4 VV polarization backscatteringcoefficient, 16-bit DN.",
+      "roles": [
+        "data"
+      ]
+    },
+    "s5-vh": {
+      "title": "S5 VH Data",
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "description": "S5 VH polarization backscatteringcoefficient, 16-bit DN.",
+      "roles": [
+        "data"
+      ]
+    },
+    "s5-hh": {
+      "title": "S5 HH Data",
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "description": "S5 HH polarization backscatteringcoefficient, 16-bit DN.",
+      "roles": [
+        "data"
+      ]
+    },
+    "s5-hv": {
+      "title": "S5 HV Data",
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "description": "S5 HV polarization backscatteringcoefficient, 16-bit DN.",
+      "roles": [
+        "data"
+      ]
+    },
+    "s5-vv": {
+      "title": "S5 VV Data",
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "description": "S5 VV polarization backscatteringcoefficient, 16-bit DN.",
+      "roles": [
+        "data"
+      ]
+    },
+    "s6-vh": {
+      "title": "S6 VH Data",
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "description": "S6 VH polarization backscatteringcoefficient, 16-bit DN.",
+      "roles": [
+        "data"
+      ]
+    },
+    "s6-hh": {
+      "title": "S6 HH Data",
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "description": "S6 HH polarization backscatteringcoefficient, 16-bit DN.",
+      "roles": [
+        "data"
+      ]
+    },
+    "s6-hv": {
+      "title": "S6 HV Data",
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "description": "S6 HV polarization backscatteringcoefficient, 16-bit DN.",
+      "roles": [
+        "data"
+      ]
+    },
+    "s6-vv": {
+      "title": "S6 VV Data",
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "description": "S6 VV polarization backscatteringcoefficient, 16-bit DN.",
+      "roles": [
+        "data"
+      ]
+    },
+    "wv1-vh": {
+      "title": "WV1 VH Data",
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "description": "WV1 VH polarization backscatteringcoefficient, 16-bit DN.",
+      "roles": [
+        "data"
+      ]
+    },
+    "wv1-hh": {
+      "title": "WV1 HH Data",
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "description": "WV1 HH polarization backscatteringcoefficient, 16-bit DN.",
+      "roles": [
+        "data"
+      ]
+    },
+    "wv1-hv": {
+      "title": "WV1 HV Data",
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "description": "WV1 HV polarization backscatteringcoefficient, 16-bit DN.",
+      "roles": [
+        "data"
+      ]
+    },
+    "wv1-vv": {
+      "title": "WV1 VV Data",
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "description": "WV1 VV polarization backscatteringcoefficient, 16-bit DN.",
+      "roles": [
+        "data"
+      ]
+    },
+    "wv2-vh": {
+      "title": "WV2 VH Data",
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "description": "WV2 VH polarization backscatteringcoefficient, 16-bit DN.",
+      "roles": [
+        "data"
+      ]
+    },
+    "wv2-hh": {
+      "title": "WV2 HH Data",
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "description": "WV2 HH polarization backscatteringcoefficient, 16-bit DN.",
+      "roles": [
+        "data"
+      ]
+    },
+    "wv2-hv": {
+      "title": "WV2 HV Data",
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "description": "WV2 HV polarization backscatteringcoefficient, 16-bit DN.",
+      "roles": [
+        "data"
+      ]
+    },
+    "wv2-vv": {
+      "title": "WV2 VV Data",
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "description": "WV2 VV polarization backscatteringcoefficient, 16-bit DN.",
+      "roles": [
+        "data"
+      ]
+    },
+    "schema-calibration-iw1-vh": {
+      "title": "VH Calibration Schema",
+      "type": "application/xml",
+      "description": "Calibration metadata including calibration information and the beta nought, sigma nought, gamma and digital number look-up tables that can be used for absolute product calibration.",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "schema-calibration-iw1-hh": {
+      "title": "HH Calibration Schema",
+      "type": "application/xml",
+      "description": "Calibration metadata including calibration information and the beta nought, sigma nought, gamma and digital number look-up tables that can be used for absolute product calibration.",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "schema-calibration-iw1-hv": {
+      "title": "HV Calibration Schema",
+      "type": "application/xml",
+      "description": "Calibration metadata including calibration information and the beta nought, sigma nought, gamma and digital number look-up tables that can be used for absolute product calibration.",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "schema-calibration-iw1-vv": {
+      "title": "VV Calibration Schema",
+      "type": "application/xml",
+      "description": "Calibration metadata including calibration information and the beta nought, sigma nought, gamma and digital number look-up tables that can be used for absolute product calibration.",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "schema-calibration-iw2-vh": {
+      "title": "VH Calibration Schema",
+      "type": "application/xml",
+      "description": "Calibration metadata including calibration information and the beta nought, sigma nought, gamma and digital number look-up tables that can be used for absolute product calibration.",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "schema-calibration-iw2-hh": {
+      "title": "HH Calibration Schema",
+      "type": "application/xml",
+      "description": "Calibration metadata including calibration information and the beta nought, sigma nought, gamma and digital number look-up tables that can be used for absolute product calibration.",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "schema-calibration-iw2-hv": {
+      "title": "HV Calibration Schema",
+      "type": "application/xml",
+      "description": "Calibration metadata including calibration information and the beta nought, sigma nought, gamma and digital number look-up tables that can be used for absolute product calibration.",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "schema-calibration-iw2-vv": {
+      "title": "VV Calibration Schema",
+      "type": "application/xml",
+      "description": "Calibration metadata including calibration information and the beta nought, sigma nought, gamma and digital number look-up tables that can be used for absolute product calibration.",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "schema-calibration-iw3-vh": {
+      "title": "VH Calibration Schema",
+      "type": "application/xml",
+      "description": "Calibration metadata including calibration information and the beta nought, sigma nought, gamma and digital number look-up tables that can be used for absolute product calibration.",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "schema-calibration-iw3-hh": {
+      "title": "HH Calibration Schema",
+      "type": "application/xml",
+      "description": "Calibration metadata including calibration information and the beta nought, sigma nought, gamma and digital number look-up tables that can be used for absolute product calibration.",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "schema-calibration-iw3-hv": {
+      "title": "HV Calibration Schema",
+      "type": "application/xml",
+      "description": "Calibration metadata including calibration information and the beta nought, sigma nought, gamma and digital number look-up tables that can be used for absolute product calibration.",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "schema-calibration-iw3-vv": {
+      "title": "VV Calibration Schema",
+      "type": "application/xml",
+      "description": "Calibration metadata including calibration information and the beta nought, sigma nought, gamma and digital number look-up tables that can be used for absolute product calibration.",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "schema-calibration-ew1-vh": {
+      "title": "VH Calibration Schema",
+      "type": "application/xml",
+      "description": "Calibration metadata including calibration information and the beta nought, sigma nought, gamma and digital number look-up tables that can be used for absolute product calibration.",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "schema-calibration-ew1-hh": {
+      "title": "HH Calibration Schema",
+      "type": "application/xml",
+      "description": "Calibration metadata including calibration information and the beta nought, sigma nought, gamma and digital number look-up tables that can be used for absolute product calibration.",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "schema-calibration-ew1-hv": {
+      "title": "HV Calibration Schema",
+      "type": "application/xml",
+      "description": "Calibration metadata including calibration information and the beta nought, sigma nought, gamma and digital number look-up tables that can be used for absolute product calibration.",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "schema-calibration-ew1-vv": {
+      "title": "VV Calibration Schema",
+      "type": "application/xml",
+      "description": "Calibration metadata including calibration information and the beta nought, sigma nought, gamma and digital number look-up tables that can be used for absolute product calibration.",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "schema-calibration-ew2-vh": {
+      "title": "VH Calibration Schema",
+      "type": "application/xml",
+      "description": "Calibration metadata including calibration information and the beta nought, sigma nought, gamma and digital number look-up tables that can be used for absolute product calibration.",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "schema-calibration-ew2-hh": {
+      "title": "HH Calibration Schema",
+      "type": "application/xml",
+      "description": "Calibration metadata including calibration information and the beta nought, sigma nought, gamma and digital number look-up tables that can be used for absolute product calibration.",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "schema-calibration-ew2-hv": {
+      "title": "HV Calibration Schema",
+      "type": "application/xml",
+      "description": "Calibration metadata including calibration information and the beta nought, sigma nought, gamma and digital number look-up tables that can be used for absolute product calibration.",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "schema-calibration-ew2-vv": {
+      "title": "VV Calibration Schema",
+      "type": "application/xml",
+      "description": "Calibration metadata including calibration information and the beta nought, sigma nought, gamma and digital number look-up tables that can be used for absolute product calibration.",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "schema-calibration-ew3-vh": {
+      "title": "VH Calibration Schema",
+      "type": "application/xml",
+      "description": "Calibration metadata including calibration information and the beta nought, sigma nought, gamma and digital number look-up tables that can be used for absolute product calibration.",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "schema-calibration-ew3-hh": {
+      "title": "HH Calibration Schema",
+      "type": "application/xml",
+      "description": "Calibration metadata including calibration information and the beta nought, sigma nought, gamma and digital number look-up tables that can be used for absolute product calibration.",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "schema-calibration-ew3-hv": {
+      "title": "HV Calibration Schema",
+      "type": "application/xml",
+      "description": "Calibration metadata including calibration information and the beta nought, sigma nought, gamma and digital number look-up tables that can be used for absolute product calibration.",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "schema-calibration-ew3-vv": {
+      "title": "VV Calibration Schema",
+      "type": "application/xml",
+      "description": "Calibration metadata including calibration information and the beta nought, sigma nought, gamma and digital number look-up tables that can be used for absolute product calibration.",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "schema-calibration-ew4-vh": {
+      "title": "VH Calibration Schema",
+      "type": "application/xml",
+      "description": "Calibration metadata including calibration information and the beta nought, sigma nought, gamma and digital number look-up tables that can be used for absolute product calibration.",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "schema-calibration-ew4-hh": {
+      "title": "HH Calibration Schema",
+      "type": "application/xml",
+      "description": "Calibration metadata including calibration information and the beta nought, sigma nought, gamma and digital number look-up tables that can be used for absolute product calibration.",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "schema-calibration-ew4-hv": {
+      "title": "HV Calibration Schema",
+      "type": "application/xml",
+      "description": "Calibration metadata including calibration information and the beta nought, sigma nought, gamma and digital number look-up tables that can be used for absolute product calibration.",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "schema-calibration-ew4-vv": {
+      "title": "VV Calibration Schema",
+      "type": "application/xml",
+      "description": "Calibration metadata including calibration information and the beta nought, sigma nought, gamma and digital number look-up tables that can be used for absolute product calibration.",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "schema-calibration-ew5-vh": {
+      "title": "VH Calibration Schema",
+      "type": "application/xml",
+      "description": "Calibration metadata including calibration information and the beta nought, sigma nought, gamma and digital number look-up tables that can be used for absolute product calibration.",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "schema-calibration-ew5-hh": {
+      "title": "HH Calibration Schema",
+      "type": "application/xml",
+      "description": "Calibration metadata including calibration information and the beta nought, sigma nought, gamma and digital number look-up tables that can be used for absolute product calibration.",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "schema-calibration-ew5-hv": {
+      "title": "HV Calibration Schema",
+      "type": "application/xml",
+      "description": "Calibration metadata including calibration information and the beta nought, sigma nought, gamma and digital number look-up tables that can be used for absolute product calibration.",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "schema-calibration-ew5-vv": {
+      "title": "VV Calibration Schema",
+      "type": "application/xml",
+      "description": "Calibration metadata including calibration information and the beta nought, sigma nought, gamma and digital number look-up tables that can be used for absolute product calibration.",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "schema-calibration-s1-vh": {
+      "title": "VH Calibration Schema",
+      "type": "application/xml",
+      "description": "Calibration metadata including calibration information and the beta nought, sigma nought, gamma and digital number look-up tables that can be used for absolute product calibration.",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "schema-calibration-s1-hh": {
+      "title": "HH Calibration Schema",
+      "type": "application/xml",
+      "description": "Calibration metadata including calibration information and the beta nought, sigma nought, gamma and digital number look-up tables that can be used for absolute product calibration.",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "schema-calibration-s1-hv": {
+      "title": "HV Calibration Schema",
+      "type": "application/xml",
+      "description": "Calibration metadata including calibration information and the beta nought, sigma nought, gamma and digital number look-up tables that can be used for absolute product calibration.",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "schema-calibration-s1-vv": {
+      "title": "VV Calibration Schema",
+      "type": "application/xml",
+      "description": "Calibration metadata including calibration information and the beta nought, sigma nought, gamma and digital number look-up tables that can be used for absolute product calibration.",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "schema-calibration-s2-vh": {
+      "title": "VH Calibration Schema",
+      "type": "application/xml",
+      "description": "Calibration metadata including calibration information and the beta nought, sigma nought, gamma and digital number look-up tables that can be used for absolute product calibration.",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "schema-calibration-s2-hh": {
+      "title": "HH Calibration Schema",
+      "type": "application/xml",
+      "description": "Calibration metadata including calibration information and the beta nought, sigma nought, gamma and digital number look-up tables that can be used for absolute product calibration.",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "schema-calibration-s2-hv": {
+      "title": "HV Calibration Schema",
+      "type": "application/xml",
+      "description": "Calibration metadata including calibration information and the beta nought, sigma nought, gamma and digital number look-up tables that can be used for absolute product calibration.",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "schema-calibration-s2-vv": {
+      "title": "VV Calibration Schema",
+      "type": "application/xml",
+      "description": "Calibration metadata including calibration information and the beta nought, sigma nought, gamma and digital number look-up tables that can be used for absolute product calibration.",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "schema-calibration-s3-vh": {
+      "title": "VH Calibration Schema",
+      "type": "application/xml",
+      "description": "Calibration metadata including calibration information and the beta nought, sigma nought, gamma and digital number look-up tables that can be used for absolute product calibration.",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "schema-calibration-s3-hh": {
+      "title": "HH Calibration Schema",
+      "type": "application/xml",
+      "description": "Calibration metadata including calibration information and the beta nought, sigma nought, gamma and digital number look-up tables that can be used for absolute product calibration.",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "schema-calibration-s3-hv": {
+      "title": "HV Calibration Schema",
+      "type": "application/xml",
+      "description": "Calibration metadata including calibration information and the beta nought, sigma nought, gamma and digital number look-up tables that can be used for absolute product calibration.",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "schema-calibration-s3-vv": {
+      "title": "VV Calibration Schema",
+      "type": "application/xml",
+      "description": "Calibration metadata including calibration information and the beta nought, sigma nought, gamma and digital number look-up tables that can be used for absolute product calibration.",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "schema-calibration-s4-vh": {
+      "title": "VH Calibration Schema",
+      "type": "application/xml",
+      "description": "Calibration metadata including calibration information and the beta nought, sigma nought, gamma and digital number look-up tables that can be used for absolute product calibration.",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "schema-calibration-s4-hh": {
+      "title": "HH Calibration Schema",
+      "type": "application/xml",
+      "description": "Calibration metadata including calibration information and the beta nought, sigma nought, gamma and digital number look-up tables that can be used for absolute product calibration.",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "schema-calibration-s4-hv": {
+      "title": "HV Calibration Schema",
+      "type": "application/xml",
+      "description": "Calibration metadata including calibration information and the beta nought, sigma nought, gamma and digital number look-up tables that can be used for absolute product calibration.",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "schema-calibration-s4-vv": {
+      "title": "VV Calibration Schema",
+      "type": "application/xml",
+      "description": "Calibration metadata including calibration information and the beta nought, sigma nought, gamma and digital number look-up tables that can be used for absolute product calibration.",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "schema-calibration-s5-vh": {
+      "title": "VH Calibration Schema",
+      "type": "application/xml",
+      "description": "Calibration metadata including calibration information and the beta nought, sigma nought, gamma and digital number look-up tables that can be used for absolute product calibration.",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "schema-calibration-s5-hh": {
+      "title": "HH Calibration Schema",
+      "type": "application/xml",
+      "description": "Calibration metadata including calibration information and the beta nought, sigma nought, gamma and digital number look-up tables that can be used for absolute product calibration.",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "schema-calibration-s5-hv": {
+      "title": "HV Calibration Schema",
+      "type": "application/xml",
+      "description": "Calibration metadata including calibration information and the beta nought, sigma nought, gamma and digital number look-up tables that can be used for absolute product calibration.",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "schema-calibration-s5-vv": {
+      "title": "VV Calibration Schema",
+      "type": "application/xml",
+      "description": "Calibration metadata including calibration information and the beta nought, sigma nought, gamma and digital number look-up tables that can be used for absolute product calibration.",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "schema-calibration-s6-vh": {
+      "title": "VH Calibration Schema",
+      "type": "application/xml",
+      "description": "Calibration metadata including calibration information and the beta nought, sigma nought, gamma and digital number look-up tables that can be used for absolute product calibration.",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "schema-calibration-s6-hh": {
+      "title": "HH Calibration Schema",
+      "type": "application/xml",
+      "description": "Calibration metadata including calibration information and the beta nought, sigma nought, gamma and digital number look-up tables that can be used for absolute product calibration.",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "schema-calibration-s6-hv": {
+      "title": "HV Calibration Schema",
+      "type": "application/xml",
+      "description": "Calibration metadata including calibration information and the beta nought, sigma nought, gamma and digital number look-up tables that can be used for absolute product calibration.",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "schema-calibration-s6-vv": {
+      "title": "VV Calibration Schema",
+      "type": "application/xml",
+      "description": "Calibration metadata including calibration information and the beta nought, sigma nought, gamma and digital number look-up tables that can be used for absolute product calibration.",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "schema-calibration-wv1-vh": {
+      "title": "VH Calibration Schema",
+      "type": "application/xml",
+      "description": "Calibration metadata including calibration information and the beta nought, sigma nought, gamma and digital number look-up tables that can be used for absolute product calibration.",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "schema-calibration-wv1-hh": {
+      "title": "HH Calibration Schema",
+      "type": "application/xml",
+      "description": "Calibration metadata including calibration information and the beta nought, sigma nought, gamma and digital number look-up tables that can be used for absolute product calibration.",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "schema-calibration-wv1-hv": {
+      "title": "HV Calibration Schema",
+      "type": "application/xml",
+      "description": "Calibration metadata including calibration information and the beta nought, sigma nought, gamma and digital number look-up tables that can be used for absolute product calibration.",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "schema-calibration-wv1-vv": {
+      "title": "VV Calibration Schema",
+      "type": "application/xml",
+      "description": "Calibration metadata including calibration information and the beta nought, sigma nought, gamma and digital number look-up tables that can be used for absolute product calibration.",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "schema-calibration-wv2-vh": {
+      "title": "VH Calibration Schema",
+      "type": "application/xml",
+      "description": "Calibration metadata including calibration information and the beta nought, sigma nought, gamma and digital number look-up tables that can be used for absolute product calibration.",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "schema-calibration-wv2-hh": {
+      "title": "HH Calibration Schema",
+      "type": "application/xml",
+      "description": "Calibration metadata including calibration information and the beta nought, sigma nought, gamma and digital number look-up tables that can be used for absolute product calibration.",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "schema-calibration-wv2-hv": {
+      "title": "HV Calibration Schema",
+      "type": "application/xml",
+      "description": "Calibration metadata including calibration information and the beta nought, sigma nought, gamma and digital number look-up tables that can be used for absolute product calibration.",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "schema-calibration-wv2-vv": {
+      "title": "VV Calibration Schema",
+      "type": "application/xml",
+      "description": "Calibration metadata including calibration information and the beta nought, sigma nought, gamma and digital number look-up tables that can be used for absolute product calibration.",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "schema-noise-iw1-vh": {
+      "title": "VH Noise Schema",
+      "type": "application/xml",
+      "description": "Estimated thermal noise look-up tables",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "schema-noise-iw1-hh": {
+      "title": "HH Noise Schema",
+      "type": "application/xml",
+      "description": "Estimated thermal noise look-up tables",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "schema-noise-iw1-hv": {
+      "title": "HV Noise Schema",
+      "type": "application/xml",
+      "description": "Estimated thermal noise look-up tables",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "schema-noise-iw1-vv": {
+      "title": "VV Noise Schema",
+      "type": "application/xml",
+      "description": "Estimated thermal noise look-up tables",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "schema-noise-iw2-vh": {
+      "title": "VH Noise Schema",
+      "type": "application/xml",
+      "description": "Estimated thermal noise look-up tables",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "schema-noise-iw2-hh": {
+      "title": "HH Noise Schema",
+      "type": "application/xml",
+      "description": "Estimated thermal noise look-up tables",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "schema-noise-iw2-hv": {
+      "title": "HV Noise Schema",
+      "type": "application/xml",
+      "description": "Estimated thermal noise look-up tables",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "schema-noise-iw2-vv": {
+      "title": "VV Noise Schema",
+      "type": "application/xml",
+      "description": "Estimated thermal noise look-up tables",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "schema-noise-iw3-vh": {
+      "title": "VH Noise Schema",
+      "type": "application/xml",
+      "description": "Estimated thermal noise look-up tables",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "schema-noise-iw3-hh": {
+      "title": "HH Noise Schema",
+      "type": "application/xml",
+      "description": "Estimated thermal noise look-up tables",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "schema-noise-iw3-hv": {
+      "title": "HV Noise Schema",
+      "type": "application/xml",
+      "description": "Estimated thermal noise look-up tables",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "schema-noise-iw3-vv": {
+      "title": "VV Noise Schema",
+      "type": "application/xml",
+      "description": "Estimated thermal noise look-up tables",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "schema-noise-ew1-vh": {
+      "title": "VH Noise Schema",
+      "type": "application/xml",
+      "description": "Estimated thermal noise look-up tables",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "schema-noise-ew1-hh": {
+      "title": "HH Noise Schema",
+      "type": "application/xml",
+      "description": "Estimated thermal noise look-up tables",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "schema-noise-ew1-hv": {
+      "title": "HV Noise Schema",
+      "type": "application/xml",
+      "description": "Estimated thermal noise look-up tables",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "schema-noise-ew1-vv": {
+      "title": "VV Noise Schema",
+      "type": "application/xml",
+      "description": "Estimated thermal noise look-up tables",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "schema-noise-ew2-vh": {
+      "title": "VH Noise Schema",
+      "type": "application/xml",
+      "description": "Estimated thermal noise look-up tables",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "schema-noise-ew2-hh": {
+      "title": "HH Noise Schema",
+      "type": "application/xml",
+      "description": "Estimated thermal noise look-up tables",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "schema-noise-ew2-hv": {
+      "title": "HV Noise Schema",
+      "type": "application/xml",
+      "description": "Estimated thermal noise look-up tables",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "schema-noise-ew2-vv": {
+      "title": "VV Noise Schema",
+      "type": "application/xml",
+      "description": "Estimated thermal noise look-up tables",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "schema-noise-ew3-vh": {
+      "title": "VH Noise Schema",
+      "type": "application/xml",
+      "description": "Estimated thermal noise look-up tables",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "schema-noise-ew3-hh": {
+      "title": "HH Noise Schema",
+      "type": "application/xml",
+      "description": "Estimated thermal noise look-up tables",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "schema-noise-ew3-hv": {
+      "title": "HV Noise Schema",
+      "type": "application/xml",
+      "description": "Estimated thermal noise look-up tables",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "schema-noise-ew3-vv": {
+      "title": "VV Noise Schema",
+      "type": "application/xml",
+      "description": "Estimated thermal noise look-up tables",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "schema-noise-ew4-vh": {
+      "title": "VH Noise Schema",
+      "type": "application/xml",
+      "description": "Estimated thermal noise look-up tables",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "schema-noise-ew4-hh": {
+      "title": "HH Noise Schema",
+      "type": "application/xml",
+      "description": "Estimated thermal noise look-up tables",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "schema-noise-ew4-hv": {
+      "title": "HV Noise Schema",
+      "type": "application/xml",
+      "description": "Estimated thermal noise look-up tables",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "schema-noise-ew4-vv": {
+      "title": "VV Noise Schema",
+      "type": "application/xml",
+      "description": "Estimated thermal noise look-up tables",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "schema-noise-ew5-vh": {
+      "title": "VH Noise Schema",
+      "type": "application/xml",
+      "description": "Estimated thermal noise look-up tables",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "schema-noise-ew5-hh": {
+      "title": "HH Noise Schema",
+      "type": "application/xml",
+      "description": "Estimated thermal noise look-up tables",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "schema-noise-ew5-hv": {
+      "title": "HV Noise Schema",
+      "type": "application/xml",
+      "description": "Estimated thermal noise look-up tables",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "schema-noise-ew5-vv": {
+      "title": "VV Noise Schema",
+      "type": "application/xml",
+      "description": "Estimated thermal noise look-up tables",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "schema-noise-s1-vh": {
+      "title": "VH Noise Schema",
+      "type": "application/xml",
+      "description": "Estimated thermal noise look-up tables",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "schema-noise-s1-hh": {
+      "title": "HH Noise Schema",
+      "type": "application/xml",
+      "description": "Estimated thermal noise look-up tables",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "schema-noise-s1-hv": {
+      "title": "HV Noise Schema",
+      "type": "application/xml",
+      "description": "Estimated thermal noise look-up tables",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "schema-noise-s1-vv": {
+      "title": "VV Noise Schema",
+      "type": "application/xml",
+      "description": "Estimated thermal noise look-up tables",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "schema-noise-s2-vh": {
+      "title": "VH Noise Schema",
+      "type": "application/xml",
+      "description": "Estimated thermal noise look-up tables",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "schema-noise-s2-hh": {
+      "title": "HH Noise Schema",
+      "type": "application/xml",
+      "description": "Estimated thermal noise look-up tables",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "schema-noise-s2-hv": {
+      "title": "HV Noise Schema",
+      "type": "application/xml",
+      "description": "Estimated thermal noise look-up tables",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "schema-noise-s2-vv": {
+      "title": "VV Noise Schema",
+      "type": "application/xml",
+      "description": "Estimated thermal noise look-up tables",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "schema-noise-s3-vh": {
+      "title": "VH Noise Schema",
+      "type": "application/xml",
+      "description": "Estimated thermal noise look-up tables",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "schema-noise-s3-hh": {
+      "title": "HH Noise Schema",
+      "type": "application/xml",
+      "description": "Estimated thermal noise look-up tables",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "schema-noise-s3-hv": {
+      "title": "HV Noise Schema",
+      "type": "application/xml",
+      "description": "Estimated thermal noise look-up tables",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "schema-noise-s3-vv": {
+      "title": "VV Noise Schema",
+      "type": "application/xml",
+      "description": "Estimated thermal noise look-up tables",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "schema-noise-s4-vh": {
+      "title": "VH Noise Schema",
+      "type": "application/xml",
+      "description": "Estimated thermal noise look-up tables",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "schema-noise-s4-hh": {
+      "title": "HH Noise Schema",
+      "type": "application/xml",
+      "description": "Estimated thermal noise look-up tables",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "schema-noise-s4-hv": {
+      "title": "HV Noise Schema",
+      "type": "application/xml",
+      "description": "Estimated thermal noise look-up tables",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "schema-noise-s4-vv": {
+      "title": "VV Noise Schema",
+      "type": "application/xml",
+      "description": "Estimated thermal noise look-up tables",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "schema-noise-s5-vh": {
+      "title": "VH Noise Schema",
+      "type": "application/xml",
+      "description": "Estimated thermal noise look-up tables",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "schema-noise-s5-hh": {
+      "title": "HH Noise Schema",
+      "type": "application/xml",
+      "description": "Estimated thermal noise look-up tables",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "schema-noise-s5-hv": {
+      "title": "HV Noise Schema",
+      "type": "application/xml",
+      "description": "Estimated thermal noise look-up tables",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "schema-noise-s5-vv": {
+      "title": "VV Noise Schema",
+      "type": "application/xml",
+      "description": "Estimated thermal noise look-up tables",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "schema-noise-s6-vh": {
+      "title": "VH Noise Schema",
+      "type": "application/xml",
+      "description": "Estimated thermal noise look-up tables",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "schema-noise-s6-hh": {
+      "title": "HH Noise Schema",
+      "type": "application/xml",
+      "description": "Estimated thermal noise look-up tables",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "schema-noise-s6-hv": {
+      "title": "HV Noise Schema",
+      "type": "application/xml",
+      "description": "Estimated thermal noise look-up tables",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "schema-noise-s6-vv": {
+      "title": "VV Noise Schema",
+      "type": "application/xml",
+      "description": "Estimated thermal noise look-up tables",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "schema-noise-wv1-vh": {
+      "title": "VH Noise Schema",
+      "type": "application/xml",
+      "description": "Estimated thermal noise look-up tables",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "schema-noise-wv1-hh": {
+      "title": "HH Noise Schema",
+      "type": "application/xml",
+      "description": "Estimated thermal noise look-up tables",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "schema-noise-wv1-hv": {
+      "title": "HV Noise Schema",
+      "type": "application/xml",
+      "description": "Estimated thermal noise look-up tables",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "schema-noise-wv1-vv": {
+      "title": "VV Noise Schema",
+      "type": "application/xml",
+      "description": "Estimated thermal noise look-up tables",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "schema-noise-wv2-vh": {
+      "title": "VH Noise Schema",
+      "type": "application/xml",
+      "description": "Estimated thermal noise look-up tables",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "schema-noise-wv2-hh": {
+      "title": "HH Noise Schema",
+      "type": "application/xml",
+      "description": "Estimated thermal noise look-up tables",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "schema-noise-wv2-hv": {
+      "title": "HV Noise Schema",
+      "type": "application/xml",
+      "description": "Estimated thermal noise look-up tables",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "schema-noise-wv2-vv": {
+      "title": "VV Noise Schema",
+      "type": "application/xml",
+      "description": "Estimated thermal noise look-up tables",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "schema-product-iw1-vh": {
+      "title": "VH Product Schema",
+      "type": "application/xml",
+      "description": "Describes the main characteristics corresponding to the band: state of the platform during acquisition, image properties, Doppler information, geographic location, etc.",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "schema-product-iw1-hh": {
+      "title": "HH Product Schema",
+      "type": "application/xml",
+      "description": "Describes the main characteristics corresponding to the band: state of the platform during acquisition, image properties, Doppler information, geographic location, etc.",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "schema-product-iw1-hv": {
+      "title": "HV Product Schema",
+      "type": "application/xml",
+      "description": "Describes the main characteristics corresponding to the band: state of the platform during acquisition, image properties, Doppler information, geographic location, etc.",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "schema-product-iw1-vv": {
+      "title": "VV Product Schema",
+      "type": "application/xml",
+      "description": "Describes the main characteristics corresponding to the band: state of the platform during acquisition, image properties, Doppler information, geographic location, etc.",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "schema-product-iw2-vh": {
+      "title": "VH Product Schema",
+      "type": "application/xml",
+      "description": "Describes the main characteristics corresponding to the band: state of the platform during acquisition, image properties, Doppler information, geographic location, etc.",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "schema-product-iw2-hh": {
+      "title": "HH Product Schema",
+      "type": "application/xml",
+      "description": "Describes the main characteristics corresponding to the band: state of the platform during acquisition, image properties, Doppler information, geographic location, etc.",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "schema-product-iw2-hv": {
+      "title": "HV Product Schema",
+      "type": "application/xml",
+      "description": "Describes the main characteristics corresponding to the band: state of the platform during acquisition, image properties, Doppler information, geographic location, etc.",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "schema-product-iw2-vv": {
+      "title": "VV Product Schema",
+      "type": "application/xml",
+      "description": "Describes the main characteristics corresponding to the band: state of the platform during acquisition, image properties, Doppler information, geographic location, etc.",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "schema-product-iw3-vh": {
+      "title": "VH Product Schema",
+      "type": "application/xml",
+      "description": "Describes the main characteristics corresponding to the band: state of the platform during acquisition, image properties, Doppler information, geographic location, etc.",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "schema-product-iw3-hh": {
+      "title": "HH Product Schema",
+      "type": "application/xml",
+      "description": "Describes the main characteristics corresponding to the band: state of the platform during acquisition, image properties, Doppler information, geographic location, etc.",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "schema-product-iw3-hv": {
+      "title": "HV Product Schema",
+      "type": "application/xml",
+      "description": "Describes the main characteristics corresponding to the band: state of the platform during acquisition, image properties, Doppler information, geographic location, etc.",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "schema-product-iw3-vv": {
+      "title": "VV Product Schema",
+      "type": "application/xml",
+      "description": "Describes the main characteristics corresponding to the band: state of the platform during acquisition, image properties, Doppler information, geographic location, etc.",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "schema-product-ew1-vh": {
+      "title": "VH Product Schema",
+      "type": "application/xml",
+      "description": "Describes the main characteristics corresponding to the band: state of the platform during acquisition, image properties, Doppler information, geographic location, etc.",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "schema-product-ew1-hh": {
+      "title": "HH Product Schema",
+      "type": "application/xml",
+      "description": "Describes the main characteristics corresponding to the band: state of the platform during acquisition, image properties, Doppler information, geographic location, etc.",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "schema-product-ew1-hv": {
+      "title": "HV Product Schema",
+      "type": "application/xml",
+      "description": "Describes the main characteristics corresponding to the band: state of the platform during acquisition, image properties, Doppler information, geographic location, etc.",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "schema-product-ew1-vv": {
+      "title": "VV Product Schema",
+      "type": "application/xml",
+      "description": "Describes the main characteristics corresponding to the band: state of the platform during acquisition, image properties, Doppler information, geographic location, etc.",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "schema-product-ew2-vh": {
+      "title": "VH Product Schema",
+      "type": "application/xml",
+      "description": "Describes the main characteristics corresponding to the band: state of the platform during acquisition, image properties, Doppler information, geographic location, etc.",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "schema-product-ew2-hh": {
+      "title": "HH Product Schema",
+      "type": "application/xml",
+      "description": "Describes the main characteristics corresponding to the band: state of the platform during acquisition, image properties, Doppler information, geographic location, etc.",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "schema-product-ew2-hv": {
+      "title": "HV Product Schema",
+      "type": "application/xml",
+      "description": "Describes the main characteristics corresponding to the band: state of the platform during acquisition, image properties, Doppler information, geographic location, etc.",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "schema-product-ew2-vv": {
+      "title": "VV Product Schema",
+      "type": "application/xml",
+      "description": "Describes the main characteristics corresponding to the band: state of the platform during acquisition, image properties, Doppler information, geographic location, etc.",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "schema-product-ew3-vh": {
+      "title": "VH Product Schema",
+      "type": "application/xml",
+      "description": "Describes the main characteristics corresponding to the band: state of the platform during acquisition, image properties, Doppler information, geographic location, etc.",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "schema-product-ew3-hh": {
+      "title": "HH Product Schema",
+      "type": "application/xml",
+      "description": "Describes the main characteristics corresponding to the band: state of the platform during acquisition, image properties, Doppler information, geographic location, etc.",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "schema-product-ew3-hv": {
+      "title": "HV Product Schema",
+      "type": "application/xml",
+      "description": "Describes the main characteristics corresponding to the band: state of the platform during acquisition, image properties, Doppler information, geographic location, etc.",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "schema-product-ew3-vv": {
+      "title": "VV Product Schema",
+      "type": "application/xml",
+      "description": "Describes the main characteristics corresponding to the band: state of the platform during acquisition, image properties, Doppler information, geographic location, etc.",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "schema-product-ew4-vh": {
+      "title": "VH Product Schema",
+      "type": "application/xml",
+      "description": "Describes the main characteristics corresponding to the band: state of the platform during acquisition, image properties, Doppler information, geographic location, etc.",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "schema-product-ew4-hh": {
+      "title": "HH Product Schema",
+      "type": "application/xml",
+      "description": "Describes the main characteristics corresponding to the band: state of the platform during acquisition, image properties, Doppler information, geographic location, etc.",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "schema-product-ew4-hv": {
+      "title": "HV Product Schema",
+      "type": "application/xml",
+      "description": "Describes the main characteristics corresponding to the band: state of the platform during acquisition, image properties, Doppler information, geographic location, etc.",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "schema-product-ew4-vv": {
+      "title": "VV Product Schema",
+      "type": "application/xml",
+      "description": "Describes the main characteristics corresponding to the band: state of the platform during acquisition, image properties, Doppler information, geographic location, etc.",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "schema-product-ew5-vh": {
+      "title": "VH Product Schema",
+      "type": "application/xml",
+      "description": "Describes the main characteristics corresponding to the band: state of the platform during acquisition, image properties, Doppler information, geographic location, etc.",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "schema-product-ew5-hh": {
+      "title": "HH Product Schema",
+      "type": "application/xml",
+      "description": "Describes the main characteristics corresponding to the band: state of the platform during acquisition, image properties, Doppler information, geographic location, etc.",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "schema-product-ew5-hv": {
+      "title": "HV Product Schema",
+      "type": "application/xml",
+      "description": "Describes the main characteristics corresponding to the band: state of the platform during acquisition, image properties, Doppler information, geographic location, etc.",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "schema-product-ew5-vv": {
+      "title": "VV Product Schema",
+      "type": "application/xml",
+      "description": "Describes the main characteristics corresponding to the band: state of the platform during acquisition, image properties, Doppler information, geographic location, etc.",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "schema-product-s1-vh": {
+      "title": "VH Product Schema",
+      "type": "application/xml",
+      "description": "Describes the main characteristics corresponding to the band: state of the platform during acquisition, image properties, Doppler information, geographic location, etc.",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "schema-product-s1-hh": {
+      "title": "HH Product Schema",
+      "type": "application/xml",
+      "description": "Describes the main characteristics corresponding to the band: state of the platform during acquisition, image properties, Doppler information, geographic location, etc.",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "schema-product-s1-hv": {
+      "title": "HV Product Schema",
+      "type": "application/xml",
+      "description": "Describes the main characteristics corresponding to the band: state of the platform during acquisition, image properties, Doppler information, geographic location, etc.",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "schema-product-s1-vv": {
+      "title": "VV Product Schema",
+      "type": "application/xml",
+      "description": "Describes the main characteristics corresponding to the band: state of the platform during acquisition, image properties, Doppler information, geographic location, etc.",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "schema-product-s2-vh": {
+      "title": "VH Product Schema",
+      "type": "application/xml",
+      "description": "Describes the main characteristics corresponding to the band: state of the platform during acquisition, image properties, Doppler information, geographic location, etc.",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "schema-product-s2-hh": {
+      "title": "HH Product Schema",
+      "type": "application/xml",
+      "description": "Describes the main characteristics corresponding to the band: state of the platform during acquisition, image properties, Doppler information, geographic location, etc.",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "schema-product-s2-hv": {
+      "title": "HV Product Schema",
+      "type": "application/xml",
+      "description": "Describes the main characteristics corresponding to the band: state of the platform during acquisition, image properties, Doppler information, geographic location, etc.",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "schema-product-s2-vv": {
+      "title": "VV Product Schema",
+      "type": "application/xml",
+      "description": "Describes the main characteristics corresponding to the band: state of the platform during acquisition, image properties, Doppler information, geographic location, etc.",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "schema-product-s3-vh": {
+      "title": "VH Product Schema",
+      "type": "application/xml",
+      "description": "Describes the main characteristics corresponding to the band: state of the platform during acquisition, image properties, Doppler information, geographic location, etc.",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "schema-product-s3-hh": {
+      "title": "HH Product Schema",
+      "type": "application/xml",
+      "description": "Describes the main characteristics corresponding to the band: state of the platform during acquisition, image properties, Doppler information, geographic location, etc.",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "schema-product-s3-hv": {
+      "title": "HV Product Schema",
+      "type": "application/xml",
+      "description": "Describes the main characteristics corresponding to the band: state of the platform during acquisition, image properties, Doppler information, geographic location, etc.",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "schema-product-s3-vv": {
+      "title": "VV Product Schema",
+      "type": "application/xml",
+      "description": "Describes the main characteristics corresponding to the band: state of the platform during acquisition, image properties, Doppler information, geographic location, etc.",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "schema-product-s4-vh": {
+      "title": "VH Product Schema",
+      "type": "application/xml",
+      "description": "Describes the main characteristics corresponding to the band: state of the platform during acquisition, image properties, Doppler information, geographic location, etc.",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "schema-product-s4-hh": {
+      "title": "HH Product Schema",
+      "type": "application/xml",
+      "description": "Describes the main characteristics corresponding to the band: state of the platform during acquisition, image properties, Doppler information, geographic location, etc.",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "schema-product-s4-hv": {
+      "title": "HV Product Schema",
+      "type": "application/xml",
+      "description": "Describes the main characteristics corresponding to the band: state of the platform during acquisition, image properties, Doppler information, geographic location, etc.",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "schema-product-s4-vv": {
+      "title": "VV Product Schema",
+      "type": "application/xml",
+      "description": "Describes the main characteristics corresponding to the band: state of the platform during acquisition, image properties, Doppler information, geographic location, etc.",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "schema-product-s5-vh": {
+      "title": "VH Product Schema",
+      "type": "application/xml",
+      "description": "Describes the main characteristics corresponding to the band: state of the platform during acquisition, image properties, Doppler information, geographic location, etc.",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "schema-product-s5-hh": {
+      "title": "HH Product Schema",
+      "type": "application/xml",
+      "description": "Describes the main characteristics corresponding to the band: state of the platform during acquisition, image properties, Doppler information, geographic location, etc.",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "schema-product-s5-hv": {
+      "title": "HV Product Schema",
+      "type": "application/xml",
+      "description": "Describes the main characteristics corresponding to the band: state of the platform during acquisition, image properties, Doppler information, geographic location, etc.",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "schema-product-s5-vv": {
+      "title": "VV Product Schema",
+      "type": "application/xml",
+      "description": "Describes the main characteristics corresponding to the band: state of the platform during acquisition, image properties, Doppler information, geographic location, etc.",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "schema-product-s6-vh": {
+      "title": "VH Product Schema",
+      "type": "application/xml",
+      "description": "Describes the main characteristics corresponding to the band: state of the platform during acquisition, image properties, Doppler information, geographic location, etc.",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "schema-product-s6-hh": {
+      "title": "HH Product Schema",
+      "type": "application/xml",
+      "description": "Describes the main characteristics corresponding to the band: state of the platform during acquisition, image properties, Doppler information, geographic location, etc.",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "schema-product-s6-hv": {
+      "title": "HV Product Schema",
+      "type": "application/xml",
+      "description": "Describes the main characteristics corresponding to the band: state of the platform during acquisition, image properties, Doppler information, geographic location, etc.",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "schema-product-s6-vv": {
+      "title": "VV Product Schema",
+      "type": "application/xml",
+      "description": "Describes the main characteristics corresponding to the band: state of the platform during acquisition, image properties, Doppler information, geographic location, etc.",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "schema-product-wv1-vh": {
+      "title": "VH Product Schema",
+      "type": "application/xml",
+      "description": "Describes the main characteristics corresponding to the band: state of the platform during acquisition, image properties, Doppler information, geographic location, etc.",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "schema-product-wv1-hh": {
+      "title": "HH Product Schema",
+      "type": "application/xml",
+      "description": "Describes the main characteristics corresponding to the band: state of the platform during acquisition, image properties, Doppler information, geographic location, etc.",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "schema-product-wv1-hv": {
+      "title": "HV Product Schema",
+      "type": "application/xml",
+      "description": "Describes the main characteristics corresponding to the band: state of the platform during acquisition, image properties, Doppler information, geographic location, etc.",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "schema-product-wv1-vv": {
+      "title": "VV Product Schema",
+      "type": "application/xml",
+      "description": "Describes the main characteristics corresponding to the band: state of the platform during acquisition, image properties, Doppler information, geographic location, etc.",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "schema-product-wv2-vh": {
+      "title": "VH Product Schema",
+      "type": "application/xml",
+      "description": "Describes the main characteristics corresponding to the band: state of the platform during acquisition, image properties, Doppler information, geographic location, etc.",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "schema-product-wv2-hh": {
+      "title": "HH Product Schema",
+      "type": "application/xml",
+      "description": "Describes the main characteristics corresponding to the band: state of the platform during acquisition, image properties, Doppler information, geographic location, etc.",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "schema-product-wv2-hv": {
+      "title": "HV Product Schema",
+      "type": "application/xml",
+      "description": "Describes the main characteristics corresponding to the band: state of the platform during acquisition, image properties, Doppler information, geographic location, etc.",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "schema-product-wv2-vv": {
+      "title": "VV Product Schema",
+      "type": "application/xml",
+      "description": "Describes the main characteristics corresponding to the band: state of the platform during acquisition, image properties, Doppler information, geographic location, etc.",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "safe-manifest": {
+      "title": "Manifest File",
+      "type": "application/xml",
+      "description": "General product metadata in XML format. Contains a high-level textual description of the product and references to all of product's components, the product metadata, including the product identification and the resource references, and references to the physical location of each component file contained in the product.",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "thumbnail": {
+      "title": "Preview Image",
+      "type": "image/png",
+      "description": "An averaged, decimated preview image in PNG format. Single polarization products are represented with a grey scale image. Dual polarization products are represented by a single composite colour image in RGB with the red channel (R) representing the  co-polarization VV or HH), the green channel (G) represents the cross-polarization (VH or HV) and the blue channel (B) represents the ratio of the cross an co-polarizations.",
+      "roles": [
+        "thumbnail"
+      ]
+    }
+  },
+  "title": "Sentinel-1 SLC",
+  "keywords": [
+    "ground",
+    "sentinel",
+    "copernicus",
+    "esa",
+    "sar"
+  ],
+  "providers": [
+    {
+      "name": "ESA",
+      "roles": [
+        "producer",
+        "processor",
+        "licensor"
+      ],
+      "url": "https://earth.esa.int/eogateway"
+    }
+  ],
+  "summaries": {
+    "constellation": [
+      "sentinel-1"
+    ],
+    "platform": [
+      "sentinel-1a",
+      "sentinel-1b"
+    ],
+    "sar:looks_range": [
+      1
+    ],
+    "sar:product_type": [
+      "SLC"
+    ],
+    "sar:looks_azimuth": [
+      1
+    ],
+    "sar:polarizations": [
+      "HH",
+      "VV",
+      "HV",
+      "VH",
+      [
+        "HH",
+        "HV"
+      ],
+      [
+        "VV",
+        "VH"
+      ]
+    ],
+    "sar:frequency_band": [
+      "C"
+    ],
+    "sar:instrument_mode": [
+      "IW",
+      "EW",
+      "SM",
+      "WV"
+    ],
+    "sar:center_frequency": [
+      5.405
+    ],
+    "sar:resolution_range": [
+      1.7,
+      2.0,
+      2.5,
+      2.7,
+      3.1,
+      3.3,
+      3.6,
+      3.5,
+      7.9,
+      9.9,
+      11.6,
+      13.3,
+      14.4
+    ],
+    "sar:resolution_azimuth": [
+      3.9,
+      4.9,
+      22.5,
+      22.6,
+      22.7,
+      43.7,
+      44.3,
+      45.2,
+      45.6,
+      44.0
+    ],
+    "sar:pixel_spacing_range": [
+      1.5,
+      1.8,
+      2.2,
+      2.3,
+      2.6,
+      2.9,
+      3.1,
+      5.9
+    ],
+    "sar:observation_direction": [
+      "right"
+    ],
+    "sar:pixel_spacing_azimuth": [
+      3.5,
+      3.6,
+      4.1,
+      4.2,
+      14.1,
+      19.9
+    ],
+    "sar:looks_equivalent_number": [
+      1
+    ],
+    "sat:orbit_state": [
+      "ascending",
+      "descending"
+    ]
+  },
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -53.661625,
+          69.582458,
+          -45.827332,
+          71.715393
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2014-10-31T09:59:31.293840Z",
+          "2014-10-31T09:59:58.717016Z"
+        ]
+      ]
+    }
+  },
+  "license": "proprietary"
+}

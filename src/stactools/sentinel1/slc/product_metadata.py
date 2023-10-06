@@ -19,14 +19,6 @@ class SLCProductMetadata(ProductMetadata):
 
     @property
     def metadata_dict(self) -> Dict[str, Any]:
-
-        # resolutions = {"F": "full", "H": "high", "M": "medium"}
-
-        tmp = self._root.find(".//s1sarl1:sliceNumber")
-        slice_number = tmp.text if tmp is not None else None
-        tmp = self._root.find(".//s1sarl1:totalSlices")
-        total_slices = tmp.text if tmp is not None else None
-
         result = {
             "start_datetime": datetime_to_str(self.start_datetime),
             "end_datetime": datetime_to_str(self.end_datetime),
@@ -40,8 +32,12 @@ class SLCProductMetadata(ProductMetadata):
             # "s1:processing_level": self.product_id.split("_")[3][0],
             # "s1:resolution": resolutions[self.resolution],
             "s1:orbit_source": self.orbit_source(),
-            "s1:slice_number": slice_number,
-            "s1:total_slices": total_slices,
+            "s1:slice_number": self._root.find_text(".//s1sarl1:sliceNumber"),
+            "s1:total_slices": self._root.find_text(".//s1sarl1:totalSlices"),
+            "s1:swaths": [elem.text for elem in self._root.findall(".//s1sarl1:swath")],
+            # "s1:frame_number": get_frame_number(root),
+            # "s1:stop_anxtime": get_stop_anxtime(root),
         }
+
 
         return {k: v for k, v in result.items() if v is not None}

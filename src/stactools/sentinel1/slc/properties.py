@@ -145,3 +145,37 @@ def fill_sat_properties(sat_ext: SatExtension[T], manifest: XmlElement) -> None:
     relative_orbit = manifest.find_text(".//safe:relativeOrbitNumber")
     if relative_orbit:
         sat_ext.relative_orbit = int(relative_orbit)
+
+    ascending_node_time = manifest.find_text(".//s1:ascendingNodeTime")
+    if ascending_node_time:
+        from pystac.utils import str_to_datetime
+        sat_ext.anx_datetime = str_to_datetime(ascending_node_time)
+
+
+def fill_processing_properties(item: pystac.Item, manifest: XmlElement) -> None:
+    """Fills the properties for processing.
+
+    Args:
+        item (pystac.Item): The extension to be populated.
+        manifest (XmlElement): manifest.safe file parsed into an XmlElement
+    """
+    schema_uri = "https://stac-extensions.github.io/processing/v1.1.0/schema.json"
+    if item.stac_extensions is None:
+        item.stac_extensions = [schema_uri]
+    elif schema_uri not in item.stac_extensions:
+        item.stac_extensions.append(schema_uri)
+
+    facility_name = manifest.find_attr("name", ".//safe:facility/")
+    if facility_name:
+        item.properties["processing:facility"] = facility_name
+
+    # TODO: actually retrieve this from SAFE?
+    item.properties["processing:level"] = "L1"
+
+    software = manifest.find(".//safe:software")
+    if software is not None:
+        name = software.get_attr("name")
+        if name:
+            item.properties["processing:software"] = {
+                name: software.get_attr("version")
+            }

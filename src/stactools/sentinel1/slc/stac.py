@@ -24,6 +24,7 @@ from .properties import (
     fill_common_sar_properties,
     fill_swath_sar_properties,
     fill_sat_properties,
+    fill_processing_properties,
 )
 
 logger = logging.getLogger(__name__)
@@ -146,6 +147,9 @@ def create_item(
 
     # eo
     EOExtension.ext(item, add_if_missing=True)
+
+    # processing
+    fill_processing_properties(item, metalinks.manifest)
 
     # Projection Extension
     projection = ProjectionExtension.ext(item, add_if_missing=True)

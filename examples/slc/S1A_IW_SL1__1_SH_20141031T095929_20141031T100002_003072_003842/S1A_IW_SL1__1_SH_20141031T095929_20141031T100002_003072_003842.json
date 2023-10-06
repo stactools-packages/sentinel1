@@ -145,7 +145,7 @@
         "metadata"
       ]
     },
-    "schema-product-IW1-HH": {
+    "schema-product-iw1-hh": {
       "href": "../../../tests/data-files/slc/S1A_IW_SL1__1_SH_20141031T095929_20141031T100002_003072_003842_91FC.SAFE/annotation/s1a-iw1-slc-hh-20141031t095931-20141031t095956-003072-003842-001.xml",
       "type": "application/xml",
       "title": "HH IW1 Product Schema",
@@ -154,7 +154,7 @@
         "metadata"
       ]
     },
-    "schema-product-IW2-HH": {
+    "schema-product-iw2-hh": {
       "href": "../../../tests/data-files/slc/S1A_IW_SL1__1_SH_20141031T095929_20141031T100002_003072_003842_91FC.SAFE/annotation/s1a-iw2-slc-hh-20141031t095932-20141031t095957-003072-003842-002.xml",
       "type": "application/xml",
       "title": "HH IW2 Product Schema",
@@ -163,7 +163,7 @@
         "metadata"
       ]
     },
-    "schema-product-IW3-HH": {
+    "schema-product-iw3-hh": {
       "href": "../../../tests/data-files/slc/S1A_IW_SL1__1_SH_20141031T095929_20141031T100002_003072_003842_91FC.SAFE/annotation/s1a-iw3-slc-hh-20141031t095933-20141031t095958-003072-003842-003.xml",
       "type": "application/xml",
       "title": "HH IW3 Product Schema",
@@ -172,7 +172,7 @@
         "metadata"
       ]
     },
-    "schema-calibration-IW1-HH": {
+    "schema-calibration-iw1-hh": {
       "href": "../../../tests/data-files/slc/S1A_IW_SL1__1_SH_20141031T095929_20141031T100002_003072_003842_91FC.SAFE/annotation/calibration/calibration-s1a-iw1-slc-hh-20141031t095931-20141031t095956-003072-003842-001.xml",
       "type": "application/xml",
       "title": "IW1 HH Calibration Schema",
@@ -181,7 +181,7 @@
         "metadata"
       ]
     },
-    "schema-calibration-IW2-HH": {
+    "schema-calibration-iw2-hh": {
       "href": "../../../tests/data-files/slc/S1A_IW_SL1__1_SH_20141031T095929_20141031T100002_003072_003842_91FC.SAFE/annotation/calibration/calibration-s1a-iw2-slc-hh-20141031t095932-20141031t095957-003072-003842-002.xml",
       "type": "application/xml",
       "title": "IW2 HH Calibration Schema",
@@ -190,7 +190,7 @@
         "metadata"
       ]
     },
-    "schema-calibration-IW3-HH": {
+    "schema-calibration-iw3-hh": {
       "href": "../../../tests/data-files/slc/S1A_IW_SL1__1_SH_20141031T095929_20141031T100002_003072_003842_91FC.SAFE/annotation/calibration/calibration-s1a-iw3-slc-hh-20141031t095933-20141031t095958-003072-003842-003.xml",
       "type": "application/xml",
       "title": "IW3 HH Calibration Schema",
@@ -199,7 +199,7 @@
         "metadata"
       ]
     },
-    "schema-noise-IW1-HH": {
+    "schema-noise-iw1-hh": {
       "href": "../../../tests/data-files/slc/S1A_IW_SL1__1_SH_20141031T095929_20141031T100002_003072_003842_91FC.SAFE/annotation/calibration/noise-s1a-iw1-slc-hh-20141031t095931-20141031t095956-003072-003842-001.xml",
       "type": "application/xml",
       "title": "IW1 HH Noise Schema",
@@ -208,7 +208,7 @@
         "metadata"
       ]
     },
-    "schema-noise-IW2-HH": {
+    "schema-noise-iw2-hh": {
       "href": "../../../tests/data-files/slc/S1A_IW_SL1__1_SH_20141031T095929_20141031T100002_003072_003842_91FC.SAFE/annotation/calibration/noise-s1a-iw2-slc-hh-20141031t095932-20141031t095957-003072-003842-002.xml",
       "type": "application/xml",
       "title": "IW2 HH Noise Schema",
@@ -217,7 +217,7 @@
         "metadata"
       ]
     },
-    "schema-noise-IW3-HH": {
+    "schema-noise-iw3-hh": {
       "href": "../../../tests/data-files/slc/S1A_IW_SL1__1_SH_20141031T095929_20141031T100002_003072_003842_91FC.SAFE/annotation/calibration/noise-s1a-iw3-slc-hh-20141031t095933-20141031t095958-003072-003842-003.xml",
       "type": "application/xml",
       "title": "IW3 HH Noise Schema",

@@ -6,9 +6,14 @@ import pystac
 from ..metadata_links import MetadataLinks, extract_properties
 
 
-def get_swath_and_polarisation(href: str) -> Tuple[str, str]:
+def get_swath_and_polarisation(
+    href: str, upper: bool = True
+) -> Tuple[str, str]:
     swath, polarisation = extract_properties(href, ["swath", "polarisation"])
-    return (swath.upper(), polarisation.upper())
+    if upper:
+        return (swath.upper(), polarisation.upper())
+    else:
+        return (swath.lower(), polarisation.lower())
 
 
 class SLCMetadataLinks(MetadataLinks):
@@ -16,7 +21,9 @@ class SLCMetadataLinks(MetadataLinks):
     def annotation_hrefs(self) -> List[Tuple[str, str]]:
         return [
             (
-                "schema-product-{}-{}".format(*get_swath_and_polarisation(x)),
+                "schema-product-{}-{}".format(
+                    *get_swath_and_polarisation(x, False)
+                ),
                 os.path.join(self.granule_href, self.map_filename(x)),
             )
             for x in self.grouped_hrefs["annotation"]
@@ -28,7 +35,7 @@ class SLCMetadataLinks(MetadataLinks):
         return [
             (
                 "schema-calibration-{}-{}".format(
-                    *get_swath_and_polarisation(x)
+                    *get_swath_and_polarisation(x, False)
                 ),
                 os.path.join(self.granule_href, self.map_filename(x)),
             )
@@ -39,7 +46,9 @@ class SLCMetadataLinks(MetadataLinks):
     def noise_hrefs(self) -> List[Tuple[str, str]]:
         return [
             (
-                "schema-noise-{}-{}".format(*get_swath_and_polarisation(x)),
+                "schema-noise-{}-{}".format(
+                    *get_swath_and_polarisation(x, False)
+                ),
                 os.path.join(self.granule_href, self.map_filename(x)),
             )
             for x in self.grouped_hrefs["calibration_noise"]

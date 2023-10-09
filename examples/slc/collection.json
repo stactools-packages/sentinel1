@@ -2099,6 +2099,27 @@
     }
   },
   "title": "Sentinel-1 SLC",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -180.0,
+          -90.0,
+          180.0,
+          90.0
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2014-10-10T00:00:00Z",
+          null
+        ]
+      ]
+    }
+  },
+  "license": "proprietary",
   "keywords": [
     "ground",
     "sentinel",
@@ -2215,26 +2236,5 @@
       "ascending",
       "descending"
     ]
-  },
-  "extent": {
-    "spatial": {
-      "bbox": [
-        [
-          -53.661625,
-          69.582458,
-          -45.827332,
-          71.715393
-        ]
-      ]
-    },
-    "temporal": {
-      "interval": [
-        [
-          "2014-10-31T09:59:31.293840Z",
-          "2014-10-31T09:59:58.717016Z"
-        ]
-      ]
-    }
-  },
-  "license": "proprietary"
+  }
 }

@@ -8,23 +8,23 @@ from pystac import Summaries
 from pystac.extensions.eo import EOExtension
 from pystac.extensions.item_assets import ItemAssetsExtension
 from pystac.extensions.projection import ProjectionExtension
-from pystac.extensions.sar import SarExtension, AssetSarExtension
+from pystac.extensions.sar import AssetSarExtension, SarExtension
 from pystac.extensions.sat import SatExtension
 from stactools.core.io import ReadHrefModifier
 from stactools.core.projection import transform_from_bbox
 
-from ..formats import Format
 from ..bands import image_asset_from_href
-from ..product_metadata import get_shape
+from ..formats import Format
 from ..metadata_links import extract_properties
+from ..product_metadata import get_shape
 from . import constants as c
 from .metadata_links import SLCMetadataLinks
 from .product_metadata import SLCProductMetadata
 from .properties import (
     fill_common_sar_properties,
-    fill_swath_sar_properties,
-    fill_sat_properties,
     fill_processing_properties,
+    fill_sat_properties,
+    fill_swath_sar_properties,
 )
 
 logger = logging.getLogger(__name__)
@@ -244,7 +244,7 @@ def create_item(
         item.add_asset(key, asset)
         asset_sar = AssetSarExtension.ext(asset, add_if_missing=True)
 
-        fill_swath_sar_properties(asset_sar, swath.upper())
+        fill_swath_sar_properties(asset_sar, swath.upper(), polarisation.upper())
 
     # --Links--
     item.links.append(c.SENTINEL_SLC_LICENSE)

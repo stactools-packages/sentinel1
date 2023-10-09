@@ -4,9 +4,9 @@ import pystac
 from pystac.extensions.sar import SarExtension
 from pystac.extensions.sat import SatExtension
 
-from stactools.sentinel1.metadata_links import MetadataLinks
 from stactools.sentinel1.grd.product_metadata import GRDProductMetadata
 from stactools.sentinel1.grd.properties import fill_sar_properties, fill_sat_properties
+from stactools.sentinel1.metadata_links import MetadataLinks
 from tests import test_data
 
 

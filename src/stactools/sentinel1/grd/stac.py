@@ -13,8 +13,8 @@ from pystac.extensions.sat import SatExtension
 from stactools.core.io import ReadHrefModifier
 from stactools.core.projection import transform_from_bbox
 
-from ..formats import Format
 from ..bands import image_asset_from_href
+from ..formats import Format
 from ..metadata_links import MetadataLinks
 from ..product_metadata import get_shape
 from . import constants as c

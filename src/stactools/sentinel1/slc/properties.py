@@ -8,6 +8,7 @@ from pystac.extensions.sar import (
     SarExtension,
 )
 from pystac.extensions.sat import OrbitState, SatExtension
+from pystac.utils import str_to_datetime
 from stactools.core.io.xml import XmlElement
 
 T = TypeVar("T", pystac.Item, pystac.Asset)
@@ -65,9 +66,7 @@ product_data_summary: Dict[str, Dict[str, ProductDataEntry]] = {
 }
 
 
-def fill_common_sar_properties(
-    sar_ext: SarExtension[T], manifest: XmlElement
-) -> None:
+def fill_common_sar_properties(sar_ext: SarExtension[T], manifest: XmlElement) -> None:
     """Fills the properties for SAR.
 
     Based on the sar Extension.py
@@ -75,8 +74,6 @@ def fill_common_sar_properties(
     Args:
         sar_ext (SarExtension): The extension to be populated.
         manifest (XmlElement): manifest.safe file parsed into an XmlElement
-        resolution (str): product resolution, needed to select metadata from
-            static values in product_data_summary
     """
     # Fixed properties
     sar_ext.frequency_band = FrequencyBand("C")
@@ -97,7 +94,7 @@ def fill_common_sar_properties(
 
 
 def fill_swath_sar_properties(
-    sar_ext: SarExtension[pystac.Asset], swath: str
+    sar_ext: SarExtension[pystac.Asset], swath: str, polarisation: str
 ) -> None:
     """Fills the properties for SAR.
 
@@ -105,12 +102,13 @@ def fill_swath_sar_properties(
 
     Args:
         sar_ext (SarExtension): The extension to be populated.
-        manifest (XmlElement): manifest.safe file parsed into an XmlElement
         swath (str): the swath ID for this particular asset
+        polarisation (str): the polarisation for this particular asset
     """
     # Properties depending on mode and swath
     product_data = product_data_summary[sar_ext.instrument_mode][swath]
 
+    sar_ext.polarizations = [Polarization(polarisation)]
     sar_ext.resolution_range = product_data.resolution_rng
     sar_ext.resolution_azimuth = product_data.resolution_azi
     sar_ext.pixel_spacing_range = product_data.pixel_spacing_rng
@@ -148,7 +146,6 @@ def fill_sat_properties(sat_ext: SatExtension[T], manifest: XmlElement) -> None:
 
     ascending_node_time = manifest.find_text(".//s1:ascendingNodeTime")
     if ascending_node_time:
-        from pystac.utils import str_to_datetime
         sat_ext.anx_datetime = str_to_datetime(ascending_node_time)
 
 
@@ -169,7 +166,7 @@ def fill_processing_properties(item: pystac.Item, manifest: XmlElement) -> None:
     if facility_name:
         item.properties["processing:facility"] = facility_name
 
-    # TODO: actually retrieve this from SAFE?
+    # SLCs are Level-1 products
     item.properties["processing:level"] = "L1"
 
     software = manifest.find(".//safe:software")

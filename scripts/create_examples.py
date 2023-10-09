@@ -7,7 +7,7 @@ from pathlib import Path
 
 import pystac
 
-from stactools.sentinel1.grd import Format
+from stactools.sentinel1.formats import Format
 from stactools.sentinel1.grd import stac as grd
 from stactools.sentinel1.rtc import stac as rtc
 

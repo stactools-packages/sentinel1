@@ -1,16 +1,53 @@
 from datetime import datetime
 from itertools import product
-from typing import Dict, Any
+from typing import Any, Dict
 
 import pystac
 from pystac import Extent, SpatialExtent, TemporalExtent
-from pystac.link import Link
 from pystac.extensions import sar, sat
-from pystac.utils import str_to_datetime
 from pystac.extensions.item_assets import AssetDefinition
+from pystac.link import Link
+from pystac.utils import str_to_datetime
 
-from ..constants import *
+from ..constants import (
+    ACQUISITION_MODES,
+    INSPIRE_METADATA_ASSET_KEY,
+    PRODUCT_METADATA_ASSET_KEY,
+    SAFE_MANIFEST_ASSET_KEY,
+    SENTINEL_CONSTELLATION,
+    SENTINEL_LICENSE,
+    SENTINEL_PLATFORMS,
+    SENTINEL_POLARIZATIONS,
+    SENTINEL_PROVIDER,
+)
 
+__all__ = [
+    "INSPIRE_METADATA_ASSET_KEY",
+    "SAFE_MANIFEST_ASSET_KEY",
+    "PRODUCT_METADATA_ASSET_KEY",
+    "SENTINEL_LICENSE",
+    "SENTINEL_PLATFORMS",
+    "ACQUISITION_MODES",
+    "SENTINEL_CONSTELLATION",
+    "SENTINEL_PROVIDER",
+    "SENTINEL_POLARIZATIONS",
+    "SENTINEL_SLC_DESCRIPTION",
+    "SENTINEL_SLC_START",
+    "SENTINEL_SLC_EXTENT",
+    "SENTINEL_SLC_TECHNICAL_GUIDE",
+    "SENTINEL_SLC_LICENSE",
+    "SENTINEL_SLC_KEYWORDS",
+    "SENTINEL_SLC_SAT",
+    "SENTINEL_SLC_SAR",
+    "SENTINEL_SLC_SWATHS",
+    "SENTINEL_SLC_ASSETS",
+    "SENTINEL_SLC_IW_TPRE",
+    "SENTINEL_SLC_IW_TBEAM",
+    "SENTINEL_SLC_IW_TORB",
+    "SENTINEL_SLC_EW_TPRE",
+    "SENTINEL_SLC_EW_TBEAM",
+    "SENTINEL_SLC_EW_TORB",
+]
 
 SENTINEL_SLC_DESCRIPTION = (
     "Level-1 Single Look Complex (SLC) products are images in the slant range by azimuth imaging plane, in the image plane of satellite data acquisition. Each image pixel is represented by a complex (I and Q) magnitude value and therefore contains both amplitude and phase information. Each I and Q value "  # noqa: E501
@@ -145,9 +182,7 @@ SENTINEL_SLC_IMAGE_ASSET_DEFINITIONS = {
             "roles": ["data"],
         }
     )
-    for swath, pol in product(
-        SENTINEL_SLC_SWATHS, SENTINEL_POLARIZATIONS.keys()
-    )
+    for swath, pol in product(SENTINEL_SLC_SWATHS, SENTINEL_POLARIZATIONS.keys())
 }
 
 SENTINEL_SLC_SCHEMA_CALIBRATION_ASSET_DEFINITIONS = {
@@ -163,9 +198,7 @@ SENTINEL_SLC_SCHEMA_CALIBRATION_ASSET_DEFINITIONS = {
             "roles": ["metadata"],
         }
     )
-    for swath, pol in product(
-        SENTINEL_SLC_SWATHS, SENTINEL_POLARIZATIONS.keys()
-    )
+    for swath, pol in product(SENTINEL_SLC_SWATHS, SENTINEL_POLARIZATIONS.keys())
 }
 
 SENTINEL_SLC_SCHEMA_NOISE_ASSET_DEFINITIONS = {
@@ -177,9 +210,7 @@ SENTINEL_SLC_SCHEMA_NOISE_ASSET_DEFINITIONS = {
             "roles": ["metadata"],
         }
     )
-    for swath, pol in product(
-        SENTINEL_SLC_SWATHS, SENTINEL_POLARIZATIONS.keys()
-    )
+    for swath, pol in product(SENTINEL_SLC_SWATHS, SENTINEL_POLARIZATIONS.keys())
 }
 
 SENTINEL_SLC_SCHEMA_PRODUCT_ASSET_DEFINITIONS = {
@@ -195,9 +226,7 @@ SENTINEL_SLC_SCHEMA_PRODUCT_ASSET_DEFINITIONS = {
             "roles": ["metadata"],
         }
     )
-    for swath, pol in product(
-        SENTINEL_SLC_SWATHS, SENTINEL_POLARIZATIONS.keys()
-    )
+    for swath, pol in product(SENTINEL_SLC_SWATHS, SENTINEL_POLARIZATIONS.keys())
 }
 
 SENTINEL_SLC_ASSETS = {

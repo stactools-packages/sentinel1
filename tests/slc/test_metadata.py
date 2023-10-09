@@ -6,7 +6,10 @@ from pystac.extensions.sat import SatExtension
 
 from stactools.sentinel1.metadata_links import MetadataLinks
 from stactools.sentinel1.slc.product_metadata import SLCProductMetadata
-from stactools.sentinel1.slc.properties import fill_common_sar_properties, fill_sat_properties
+from stactools.sentinel1.slc.properties import (
+    fill_common_sar_properties,
+    fill_sat_properties,
+)
 from tests import test_data
 
 

@@ -52,9 +52,7 @@ def test_create_item() -> None:
     for x in bands_seen:
         assert x.lower() in list(SENTINEL_POLARIZATIONS.keys())
 
-    assert (
-        item.properties.get("start_datetime") == "2014-10-31T09:59:31.293840Z"
-    )
+    assert item.properties.get("start_datetime") == "2014-10-31T09:59:31.293840Z"
     assert item.properties.get("end_datetime") == "2014-10-31T09:59:58.717016Z"
 
     assert item.properties.get("constellation") == c.SENTINEL_CONSTELLATION
@@ -86,9 +84,7 @@ def test_create_item() -> None:
     polarisations = ["HH"]
     swaths = ["IW1", "IW2", "IW3"]
     asset_types = ["schema-calibration", "schema-noise", "schema-product"]
-    for polarisation, swath, asset_type in product(
-        polarisations, swaths, asset_types
-    ):
+    for polarisation, swath, asset_type in product(polarisations, swaths, asset_types):
         asset_key = f"{asset_type}-{swath.lower()}-{polarisation.lower()}"
         if asset_key in item.assets:
             asset_title = item.assets[asset_key].title
@@ -97,6 +93,5 @@ def test_create_item() -> None:
 
     assert item.properties.get("s1:product_identifier") == product_identifier
     assert (
-        item.properties.get("s1:processing_datetime")
-        == "2014-10-31T20:34:21.000000Z"
+        item.properties.get("s1:processing_datetime") == "2014-10-31T20:34:21.000000Z"
     )

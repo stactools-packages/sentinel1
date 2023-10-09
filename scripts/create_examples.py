@@ -10,6 +10,7 @@ import pystac
 from stactools.sentinel1.formats import Format
 from stactools.sentinel1.grd import stac as grd
 from stactools.sentinel1.rtc import stac as rtc
+from stactools.sentinel1.slc import stac as slc
 
 # GRD generate examples
 root = Path(__file__).parents[1]
@@ -67,3 +68,24 @@ catalog.normalize_hrefs(str(examples / "rtc"))
 catalog.make_all_asset_hrefs_relative()
 catalog.validate_all()
 catalog.save(catalog_type=pystac.CatalogType.SELF_CONTAINED)
+
+
+# SLC generate examples
+root = Path(__file__).parents[1]
+examples = root / "examples"
+slc_data = root / "tests" / "data-files" / "slc"
+
+slc_collection = slc.create_collection(str(examples / "slc" / "collection.json"))
+
+item = slc.create_item(
+    str(
+        slc_data / "S1A_IW_SL1__1_SH_20141031T095929_20141031T100002_003072_003842_91FC.SAFE"
+    ),
+    archive_format=Format.SAFE,
+)
+slc_collection.add_item(item)
+
+slc_collection.normalize_hrefs(str(examples / "slc"))
+slc_collection.make_all_asset_hrefs_relative()
+slc_collection.validate_all()
+slc_collection.save(catalog_type=pystac.CatalogType.SELF_CONTAINED)

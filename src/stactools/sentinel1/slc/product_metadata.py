@@ -39,5 +39,4 @@ class SLCProductMetadata(ProductMetadata):
             # "s1:stop_anxtime": get_stop_anxtime(root),
         }
 
-
         return {k: v for k, v in result.items() if v is not None}

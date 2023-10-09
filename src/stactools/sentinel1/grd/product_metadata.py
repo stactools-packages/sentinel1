@@ -1,9 +1,6 @@
-from datetime import datetime
-from typing import Any, Callable, Dict, List, Optional, Tuple
+from typing import Any, Callable, Dict, List
 
-from pystac.utils import datetime_to_str, str_to_datetime
-from shapely.geometry import Polygon, mapping
-from stactools.core.io import ReadHrefModifier
+from pystac.utils import datetime_to_str
 from stactools.core.io.xml import XmlElement
 
 from ..product_metadata import ProductMetadata

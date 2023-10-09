@@ -3,8 +3,8 @@ import os
 
 import click
 
-from .stac import create_collection, create_item
 from ..formats import Format
+from .stac import create_collection, create_item
 
 logger = logging.getLogger(__name__)
 

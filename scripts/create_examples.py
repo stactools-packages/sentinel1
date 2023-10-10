@@ -79,7 +79,8 @@ slc_collection = slc.create_collection(str(examples / "slc" / "collection.json")
 
 item = slc.create_item(
     str(
-        slc_data / "S1A_IW_SL1__1_SH_20141031T095929_20141031T100002_003072_003842_91FC.SAFE"
+        slc_data
+        / "S1A_IW_SL1__1_SH_20141031T095929_20141031T100002_003072_003842_91FC.SAFE"
     ),
     archive_format=Format.SAFE,
 )

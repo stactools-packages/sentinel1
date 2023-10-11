@@ -81,15 +81,16 @@ def test_create_item() -> None:
     }
 
     # Test polarisation added to item-asset schemas titles
-    polarisations = ["HH"]
     swaths = ["IW1", "IW2", "IW3"]
+    polarisations = ["HH"]
     asset_types = ["schema-calibration", "schema-noise", "schema-product"]
-    for polarisation, swath, asset_type in product(polarisations, swaths, asset_types):
+    for swath, polarisation, asset_type in product(swaths, polarisations, asset_types):
         asset_key = f"{asset_type}-{swath.lower()}-{polarisation.lower()}"
+        title_prefix = f"{swath.upper()} {polarisation.upper()}"
         if asset_key in item.assets:
             asset_title = item.assets[asset_key].title
             if asset_title:
-                assert polarisation == asset_title[: len(polarisation)]
+                assert title_prefix == asset_title[: len(title_prefix)]
 
     assert item.properties.get("s1:product_identifier") == product_identifier
     assert (

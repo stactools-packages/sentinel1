@@ -60,7 +60,7 @@ class SLCMetadataLinks(MetadataLinks):
             swath, polarisation = get_swath_and_polarisation(href)
             if polarisation:
                 # Add polarisation to title
-                title = f"{polarisation} {swath} Product Schema"
+                title = f"{swath} {polarisation} Product Schema"
                 asset = pystac.Asset(
                     href=href,
                     media_type=pystac.MediaType.XML,
@@ -80,10 +80,10 @@ class SLCMetadataLinks(MetadataLinks):
         )
         for key, href in self.calibration_hrefs:
             # Extract polarisation from href
-            polarisation, swath = get_swath_and_polarisation(href)
+            swath, polarisation = get_swath_and_polarisation(href)
             if polarisation:
                 # Add polarisation to title
-                title = f"{polarisation} {swath} Calibration Schema"
+                title = f"{swath} {polarisation} Calibration Schema"
                 asset = pystac.Asset(
                     href=href,
                     media_type=pystac.MediaType.XML,
@@ -98,10 +98,10 @@ class SLCMetadataLinks(MetadataLinks):
         assets = []
         for key, href in self.noise_hrefs:
             # Extract polarisation from href
-            polarisation, swath = get_swath_and_polarisation(href)
+            swath, polarisation = get_swath_and_polarisation(href)
             if polarisation:
                 # Add polarisation to title
-                title = f"{polarisation} {swath} Noise Schema"
+                title = f"{swath} {polarisation} Noise Schema"
                 asset = pystac.Asset(
                     href=href,
                     media_type=pystac.MediaType.XML,

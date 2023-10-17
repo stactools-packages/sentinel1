@@ -175,8 +175,6 @@ def create_item(
 
     # Add s1 properties
     item.properties.update(product_metadata.metadata_dict)
-
-    item.properties["s1:shape"] = shape
     item.properties["s1:product_identifier"] = scene_id
 
     if pdt := metalinks.manifest.find_attr(
@@ -198,6 +196,8 @@ def create_item(
     # Noise for bands
     for asset_obj in metalinks.create_noise_asset():
         item.add_asset(asset_obj[0], asset_obj[1])
+
+    # TODO: RFI assets if newer than 2018
 
     # Thumbnail
     if metalinks.thumbnail_href is not None:

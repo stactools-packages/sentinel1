@@ -70,10 +70,6 @@
       "IW2",
       "IW3"
     ],
-    "s1:shape": [
-      21032,
-      14733
-    ],
     "s1:product_identifier": "S1A_IW_SL1__1_SH_20141031T095929_20141031T100002_003072_003842_91FC",
     "s1:processing_datetime": "2014-10-31T20:34:21.000000Z",
     "datetime": "2014-10-31T09:59:45.005428Z"
@@ -148,7 +144,7 @@
     "schema-product-iw1-hh": {
       "href": "../../../tests/data-files/slc/S1A_IW_SL1__1_SH_20141031T095929_20141031T100002_003072_003842_91FC.SAFE/annotation/s1a-iw1-slc-hh-20141031t095931-20141031t095956-003072-003842-001.xml",
       "type": "application/xml",
-      "title": "HH IW1 Product Schema",
+      "title": "IW1 HH Product Schema",
       "description": "Describes the main characteristics corresponding to the band: state of the platform during acquisition, image properties, Doppler information, geographic location, etc.",
       "roles": [
         "metadata"
@@ -157,7 +153,7 @@
     "schema-product-iw2-hh": {
       "href": "../../../tests/data-files/slc/S1A_IW_SL1__1_SH_20141031T095929_20141031T100002_003072_003842_91FC.SAFE/annotation/s1a-iw2-slc-hh-20141031t095932-20141031t095957-003072-003842-002.xml",
       "type": "application/xml",
-      "title": "HH IW2 Product Schema",
+      "title": "IW2 HH Product Schema",
       "description": "Describes the main characteristics corresponding to the band: state of the platform during acquisition, image properties, Doppler information, geographic location, etc.",
       "roles": [
         "metadata"
@@ -166,7 +162,7 @@
     "schema-product-iw3-hh": {
       "href": "../../../tests/data-files/slc/S1A_IW_SL1__1_SH_20141031T095929_20141031T100002_003072_003842_91FC.SAFE/annotation/s1a-iw3-slc-hh-20141031t095933-20141031t095958-003072-003842-003.xml",
       "type": "application/xml",
-      "title": "HH IW3 Product Schema",
+      "title": "IW3 HH Product Schema",
       "description": "Describes the main characteristics corresponding to the band: state of the platform during acquisition, image properties, Doppler information, geographic location, etc.",
       "roles": [
         "metadata"

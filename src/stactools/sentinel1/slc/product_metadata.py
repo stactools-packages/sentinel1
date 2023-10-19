@@ -1,7 +1,6 @@
-from typing import Any, Callable, Dict, List
+from typing import Any, Dict
 
 from pystac.utils import datetime_to_str
-from stactools.core.io.xml import XmlElement
 
 from ..product_metadata import ProductMetadata
 

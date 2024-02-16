@@ -3,32 +3,32 @@
 
 repos:
     - repo: https://github.com/psf/black
-      rev: 22.12.0
+      rev: 24.2.0
       hooks:
           - id: black
     - repo: https://github.com/codespell-project/codespell
-      rev: v2.2.2
+      rev: v2.2.6
       hooks:
           - id: codespell
             args: [--ignore-words=.codespellignore]
             types_or: [jupyter, markdown, python, shell]
     - repo: https://github.com/PyCQA/flake8
-      rev: 6.0.0
+      rev: 7.0.0
       hooks:
           - id: flake8
     - repo: https://github.com/pre-commit/mirrors-mypy
-      rev: v0.991
+      rev: v1.8.0
       hooks:
           - id: mypy
             additional_dependencies:
                 - click != 8.1.0
                 - stactools
     - repo: https://github.com/pycqa/isort
-      rev: 5.12.0
+      rev: 5.13.2
       hooks:
           - id: isort
     - repo: https://github.com/igorshubovych/markdownlint-cli
-      rev: v0.33.0
+      rev: v0.39.0
       hooks:
           - id: markdownlint
             args: ["--ignore", ".github/ISSUE_TEMPLATE/feature_request.md", "--disable", "MD024"]

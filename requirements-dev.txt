@@ -6,3 +6,4 @@ mypy
 pre-commit
 pytest
 pytest-cov
+requests

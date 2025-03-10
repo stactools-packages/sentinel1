@@ -56,7 +56,7 @@ def test_create_item() -> None:
     assert item.properties.get("constellation") == c.SENTINEL_CONSTELLATION
     assert item.properties.get("platform") == "sentinel-1a"
 
-    assert item.properties.get("proj:epsg") == 4326
+    assert item.properties.get("proj:code") == "EPSG:4326"
     assert item.properties.get("proj:bbox") == [
         1.512143,
         44.536255,

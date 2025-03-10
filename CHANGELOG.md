@@ -11,6 +11,10 @@ number as needed.
 
 ## [Unreleased]
 
+### Fixed
+
+- Expanded regular expression to include Sentinel-1C and 1D. ([#62](https://github.com/stactools-packages/sentinel1/pull/62))
+
 ## [0.8.0] - 2023-02-16
 
 ### Added

@@ -1,7 +1,7 @@
 {
   "type": "Catalog",
   "id": "2016",
-  "stac_version": "1.0.0",
+  "stac_version": "1.1.0",
   "description": "Catalog of items from sentinel1-rtc-aws with id 2016",
   "links": [
     {
@@ -13,7 +13,7 @@
     {
       "rel": "item",
       "href": "./S1B_20161121_12SYJ_ASC/S1B_20161121_12SYJ_ASC.json",
-      "type": "application/json"
+      "type": "application/geo+json"
     },
     {
       "rel": "parent",

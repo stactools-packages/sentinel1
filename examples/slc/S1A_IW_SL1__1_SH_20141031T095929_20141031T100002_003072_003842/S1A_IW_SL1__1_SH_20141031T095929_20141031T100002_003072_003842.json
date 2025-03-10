@@ -1,7 +1,47 @@
 {
   "type": "Feature",
-  "stac_version": "1.0.0",
+  "stac_version": "1.1.0",
+  "stac_extensions": [
+    "https://stac-extensions.github.io/sar/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/sat/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/eo/v1.1.0/schema.json",
+    "https://stac-extensions.github.io/processing/v1.1.0/schema.json",
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json"
+  ],
   "id": "S1A_IW_SL1__1_SH_20141031T095929_20141031T100002_003072_003842",
+  "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+      [
+        [
+          -47.241409,
+          69.582458
+        ],
+        [
+          -53.661625,
+          70.092194
+        ],
+        [
+          -52.765385,
+          71.715393
+        ],
+        [
+          -45.827332,
+          71.176399
+        ],
+        [
+          -47.241409,
+          69.582458
+        ]
+      ]
+    ]
+  },
+  "bbox": [
+    -53.661625,
+    69.582458,
+    -45.827332,
+    71.715393
+  ],
   "properties": {
     "sar:frequency_band": "C",
     "sar:center_frequency": 5.405,
@@ -21,7 +61,7 @@
     "processing:software": {
       "Sentinel-1 IPF": "002.36"
     },
-    "proj:epsg": 4326,
+    "proj:code": "EPSG:4326",
     "proj:bbox": [
       -53.661625,
       69.582458,
@@ -73,33 +113,6 @@
     "s1:product_identifier": "S1A_IW_SL1__1_SH_20141031T095929_20141031T100002_003072_003842_91FC",
     "s1:processing_datetime": "2014-10-31T20:34:21.000000Z",
     "datetime": "2014-10-31T09:59:45.005428Z"
-  },
-  "geometry": {
-    "type": "Polygon",
-    "coordinates": [
-      [
-        [
-          -47.241409,
-          69.582458
-        ],
-        [
-          -53.661625,
-          70.092194
-        ],
-        [
-          -52.765385,
-          71.715393
-        ],
-        [
-          -45.827332,
-          71.176399
-        ],
-        [
-          -47.241409,
-          69.582458
-        ]
-      ]
-    ]
   },
   "links": [
     {
@@ -257,18 +270,5 @@
       ]
     }
   },
-  "bbox": [
-    -53.661625,
-    69.582458,
-    -45.827332,
-    71.715393
-  ],
-  "stac_extensions": [
-    "https://stac-extensions.github.io/sar/v1.0.0/schema.json",
-    "https://stac-extensions.github.io/sat/v1.0.0/schema.json",
-    "https://stac-extensions.github.io/eo/v1.0.0/schema.json",
-    "https://stac-extensions.github.io/processing/v1.1.0/schema.json",
-    "https://stac-extensions.github.io/projection/v1.0.0/schema.json"
-  ],
   "collection": "sentinel1-slc"
 }

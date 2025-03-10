@@ -1,7 +1,7 @@
 {
   "type": "Catalog",
   "id": "sentinel1-rtc-example",
-  "stac_version": "1.0.0",
+  "stac_version": "1.1.0",
   "description": "Example Catalog: Analysis Ready Sentinel-1 Backscatter Imagery AWS Public Dataset",
   "links": [
     {

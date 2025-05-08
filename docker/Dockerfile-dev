@@ -11,7 +11,7 @@ RUN apt-get -y -q update \
     && rm -rf /var/lib/apt/lists/
 
 # For caching purposes, install dependencies but remove the actual package
-COPY pyproject.toml requirements-dev.txt setup.cfg ./
+COPY pyproject.toml requirements-dev.txt ./
 COPY src/$DOCKER_NAMESPACE_PACKAGE_DIR/__init__.py src/$DOCKER_NAMESPACE_PACKAGE_DIR/
 RUN pip install -r requirements-dev.txt \
     && pip install . --no-binary rasterio \

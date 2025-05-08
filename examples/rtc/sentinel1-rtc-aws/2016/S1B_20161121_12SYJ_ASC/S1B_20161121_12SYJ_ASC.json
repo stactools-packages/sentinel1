@@ -1,46 +1,7 @@
 {
   "type": "Feature",
-  "stac_version": "1.1.0",
-  "stac_extensions": [
-    "https://stac-extensions.github.io/sar/v1.0.0/schema.json",
-    "https://stac-extensions.github.io/sat/v1.0.0/schema.json",
-    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
-    "https://stac-extensions.github.io/raster/v1.1.0/schema.json"
-  ],
+  "stac_version": "1.0.0",
   "id": "S1B_20161121_12SYJ_ASC",
-  "geometry": {
-    "type": "Polygon",
-    "coordinates": [
-      [
-        [
-          -108.69936,
-          38.73822
-        ],
-        [
-          -108.66683,
-          39.72682
-        ],
-        [
-          -107.38764,
-          39.69403
-        ],
-        [
-          -107.43793,
-          38.70656
-        ],
-        [
-          -108.69936,
-          38.73822
-        ]
-      ]
-    ]
-  },
-  "bbox": [
-    -108.69936,
-    38.70664,
-    -107.38769,
-    39.72682
-  ],
   "properties": {
     "providers": [
       {
@@ -74,7 +35,7 @@
     "gsd": 20,
     "start_datetime": "2016-11-21T01:09:10Z",
     "end_datetime": "2016-11-21T01:10:04Z",
-    "created": "2025-03-10T16:28:02.495779Z",
+    "created": "2025-05-08T17:20:29.669007Z",
     "mgrs:utm_zone": "12",
     "mgrs:latitude_band": "S",
     "mgrs:grid_square": "YJ",
@@ -102,7 +63,7 @@
     "sat:orbit_state": "ascending",
     "sat:relative_orbit": 49,
     "sat:absolute_orbit": 3050,
-    "proj:code": "EPSG:32612",
+    "proj:epsg": 32612,
     "proj:transform": [
       20.0,
       0.0,
@@ -119,6 +80,33 @@
       5490
     ],
     "datetime": "2016-11-21T01:09:37Z"
+  },
+  "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+      [
+        [
+          -108.69936,
+          38.73822
+        ],
+        [
+          -108.66683,
+          39.72682
+        ],
+        [
+          -107.38764,
+          39.69403
+        ],
+        [
+          -107.43793,
+          38.70656
+        ],
+        [
+          -108.69936,
+          38.73822
+        ]
+      ]
+    ]
   },
   "links": [
     {
@@ -204,5 +192,17 @@
       ]
     }
   },
+  "bbox": [
+    -108.69936,
+    38.70664,
+    -107.38769,
+    39.72682
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/sar/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/sat/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/projection/v1.1.0/schema.json",
+    "https://stac-extensions.github.io/raster/v1.1.0/schema.json"
+  ],
   "collection": "sentinel1-rtc-aws"
 }

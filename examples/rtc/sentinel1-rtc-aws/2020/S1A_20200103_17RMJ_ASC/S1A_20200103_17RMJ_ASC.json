@@ -1,13 +1,86 @@
 {
   "type": "Feature",
-  "stac_version": "1.1.0",
-  "stac_extensions": [
-    "https://stac-extensions.github.io/sar/v1.0.0/schema.json",
-    "https://stac-extensions.github.io/sat/v1.0.0/schema.json",
-    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
-    "https://stac-extensions.github.io/raster/v1.1.0/schema.json"
-  ],
+  "stac_version": "1.0.0",
   "id": "S1A_20200103_17RMJ_ASC",
+  "properties": {
+    "providers": [
+      {
+        "name": "ESA",
+        "roles": [
+          "licensor",
+          "producer"
+        ],
+        "url": "https://sentinel.esa.int/web/sentinel/missions/sentinel-1"
+      },
+      {
+        "name": "Indigo Ag Inc.",
+        "roles": [
+          "licensor",
+          "processor",
+          "host"
+        ],
+        "url": "https://registry.opendata.aws/sentinel-1-rtc-indigo",
+        "processing:level": "L3",
+        "processing:lineage": "https://sentinel-s1-rtc-indigo-docs.s3-us-west-2.amazonaws.com/methodology.html",
+        "processing:software": {
+          "S1TBX": "7.0.2"
+        }
+      }
+    ],
+    "constellation": "sentinel-1",
+    "platform": "sentinel-1a",
+    "instruments": [
+      "c-sar"
+    ],
+    "gsd": 20,
+    "start_datetime": "2020-01-03T23:35:56Z",
+    "end_datetime": "2020-01-03T23:36:46Z",
+    "created": "2025-05-08T17:20:15.885836Z",
+    "mgrs:utm_zone": "17",
+    "mgrs:latitude_band": "R",
+    "mgrs:grid_square": "MJ",
+    "sentinel:mgrs": "17RMJ",
+    "sentinel:product_ids": [
+      "S1A_IW_GRDH_1SDV_20200103T233556_20200103T233621_030643_0382F7_C795",
+      "S1A_IW_GRDH_1SDV_20200103T233621_20200103T233646_030643_0382F7_2CFD"
+    ],
+    "sar:frequency_band": "C",
+    "sar:center_frequency": 5.405,
+    "sar:observation_direction": "right",
+    "sar:instrument_mode": "IW",
+    "sar:product_type": "RTC",
+    "sar:polarizations": [
+      "VV",
+      "VH"
+    ],
+    "sar:resolution_range": 20.3,
+    "sar:resolution_azimuth": 22.6,
+    "sar:pixel_spacing_range": 10,
+    "sar:pixel_spacing_azimuth": 10,
+    "sar:looks_equivalent_number": 4.3,
+    "sar:looks_range": 5,
+    "sar:looks_azimuth": 1,
+    "sat:orbit_state": "ascending",
+    "sat:relative_orbit": 121,
+    "sat:absolute_orbit": 30643,
+    "proj:epsg": 32617,
+    "proj:transform": [
+      20.0,
+      0.0,
+      399960.0,
+      0.0,
+      -20.0,
+      2900040.0,
+      0.0,
+      0.0,
+      1.0
+    ],
+    "proj:shape": [
+      5490,
+      5490
+    ],
+    "datetime": "2020-01-03T23:36:21Z"
+  },
   "geometry": {
     "type": "Polygon",
     "coordinates": [
@@ -78,91 +151,6 @@
         ]
       ]
     ]
-  },
-  "bbox": [
-    -82.00143,
-    25.22513,
-    -80.90236,
-    26.21993
-  ],
-  "properties": {
-    "providers": [
-      {
-        "name": "ESA",
-        "roles": [
-          "licensor",
-          "producer"
-        ],
-        "url": "https://sentinel.esa.int/web/sentinel/missions/sentinel-1"
-      },
-      {
-        "name": "Indigo Ag Inc.",
-        "roles": [
-          "licensor",
-          "processor",
-          "host"
-        ],
-        "url": "https://registry.opendata.aws/sentinel-1-rtc-indigo",
-        "processing:level": "L3",
-        "processing:lineage": "https://sentinel-s1-rtc-indigo-docs.s3-us-west-2.amazonaws.com/methodology.html",
-        "processing:software": {
-          "S1TBX": "7.0.2"
-        }
-      }
-    ],
-    "constellation": "sentinel-1",
-    "platform": "sentinel-1a",
-    "instruments": [
-      "c-sar"
-    ],
-    "gsd": 20,
-    "start_datetime": "2020-01-03T23:35:56Z",
-    "end_datetime": "2020-01-03T23:36:46Z",
-    "created": "2025-03-10T16:27:43.668961Z",
-    "mgrs:utm_zone": "17",
-    "mgrs:latitude_band": "R",
-    "mgrs:grid_square": "MJ",
-    "sentinel:mgrs": "17RMJ",
-    "sentinel:product_ids": [
-      "S1A_IW_GRDH_1SDV_20200103T233556_20200103T233621_030643_0382F7_C795",
-      "S1A_IW_GRDH_1SDV_20200103T233621_20200103T233646_030643_0382F7_2CFD"
-    ],
-    "sar:frequency_band": "C",
-    "sar:center_frequency": 5.405,
-    "sar:observation_direction": "right",
-    "sar:instrument_mode": "IW",
-    "sar:product_type": "RTC",
-    "sar:polarizations": [
-      "VV",
-      "VH"
-    ],
-    "sar:resolution_range": 20.3,
-    "sar:resolution_azimuth": 22.6,
-    "sar:pixel_spacing_range": 10,
-    "sar:pixel_spacing_azimuth": 10,
-    "sar:looks_equivalent_number": 4.3,
-    "sar:looks_range": 5,
-    "sar:looks_azimuth": 1,
-    "sat:orbit_state": "ascending",
-    "sat:relative_orbit": 121,
-    "sat:absolute_orbit": 30643,
-    "proj:code": "EPSG:32617",
-    "proj:transform": [
-      20.0,
-      0.0,
-      399960.0,
-      0.0,
-      -20.0,
-      2900040.0,
-      0.0,
-      0.0,
-      1.0
-    ],
-    "proj:shape": [
-      5490,
-      5490
-    ],
-    "datetime": "2020-01-03T23:36:21Z"
   },
   "links": [
     {
@@ -248,5 +236,17 @@
       ]
     }
   },
+  "bbox": [
+    -82.00143,
+    25.22513,
+    -80.90236,
+    26.21993
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/sar/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/sat/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/projection/v1.1.0/schema.json",
+    "https://stac-extensions.github.io/raster/v1.1.0/schema.json"
+  ],
   "collection": "sentinel1-rtc-aws"
 }

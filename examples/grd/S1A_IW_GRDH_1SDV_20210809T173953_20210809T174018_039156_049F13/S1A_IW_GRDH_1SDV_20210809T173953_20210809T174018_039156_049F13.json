@@ -1,46 +1,7 @@
 {
   "type": "Feature",
-  "stac_version": "1.1.0",
-  "stac_extensions": [
-    "https://stac-extensions.github.io/sar/v1.0.0/schema.json",
-    "https://stac-extensions.github.io/sat/v1.0.0/schema.json",
-    "https://stac-extensions.github.io/eo/v1.1.0/schema.json",
-    "https://stac-extensions.github.io/projection/v2.0.0/schema.json"
-  ],
+  "stac_version": "1.0.0",
   "id": "S1A_IW_GRDH_1SDV_20210809T173953_20210809T174018_039156_049F13",
-  "geometry": {
-    "type": "Polygon",
-    "coordinates": [
-      [
-        [
-          1.512143,
-          46.03389
-        ],
-        [
-          4.85136,
-          46.436539
-        ],
-        [
-          5.188996,
-          44.938713
-        ],
-        [
-          1.937196,
-          44.536255
-        ],
-        [
-          1.512143,
-          46.03389
-        ]
-      ]
-    ]
-  },
-  "bbox": [
-    1.512143,
-    44.536255,
-    5.188996,
-    46.436539
-  ],
   "properties": {
     "sar:frequency_band": "C",
     "sar:center_frequency": 5.405,
@@ -62,7 +23,7 @@
     "sat:orbit_state": "ascending",
     "sat:absolute_orbit": 39156,
     "sat:relative_orbit": 59,
-    "proj:code": "EPSG:4326",
+    "proj:epsg": 4326,
     "proj:bbox": [
       1.512143,
       44.536255,
@@ -115,6 +76,33 @@
     "s1:product_identifier": "S1A_IW_GRDH_1SDV_20210809T173953_20210809T174018_039156_049F13_6FF8",
     "s1:processing_datetime": "2021-08-09T20:19:58.000000Z",
     "datetime": "2021-08-09T17:40:05.653288Z"
+  },
+  "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+      [
+        [
+          1.512143,
+          46.03389
+        ],
+        [
+          4.85136,
+          46.436539
+        ],
+        [
+          5.188996,
+          44.938713
+        ],
+        [
+          1.937196,
+          44.536255
+        ],
+        [
+          1.512143,
+          46.03389
+        ]
+      ]
+    ]
   },
   "links": [
     {
@@ -250,5 +238,17 @@
       ]
     }
   },
+  "bbox": [
+    1.512143,
+    44.536255,
+    5.188996,
+    46.436539
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/sar/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/sat/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/eo/v1.1.0/schema.json",
+    "https://stac-extensions.github.io/projection/v1.1.0/schema.json"
+  ],
   "collection": "sentinel1-grd"
 }

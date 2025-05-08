@@ -1,7 +1,7 @@
 {
   "type": "Collection",
   "id": "sentinel1-slc",
-  "stac_version": "1.1.0",
+  "stac_version": "1.0.0",
   "description": "Level-1 Single Look Complex (SLC) products are images in the slant range by azimuth imaging plane, in the image plane of satellite data acquisition. Each image pixel is represented by a complex (I and Q) magnitude value and therefore contains both amplitude and phase information. Each I and Q value is 16 bits per pixel. The processing for all SLC products results in a single look in each dimension using the full available signal bandwidth. The imagery is geo-referenced using orbit and attitude data from the satellite. SLC images are produced in a zero Doppler geometry. This convention is common with the standard slant range products available from other SAR sensors.",
   "links": [
     {
@@ -23,7 +23,7 @@
     {
       "rel": "item",
       "href": "./S1A_IW_SL1__1_SH_20141031T095929_20141031T100002_003072_003842/S1A_IW_SL1__1_SH_20141031T095929_20141031T100002_003072_003842.json",
-      "type": "application/geo+json"
+      "type": "application/json"
     }
   ],
   "stac_extensions": [
@@ -2119,7 +2119,7 @@
       ]
     }
   },
-  "license": "other",
+  "license": "proprietary",
   "keywords": [
     "ground",
     "sentinel",

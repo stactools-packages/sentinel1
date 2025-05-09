@@ -52,7 +52,5 @@ jobs:
         with:
           auto-update-conda: true
           python-version: ${{ matrix.python-version }}
-      - name: Update Conda's environemnt
-        run: conda env update -f environment.yml -n test
       - name: Execute linters and test suites
         run: ./scripts/cibuild

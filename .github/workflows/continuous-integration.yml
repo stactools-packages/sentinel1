@@ -52,6 +52,7 @@ jobs:
         with:
           auto-update-conda: true
           python-version: ${{ matrix.python-version }}
+          channels: conda-forge,default
       - name: Update Conda's environemnt
         run: |
           conda info --envs

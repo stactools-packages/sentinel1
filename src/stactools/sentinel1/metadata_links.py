@@ -113,7 +113,7 @@ class MetadataLinks:
                 return href.strip("./")
             else:
                 raise RuntimeError(
-                    f"No href found in XML element {etree.tostring(el.element)}"
+                    f"No href found in XML element {etree.tostring(el.element)!r}"
                 )
 
         optional_href_list = [href_finder(href) for href in file_location_list]

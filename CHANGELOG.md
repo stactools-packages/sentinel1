@@ -13,7 +13,17 @@ number as needed.
 
 ### Fixed
 
-- Expanded regular expression to include Sentinel-1C and 1D. ([#62](https://github.com/stactools-packages/sentinel1/pull/62))
+- Expanded regular expression to include Sentinel-1C and
+  1D. ([#62](https://github.com/stactools-packages/sentinel1/pull/62))
+- Fixed conda CI action, where `conda-forge` was not specified as primary
+  channel for installation, which was causing conflicts between library
+  versions.
+
+### Changed
+
+- mypy uses local hook instead of repo (repo was pulling type stubs for pystac
+  1.12) h/t @tylanderson.
+- moved from setup.cfg to pyproject.toml
 
 ## [0.8.0] - 2023-02-16
 

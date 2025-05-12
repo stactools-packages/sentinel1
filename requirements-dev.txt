@@ -7,3 +7,6 @@ pre-commit
 pytest
 pytest-cov
 requests
+types-python-dateutil
+lxml-stubs
+types-setuptools

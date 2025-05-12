@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rfi>
+  <adsHeader>
+    <missionId>S1C</missionId>
+    <productType>GRD</productType>
+    <polarisation>HH</polarisation>
+    <mode>S4</mode>
+    <swath>S4</swath>
+    <startTime>2025-01-18T17:14:04.727079</startTime>
+    <stopTime>2025-01-18T17:14:21.971707</stopTime>
+    <absoluteOrbitNumber>638</absoluteOrbitNumber>
+    <missionDataTakeId>1336</missionDataTakeId>
+    <imageNumber>001</imageNumber>
+  </adsHeader>
+  <rfiMitigationApplied>None</rfiMitigationApplied>
+</rfi>

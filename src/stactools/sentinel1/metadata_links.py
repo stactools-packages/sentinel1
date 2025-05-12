@@ -20,7 +20,7 @@ class ManifestError(Exception):
 
 dataset_naming_pattern = re.compile(
     "^.*"
-    + "(?P<mission>s1a|s1b)"
+    + "(?P<mission>s1a|s1b|s1c|s1d)"
     + "-(?P<swath>s[1-6]|iw[1-3]?|ew[1-5]?|wv[1-2]|en|n[1-6]|is[1-7])"
     + "-(?P<type>slc|grd)"
     + "-(?P<polarisation>hh|hv|vv|vh)"
@@ -113,7 +113,7 @@ class MetadataLinks:
                 return href.strip("./")
             else:
                 raise RuntimeError(
-                    f"No href found in XML element {etree.tostring(el.element)}"
+                    f"No href found in XML element {etree.tostring(el.element)!r}"
                 )
 
         optional_href_list = [href_finder(href) for href in file_location_list]

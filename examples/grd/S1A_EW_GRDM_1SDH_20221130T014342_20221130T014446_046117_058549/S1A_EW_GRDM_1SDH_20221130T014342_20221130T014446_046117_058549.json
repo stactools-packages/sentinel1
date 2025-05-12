@@ -57,7 +57,7 @@
         "url": "https://earth.esa.int/eogateway"
       }
     ],
-    "platform": "SENTINEL-1A",
+    "platform": "sentinel-1a",
     "constellation": "sentinel-1",
     "start_datetime": "2022-11-30T01:43:42.546629Z",
     "end_datetime": "2022-11-30T01:44:46.839082Z",
@@ -247,7 +247,7 @@
   "stac_extensions": [
     "https://stac-extensions.github.io/sar/v1.0.0/schema.json",
     "https://stac-extensions.github.io/sat/v1.0.0/schema.json",
-    "https://stac-extensions.github.io/eo/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/eo/v1.1.0/schema.json",
     "https://stac-extensions.github.io/projection/v1.1.0/schema.json"
   ],
   "collection": "sentinel1-grd"

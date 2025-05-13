@@ -9,7 +9,7 @@ This project attempts to match the major and minor versions of
 [stactools](https://github.com/stac-utils/stactools) and increments the patch
 number as needed.
 
-## [Unreleased]
+## [0.8.1] - 2025-05-13
 
 ### Fixed
 
@@ -134,7 +134,8 @@ without `.SAFE` ending to the folders and slightly different file names.
 - Initial release!
 - Support for Sentinel1 AWS RTC public dataset
 
-[Unreleased]: https://github.com/stactools-packages/sentinel1/compare/v0.8.0...main
+[Unreleased]: https://github.com/stactools-packages/sentinel1/compare/v0.8.1...main
+[0.8.1]: https://github.com/stactools-packages/sentinel1/compare/v0.8.0...v0.8.1
 [0.8.0]: https://github.com/stactools-packages/sentinel1/compare/v0.7.1...v0.8.0
 [0.7.1]: https://github.com/stactools-packages/sentinel1/compare/v0.7.0...v0.7.1
 [0.7.0]: https://github.com/stactools-packages/sentinel1/compare/v0.6.0...v0.7.0
